@@ -1,0 +1,8 @@
+directory:
+  - name: Web3 Wallet Extensions
+    description: A list of popular Web3 wallet extensions with metadata and icons.
+
+npm:
+  title: "Extension Assets"
+  contents:
+    - item: A list of popular web3 extension wallets with metadata and their SVG icons.
