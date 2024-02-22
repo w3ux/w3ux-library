@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "es6",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "sourceMap": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
+  },
+  "include": ["./src/**/*"],
+}
