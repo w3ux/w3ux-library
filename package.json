@@ -57,10 +57,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/w3ux/library.git"
+    "url": "git+https://github.com/w3ux/w3ux-library.git"
   },
   "keywords": [
     "w3ux"
   ],
-  "homepage": "https://github.com/w3ux/library"
+  "homepage": "https://github.com/w3ux/w3ux-library"
 }
