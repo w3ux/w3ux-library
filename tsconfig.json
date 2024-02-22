@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "declaration": true,
+    "declarationMap": false,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "src/**/*", "builder"
+  ],
+  "exclude": [
+    "**/*/node_modules",
+    "**/*/dist",
+    "vite.config.js",
+  ],
+}

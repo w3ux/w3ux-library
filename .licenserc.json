@@ -1,0 +1,15 @@
+{
+  "**/*.{js,ts,tsx}": [
+    "/* @license Copyright 2024 w3ux authors & contributors",
+    "SPDX-License-Identifier: GPL-3.0-only */"
+  ],
+  "**/*.scss": [
+    "/* @license Copyright 2024 w3ux authors & contributors",
+    "SPDX-License-Identifier: GPL-3.0-only */"
+  ],
+  "**/*.cjs": [
+    "// @license Copyright 2024 w3ux authors & contributors",
+    "// SPDX-License-Identifier: GPL-3.0-only"
+  ],
+  "ignore": ["testdata", "npm"]
+}

@@ -1,0 +1,13 @@
+**/dist
+**/build
+**/node_modules
+**/package.json
+**/yarn.lock
+**/package-lock.json
+**/.eslintrc.js
+**/tsconfig.json
+**/tstsconfig.tsbuildinfo
+README.md
+*CODEOWNERS*
+CHANGELOG.md
+.licenserc.json
