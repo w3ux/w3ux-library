@@ -44,7 +44,7 @@ export const Extensions: Record<string, ExtensionConfig> = {
     features: "*",
   },
   // TODO: amend dashboard side to test if `window?.walletExtension?.isNovaWallet` is present, and
-  // use `nova-wallet` instead.
+  // use `nova-wallet` metadata instead for the `polkadot-js` extension.
   "polkadot-js": {
     title: "Polkadot JS",
     website: "polkadot.js.org/extension",
