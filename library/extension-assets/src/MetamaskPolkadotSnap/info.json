@@ -1,0 +1,9 @@
+{
+  "title": "MetaMask Polkadot Snap",
+  "website": {
+    "url": "snaps.metamask.io/snap/npm/chainsafe/polkadot-snap",
+    "text": "snaps.metamask.io"
+  },
+  "category": "web-extension",
+  "features": ["getAccounts", "signer"]
+}

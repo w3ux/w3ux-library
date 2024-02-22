@@ -1,67 +1,79 @@
 /* @license Copyright 2024 @polkadot-cloud/library authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { ExtensionConfig, HardwareConfig } from "./types";
+import { ExtensionConfig } from "./types";
 
 export const Extensions: Record<string, ExtensionConfig> = {
   enkrypt: {
     title: "Enkrypt",
     website: "enkrypt.com",
+    category: "web-extension",
     features: "*",
   },
   "fearless-wallet": {
     title: "Fearless Wallet",
     website: "fearlesswallet.io",
+    category: "web-extension",
     features: "*",
   },
   "metamask-polkadot-snap": {
     title: "MetaMask Polkadot Snap",
-    website: [
-      "snaps.metamask.io",
-      "snaps.metamask.io/snap/npm/chainsafe/polkadot-snap",
-    ],
+    website: {
+      url: "snaps.metamask.io/snap/npm/chainsafe/polkadot-snap",
+      text: "snaps.metamask.io",
+    },
+    category: "web-extension",
     features: ["getAccounts", "signer"],
   },
   polkagate: {
     title: "PolkaGate",
     website: "polkagate.xyz",
+    category: "web-extension",
     features: "*",
   },
   "subwallet-js": {
     title: "SubWallet",
     website: "subwallet.app",
+    category: "web-extension",
     features: "*",
   },
   talisman: {
     title: "Talisman",
     website: "talisman.xyz",
+    category: "web-extension",
     features: "*",
   },
-  // NOTE: Nova Wallet use the same identifier as Polkadot JS extension. We therefore test if the
-  // `walletExtension` property exists to determine if the extension is Nova Wallet or Polkadot JS.
+  // TODO: amend dashboard side to test if `window?.walletExtension?.isNovaWallet` is present, and
+  // use `nova-wallet` instead.
   "polkadot-js": {
-    title: window?.walletExtension?.isNovaWallet
-      ? "Nova Wallet"
-      : "Polkadot JS",
-    website: window?.walletExtension?.isNovaWallet
-      ? "novawallet.io"
-      : "polkadot.js.org/extension",
+    title: "Polkadot JS",
+    website: "polkadot.js.org/extension",
+    category: "web-extension",
     features: "*",
   },
-};
-
-export const Hardware: Record<string, HardwareConfig> = {
+  "nova-wallet": {
+    title: "Nova Wallet",
+    website: "novawallet.io",
+    category: "web-extension",
+    features: "*",
+  },
   ledger: {
     title: "Ledger",
     website: "ledger.com",
+    category: "hardware",
+    features: [],
   },
   polkadotvault: {
     title: "Polkadot Vault",
     website: "signer.parity.io/",
+    category: "hardware",
+    features: [],
   },
   walletconnect: {
     title: "WalletConnect",
     website: "walletconnect.com",
+    category: "hardware",
+    features: [],
   },
 };
 
