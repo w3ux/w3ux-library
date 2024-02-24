@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "build":  "rm -fr dist && tsup",
+    "build": "rm -fr dist && tsup",
+    "build:extension-assets": "node dist/index.js -t build:extension-assets",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
   "dependencies": {

@@ -1,6 +1,12 @@
+import { getLibraryDirectory } from "../utils";
+
 export const build = async () => {
   // Pre-build checks.
   // ----------------------------------
+  const packageDirectory = getLibraryDirectory("extension-assets");
+
+  console.log(packageDirectory);
+
   // TODO: Check `PACKAGE_SOURCE_REQUIRED_FILES` and `PACKAGE_SOURCE_REQUIRED_PROPERTIES`.
   //
   // Generate package content to `PACKAGE_OUTPUT`.

@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "build": "rm -fr dist && gulp --silent && cp LICENSE dist",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   }
 }

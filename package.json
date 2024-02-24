@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "license": "GPL-3.0-only",
   "description": "w3ux library source code",
-  "private": "true",
   "scripts": {
     "build:directory": "node builder/run.mjs -t directory:build",
     "clear": "npm run --workspaces clear && rm -rf node_modules coverage",
@@ -52,8 +51,8 @@
     "yaml": "^2.3.4"
   },
   "workspaces": [
-    "src",
-    "builder"
+    "builder",
+    "library/extension-assets"
   ],
   "repository": {
     "type": "git",
@@ -62,5 +61,6 @@
   "keywords": [
     "w3ux"
   ],
-  "homepage": "https://github.com/w3ux/w3ux-library"
+  "homepage": "https://github.com/w3ux/w3ux-library",
+  "packageManager": "yarn@4.0.2"
 }
