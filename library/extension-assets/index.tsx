@@ -3,6 +3,8 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { ExtensionConfig } from "./types";
 
+// TODO: Generate this file from build process.
+
 export const Extensions: Record<string, ExtensionConfig> = {
   enkrypt: {
     title: "Enkrypt",
