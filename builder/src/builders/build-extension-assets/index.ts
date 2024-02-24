@@ -1,47 +1,15 @@
-import {
-  PACKAGE_SOURCE_REQUIRED_FILES,
-  PACKAGE_SOURCE_REQUIRED_PROPERTIES,
-} from "../../config";
-import {
-  checkFilesExistInPackages,
-  getLibraryDirectory,
-  getPackageJson,
-} from "../utils";
-
+import { prebuild } from "../common/prebuild";
 export const build = async () => {
-  //--------------------------------------------------
-  // Prebuild integrity checks.
-  //--------------------------------------------------
-  const libDirectory = getLibraryDirectory("extension-assets");
-
-  // Check if required files exist.
-  const filesExist = await checkFilesExistInPackages(
-    libDirectory,
-    PACKAGE_SOURCE_REQUIRED_FILES
-  );
-
-  if (!filesExist) {
-    console.error(`❌ Some required files are missing in the source package.`);
-    return;
-  }
-
-  // Get source package.json/
-  const sourcePackageJson = await getPackageJson(libDirectory);
-
-  // Get required properties from `package.json`.
-  const requiredProperties = Object.entries(sourcePackageJson).filter(
-    ([property]) => PACKAGE_SOURCE_REQUIRED_PROPERTIES.includes(property)
-  );
-
-  // Check that all required properties were fetched.
-  if (requiredProperties.length !== PACKAGE_SOURCE_REQUIRED_PROPERTIES.length) {
-    console.error(
-      `❌ Some required properties are missing in the source package.json.`
-    );
-    return;
-  }
-
   try {
+    //--------------------------------------------------
+    // Prebuild integrity checks.
+    //--------------------------------------------------
+    if (!(await prebuild("extension-assets"))) {
+      throw `Prebuild failed.`;
+    }
+
+    console.log(`✅ Prebuild checks passed.`);
+
     //--------------------------------------------------
     // Generate package content to PACKAGE_OUTPUT
     //--------------------------------------------------
