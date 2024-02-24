@@ -2,7 +2,7 @@
 "SPDX-License-Identifier: GPL-3.0-only */
 
 import minimist from "minimist";
-import * as extensionAssets from "./builders/build-extension-assets";
+import * as extensionAssets from "./builders/extension-assets";
 
 const args = minimist(process.argv.slice(2));
 
