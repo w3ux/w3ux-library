@@ -14,7 +14,6 @@ export const PACKAGE_OUTPUT = "dist";
 export const PACKAGE_SOURCE_REQUIRED_FILES = [
   "packageInfo.yml",
   "package.json",
-  "src",
 ];
 
 // --------------------------------------------------------------

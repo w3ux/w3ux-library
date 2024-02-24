@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
     "rootDir": ".",
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -10,5 +10,5 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": false,
   },
-  "include": ["./src/**/*"],
+  "include": ["src"],
 }
