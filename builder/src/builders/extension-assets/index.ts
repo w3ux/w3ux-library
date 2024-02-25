@@ -185,7 +185,7 @@ const processIndexFile = async (
       }
     }
 
-    const indexFileContent = `export const Extensions = ${JSON.stringify(indexData, null, 4)};\n`;
+    const indexFileContent = `export const extensions = ${JSON.stringify(indexData, null, 4)};\n\nexport default extensions;`;
     await fs.writeFile(join(outputPath, "index.js"), indexFileContent);
 
     return true;
