@@ -22,23 +22,35 @@ export const build = async () => {
     fs.mkdir(`${libDirectory}/${PACKAGE_OUTPUT}`, { recursive: true });
 
     // Generate svg and jsx files from raw source files.
-    await generateIcons(
-      `${libDirectory}/src/`,
-      `${libDirectory}/${PACKAGE_OUTPUT}/`
-    );
+    if (
+      !(await generateIcons(
+        `${libDirectory}/src/`,
+        `${libDirectory}/${PACKAGE_OUTPUT}/`
+      ))
+    ) {
+      throw `Failed to generate icons.`;
+    }
 
     // Use raw info.json files to generate `index.js` file.
-    await generateIndexFile(
-      `${libDirectory}/src/`,
-      `${libDirectory}/${PACKAGE_OUTPUT}/`
-    );
+    if (
+      !(await generateIndexFile(
+        `${libDirectory}/src/`,
+        `${libDirectory}/${PACKAGE_OUTPUT}/`
+      ))
+    ) {
+      throw `Failed to generate index.js file.`;
+    }
 
     // Generate package.json.
     //--------------------------------------------------
-    await generatePackageJson(
-      libDirectory,
-      `${libDirectory}/${PACKAGE_OUTPUT}`
-    );
+    if (
+      !(await generatePackageJson(
+        libDirectory,
+        `${libDirectory}/${PACKAGE_OUTPUT}`
+      ))
+    ) {
+      throw `Failed to generate package.json file.`;
+    }
 
     console.log(`✅ Package successfully built.`);
   } catch (err) {
@@ -54,7 +66,10 @@ export const build = async () => {
 };
 
 // Copy SVG icons from a source directory to the package directory.
-const generateIcons = async (sourceDir: string, destDir: string) => {
+const generateIcons = async (
+  sourceDir: string,
+  destDir: string
+): Promise<boolean> => {
   try {
     const subDirs = await fs.readdir(sourceDir);
 
@@ -83,8 +98,11 @@ const generateIcons = async (sourceDir: string, destDir: string) => {
         }
       }
     }
+
+    return true;
   } catch (err) {
     console.error("❌  Error copying icons:", err);
+    return false;
   }
 };
 // Create a React component from an SVG file.
@@ -117,7 +135,10 @@ export default ${componentName};
 `;
 
 // Generate index file from `info.json` source files.
-const generateIndexFile = async (directoryPath: string, outputPath: string) => {
+const generateIndexFile = async (
+  directoryPath: string,
+  outputPath: string
+): Promise<boolean> => {
   try {
     const folders = await fs.readdir(directoryPath);
     const indexData = {};
@@ -136,21 +157,28 @@ const generateIndexFile = async (directoryPath: string, outputPath: string) => {
         indexData[id] = info;
       } catch (error) {
         console.error(
-          `Error reading or parsing info.json for folder '${folder}':`,
+          `❌ Error reading or parsing info.json for folder '${folder}':`,
           error
         );
+        return false;
       }
     }
 
     const indexFileContent = `module.exports = ${JSON.stringify(indexData, null, 4)};\n`;
     await fs.writeFile(join(outputPath, "index.js"), indexFileContent);
+
+    return true;
   } catch (error) {
     console.error("❌ Error generating index.js file:", error);
+    return false;
   }
 };
 
 // Generate package package.json file from source package.json.
-const generatePackageJson = async (inputDir: string, outputDir: string) => {
+const generatePackageJson = async (
+  inputDir: string,
+  outputDir: string
+): Promise<boolean> => {
   try {
     // Read the original package.json.
     const packageJsonPath = join(inputDir, "package.json");
@@ -167,7 +195,10 @@ const generatePackageJson = async (inputDir: string, outputDir: string) => {
     // Write the minimal package.json to the output directory.
     const outputPath = join(outputDir, "package.json");
     await fs.writeFile(outputPath, JSON.stringify(minimalPackageJson, null, 2));
+
+    return true;
   } catch (error) {
     console.error("❌ Error generating minimal package.json:", error);
+    return false;
   }
 };
