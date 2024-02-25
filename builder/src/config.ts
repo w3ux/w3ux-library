@@ -5,6 +5,10 @@ SPDX-License-Identifier: GPL-3.0-only */
 // --------------------------------------------------
 export const PACKAGE_SCOPE = "w3ux";
 
+// Temporary build folder name.
+// --------------------------------------------------
+export const TEMP_BUILD_OUTPUT = ".build";
+
 // Package build output folder.
 // --------------------------------------------------
 export const PACKAGE_OUTPUT = "dist";

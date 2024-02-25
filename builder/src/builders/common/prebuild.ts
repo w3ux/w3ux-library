@@ -43,8 +43,13 @@ export const prebuild = async (folder: string): Promise<boolean> => {
   }
 
   // Remove package output directory if it exists.
-  if (!(await removePackageOutput(libDirectory))) {
+  if (!(await removePackageOutput(libDirectory, false))) {
     console.error(`❌ Failed to remove package output directory.`);
+    return false;
+  }
+  // Remove build output directory if it exists.
+  if (!(await removePackageOutput(libDirectory, true))) {
+    console.error(`❌ Failed to remove package build directory.`);
     return false;
   }
 

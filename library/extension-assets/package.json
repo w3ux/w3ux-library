@@ -5,6 +5,6 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "declare": "tsc dist/**/*{.js,.jsx} --declaration --allowJs --emitDeclarationOnly --outDir dist"
+    "declare": "tsc .build/**/*{.js,.jsx} --declaration --allowJs --emitDeclarationOnly --outDir .build"
   }
 }

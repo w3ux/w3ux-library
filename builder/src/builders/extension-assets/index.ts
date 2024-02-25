@@ -2,8 +2,8 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import fs from "fs/promises";
-import { join } from "path";
-import { PACKAGE_OUTPUT } from "config";
+import { join, dirname } from "path";
+import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from "config";
 import { prebuild } from "builders/common/prebuild";
 import { getLibraryDirectory, removePackageOutput } from "builders/utils";
 import { AdditionalAsset } from "./types";
@@ -24,7 +24,7 @@ export const build = async () => {
 
     // Create output directory.
     try {
-      fs.mkdir(`${libDirectory}/${PACKAGE_OUTPUT}`, { recursive: true });
+      fs.mkdir(`${libDirectory}/${TEMP_BUILD_OUTPUT}`, { recursive: true });
     } catch (e) {
       throw `Failed to make output directory.`;
     }
@@ -33,7 +33,7 @@ export const build = async () => {
     if (
       !(await generateIcons(
         `${libDirectory}/src/`,
-        `${libDirectory}/${PACKAGE_OUTPUT}/`
+        `${libDirectory}/${TEMP_BUILD_OUTPUT}/`
       ))
     ) {
       throw `Failed to generate icons.`;
@@ -43,7 +43,7 @@ export const build = async () => {
     if (
       !(await processIndexFile(
         `${libDirectory}/src/`,
-        `${libDirectory}/${PACKAGE_OUTPUT}/`
+        `${libDirectory}/${TEMP_BUILD_OUTPUT}/`
       ))
     ) {
       throw `Failed to generate index.js file.`;
@@ -53,7 +53,7 @@ export const build = async () => {
     if (
       !(await generatePackageJson(
         libDirectory,
-        `${libDirectory}/${PACKAGE_OUTPUT}`
+        `${libDirectory}/${TEMP_BUILD_OUTPUT}`
       ))
     ) {
       throw `Failed to generate package.json file.`;
@@ -67,13 +67,23 @@ export const build = async () => {
       throw `Failed to generate types.`;
     }
 
+    // Move temp build output to package output directory.
+    if (
+      !(await renameDirectory(
+        `${libDirectory}/${TEMP_BUILD_OUTPUT}`,
+        PACKAGE_OUTPUT
+      ))
+    ) {
+      throw `Failed to move temp build output to package output directory.`;
+    }
+
     console.log(`✅ Package successfully built.`);
   } catch (err) {
     // Handle on error.
     console.error(`❌ Error occurred while building the package.`, err);
 
     // Remove package output directory if it exists.
-    if (!(await removePackageOutput(libDirectory))) {
+    if (!(await removePackageOutput(libDirectory, true))) {
       console.error(`❌ Failed to remove package output directory.`);
     }
   }
@@ -250,6 +260,27 @@ const writeAdditionalAssets = async (
     return true;
   } catch (error) {
     console.error("❌ Error copying additional assets:", error);
+    return false;
+  }
+};
+
+// Renames a directory.
+const renameDirectory = async (
+  oldDirPath: string,
+  newDirName: string
+): Promise<boolean> => {
+  try {
+    // Extract the parent directory path
+    const parentDirPath = dirname(oldDirPath);
+
+    // Create the new directory path
+    const newDirPath = join(parentDirPath, newDirName);
+
+    // Rename the directory
+    await fs.rename(oldDirPath, newDirPath);
+    return true;
+  } catch (error) {
+    console.error("❌ Error renaming directory:", error);
     return false;
   }
 };

@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { PACKAGE_OUTPUT } from "config";
+import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from "config";
 import fs from "fs/promises";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -58,10 +58,16 @@ export const getPackageJson = async (dir: string) => {
 // Remove package output directory if it exists.
 // ---------------------------------------------
 export const removePackageOutput = async (
-  libDirectory: string
+  libDirectory: string,
+  building: boolean
 ): Promise<boolean> => {
   try {
-    await fs.rm(`${libDirectory}/${PACKAGE_OUTPUT}`, { recursive: true });
+    await fs.rm(
+      `${libDirectory}/${building ? TEMP_BUILD_OUTPUT : PACKAGE_OUTPUT}`,
+      {
+        recursive: true,
+      }
+    );
     return true;
   } catch (err) {
     if (err.code !== "ENOENT") {
