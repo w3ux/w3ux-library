@@ -247,27 +247,6 @@ const writeAdditionalAssets = async (
   }
 };
 
-// Renames a directory.
-// const renameDirectory = async (
-//   oldDirPath: string,
-//   newDirName: string
-// ): Promise<boolean> => {
-//   try {
-//     // Extract the parent directory path
-//     const parentDirPath = dirname(oldDirPath);
-
-//     // Create the new directory path
-//     const newDirPath = join(parentDirPath, newDirName);
-
-//     // Rename the directory
-//     await fs.rename(oldDirPath, newDirPath);
-//     return true;
-//   } catch (error) {
-//     console.error("❌ Error renaming directory:", error);
-//     return false;
-//   }
-// };
-
 // Generate icons from SVG inputs.
 const generateSvgAssets = async (
   inputFile: string,
