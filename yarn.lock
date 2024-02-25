@@ -416,7 +416,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jridgewell/gen-mapping@npm:^0.3.0, @jridgewell/gen-mapping@npm:^0.3.2":
+"@jridgewell/gen-mapping@npm:^0.3.0":
   version: 0.3.3
   resolution: "@jridgewell/gen-mapping@npm:0.3.3"
   dependencies:
@@ -424,6 +424,17 @@ __metadata:
     "@jridgewell/sourcemap-codec": "npm:^1.4.10"
     "@jridgewell/trace-mapping": "npm:^0.3.9"
   checksum: 376fc11cf5a967318ba3ddd9d8e91be528eab6af66810a713c49b0c3f8dc67e9949452c51c38ab1b19aa618fb5e8594da5a249977e26b1e7fea1ee5a1fcacc74
+  languageName: node
+  linkType: hard
+
+"@jridgewell/gen-mapping@npm:^0.3.2":
+  version: 0.3.4
+  resolution: "@jridgewell/gen-mapping@npm:0.3.4"
+  dependencies:
+    "@jridgewell/set-array": "npm:^1.0.1"
+    "@jridgewell/sourcemap-codec": "npm:^1.4.10"
+    "@jridgewell/trace-mapping": "npm:^0.3.9"
+  checksum: dd6c48341ad01a75bd93bae17fcc888120d063bdf927d4c496b663aa68e22b9e51e898ba38abe7457b28efd3fa5cde43723dba4dc5f94281119fa709cb5046be
   languageName: node
   linkType: hard
 
@@ -931,6 +942,7 @@ __metadata:
   resolution: "@w3ux/builder@workspace:builder"
   dependencies:
     minimist: "npm:^1.2.8"
+    tsup: "npm:^8.0.2"
   languageName: unknown
   linkType: soft
 
@@ -8750,7 +8762,6 @@ __metadata:
     stylelint-config-standard-scss: "npm:^11.1.0"
     tiny-lr: "npm:^2.0.0"
     tslib: "npm:^2.6.2"
-    tsup: "npm:^8.0.2"
     typescript: "npm:^5.3.3"
     vitest: "npm:^1.3.0"
     yaml: "npm:^2.3.4"

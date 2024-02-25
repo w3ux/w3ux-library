@@ -10,5 +10,8 @@
   },
   "dependencies": {
     "minimist": "^1.2.8"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2"
   }
 }
