@@ -6,8 +6,7 @@ import * as extensionAssets from "./builders/extension-assets";
 
 const args = minimist(process.argv.slice(2));
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { t: task, ...rest } = args;
+const { t: task } = args;
 
 switch (task) {
   case "build:extension-assets":
