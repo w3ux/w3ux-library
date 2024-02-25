@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "rm -fr dist && tsup",
-    "build:extension-assets": "node dist/index.js -t build:extension-assets",
+    "build:extension-assets": "node dist/index.js -t build:extension-assets && cd ../library/extension-assets && yarn declare",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
   "dependencies": {
