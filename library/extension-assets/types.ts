@@ -1,7 +1,7 @@
 /* @license Copyright 2024 @polkadot-cloud/library authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { CSSProperties, FC } from "react";
+import type { CSSProperties, FC } from "react";
 
 // Structure for an extension configuration.
 export interface ExtensionConfig {
