@@ -106,14 +106,7 @@ const generateIcons = async (
 
         try {
           await fs.access(iconPath);
-          const destFileSvg = join(destDir, `${subDir}.svg`);
-          const destFileJsx = join(destDir, `${subDir}.jsx`);
-
-          // Copy SVG file.
-          await fs.copyFile(iconPath, destFileSvg);
-
-          // Generate React component from SVG file.
-          await createReactComponentFromSvg(iconPath, destFileJsx, subDir);
+          await generateSvgAssets(iconPath, subDir, destDir);
         } catch (err) {
           // If 'icon.svg' doesn't exist in the subdirectory, ignore it
           if (err.code !== "ENOENT") {
@@ -247,14 +240,7 @@ const writeAdditionalAssets = async (
       const { input, outputFilename } = asset;
       const inputFile = join(inputDir, input);
 
-      const destFileSvg = join(outputDir, `${outputFilename}.svg`);
-      const destFileJsx = join(outputDir, `${outputFilename}.jsx`);
-
-      // Copy SVG file.
-      await fs.copyFile(inputFile, destFileSvg);
-
-      // Generate React component from SVG file.
-      await createReactComponentFromSvg(inputFile, destFileJsx, outputFilename);
+      await generateSvgAssets(inputFile, outputFilename, outputDir);
     }
 
     return true;
@@ -283,4 +269,20 @@ const renameDirectory = async (
     console.error("❌ Error renaming directory:", error);
     return false;
   }
+};
+
+// Generate icons from SVG inputs.
+const generateSvgAssets = async (
+  inputFile: string,
+  outputFilename: string,
+  outputDir: string
+) => {
+  const destFileSvg = join(outputDir, `${outputFilename}.svg`);
+  const destFileJsx = join(outputDir, `${outputFilename}.jsx`);
+
+  // Copy SVG file.
+  await fs.copyFile(inputFile, destFileSvg);
+
+  // Generate React component from SVG file.
+  await createReactComponentFromSvg(inputFile, destFileJsx, outputFilename);
 };
