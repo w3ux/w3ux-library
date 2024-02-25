@@ -125,18 +125,14 @@ const createReactComponentFromSvg = async (
   outputPath: string,
   componentName: string
 ) => {
-  try {
-    const svgContent = await fs.readFile(svgFilePath, "utf8");
-    const reactComponent = generateReactComponent(svgContent, componentName);
+  const svgContent = await fs.readFile(svgFilePath, "utf8");
+  const reactComponent = generateReactComponent(svgContent, componentName);
 
-    await fs.writeFile(outputPath, reactComponent);
-  } catch (err) {
-    console.error("Error:", err);
-  }
+  await fs.writeFile(outputPath, reactComponent);
 };
 
 // Generates React component markup for an SVG file.
-const generateReactComponent = (svgContent, componentName) => `
+const generateReactComponent = (svgContent: string, componentName: string) => `
 export const ${componentName} = () => {
   return (
     ${svgContent}
