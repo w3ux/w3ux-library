@@ -157,11 +157,13 @@ const processIndexFile = async (
         // Get metadata and apply the remaining properties to index data.
         const { id, additionalAssets, rest } = info;
 
-        await writeAdditionalAssets(
-          additionalAssets || [],
-          folderPath,
-          outputPath
-        );
+        if (additionalAssets) {
+          await writeAdditionalAssets(
+            additionalAssets || [],
+            folderPath,
+            outputPath
+          );
+        }
 
         indexData[id] = rest;
       } catch (error) {
