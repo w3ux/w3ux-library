@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import fs from "fs/promises";
-import { join, dirname } from "path";
+import { join } from "path";
 import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from "config";
 import { prebuild } from "builders/common/prebuild";
 import { getLibraryDirectory, removePackageOutput } from "builders/utils";
@@ -29,7 +29,7 @@ export const build = async () => {
       throw `Failed to make output directory.`;
     }
 
-    // Generate svg and jsx files from raw source files.
+    // Generate svg and tsx files from raw source files.
     if (
       !(await generateIcons(
         `${libDirectory}/src/`,
@@ -49,32 +49,28 @@ export const build = async () => {
       throw `Failed to generate index.js file.`;
     }
 
+    // Call tsc command to generate types in dist folder.
+    // TODO: generate types from intermediary folder with typed generated files.
+    try {
+      await execPromisify(`cd ../library/${folder}  && yarn build`);
+    } catch (e) {
+      console.log(e);
+      throw `Failed to generate types.`;
+    }
+
     // Generate package.json.
     if (
       !(await generatePackageJson(
         libDirectory,
-        `${libDirectory}/${TEMP_BUILD_OUTPUT}`
+        `${libDirectory}/${PACKAGE_OUTPUT}`
       ))
     ) {
       throw `Failed to generate package.json file.`;
     }
 
-    // Call tsc command to generate types in dist folder.
-    // TODO: generate types from intermediary folder with typed generated files.
-    try {
-      await execPromisify(`cd ../library/${folder} && yarn declare`);
-    } catch (e) {
-      throw `Failed to generate types.`;
-    }
-
-    // Move temp build output to package output directory.
-    if (
-      !(await renameDirectory(
-        `${libDirectory}/${TEMP_BUILD_OUTPUT}`,
-        PACKAGE_OUTPUT
-      ))
-    ) {
-      throw `Failed to move temp build output to package output directory.`;
+    // Remove tmp build directory if it exists.
+    if (!(await removePackageOutput(libDirectory, true))) {
+      console.error(`❌ Failed to remove tmp build directory.`);
     }
 
     console.log(`✅ Package successfully built.`);
@@ -83,8 +79,12 @@ export const build = async () => {
     console.error(`❌ Error occurred while building the package.`, err);
 
     // Remove package output directory if it exists.
-    if (!(await removePackageOutput(libDirectory, true))) {
+    if (!(await removePackageOutput(libDirectory, false))) {
       console.error(`❌ Failed to remove package output directory.`);
+    }
+    // Remove tmp build directory if it exists.
+    if (!(await removePackageOutput(libDirectory, true))) {
+      console.error(`❌ Failed to remove tmp build directory.`);
     }
   }
 };
@@ -184,11 +184,11 @@ const processIndexFile = async (
     }
 
     const indexFileContent = `export const extensions = ${JSON.stringify(indexData, null, 4)};\n\nexport default extensions;`;
-    await fs.writeFile(join(outputPath, "index.js"), indexFileContent);
+    await fs.writeFile(join(outputPath, "index.ts"), indexFileContent);
 
     return true;
   } catch (error) {
-    console.error("❌ Error generating index.js file:", error);
+    console.error("❌ Error generating index.ts file:", error);
     return false;
   }
 };
@@ -205,7 +205,7 @@ const generatePackageJson = async (
     const parsedPackageJson = JSON.parse(originalPackageJson);
 
     // Extract only the specified fields.
-    const { name, version, license, type, devDependencies } = parsedPackageJson;
+    const { name, version, license, type } = parsedPackageJson;
     const packageName = name.replace(/-source$/, ""); // Remove '-source' suffix.
 
     // Construct the minimal package.json object
@@ -214,7 +214,6 @@ const generatePackageJson = async (
       version,
       license,
       type,
-      devDependencies,
     };
 
     // Write the minimal package.json to the output directory.
@@ -251,25 +250,25 @@ const writeAdditionalAssets = async (
 };
 
 // Renames a directory.
-const renameDirectory = async (
-  oldDirPath: string,
-  newDirName: string
-): Promise<boolean> => {
-  try {
-    // Extract the parent directory path
-    const parentDirPath = dirname(oldDirPath);
+// const renameDirectory = async (
+//   oldDirPath: string,
+//   newDirName: string
+// ): Promise<boolean> => {
+//   try {
+//     // Extract the parent directory path
+//     const parentDirPath = dirname(oldDirPath);
 
-    // Create the new directory path
-    const newDirPath = join(parentDirPath, newDirName);
+//     // Create the new directory path
+//     const newDirPath = join(parentDirPath, newDirName);
 
-    // Rename the directory
-    await fs.rename(oldDirPath, newDirPath);
-    return true;
-  } catch (error) {
-    console.error("❌ Error renaming directory:", error);
-    return false;
-  }
-};
+//     // Rename the directory
+//     await fs.rename(oldDirPath, newDirPath);
+//     return true;
+//   } catch (error) {
+//     console.error("❌ Error renaming directory:", error);
+//     return false;
+//   }
+// };
 
 // Generate icons from SVG inputs.
 const generateSvgAssets = async (
@@ -278,11 +277,11 @@ const generateSvgAssets = async (
   outputDir: string
 ) => {
   const destFileSvg = join(outputDir, `${outputFilename}.svg`);
-  const destFileJsx = join(outputDir, `${outputFilename}.jsx`);
+  const destFileTsx = join(outputDir, `${outputFilename}.tsx`);
 
   // Copy SVG file.
   await fs.copyFile(inputFile, destFileSvg);
 
   // Generate React component from SVG file.
-  await createReactComponentFromSvg(inputFile, destFileJsx, outputFilename);
+  await createReactComponentFromSvg(inputFile, destFileTsx, outputFilename);
 };

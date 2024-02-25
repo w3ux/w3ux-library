@@ -2,7 +2,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "incremental": true,
     "composite": true,
     "declarationDir": ".",
     "rootDir": ".",
@@ -13,6 +12,7 @@
     "sourceMap": false,
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
+    "emitDeclarationOnly": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
   },
