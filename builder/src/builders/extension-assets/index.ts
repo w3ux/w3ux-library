@@ -18,13 +18,9 @@ export const build = async () => {
 
   try {
     // Prebuild integrity checks.
-    //--------------------------------------------------
     if (!(await prebuild(folder))) {
       throw `Prebuild failed.`;
     }
-
-    // Generate package content to PACKAGE_OUTPUT.
-    //--------------------------------------------------
 
     // Create output directory.
     fs.mkdir(`${libDirectory}/${PACKAGE_OUTPUT}`, { recursive: true });
@@ -50,7 +46,6 @@ export const build = async () => {
     }
 
     // Generate package.json.
-    //--------------------------------------------------
     if (
       !(await generatePackageJson(
         libDirectory,
@@ -71,7 +66,6 @@ export const build = async () => {
     console.log(`✅ Package successfully built.`);
   } catch (err) {
     // Handle on error.
-    //--------------------------------------------------
     console.error(`❌ Error occurred while building the package.`, err);
 
     // Remove package output directory if it exists.
