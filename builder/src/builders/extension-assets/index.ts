@@ -23,7 +23,11 @@ export const build = async () => {
     }
 
     // Create output directory.
-    fs.mkdir(`${libDirectory}/${PACKAGE_OUTPUT}`, { recursive: true });
+    try {
+      fs.mkdir(`${libDirectory}/${PACKAGE_OUTPUT}`, { recursive: true });
+    } catch (e) {
+      throw `Failed to make output directory.`;
+    }
 
     // Generate svg and jsx files from raw source files.
     if (
