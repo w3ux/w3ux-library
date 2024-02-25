@@ -8,6 +8,7 @@
     "plugin:import/recommended",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/stylistic",
     "plugin:prettier/recommended"
   ],
   "plugins": ["@typescript-eslint", "import", "unused-imports"],
@@ -24,7 +25,9 @@
       "typescript": {
         "alwaysTryTypes": true,
         "project": [
-          "tsconfig.json"
+          "tsconfig.json",
+          "builder/tsconfig.json",
+          "library/*/tsconfig.json"
         ]
       }
     }
