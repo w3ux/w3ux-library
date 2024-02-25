@@ -4,9 +4,11 @@ import {
   getPackageJson,
 } from "../utils";
 import {
+  PACKAGE_OUTPUT,
   PACKAGE_SOURCE_REQUIRED_FILES,
   PACKAGE_SOURCE_REQUIRED_PROPERTIES,
-} from "../../config";
+} from "config";
+import fs from "fs/promises";
 
 export const prebuild = async (folder: string): Promise<boolean> => {
   const libDirectory = getLibraryDirectory(folder);
@@ -36,6 +38,15 @@ export const prebuild = async (folder: string): Promise<boolean> => {
       `❌ Some required properties are missing in the source package.json.`
     );
     return false;
+  }
+
+  // Remove package output directory if it exists.
+  try {
+    await fs.rm(`${libDirectory}/${PACKAGE_OUTPUT}`, { recursive: true });
+  } catch (err) {
+    if (err.code !== "ENOENT") {
+      throw err;
+    }
   }
 
   return true;
