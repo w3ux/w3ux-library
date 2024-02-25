@@ -2,13 +2,12 @@ import {
   checkFilesExistInPackages,
   getLibraryDirectory,
   getPackageJson,
+  removePackageOutput,
 } from "../utils";
 import {
-  PACKAGE_OUTPUT,
   PACKAGE_SOURCE_REQUIRED_FILES,
   PACKAGE_SOURCE_REQUIRED_PROPERTIES,
 } from "config";
-import fs from "fs/promises";
 
 export const prebuild = async (folder: string): Promise<boolean> => {
   const libDirectory = getLibraryDirectory(folder);
@@ -24,7 +23,7 @@ export const prebuild = async (folder: string): Promise<boolean> => {
     return false;
   }
 
-  // Get source package.json/
+  // Get source package.json.
   const sourcePackageJson = await getPackageJson(libDirectory);
 
   // Get required properties from `package.json`.
@@ -41,12 +40,9 @@ export const prebuild = async (folder: string): Promise<boolean> => {
   }
 
   // Remove package output directory if it exists.
-  try {
-    await fs.rm(`${libDirectory}/${PACKAGE_OUTPUT}`, { recursive: true });
-  } catch (err) {
-    if (err.code !== "ENOENT") {
-      throw err;
-    }
+  if (!(await removePackageOutput(libDirectory))) {
+    console.error(`❌ Failed to remove package output directory.`);
+    return false;
   }
 
   return true;

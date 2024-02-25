@@ -2,24 +2,21 @@ import fs from "fs/promises";
 import { join } from "path";
 import { PACKAGE_OUTPUT } from "config";
 import { prebuild } from "builders/common/prebuild";
-import { getLibraryDirectory } from "builders/utils";
+import { getLibraryDirectory, removePackageOutput } from "builders/utils";
 
 export const build = async () => {
-  try {
-    const folder = "extension-assets";
+  const folder = "extension-assets";
+  const libDirectory = getLibraryDirectory(folder);
 
+  try {
     // Prebuild integrity checks.
     //--------------------------------------------------
     if (!(await prebuild(folder))) {
       throw `Prebuild failed.`;
     }
 
-    console.log(`✅ Prebuild checks passed.`);
-
-    // Generate package content to PACKAGE_OUTPUT
+    // Generate package content to PACKAGE_OUTPUT.
     //--------------------------------------------------
-
-    const libDirectory = getLibraryDirectory(folder);
 
     // Create output directory.
     fs.mkdir(`${libDirectory}/${PACKAGE_OUTPUT}`, { recursive: true });
@@ -30,24 +27,26 @@ export const build = async () => {
       `${libDirectory}/${PACKAGE_OUTPUT}/`
     );
 
-    // Use raw `info.json` files to generate `dist/index.js` file.
+    // Use raw info.json files to generate `index.js` file.
     await generateIndexFile(
       `${libDirectory}/src/`,
       `${libDirectory}/${PACKAGE_OUTPUT}/`
     );
 
-    //
-    // TODO: plug in helper functions `ExtensionsArray` and `ExtensionIcons`. Import icons, then
-    // generate markup.
-    //
-    // Generate package.json
+    // Generate package.json.
     //--------------------------------------------------
     // TODO: generate to `PACKAGE_OUTPUT`, using `PACKAGE_SCOPE` and folder name for "name".
+
+    console.log(`✅ Package successfully built.`);
   } catch (err) {
     // Tidy up on error.
     //--------------------------------------------------
     console.error(`❌ Error occurred while building the package.`, err);
-    // TODO: delete `PACKAGE_OUTPUT` if it was created.
+
+    // Remove package output directory if it exists.
+    if (!(await removePackageOutput(libDirectory))) {
+      console.error(`❌ Failed to remove package output directory.`);
+    }
   }
 };
 
