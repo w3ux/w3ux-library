@@ -3,5 +3,11 @@
   "title": "Ledger",
   "website": "ledger.com",
   "category": "hardware",
-  "features": []
+  "features": [],
+  "additionalAssets": [
+    {
+      "input": "icon-square.svg",
+      "outputFilename": "LedgerSquare"
+    }
+  ]
 }

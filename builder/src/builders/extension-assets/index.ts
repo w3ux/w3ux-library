@@ -33,7 +33,7 @@ export const build = async () => {
 
     // Use raw info.json files to generate `index.js` file.
     if (
-      !(await generateIndexFile(
+      !(await processIndexFile(
         `${libDirectory}/src/`,
         `${libDirectory}/${PACKAGE_OUTPUT}/`
       ))
@@ -135,7 +135,7 @@ export default ${componentName};
 `;
 
 // Generate index file from `info.json` source files.
-const generateIndexFile = async (
+const processIndexFile = async (
   directoryPath: string,
   outputPath: string
 ): Promise<boolean> => {
@@ -151,10 +151,16 @@ const generateIndexFile = async (
         const infoContent = await fs.readFile(infoPath, "utf8");
         const info = JSON.parse(infoContent);
 
-        // Use `id` field as the key in the index file, and rmeove it from the object.
-        const { id } = info;
-        delete info.id;
-        indexData[id] = info;
+        // Get metadata and apply the remaining properties to index data.
+        const { id, additionalAssets, rest } = info;
+
+        await writeAdditionalAssets(
+          additionalAssets || [],
+          folderPath,
+          outputPath
+        );
+
+        indexData[id] = rest;
       } catch (error) {
         console.error(
           `❌ Error reading or parsing info.json for folder '${folder}':`,
@@ -199,6 +205,35 @@ const generatePackageJson = async (
     return true;
   } catch (error) {
     console.error("❌ Error generating minimal package.json:", error);
+    return false;
+  }
+};
+
+// Write additonal assets to package output.
+const writeAdditionalAssets = async (
+  additionalAssets: { input: string; outputFilename: string }[],
+  inputDir: string,
+  outputDir: string
+): Promise<boolean> => {
+  try {
+    // Process each additional asset.
+    for (const asset of additionalAssets) {
+      const { input, outputFilename } = asset;
+      const inputFile = join(inputDir, input);
+
+      const destFileSvg = join(outputDir, `${outputFilename}.svg`);
+      const destFileJsx = join(outputDir, `${outputFilename}.jsx`);
+
+      // Copy SVG file.
+      await fs.copyFile(inputFile, destFileSvg);
+
+      // Generate React component from SVG file.
+      await createReactComponentFromSvg(inputFile, destFileJsx, outputFilename);
+    }
+
+    return true;
+  } catch (error) {
+    console.error("❌ Error copying additional assets:", error);
     return false;
   }
 };
