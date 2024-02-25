@@ -5,17 +5,16 @@ import fs from "fs/promises";
 import { join } from "path";
 import { PACKAGE_OUTPUT } from "config";
 import { prebuild } from "builders/common/prebuild";
-import {
-  getBuilderDirectory,
-  getLibraryDirectory,
-  removePackageOutput,
-} from "builders/utils";
+import { getLibraryDirectory, removePackageOutput } from "builders/utils";
 import { AdditionalAsset } from "./types";
+import { promisify } from "util";
+import { exec } from "child_process";
+
+const execPromisify = promisify(exec);
 
 export const build = async () => {
   const folder = "extension-assets";
   const libDirectory = getLibraryDirectory(folder);
-  const builderDir = getBuilderDirectory(folder);
 
   try {
     // Prebuild integrity checks.
@@ -50,12 +49,6 @@ export const build = async () => {
       throw `Failed to generate index.js file.`;
     }
 
-    // Copy types.ts into output directory as index.d.ts.
-    await fs.copyFile(
-      `${builderDir}/types.ts`,
-      `${libDirectory}/${PACKAGE_OUTPUT}/index.d.ts`
-    );
-
     // Generate package.json.
     //--------------------------------------------------
     if (
@@ -65,6 +58,14 @@ export const build = async () => {
       ))
     ) {
       throw `Failed to generate package.json file.`;
+    }
+
+    // Call tsc command to generate types in dist folder.
+    // TODO: generate types from intermediary folder with typed generated files.
+    try {
+      await execPromisify(`cd ../library/${folder} && yarn declare`);
+    } catch (e) {
+      throw `Failed to generate types.`;
     }
 
     console.log(`✅ Package successfully built.`);
