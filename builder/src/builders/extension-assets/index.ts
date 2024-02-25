@@ -24,15 +24,12 @@ export const build = async () => {
     // Create output directory.
     fs.mkdir(`${libDirectory}/${PACKAGE_OUTPUT}`, { recursive: true });
 
-    // Move raw svg files into `dist/svg/` directory.
-    await copySvgIcons(
+    // Generate svg and jsx files from raw source files.
+    await generateIcons(
       `${libDirectory}/src/`,
       `${libDirectory}/${PACKAGE_OUTPUT}/`
     );
 
-    //
-    // TODO: use raw svg files to generate tsx version in `dist/jsx/` directory
-    //
     // TODO: use raw `info.json` files to generate `dist/index.js` file.
     //
     // TODO: plug in helper functions `ExtensionsArray` and `ExtensionIcons`. Import icons, then
@@ -50,7 +47,7 @@ export const build = async () => {
 };
 
 // Copy SVG icons from a source directory to the package directory.
-export const copySvgIcons = async (sourceDir: string, destDir: string) => {
+const generateIcons = async (sourceDir: string, destDir: string) => {
   try {
     const subDirs = await fs.readdir(sourceDir);
 
@@ -60,10 +57,17 @@ export const copySvgIcons = async (sourceDir: string, destDir: string) => {
 
       if (stats.isDirectory()) {
         const iconPath = join(subDirPath, "icon.svg");
+
         try {
           await fs.access(iconPath);
-          const destFile = join(destDir, `${subDir}.svg`);
-          await fs.copyFile(iconPath, destFile);
+          const destFileSvg = join(destDir, `${subDir}.svg`);
+          const destFileJsx = join(destDir, `${subDir}.jsx`);
+
+          // Copy SVG file.
+          await fs.copyFile(iconPath, destFileSvg);
+
+          // Generate React component from SVG file.
+          await createReactComponentFromSvg(iconPath, destFileJsx, subDir);
         } catch (err) {
           // If 'icon.svg' doesn't exist in the subdirectory, ignore it
           if (err.code !== "ENOENT") {
@@ -76,3 +80,31 @@ export const copySvgIcons = async (sourceDir: string, destDir: string) => {
     console.error("❌  Error copying icons:", err);
   }
 };
+// Create a React component from an SVG file.
+const createReactComponentFromSvg = async (
+  svgFilePath: string,
+  outputPath: string,
+  componentName: string
+) => {
+  try {
+    const svgContent = await fs.readFile(svgFilePath, "utf8");
+    const reactComponent = generateReactComponent(svgContent, componentName);
+
+    await fs.writeFile(outputPath, reactComponent);
+  } catch (err) {
+    console.error("Error:", err);
+  }
+};
+
+// Generates React component markup for an SVG file.
+const generateReactComponent = (
+  svgContent: string,
+  componentName = "SvgComponent"
+) => `function ${componentName}() {
+  return (
+    ${svgContent}
+  );
+}
+
+export default ${componentName};
+`;
