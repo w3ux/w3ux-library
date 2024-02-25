@@ -49,13 +49,11 @@ export const build = async () => {
       throw `Failed to generate index.js file.`;
     }
 
-    // Call tsc command to generate types in dist folder.
-    // TODO: generate types from intermediary folder with typed generated files.
+    // Call tsup command to generate types in dist folder.
     try {
-      await execPromisify(`cd ../library/${folder}  && yarn build`);
+      await execPromisify(`cd ../library/${folder} && yarn build`);
     } catch (e) {
-      console.log(e);
-      throw `Failed to generate types.`;
+      throw `Failed to generate dist.`;
     }
 
     // Generate package.json.
