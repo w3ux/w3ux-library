@@ -30,7 +30,12 @@ export const build = async () => {
       `${libDirectory}/${PACKAGE_OUTPUT}/`
     );
 
-    // TODO: use raw `info.json` files to generate `dist/index.js` file.
+    // Use raw `info.json` files to generate `dist/index.js` file.
+    await generateIndexFile(
+      `${libDirectory}/src/`,
+      `${libDirectory}/${PACKAGE_OUTPUT}/`
+    );
+
     //
     // TODO: plug in helper functions `ExtensionsArray` and `ExtensionIcons`. Import icons, then
     // generate markup.
@@ -108,3 +113,36 @@ const generateReactComponent = (
 
 export default ${componentName};
 `;
+
+// Generate index file from `info.json` source files.
+const generateIndexFile = async (directoryPath: string, outputPath: string) => {
+  try {
+    const folders = await fs.readdir(directoryPath);
+    const indexData = {};
+
+    for (const folder of folders) {
+      const folderPath = join(directoryPath, folder);
+      const infoPath = join(folderPath, "info.json");
+
+      try {
+        const infoContent = await fs.readFile(infoPath, "utf8");
+        const info = JSON.parse(infoContent);
+
+        // Use `id` field as the key in the index file, and rmeove it from the object.
+        const { id } = info;
+        delete info.id;
+        indexData[id] = info;
+      } catch (error) {
+        console.error(
+          `Error reading or parsing info.json for folder '${folder}':`,
+          error
+        );
+      }
+    }
+
+    const indexFileContent = `module.exports = ${JSON.stringify(indexData, null, 4)};\n`;
+    await fs.writeFile(join(outputPath, "index.js"), indexFileContent);
+  } catch (error) {
+    console.error("❌ Error generating index.js file:", error);
+  }
+};
