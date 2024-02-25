@@ -1,10 +1,10 @@
 {
   "name": "@w3ux/extension-assets-source",
   "license": "GPL-3.0-only",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "declare": "tsc dist/**/*.js --declaration --allowJs --emitDeclarationOnly --outDir dist"
+    "declare": "tsc dist/**/*{.js,.jsx} --declaration --allowJs --emitDeclarationOnly --outDir dist"
   }
 }
