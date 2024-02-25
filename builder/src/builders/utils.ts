@@ -53,5 +53,6 @@ export const removePackageOutput = async (
     if (err.code !== "ENOENT") {
       return false;
     }
+    return true;
   }
 };

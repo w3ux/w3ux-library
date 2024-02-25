@@ -35,11 +35,14 @@ export const build = async () => {
 
     // Generate package.json.
     //--------------------------------------------------
-    // TODO: generate to `PACKAGE_OUTPUT`, using `PACKAGE_SCOPE` and folder name for "name".
+    await generatePackageJson(
+      libDirectory,
+      `${libDirectory}/${PACKAGE_OUTPUT}`
+    );
 
     console.log(`✅ Package successfully built.`);
   } catch (err) {
-    // Tidy up on error.
+    // Handle on error.
     //--------------------------------------------------
     console.error(`❌ Error occurred while building the package.`, err);
 
@@ -143,5 +146,28 @@ const generateIndexFile = async (directoryPath: string, outputPath: string) => {
     await fs.writeFile(join(outputPath, "index.js"), indexFileContent);
   } catch (error) {
     console.error("❌ Error generating index.js file:", error);
+  }
+};
+
+// Generate package package.json file from source package.json.
+const generatePackageJson = async (inputDir: string, outputDir: string) => {
+  try {
+    // Read the original package.json.
+    const packageJsonPath = join(inputDir, "package.json");
+    const originalPackageJson = await fs.readFile(packageJsonPath, "utf8");
+    const parsedPackageJson = JSON.parse(originalPackageJson);
+
+    // Extract only the specified fields.
+    const { name, version, license, type } = parsedPackageJson;
+    const packageName = name.replace(/-source$/, ""); // Remove '-source' suffix.
+
+    // Construct the minimal package.json object
+    const minimalPackageJson = { name: packageName, version, license, type };
+
+    // Write the minimal package.json to the output directory.
+    const outputPath = join(outputDir, "package.json");
+    await fs.writeFile(outputPath, JSON.stringify(minimalPackageJson, null, 2));
+  } catch (error) {
+    console.error("❌ Error generating minimal package.json:", error);
   }
 };
