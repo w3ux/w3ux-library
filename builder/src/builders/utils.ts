@@ -1,3 +1,6 @@
+/* @license Copyright 2024 w3ux authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
+
 import { PACKAGE_OUTPUT } from "config";
 import fs from "fs/promises";
 import { join, dirname } from "path";
