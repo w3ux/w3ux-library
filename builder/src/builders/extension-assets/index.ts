@@ -5,11 +5,17 @@ import fs from "fs/promises";
 import { join } from "path";
 import { PACKAGE_OUTPUT } from "config";
 import { prebuild } from "builders/common/prebuild";
-import { getLibraryDirectory, removePackageOutput } from "builders/utils";
+import {
+  getBuilderDirectory,
+  getLibraryDirectory,
+  removePackageOutput,
+} from "builders/utils";
+import { AdditionalAsset } from "./types";
 
 export const build = async () => {
   const folder = "extension-assets";
   const libDirectory = getLibraryDirectory(folder);
+  const builderDir = getBuilderDirectory(folder);
 
   try {
     // Prebuild integrity checks.
@@ -43,6 +49,12 @@ export const build = async () => {
     ) {
       throw `Failed to generate index.js file.`;
     }
+
+    // Copy types.ts into output directory as index.d.ts.
+    await fs.copyFile(
+      `${builderDir}/types.ts`,
+      `${libDirectory}/${PACKAGE_OUTPUT}/index.d.ts`
+    );
 
     // Generate package.json.
     //--------------------------------------------------
@@ -125,10 +137,8 @@ const createReactComponentFromSvg = async (
 };
 
 // Generates React component markup for an SVG file.
-const generateReactComponent = (
-  svgContent,
-  componentName = "SvgComponent"
-) => `function ${componentName}() {
+const generateReactComponent = (svgContent, componentName) => `
+export const ${componentName} = () => {
   return (
     ${svgContent}
   );
@@ -155,11 +165,11 @@ const processIndexFile = async (
         const info = JSON.parse(infoContent);
 
         // Get metadata and apply the remaining properties to index data.
-        const { id, additionalAssets, rest } = info;
+        const { id, ...rest } = info;
 
-        if (additionalAssets) {
+        if (rest.additionalAssets) {
           await writeAdditionalAssets(
-            additionalAssets || [],
+            rest.additionalAssets || [],
             folderPath,
             outputPath
           );
@@ -175,7 +185,7 @@ const processIndexFile = async (
       }
     }
 
-    const indexFileContent = `module.exports = ${JSON.stringify(indexData, null, 4)};\n`;
+    const indexFileContent = `export const Extensions = ${JSON.stringify(indexData, null, 4)};\n`;
     await fs.writeFile(join(outputPath, "index.js"), indexFileContent);
 
     return true;
@@ -197,11 +207,17 @@ const generatePackageJson = async (
     const parsedPackageJson = JSON.parse(originalPackageJson);
 
     // Extract only the specified fields.
-    const { name, version, license, type } = parsedPackageJson;
+    const { name, version, license, type, devDependencies } = parsedPackageJson;
     const packageName = name.replace(/-source$/, ""); // Remove '-source' suffix.
 
     // Construct the minimal package.json object
-    const minimalPackageJson = { name: packageName, version, license, type };
+    const minimalPackageJson = {
+      name: packageName,
+      version,
+      license,
+      type,
+      devDependencies,
+    };
 
     // Write the minimal package.json to the output directory.
     const outputPath = join(outputDir, "package.json");
@@ -216,7 +232,7 @@ const generatePackageJson = async (
 
 // Write additonal assets to package output.
 const writeAdditionalAssets = async (
-  additionalAssets: { input: string; outputFilename: string }[],
+  additionalAssets: AdditionalAsset[],
   inputDir: string,
   outputDir: string
 ): Promise<boolean> => {

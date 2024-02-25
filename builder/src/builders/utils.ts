@@ -6,6 +6,17 @@ import fs from "fs/promises";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
+// Gets a builder source directory, relative to  the builder's dist directory.
+//-------------------------------------------------------------
+export const getBuilderDirectory = (builder: string) =>
+  join(
+    dirname(fileURLToPath(import.meta.url)),
+    "..",
+    "src",
+    "builders",
+    builder
+  );
+
 // Gets a library directory, relative to the current directory.
 //-------------------------------------------------------------
 export const getLibraryDirectory = (path: string) =>
