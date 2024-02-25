@@ -134,7 +134,7 @@ const createReactComponentFromSvg = async (
 
 // Generates React component markup for an SVG file.
 const generateReactComponent = (svgContent: string, componentName: string) => `
-export const ${componentName} = () => {
+export const ${componentName} = (): JSX.Element => {
   return (
     ${svgContent}
   );
