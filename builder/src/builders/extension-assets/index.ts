@@ -23,7 +23,7 @@ export const build = async () => {
       throw `Prebuild failed.`;
     }
 
-    // Create output directory.
+    // Create temp output directory.
     try {
       fs.mkdir(`${libDirectory}/${TEMP_BUILD_OUTPUT}`, { recursive: true });
     } catch (e) {
