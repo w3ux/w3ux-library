@@ -1,10 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "composite": true,
-    "declarationDir": ".",
+    "baseUrl": ".",
     "rootDir": ".",
+
+    "declarationDir": ".",
     "module": "ESNext",
     "moduleResolution": "Node",
     "target": "es5",

@@ -9,6 +9,7 @@ import { getLibraryDirectory, removePackageOutput } from "builders/utils";
 import { AdditionalAsset } from "./types";
 import { promisify } from "util";
 import { exec } from "child_process";
+import { format } from "prettier";
 
 const execPromisify = promisify(exec);
 
@@ -48,6 +49,12 @@ export const build = async () => {
     ) {
       throw `Failed to generate index.js file.`;
     }
+
+    // Generate util.ts file.
+    await generateUtilFile(
+      `${libDirectory}/src/`,
+      `${libDirectory}/${TEMP_BUILD_OUTPUT}/`
+    );
 
     // Call tsup command to generate types in dist folder.
     try {
@@ -129,7 +136,10 @@ const createReactComponentFromSvg = async (
   const svgContent = await fs.readFile(svgFilePath, "utf8");
   const reactComponent = generateReactComponent(svgContent, componentName);
 
-  await fs.writeFile(outputPath, reactComponent);
+  await fs.writeFile(
+    outputPath,
+    await format(reactComponent, { parser: "typescript" })
+  );
 };
 
 // Generates React component markup for an SVG file.
@@ -221,6 +231,74 @@ const generatePackageJson = async (
     return true;
   } catch (error) {
     console.error("❌ Error generating minimal package.json:", error);
+    return false;
+  }
+};
+
+// Generate util file.
+const generateUtilFile = async (
+  sourceDir: string,
+  outputPath: string
+): Promise<boolean> => {
+  try {
+    const filePath = `${outputPath}/util.ts`;
+    const imports = [];
+    const records = [];
+
+    // Get subdirectories to determine icon files.
+    const subDirs = await fs.readdir(sourceDir);
+
+    for (const subDir of subDirs) {
+      // Format import of icon.
+      imports.push(`import { ${subDir} } from "./${subDir}";`);
+
+      // Get `id` and format record.
+      const infoContent = await fs.readFile(
+        `${sourceDir}/${subDir}/info.json`,
+        "utf8"
+      );
+      const { id } = JSON.parse(infoContent);
+      records.push(`"${id}": ${subDir}`);
+    }
+
+    // Open the file for writing.
+    await fs.writeFile(filePath, "");
+    const writer = await fs.open(filePath, "w");
+
+    await writer.write(`import { CSSProperties, FC } from "react";\n`);
+    for (const line of imports) {
+      await writer.write(line + "\n");
+    }
+
+    await writer.write(`
+    export type ExtensionIcon = FC<{
+      style?: CSSProperties;
+      className?: string;
+    }>;
+
+    export const ExtensionIcons: Record<string, ExtensionIcon> = {\n`);
+
+    for (const line of records) {
+      await writer.write(line + ",\n");
+    }
+    await writer.write("};");
+
+    await writer.write(`
+    // Helper: extension icon getter.
+    export const getExtensionIcon = (id: string): ExtensionIcon | null =>    
+      ExtensionIcons[id] || null;
+  `);
+
+    await writer.close();
+
+    // Format the file.
+    const data = await fs.readFile(filePath, "utf8");
+    const formattedCode = await format(data, { parser: "typescript" });
+    await fs.writeFile(filePath, formattedCode, "utf8");
+
+    return true;
+  } catch (error) {
+    console.error("❌ Error generating util.ts file:", error);
     return false;
   }
 };

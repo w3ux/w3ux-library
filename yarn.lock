@@ -850,6 +850,7 @@ __metadata:
   resolution: "@w3ux/builder@workspace:builder"
   dependencies:
     minimist: "npm:^1.2.8"
+    prettier: "npm:^3.2.5"
     tsup: "npm:^8.0.2"
   languageName: unknown
   linkType: soft
