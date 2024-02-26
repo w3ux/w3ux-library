@@ -1,8 +1,8 @@
 directory:
   - name: Validator Operators
-    description: A list of Polkadot validator operators with metadata and thumbnails.
+    description: A list of Polkadot validator operators with metadata and icons.
 
 npm:
   title: "Validator Operators"
   contents:
-    - item: A list of validator operators with metadata and thumbnails.
+    - item: A list of validator operators with metadata and icons.
