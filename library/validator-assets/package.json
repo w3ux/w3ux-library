@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup .build/**/*{.ts,.tsx} --format esm --target es2022 --dts --no-splitting"
+    "build": "tsup src/**/*{.ts,.tsx} --format esm --target es2022 --dts --no-splitting"
   },
   "peerDependencies": {
     "react": "^18"
   },
   "devDependencies": {
     "@types/react": "^18",
-    "react": "^18"
+    "react": "^18",
+    "tsup": "^8.0.2"
   }
 }
