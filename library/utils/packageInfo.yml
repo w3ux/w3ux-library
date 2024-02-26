@@ -1,9 +1,6 @@
 directory:
   - name: Base
-    description: A collection of reusable utilities for manipulating string / number / arrays etc.
-
-  - name: Unit
-    description: A collection of reusable utilities for manipulating chain units.
+    description: A collection of reusable utilities for manipulating data.
 
 npm:
   title: "Utils"
