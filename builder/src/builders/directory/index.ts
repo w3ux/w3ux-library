@@ -75,7 +75,6 @@ export const formatDirectoryEntry = (
   directory: { name: string; description: string }[]
 ) =>
   directory.reduce(
-    (str: string, { name, description }) =>
-      str + "\n" + name + (description ? ": " + description : "") + "\n",
+    (str: string, { description }) => str + "\n" + description + "\n",
     ""
   );
