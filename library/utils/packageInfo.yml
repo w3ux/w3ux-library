@@ -1,0 +1,12 @@
+directory:
+  - name: Base
+    description: A collection of reusable utilities for manipulating string / number / arrays etc.
+
+  - name: Unit
+    description: A collection of reusable utilities for manipulating chain units.
+
+npm:
+  title: "Utils"
+  contents:
+    - item: Utilities for manipulating primitive types.
+    - item: Utilities for manipulating chain units.

@@ -46,7 +46,8 @@
   "workspaces": [
     "builder",
     "library/extension-assets",
-    "library/validator-assets"
+    "library/validator-assets",
+    "library/utils"
   ],
   "repository": {
     "type": "git",
