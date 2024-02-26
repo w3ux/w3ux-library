@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import fs from "fs/promises";
-import { join } from "path";
+import { join, extname } from "path";
 import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from "config";
 import { prebuild } from "builders/common/prebuild";
 import { getLibraryDirectory, removePackageOutput } from "builders/utils";
@@ -61,6 +61,16 @@ export const build = async () => {
       await execPromisify(`cd ../library/${folder} && yarn build`);
     } catch (e) {
       throw `Failed to generate dist.`;
+    }
+
+    // Copy svg files into the package output directory.
+    if (
+      !(await moveSvgFiles(
+        `${libDirectory}/${TEMP_BUILD_OUTPUT}`,
+        `${libDirectory}/${PACKAGE_OUTPUT}`
+      ))
+    ) {
+      throw `Failed to move SVG files to output directory.`;
     }
 
     // Generate package.json.
@@ -339,4 +349,34 @@ const generateSvgAssets = async (
 
   // Generate React component from SVG file.
   await createReactComponentFromSvg(inputFile, destFileTsx, outputFilename);
+};
+
+// Move svg files from one directory to another directory.
+export const moveSvgFiles = async (
+  sourceDir: string,
+  destinationDir: string
+) => {
+  try {
+    // Read the contents of the source directory
+    const files = await fs.readdir(sourceDir);
+
+    // Filter out only SVG files
+    const svgFiles = files.filter(
+      (file) => extname(file).toLowerCase() === ".svg"
+    );
+    // Move each SVG file to the destination directory
+    await Promise.all(
+      svgFiles.map(async (file) => {
+        const sourceFilePath = join(sourceDir, file);
+        const destinationFilePath = join(destinationDir, file);
+        // Move the file
+        await fs.rename(sourceFilePath, destinationFilePath);
+      })
+    );
+
+    return true;
+  } catch (err) {
+    console.error("❌ Error moving svg Files to output directory:", err);
+    return false;
+  }
 };
