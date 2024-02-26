@@ -9,7 +9,7 @@
     "resolveJsonModule": true,
   },
   "include": [
-    "library/**/*", "builder"
+    "library/**/*", "builder/**/*"
   ],
   "exclude": [
     "**/*/node_modules",
