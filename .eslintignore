@@ -15,6 +15,7 @@
 *.tgz
 dist
 build
+.build
 postcss.config.js
 *.tsconfig.json
 *.tsbuildinfo

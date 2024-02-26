@@ -1,5 +1,6 @@
 **/dist
 **/build
+**/.build
 **/node_modules
 **/package.json
 **/yarn.lock

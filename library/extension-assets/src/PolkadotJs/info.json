@@ -1,0 +1,7 @@
+{
+  "id": "polkadot-js",
+  "title": "Polkadot JS",
+  "website": "polkadot.js.org/extension",
+  "category": "web-extension",
+  "features": "*"
+}
