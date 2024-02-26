@@ -719,6 +719,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@w3ux/validator-assets-source@workspace:library/validator-assets":
+  version: 0.0.0-use.local
+  resolution: "@w3ux/validator-assets-source@workspace:library/validator-assets"
+  dependencies:
+    "@types/react": "npm:^18"
+    react: "npm:^18"
+    tsup: "npm:^8.0.2"
+  peerDependencies:
+    react: ^18
+  languageName: unknown
+  linkType: soft
+
 "abbrev@npm:^2.0.0":
   version: 2.0.0
   resolution: "abbrev@npm:2.0.0"

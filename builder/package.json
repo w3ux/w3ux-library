@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rm -fr dist && tsup",
     "build:extension-assets": "node dist/index.js -t build:extension-assets && cd ../library/extension-assets",
+    "build:validator-assets": "node dist/index.js -t build:validator-assets && cd ../library/validator-assets",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
   "dependencies": {
