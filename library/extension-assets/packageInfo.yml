@@ -5,4 +5,4 @@ directory:
 npm:
   title: "Extension Assets"
   contents:
-    - item: A list of popular web3 extension wallets with metadata and their SVG icons.
+    - item: A list of popular web3 extension wallets with metadata and icons.
