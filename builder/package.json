@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "build": "rm -fr dist && tsup",
-    "build:extension-assets": "node dist/index.js -t build:extension-assets && cd ../library/extension-assets",
-    "build:validator-assets": "node dist/index.js -t build:validator-assets && cd ../library/validator-assets",
+    "build:directory": "node dist/index.js -t build:directory",
+    "build:extension-assets": "node dist/index.js -t build:extension-assets",
+    "build:validator-assets": "node dist/index.js -t build:validator-assets",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
   "dependencies": {
     "minimist": "^1.2.8",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "yaml": "^2.4.0"
   },
   "devDependencies": {
     "tsup": "^8.0.2"

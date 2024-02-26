@@ -3,7 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import {
   checkFilesExistInPackages,
-  getLibraryDirectory,
+  gePackageDirectory,
   getPackageJson,
   removePackageOutput,
 } from "../utils";
@@ -13,7 +13,7 @@ import {
 } from "config";
 
 export const prebuild = async (folder: string): Promise<boolean> => {
-  const libDirectory = getLibraryDirectory(folder);
+  const libDirectory = gePackageDirectory(folder);
 
   // Check if required files exist.
   const filesExist = await checkFilesExistInPackages(
