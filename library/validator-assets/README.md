@@ -1,9 +1,9 @@
 ## Adding A Validator Operator
 
-To add an operator, submit a PR with the following changes:
+To add an operator, open a PR with the following additions:
 
-- **Icon:** Add an operator icon in the `src` folder.
-- **Details:** Add your operator details to the `ValidatorCommunity` list in `src/index.ts`.
+- An operator icon to the `src` folder.
+- Operator details to the `ValidatorCommunity` list, in `src/index.ts`.
 
 ### Structure
 
