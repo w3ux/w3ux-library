@@ -6,7 +6,7 @@ import {
   getLibraryDirectory,
   getTemplate,
   getWorkspaceDirectory,
-} from "builders/utils";
+} from "builders/util";
 import { PACKAGE_SCOPE } from "config";
 import fs from "fs/promises";
 import { parse } from "yaml";

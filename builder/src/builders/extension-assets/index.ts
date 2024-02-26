@@ -5,7 +5,7 @@ import fs from "fs/promises";
 import { join, extname } from "path";
 import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from "config";
 import { prebuild } from "builders/common/prebuild";
-import { gePackageDirectory, removePackageOutput } from "builders/utils";
+import { gePackageDirectory, removePackageOutput } from "builders/util";
 import { AdditionalAsset } from "./types";
 import { promisify } from "util";
 import { exec } from "child_process";
