@@ -24,7 +24,7 @@ The following table outlines the structure of a `ValidatorCommunity` entry:
 
 | |                                                                                                                                                                                              |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| __Icon__        | Upload your SVG icon as a React component. Look at the existing icons for examples, or use the [SVGR Playground](https://react-svgr.com/playground/) to convert your raw SVG file into a component.                                                                                                                                               |
+| __Icon__        | Upload your SVG icon as a JSX component. Look at the existing icons for examples, or use the [SVGR Playground](https://react-svgr.com/playground/) to convert your raw SVG file into a component.                                                                                                                                               |
 | __Accuracy__    | Operator contact details must be working and valid.                                                                                                                                               |
 | __Liveness__    | All submitted validator addresses must be discoverable as a validator on the network in question - whether Polkadot or Kusama.                                                                    |
 | __Ordering__    | Please place your operator in alphabetical order within `ValidatorCommunity`. |
