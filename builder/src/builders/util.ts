@@ -89,3 +89,38 @@ export const getTemplate = async (name) => {
   );
   return file.toString();
 };
+
+// Generate package package.json file from source package.json.
+// -----------------------------------------------------------
+export const generatePackageJson = async (
+  inputDir: string,
+  outputDir: string
+): Promise<boolean> => {
+  try {
+    // Read the original package.json.
+    const packageJsonPath = join(inputDir, "package.json");
+    const originalPackageJson = await fs.readFile(packageJsonPath, "utf8");
+    const parsedPackageJson = JSON.parse(originalPackageJson);
+
+    // Extract only the specified fields.
+    const { name, version, license, type } = parsedPackageJson;
+    const packageName = name.replace(/-source$/, ""); // Remove '-source' suffix.
+
+    // Construct the minimal package.json object
+    const minimalPackageJson = {
+      name: packageName,
+      version,
+      license,
+      type,
+    };
+
+    // Write the minimal package.json to the output directory.
+    const outputPath = join(outputDir, "package.json");
+    await fs.writeFile(outputPath, JSON.stringify(minimalPackageJson, null, 2));
+
+    return true;
+  } catch (error) {
+    console.error("❌ Error generating minimal package.json:", error);
+    return false;
+  }
+};

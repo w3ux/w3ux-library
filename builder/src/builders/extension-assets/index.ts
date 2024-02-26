@@ -5,7 +5,11 @@ import fs from "fs/promises";
 import { join, extname } from "path";
 import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from "config";
 import { prebuild } from "builders/common/prebuild";
-import { gePackageDirectory, removePackageOutput } from "builders/utils";
+import {
+  gePackageDirectory,
+  generatePackageJson,
+  removePackageOutput,
+} from "builders/util";
 import { AdditionalAsset } from "./types";
 import { promisify } from "util";
 import { exec } from "child_process";
@@ -173,25 +177,29 @@ const processIndexFile = async (
     const indexData = {};
 
     for (const folder of folders) {
-      const folderPath = join(directoryPath, folder);
-      const infoPath = join(folderPath, "info.json");
-
       try {
-        const infoContent = await fs.readFile(infoPath, "utf8");
-        const info = JSON.parse(infoContent);
+        const stats = await fs.stat(`${directoryPath}/${folder}`);
+        const isDirectory = stats.isDirectory();
 
-        // Get metadata and apply the remaining properties to index data.
-        const { id, ...rest } = info;
+        if (isDirectory) {
+          const folderPath = join(directoryPath, folder);
+          const infoPath = join(folderPath, "info.json");
 
-        if (rest.additionalAssets) {
-          await writeAdditionalAssets(
-            rest.additionalAssets || [],
-            folderPath,
-            outputPath
-          );
+          const infoContent = await fs.readFile(infoPath, "utf8");
+          const info = JSON.parse(infoContent);
+
+          // Get metadata and apply the remaining properties to index data.
+          const { id, ...rest } = info;
+
+          if (rest.additionalAssets) {
+            await writeAdditionalAssets(
+              rest.additionalAssets || [],
+              folderPath,
+              outputPath
+            );
+          }
+          indexData[id] = rest;
         }
-
-        indexData[id] = rest;
       } catch (error) {
         console.error(
           `❌ Error reading or parsing info.json for folder '${folder}':`,
@@ -211,40 +219,6 @@ const processIndexFile = async (
   }
 };
 
-// Generate package package.json file from source package.json.
-const generatePackageJson = async (
-  inputDir: string,
-  outputDir: string
-): Promise<boolean> => {
-  try {
-    // Read the original package.json.
-    const packageJsonPath = join(inputDir, "package.json");
-    const originalPackageJson = await fs.readFile(packageJsonPath, "utf8");
-    const parsedPackageJson = JSON.parse(originalPackageJson);
-
-    // Extract only the specified fields.
-    const { name, version, license, type } = parsedPackageJson;
-    const packageName = name.replace(/-source$/, ""); // Remove '-source' suffix.
-
-    // Construct the minimal package.json object
-    const minimalPackageJson = {
-      name: packageName,
-      version,
-      license,
-      type,
-    };
-
-    // Write the minimal package.json to the output directory.
-    const outputPath = join(outputDir, "package.json");
-    await fs.writeFile(outputPath, JSON.stringify(minimalPackageJson, null, 2));
-
-    return true;
-  } catch (error) {
-    console.error("❌ Error generating minimal package.json:", error);
-    return false;
-  }
-};
-
 // Generate util file.
 const generateUtilFile = async (
   sourceDir: string,
@@ -259,16 +233,21 @@ const generateUtilFile = async (
     const subDirs = await fs.readdir(sourceDir);
 
     for (const subDir of subDirs) {
-      // Format import of icon.
-      imports.push(`import { ${subDir} } from "./${subDir}";`);
+      const stats = await fs.stat(`${sourceDir}/${subDir}`);
+      const isDirectory = stats.isDirectory();
 
-      // Get `id` and format record.
-      const infoContent = await fs.readFile(
-        `${sourceDir}/${subDir}/info.json`,
-        "utf8"
-      );
-      const { id } = JSON.parse(infoContent);
-      records.push(`"${id}": ${subDir}`);
+      if (isDirectory) {
+        // Format import of icon.
+        imports.push(`import { ${subDir} } from "./${subDir}";`);
+
+        // Get `id` and format record.
+        const infoContent = await fs.readFile(
+          `${sourceDir}/${subDir}/info.json`,
+          "utf8"
+        );
+        const { id } = JSON.parse(infoContent);
+        records.push(`"${id}": ${subDir}`);
+      }
     }
 
     // Open the file for writing.

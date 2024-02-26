@@ -6,7 +6,7 @@ import {
   gePackageDirectory,
   getPackageJson,
   removePackageOutput,
-} from "../utils";
+} from "../util";
 import {
   PACKAGE_SOURCE_REQUIRED_FILES,
   PACKAGE_SOURCE_REQUIRED_PROPERTIES,
