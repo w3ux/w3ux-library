@@ -1,4 +1,4 @@
-/* @license Copyright 2024 @polkadot-cloud/library authors & contributors
+/* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { useEffect, useRef } from "react";
