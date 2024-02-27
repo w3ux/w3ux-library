@@ -3,6 +3,6 @@ directory:
     description: A list of Polkadot validator operators with metadata and icons.
 
 npm:
-  title: "Validator Operators"
+  title: Validator Operators
   contents:
     - item: A list of validator operators with metadata and icons.

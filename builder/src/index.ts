@@ -7,6 +7,7 @@ import * as validatorAssets from "./builders/validator-assets";
 import * as utils from "./builders/utils";
 import * as directory from "./builders/directory";
 import * as reactOdometer from "./builders/react-odometer";
+import * as reactPolkicon from "./builders/react-polkicon";
 
 const args = minimist(process.argv.slice(2));
 
@@ -27,6 +28,10 @@ switch (task) {
 
   case "build:react-odometer":
     reactOdometer.build();
+    break;
+
+  case "build:react-polkicon":
+    reactPolkicon.build();
     break;
 
   case "build:utils":

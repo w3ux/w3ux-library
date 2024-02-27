@@ -3,6 +3,6 @@ directory:
     description: An odometer effect used for number and balance transitions.
 
 npm:
-  title: "Odometer"
+  title: Odometer
   contents:
     - item:  An odometer effect used for number and balance transitions.
