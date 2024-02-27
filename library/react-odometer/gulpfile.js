@@ -24,7 +24,7 @@ const buildComponents = () => {
 };
 
 const buildSass = () =>
-  src("./src/**/*.scss")
+  src("./src/**/*.css")
     .pipe(gulpSass({ outputStyle: "compressed" }))
     .pipe(dest("dist"));
 

@@ -3,7 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { useEffect, useState, createRef, useRef } from "react";
 import { Digit, DigitRef, Direction, Props, Status } from "./types";
-import "./index.scss";
+import "./index.css";
 
 export const Odometer = ({
   value,
