@@ -1,0 +1,8 @@
+directory:
+  - name: Polkicon
+    description: A light-weight and customisable Polkadot Icon.
+
+npm:
+  title: Polkicon
+  contents:
+    - item: A light-weight and customisable Polkadot Icon.

@@ -28,7 +28,7 @@
     "gulp": "^4.0.2",
     "gulp-livereload": "^4.0.2",
     "gulp-replace": "^1.1.4",
-    "gulp-sass": "^5.0.0",
+    "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-strip-comments": "^2.6.0",
     "gulp-typescript": "^6.0.0-alpha.1",
@@ -45,9 +45,11 @@
   },
   "workspaces": [
     "builder",
+    "library/utils",
     "library/extension-assets",
     "library/validator-assets",
-    "library/utils"
+    "library/react-polkicon",
+    "library/react-odometer"
   ],
   "repository": {
     "type": "git",

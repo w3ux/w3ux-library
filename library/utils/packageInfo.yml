@@ -3,7 +3,7 @@ directory:
     description: A collection of reusable utilities for manipulating data.
 
 npm:
-  title: "Utils"
+  title: Utils
   contents:
     - item: Utilities for manipulating primitive types.
     - item: Utilities for manipulating chain units.

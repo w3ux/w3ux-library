@@ -1,0 +1,8 @@
+directory:
+  - name: Odometer
+    description: An odometer effect used for number and balance transitions.
+
+npm:
+  title: Odometer
+  contents:
+    - item:  An odometer effect used for number and balance transitions.

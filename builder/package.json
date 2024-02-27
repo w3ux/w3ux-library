@@ -8,6 +8,8 @@
     "build:directory": "node dist/index.js -t build:directory",
     "build:extension-assets": "node dist/index.js -t build:extension-assets",
     "build:validator-assets": "node dist/index.js -t build:validator-assets",
+    "build:react-odometer": "node dist/index.js -t build:react-odometer",
+    "build:react-polkicon": "node dist/index.js -t build:react-polkicon",
     "build:utils": "node dist/index.js -t build:utils",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
