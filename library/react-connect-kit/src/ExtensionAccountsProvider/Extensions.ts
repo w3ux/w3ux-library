@@ -1,5 +1,5 @@
-/* @license Copyright 2024 @polkadot-cloud/library authors & contributors",
-"SPDX-License-Identifier: GPL-3.0-only */
+/* @license Copyright 2024 w3ux authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
 
 import { localStorageOrDefault } from "@w3ux/utils";
 import {
