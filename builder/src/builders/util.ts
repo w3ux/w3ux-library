@@ -103,7 +103,8 @@ export const generatePackageJson = async (
     const parsedPackageJson = JSON.parse(originalPackageJson);
 
     // Extract only the specified fields.
-    const { name, version, license, type } = parsedPackageJson;
+    const { name, version, license, type, dependencies, peerDependencies } =
+      parsedPackageJson;
     const packageName = name.replace(/-source$/, ""); // Remove '-source' suffix.
 
     // Construct the minimal package.json object
@@ -112,7 +113,16 @@ export const generatePackageJson = async (
       version,
       license,
       type,
+      dependencies,
     };
+
+    if (dependencies) {
+      minimalPackageJson["dependencies"] = dependencies;
+    }
+
+    if (peerDependencies) {
+      minimalPackageJson["peerDependencies"] = peerDependencies;
+    }
 
     // Write the minimal package.json to the output directory.
     const outputPath = join(outputDir, "package.json");

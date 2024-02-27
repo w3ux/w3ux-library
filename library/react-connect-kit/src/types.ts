@@ -7,6 +7,14 @@ import {
 } from "./ExtensionsProvider/types";
 
 /*------------------------------------------------------------
+   Re-export package inner types.
+ ------------------------------------------------------------*/
+
+export * from "./ExtensionsProvider/types";
+export * from "./ExtensionAccountsProvider/types";
+export * from "./LedgerAccountsProvider/types";
+
+/*------------------------------------------------------------
    Imported account types.
  ------------------------------------------------------------*/
 export type MaybeAddress = string | null;
