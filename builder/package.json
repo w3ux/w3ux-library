@@ -10,6 +10,8 @@
     "build:validator-assets": "node dist/index.js -t build:validator-assets",
     "build:react-odometer": "node dist/index.js -t build:react-odometer",
     "build:react-polkicon": "node dist/index.js -t build:react-polkicon",
+    "build:react-connect-kit": "node dist/index.js -t build:react-connect-kit",
+    "build:hooks": "node dist/index.js -t build:hooks",
     "build:utils": "node dist/index.js -t build:utils",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
