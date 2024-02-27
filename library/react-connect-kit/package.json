@@ -1,5 +1,5 @@
 {
-  "name": "@w3ux/react-polkicon-source",
+  "name": "@w3ux/react-connect-kit-source",
   "license": "GPL-3.0-only",
   "version": "0.0.1",
   "type": "module",
@@ -8,11 +8,14 @@
     "build": "gulp --silent"
   },
   "dependencies": {
+    "@chainsafe/metamask-polkadot-adapter": "^0.6.0",
     "@polkadot/util": "^12.6.2",
-    "@w3ux/utils": "0.0.1",
-    "framer-motion": "^11.0.6"
+    "@w3ux/extension-assets": "^0.0.14",
+    "@w3ux/hooks": "^0.0.2",
+    "@w3ux/utils": "^0.0.1"
   },
   "devDependencies": {
+    "@chainsafe/metamask-polkadot-types": "^0.6.0",
     "@types/react": "^18",
     "gulp": "^4.0.2",
     "gulp-sourcemaps": "^3.0.0",

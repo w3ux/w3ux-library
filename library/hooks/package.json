@@ -1,16 +1,14 @@
 {
-  "name": "@w3ux/react-polkicon-source",
+  "name": "@w3ux/hooks-source",
   "license": "GPL-3.0-only",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "build": "gulp --silent"
   },
-  "dependencies": {
-    "@polkadot/util": "^12.6.2",
-    "@w3ux/utils": "0.0.1",
-    "framer-motion": "^11.0.6"
+  "peerDependencies": {
+    "react": "^18"
   },
   "devDependencies": {
     "@types/react": "^18",

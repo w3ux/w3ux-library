@@ -1,0 +1,8 @@
+directory:
+  - name: Hooks
+    description: A collection of generic React hooks.
+
+npm:
+  title: Hooks
+  contents:
+    - item: A collection of generic React hooks.

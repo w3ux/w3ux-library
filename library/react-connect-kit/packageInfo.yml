@@ -1,0 +1,8 @@
+directory:
+  - name: Connect Kit
+    description: Providers and hooks for connecting to web3 wallets and interacting with accounts.
+
+npm:
+  title: Connect Kit
+  contents:
+    - item: Providers and hooks for connecting to web3 wallets and interacting with accounts.
