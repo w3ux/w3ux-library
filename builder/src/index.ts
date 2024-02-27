@@ -6,6 +6,7 @@ import * as extensionAssets from "./builders/extension-assets";
 import * as validatorAssets from "./builders/validator-assets";
 import * as utils from "./builders/utils";
 import * as directory from "./builders/directory";
+import * as reactOdometer from "./builders/react-odometer";
 
 const args = minimist(process.argv.slice(2));
 
@@ -22,6 +23,10 @@ switch (task) {
 
   case "build:validator-assets":
     validatorAssets.build();
+    break;
+
+  case "build:react-odometer":
+    reactOdometer.build();
     break;
 
   case "build:utils":
