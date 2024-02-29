@@ -1300,10 +1300,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/hooks@npm:^0.0.2":
-  version: 0.0.2
-  resolution: "@w3ux/hooks@npm:0.0.2"
-  checksum: 7089247b5487d23dd5df194e1aaa2ea730c82eadf774dc55175fc1e52583ec1c94af43d0c275b1cb31c1bbe7bfd4c7844ba78258dece143c7db8e594796a1a0b
+"@w3ux/hooks@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "@w3ux/hooks@npm:0.0.3"
+  peerDependencies:
+    react: ^18
+  checksum: 11c697be0485111b91bc26cf7629c1ddc8e4f86a8c0f84f2e5d9ecff9cb3d2ddb86ddff5645f1f32b22077473981313fa1c63c0625783793f4e7e66ae20d4b2b
   languageName: node
   linkType: hard
 
@@ -1316,7 +1318,7 @@ __metadata:
     "@polkadot/util": "npm:^12.6.2"
     "@types/react": "npm:^18"
     "@w3ux/extension-assets": "npm:^0.0.14"
-    "@w3ux/hooks": "npm:^0.0.2"
+    "@w3ux/hooks": "npm:^0.0.3"
     "@w3ux/utils": "npm:^0.0.1"
     gulp: "npm:^4.0.2"
     gulp-sourcemaps: "npm:^3.0.0"
