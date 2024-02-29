@@ -1323,10 +1323,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/extension-assets@npm:^0.0.14":
-  version: 0.0.14
-  resolution: "@w3ux/extension-assets@npm:0.0.14"
-  checksum: 2080f571696ff4c4d5636b31d52a3556cc5253ca46ff3184004a4fcf2d0acf1f880b7db9675ca40bc884d4ab8c9247727c5a6209a54adec529fcd87c0d60db6e
+"@w3ux/extension-assets@npm:^0.0.15":
+  version: 0.0.15
+  resolution: "@w3ux/extension-assets@npm:0.0.15"
+  peerDependencies:
+    react: ^18
+  checksum: 9ecb5b93a4b6e8ff44f413cd309eb3d411c7cf01537bf323ad2928d77b5ff06ab6aeb30bb8fc02626c57390a3a19c3b03037a8cef3c40f2131cd701d2fdc3948
   languageName: node
   linkType: hard
 
@@ -1363,7 +1365,7 @@ __metadata:
     "@chainsafe/metamask-polkadot-types": "npm:^0.6.0"
     "@polkadot/util": "npm:^12.6.2"
     "@types/react": "npm:^18"
-    "@w3ux/extension-assets": "npm:^0.0.14"
+    "@w3ux/extension-assets": "npm:^0.0.15"
     "@w3ux/hooks": "npm:^0.0.3"
     "@w3ux/utils": "npm:^0.0.1"
     gulp: "npm:^4.0.2"
