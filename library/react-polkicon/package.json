@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@polkadot/util": "^12.6.2",
-    "@w3ux/utils": "0.0.1",
+    "@w3ux/utils": "0.0.2",
     "framer-motion": "^11.0.7"
   },
   "devDependencies": {

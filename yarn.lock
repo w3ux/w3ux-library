@@ -1364,8 +1364,8 @@ __metadata:
     "@polkadot/util": "npm:^12.6.2"
     "@types/react": "npm:^18"
     "@w3ux/extension-assets": "npm:^0.0.14"
+    "@w3ux/utils": "npm:^0.0.2"
     "@w3ux/hooks": "npm:^0.0.3"
-    "@w3ux/utils": "npm:^0.0.1"
     gulp: "npm:^4.0.2"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-strip-comments: "npm:^2.6.0"
@@ -1397,7 +1397,7 @@ __metadata:
   dependencies:
     "@polkadot/util": "npm:^12.6.2"
     "@types/react": "npm:^18"
-    "@w3ux/utils": "npm:0.0.1"
+    "@w3ux/utils": "npm:0.0.2"
     framer-motion: "npm:^11.0.7"
     gulp: "npm:^4.0.2"
     gulp-sourcemaps: "npm:^3.0.0"
@@ -1422,10 +1422,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/utils@npm:0.0.1, @w3ux/utils@npm:^0.0.1":
-  version: 0.0.1
-  resolution: "@w3ux/utils@npm:0.0.1"
-  checksum: a14823f3f0e3776a472ccaf6838745af077191fe3a004ceea3936c4d5767189de96eba9752b9cf8eb56a1aa24e38c6a05f673748a955671be761cb713108b8c4
+"@w3ux/utils@npm:0.0.2, @w3ux/utils@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "@w3ux/utils@npm:0.0.2"
+  dependencies:
+    "@polkadot/keyring": "npm:^12.6.2"
+    "@polkadot/util": "npm:^12.6.2"
+    bignumber.js: "npm:^9.1.1"
+  checksum: 33ce48775fd806313363d029c11c34dbe269d2f93aa64e2bc0229ce26383277d6bc0d8e2452b4df2e31d87a41020289a8cf4bd6f3efc4b089387247455b3426d
   languageName: node
   linkType: hard
 
