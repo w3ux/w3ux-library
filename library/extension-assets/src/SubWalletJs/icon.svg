@@ -1,6 +1,1 @@
-  <svg fill="none" viewBox="0 0 16 24" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M15.8 8.71982V5.79499L2.81557 0L0 1.24374V11.4943L9.74516 15.8269L4.49671 18.1367V15.8269L2.28253 14.8292L0 15.8269V22.7973L2.69256 24L15.8 18.1503V13.7631L4.34637 8.66515V6.01367L13.1211 9.92255L15.8 8.71982Z"
-      fill="currentColor"
-    ></path>
-  </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 314 314"><linearGradient id="subwallet-js-gradient" gradientUnits="userSpaceOnUse" x1="45.3397" y1="131.5969" x2="226.5694" y2="222.6525"><stop offset="0.2305" style="stop-color:#27F5B3"/><stop offset="1" style="stop-color:#0253FB"/></linearGradient><path d="M259 114.1V75.8L89.2 0 52.3 16.3v134.1l127.5 56.7-68.7 30.2v-30.2l-29-13.1-29.9 13.1v91.2L87.6 314 259 237.5v-57.4l-149.9-66.7V78.7L224 129.8l35-15.7z" fill="url(#subwallet-js-gradient)"/></svg>
