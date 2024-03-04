@@ -64,7 +64,7 @@ export const build = async () => {
     try {
       await execPromisify(`cd ../library/${folder} && yarn build`);
     } catch (e) {
-      throw `Failed to generate dist.`;
+      throw `Failed to generate dist. ${e}`;
     }
 
     // Copy svg files into the package output directory.
