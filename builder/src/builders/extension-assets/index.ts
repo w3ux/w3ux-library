@@ -157,7 +157,14 @@ const createReactComponentFromSvg = async (
 };
 
 // Generates React component markup for an SVG file.
-const generateReactComponent = (svgContent: string, componentName: string) => `
+const generateReactComponent = (svgContent: string, componentName: string) => {
+  // Replace html attributes with JSX attributes.
+  svgContent = svgContent.replace(/fill-rule/g, "fillRule");
+  svgContent = svgContent.replace(/stroke-width/g, "strokeWidth");
+  svgContent = svgContent.replace(/stop-color/g, "stopColor");
+  svgContent = svgContent.replace(/stop-opacity/g, "stopOpacity");
+
+  return `
 export const ${componentName} = (): JSX.Element => {
   return (
     ${svgContent}
@@ -166,6 +173,7 @@ export const ${componentName} = (): JSX.Element => {
 
 export default ${componentName};
 `;
+};
 
 // Generate index file from `info.json` source files.
 const processIndexFile = async (
