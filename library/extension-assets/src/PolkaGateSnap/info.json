@@ -1,0 +1,10 @@
+{
+  "id": "polkagate-snap",
+  "title": "MetaMask Snap (by PolkaGate)",
+  "website": {
+    "url": "snaps.metamask.io/snap/npm/polkagate/snap/",
+    "text": "snaps.metamask.io"
+  },
+  "category": "web-extension",
+  "features": "*"
+}
