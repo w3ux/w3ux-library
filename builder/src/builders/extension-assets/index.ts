@@ -163,6 +163,9 @@ const generateReactComponent = (svgContent: string, componentName: string) => {
   svgContent = svgContent.replace(/stroke-width/g, "strokeWidth");
   svgContent = svgContent.replace(/stop-color/g, "stopColor");
   svgContent = svgContent.replace(/stop-opacity/g, "stopOpacity");
+  svgContent = svgContent.replace(/stroke-linejoin/g, "strokeLinejoin");
+  svgContent = svgContent.replace(/stroke-linecap/g, "strokeLinecap");
+  svgContent = svgContent.replace(/clip-path/g, "clipPath");
 
   return `
 export const ${componentName} = (): JSX.Element => {
