@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/react-connect-kit-source",
   "license": "GPL-3.0-only",
-  "version": "0.0.4",
+  "version": "0.1.2",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
@@ -11,7 +11,7 @@
     "@chainsafe/metamask-polkadot-adapter": "^0.6.0",
     "@polkadot/util": "^12.6.2",
     "@polkagate/extension-dapp": "^0.46.7-22",
-    "@w3ux/extension-assets": "0.1.0",
+    "@w3ux/extension-assets": "^0.2.3",
     "@w3ux/hooks": "^0.0.3",
     "@w3ux/utils": "^0.0.2"
   },
