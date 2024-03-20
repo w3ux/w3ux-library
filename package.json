@@ -51,5 +51,5 @@
     "w3ux"
   ],
   "homepage": "https://github.com/w3ux/w3ux-library",
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.1.1"
 }
