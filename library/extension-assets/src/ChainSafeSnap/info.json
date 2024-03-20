@@ -1,6 +1,6 @@
 {
-  "id": "metamask-polkadot-snap",
-  "title": "MetaMask Snap (by Chainsafe)",
+  "id": "chainsafe-polkadot-snap",
+  "title": "MetaMask Snap (Chainsafe)",
   "website": {
     "url": "snaps.metamask.io/snap/npm/chainsafe/polkadot-snap",
     "text": "snaps.metamask.io"
