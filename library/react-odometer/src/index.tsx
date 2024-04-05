@@ -128,7 +128,7 @@ export const Odometer = ({
             opacity: 0,
             position: "fixed",
             top: "-999%",
-            left: " -999%",
+            left: "-999%",
             userSelect: "none",
           }}
         >

@@ -3,5 +3,6 @@
   "title": "Enkrypt",
   "website": "enkrypt.com",
   "category": "web-extension",
-  "features": "*"
+  "features": "*",
+  "otherEcosystems": ["ethereum"]
 }

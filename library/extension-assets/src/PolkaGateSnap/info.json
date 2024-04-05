@@ -6,5 +6,6 @@
     "text": "snaps.metamask.io"
   },
   "category": "web-extension",
-  "features": ["getAccounts", "signer"]
+  "features": ["getAccounts", "signer"],
+  "otherEcosystems": ["ethereum"]
 }
