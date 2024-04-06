@@ -22,7 +22,16 @@ export const ExtensionsContext = createContext<ExtensionsContextInterface>(
 
 export const useExtensions = () => useContext(ExtensionsContext);
 
-export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
+export const ExtensionsProvider = ({
+  children,
+  options,
+}: {
+  children: ReactNode;
+  options?: {
+    chainSafeSnapEnabled?: boolean;
+    polkagateSnapEnabled?: boolean;
+  };
+}) => {
   // Store whether initial `injectedWeb3` checking is underway.
   //
   // Injecting `injectedWeb3` is an asynchronous process, so we need to check for its existence for
@@ -41,7 +50,14 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   const extensionsStatusRef = useRef(extensionsStatus);
 
   // Store whether Metamask Snaps are enabled.
-  const [snapsEnabled, setSnapsEnabled] = useState<boolean>(false);
+  const [chainSafeSnapEnabled] = useState<boolean>(
+    options?.chainSafeSnapEnabled || false
+  );
+
+  // Store whether Metamask Snaps are enabled.
+  const [polkaGateSnapEnabled] = useState<boolean>(
+    options?.polkagateSnapEnabled || false
+  );
 
   // Listen for window.injectedWeb3 with an interval.
   let injectedWeb3Interval: ReturnType<typeof setInterval>;
@@ -59,10 +75,12 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   // Handle injecting of `metamask-polkadot-snap` into injectedWeb3 if avaialble, and complete
   // `injectedWeb3` syncing process.
   const handleSnapInjection = async (hasInjectedWeb3: boolean) => {
-    const snapAvailable = (await polkadotSnapAvailable()) && snapsEnabled;
+    // Inject ChainSafe Snap if enabled.
+    const snapAvailable =
+      (await polkadotSnapAvailable()) && chainSafeSnapEnabled;
 
-    // Injects PolkaGate snap.
-    if (snapsEnabled) {
+    // Inject PolkaGate Snap if enabled.
+    if (polkaGateSnapEnabled) {
       await withTimeout(500, web3Enable("w3ux"));
     }
 
@@ -187,8 +205,6 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
         extensionInstalled,
         extensionCanConnect,
         extensionHasFeature,
-        setSnapsEnabled,
-        snapsEnabled,
       }}
     >
       {children}
