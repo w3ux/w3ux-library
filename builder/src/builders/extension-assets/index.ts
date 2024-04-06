@@ -271,6 +271,23 @@ const generateUtilFile = async (
     }
 
     await writer.write(`
+    export type ExtensionsList = Record<string, ExtensionListItem>;
+
+    export interface ExtensionListItem {
+      title: string;
+      website: {
+        url: string;
+        text: string;
+      },
+      category: string;
+      features: string[] | string;
+      otherEcosystems?: string[];
+    }
+
+    export type ExtensionArrayListItem = ExtensionListItem & {
+      id: string;
+    }
+
     export type ExtensionIcon = FC<{
       style?: CSSProperties;
       className?: string;
