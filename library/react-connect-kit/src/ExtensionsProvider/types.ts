@@ -13,6 +13,8 @@ export interface ExtensionsContextInterface {
   extensionInstalled: (id: string) => boolean;
   extensionCanConnect: (id: string) => boolean;
   extensionHasFeature: (id: string, feature: string) => boolean;
+  setSnapsEnabled: (enabled: boolean) => void;
+  snapsEnabled: boolean;
 }
 
 // Top level required properties the extension must expose via their `injectedWeb3` entry.

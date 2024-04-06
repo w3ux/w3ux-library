@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { setStateWithRef } from "@w3ux/utils";
+import { setStateWithRef, withTimeout } from "@w3ux/utils";
 import {
   ReactNode,
   useEffect,
@@ -40,6 +40,9 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   >({});
   const extensionsStatusRef = useRef(extensionsStatus);
 
+  // Store whether Metamask Snaps are enabled.
+  const [snapsEnabled, setSnapsEnabled] = useState<boolean>(false);
+
   // Listen for window.injectedWeb3 with an interval.
   let injectedWeb3Interval: ReturnType<typeof setInterval>;
   const injectCounter = useRef<number>(0);
@@ -56,8 +59,12 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   // Handle injecting of `metamask-polkadot-snap` into injectedWeb3 if avaialble, and complete
   // `injectedWeb3` syncing process.
   const handleSnapInjection = async (hasInjectedWeb3: boolean) => {
-    const snapAvailable = await polkadotSnapAvailable();
-    await web3Enable("w3ux"); // injects polkagate snap
+    const snapAvailable = (await polkadotSnapAvailable()) && snapsEnabled;
+
+    // Injects PolkaGate snap.
+    if (snapsEnabled) {
+      await withTimeout(500, web3Enable("w3ux"));
+    }
 
     if (hasInjectedWeb3 || snapAvailable) {
       setStateWithRef(
@@ -180,6 +187,8 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
         extensionInstalled,
         extensionCanConnect,
         extensionHasFeature,
+        setSnapsEnabled,
+        snapsEnabled,
       }}
     >
       {children}

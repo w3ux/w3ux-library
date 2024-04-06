@@ -12,4 +12,6 @@ export const defaultExtensionsContext: ExtensionsContextInterface = {
   extensionInstalled: (id) => false,
   extensionCanConnect: (id) => false,
   extensionHasFeature: (id, feature) => false,
+  setSnapsEnabled: (enabled) => {},
+  snapsEnabled: false,
 };
