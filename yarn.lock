@@ -640,6 +640,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@polkadot/extension-inject@npm:0.46.8":
+  version: 0.46.8
+  resolution: "@polkadot/extension-inject@npm:0.46.8"
+  dependencies:
+    "@polkadot/api": "npm:^10.12.2"
+    "@polkadot/rpc-provider": "npm:^10.12.2"
+    "@polkadot/types": "npm:^10.12.2"
+    "@polkadot/util": "npm:^12.6.2"
+    "@polkadot/util-crypto": "npm:^12.6.2"
+    "@polkadot/x-global": "npm:^12.6.2"
+    tslib: "npm:^2.6.2"
+  peerDependencies:
+    "@polkadot/api": "*"
+    "@polkadot/util": "*"
+  checksum: 10c0/6d9b7b142e7a59adaac0a42a00de7037dfc5df6e36ce99bc74268389f7375dcf91b924b32c554ea918242a0b872f974f012e7b9ac1968eac349d01d5d20ffc4e
+  languageName: node
+  linkType: hard
+
 "@polkadot/extension-inject@npm:^0.46.5":
   version: 0.46.6
   resolution: "@polkadot/extension-inject@npm:0.46.6"
@@ -655,24 +673,6 @@ __metadata:
     "@polkadot/api": "*"
     "@polkadot/util": "*"
   checksum: 10c0/3897654385f6ade2898b01b749824394372e15066d06d19da1ae2722392b809a66c66673a76246a393c1472fc82779c38007225550db425de341ec625aefca3b
-  languageName: node
-  linkType: hard
-
-"@polkadot/extension-inject@npm:latest":
-  version: 0.46.8
-  resolution: "@polkadot/extension-inject@npm:0.46.8"
-  dependencies:
-    "@polkadot/api": "npm:^10.12.2"
-    "@polkadot/rpc-provider": "npm:^10.12.2"
-    "@polkadot/types": "npm:^10.12.2"
-    "@polkadot/util": "npm:^12.6.2"
-    "@polkadot/util-crypto": "npm:^12.6.2"
-    "@polkadot/x-global": "npm:^12.6.2"
-    tslib: "npm:^2.6.2"
-  peerDependencies:
-    "@polkadot/api": "*"
-    "@polkadot/util": "*"
-  checksum: 10c0/6d9b7b142e7a59adaac0a42a00de7037dfc5df6e36ce99bc74268389f7375dcf91b924b32c554ea918242a0b872f974f012e7b9ac1968eac349d01d5d20ffc4e
   languageName: node
   linkType: hard
 
@@ -1140,11 +1140,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkagate/extension-dapp@npm:^0.46.7-22":
-  version: 0.46.7-22
-  resolution: "@polkagate/extension-dapp@npm:0.46.7-22"
+"@polkagate/extension-dapp@npm:^0.46.8":
+  version: 0.46.8
+  resolution: "@polkagate/extension-dapp@npm:0.46.8"
   dependencies:
-    "@polkadot/extension-inject": "npm:latest"
+    "@polkadot/extension-inject": "npm:0.46.8"
     "@polkadot/types": "npm:^10.11.2"
     "@polkadot/util": "npm:^12.6.2"
     "@polkadot/util-crypto": "npm:^12.6.2"
@@ -1153,7 +1153,7 @@ __metadata:
     "@polkadot/api": "*"
     "@polkadot/util": "*"
     "@polkadot/util-crypto": "*"
-  checksum: 10c0/7d91fb0a3c7ab71dbf69a3b80dd68ed28fe4f3611c55038e5492e4f7ebf7a7d929b3a4e6e7e996a73ef728c21dd09ff8ef7d5696ff356b3a6c63e93a9d718a43
+  checksum: 10c0/3bbefd095650306a85f1723ca66556ee45cf678a7817cf40be8e2933d50f039a4aa47234239f3c3d3c8b05fa2a6b06bf1632986ab34e40c8b9fbd0a7d0e8602d
   languageName: node
   linkType: hard
 
@@ -1647,7 +1647,7 @@ __metadata:
     "@chainsafe/metamask-polkadot-adapter": "npm:^0.6.0"
     "@chainsafe/metamask-polkadot-types": "npm:^0.6.0"
     "@polkadot/util": "npm:^12.6.2"
-    "@polkagate/extension-dapp": "npm:^0.46.7-22"
+    "@polkagate/extension-dapp": "npm:^0.46.8"
     "@types/react": "npm:^18"
     "@w3ux/extension-assets": "npm:^0.2.3"
     "@w3ux/hooks": "npm:^0.0.3"
