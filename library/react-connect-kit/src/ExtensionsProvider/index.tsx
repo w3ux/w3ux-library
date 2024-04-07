@@ -81,7 +81,7 @@ export const ExtensionsProvider = ({
 
     // Inject PolkaGate Snap if enabled.
     if (polkaGateSnapEnabled) {
-      await withTimeout(500, web3Enable("w3ux"));
+      await withTimeout(500, web3Enable("snap_only"));
     }
 
     if (hasInjectedWeb3 || snapAvailable) {
