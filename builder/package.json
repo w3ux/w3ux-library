@@ -18,7 +18,7 @@
   "dependencies": {
     "minimist": "^1.2.8",
     "prettier": "^3.2.5",
-    "yaml": "^2.4.0"
+    "yaml": "^2.4.1"
   },
   "devDependencies": {
     "tsup": "^8.0.2"
