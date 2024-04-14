@@ -6,7 +6,7 @@ import { isValidAddress } from "@w3ux/utils";
 import type { ExtensionAccount } from "../ExtensionsProvider/types";
 import { HandleImportExtension } from "./types";
 import { getActiveAccountLocal, getInExternalAccounts } from "./utils";
-import { DEFAULT_SS58_PREFIX, defaultHandleImportExtension } from "./defaults";
+import { DEFAULT_SS58, defaultHandleImportExtension } from "./defaults";
 import { AnyFunction } from "../types";
 
 export const useImportExtension = () => {
@@ -25,7 +25,7 @@ export const useImportExtension = () => {
     }
 
     const keyring = new Keyring();
-    keyring.setSS58Format(DEFAULT_SS58_PREFIX);
+    keyring.setSS58Format(DEFAULT_SS58);
 
     // Remove accounts that do not contain correctly formatted addresses.
     newAccounts = newAccounts.filter(({ address }) => isValidAddress(address));

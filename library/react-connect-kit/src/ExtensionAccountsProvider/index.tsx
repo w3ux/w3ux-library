@@ -3,10 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { localStorageOrDefault, setStateWithRef } from "@w3ux/utils";
-import {
-  DEFAULT_SS58_PREFIX,
-  defaultExtensionAccountsContext,
-} from "./defaults";
+import { DEFAULT_SS58, defaultExtensionAccountsContext } from "./defaults";
 import { ImportedAccount, AnyFunction, Sync, VoidFn } from "../types";
 import {
   ExtensionAccount,
@@ -312,7 +309,7 @@ export const ExtensionAccountsProvider = ({
       if (extensionIds.find((id) => id === "metamask-polkadot-snap")) {
         await initPolkadotSnap({
           networkName: network as SnapNetworks,
-          addressPrefix: DEFAULT_SS58_PREFIX,
+          addressPrefix: DEFAULT_SS58,
         });
       }
     } catch (e) {

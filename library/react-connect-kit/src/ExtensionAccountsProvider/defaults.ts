@@ -19,4 +19,4 @@ export const defaultHandleImportExtension = {
   },
 };
 
-export const DEFAULT_SS58_PREFIX = 0;
+export const DEFAULT_SS58 = 0;

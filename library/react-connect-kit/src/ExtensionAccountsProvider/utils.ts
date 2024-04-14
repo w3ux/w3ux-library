@@ -5,7 +5,7 @@ import { localStorageOrDefault } from "@w3ux/utils";
 import Keyring from "@polkadot/keyring";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
 import { AnyFunction, ExternalAccount } from "../types";
-import { DEFAULT_SS58_PREFIX } from "./defaults";
+import { DEFAULT_SS58 } from "./defaults";
 
 /*------------------------------------------------------------
    Active account utils.
@@ -14,7 +14,7 @@ import { DEFAULT_SS58_PREFIX } from "./defaults";
 // Gets local `active_acount` for a network.
 export const getActiveAccountLocal = (network: string) => {
   const keyring = new Keyring();
-  keyring.setSS58Format(DEFAULT_SS58_PREFIX);
+  keyring.setSS58Format(DEFAULT_SS58);
 
   let account = localStorageOrDefault(`${network}_active_account`, null);
   if (account !== null) {
