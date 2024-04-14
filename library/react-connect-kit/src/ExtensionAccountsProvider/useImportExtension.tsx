@@ -4,9 +4,9 @@ SPDX-License-Identifier: GPL-3.0-only */
 import Keyring from "@polkadot/keyring";
 import { isValidAddress } from "@w3ux/utils";
 import type { ExtensionAccount } from "../ExtensionsProvider/types";
-import { HandleImportExtension, NetworkSS58 } from "./types";
+import { HandleImportExtension } from "./types";
 import { getActiveAccountLocal, getInExternalAccounts } from "./utils";
-import { defaultHandleImportExtension } from "./defaults";
+import { DEFAULT_SS58, defaultHandleImportExtension } from "./defaults";
 import { AnyFunction } from "../types";
 
 export const useImportExtension = () => {
@@ -18,19 +18,19 @@ export const useImportExtension = () => {
     currentAccounts: ExtensionAccount[],
     signer: AnyFunction,
     newAccounts: ExtensionAccount[],
-    { network, ss58 }: NetworkSS58
+    network: string
   ): HandleImportExtension => {
     if (!newAccounts.length) {
       return defaultHandleImportExtension;
     }
 
     const keyring = new Keyring();
-    keyring.setSS58Format(ss58);
+    keyring.setSS58Format(DEFAULT_SS58);
 
     // Remove accounts that do not contain correctly formatted addresses.
     newAccounts = newAccounts.filter(({ address }) => isValidAddress(address));
 
-    // Reformat addresses to ensure correct ss58 format.
+    // Reformat addresses to ensure default ss58 format.
     newAccounts.map((account) => {
       const { address } = keyring.addFromAddress(account.address);
       account.address = address;
@@ -48,7 +48,7 @@ export const useImportExtension = () => {
     // Check whether active account is present in forgotten accounts.
     const removedActiveAccount =
       removedAccounts.find(
-        ({ address }) => address === getActiveAccountLocal(network, ss58)
+        ({ address }) => address === getActiveAccountLocal(network)
       )?.address || null;
 
     // Remove accounts that have already been added to `currentAccounts` via another extension.

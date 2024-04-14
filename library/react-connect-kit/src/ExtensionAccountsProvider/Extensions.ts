@@ -13,6 +13,7 @@ import {
   ExtensionInterface,
 } from "../ExtensionsProvider/types";
 import Keyring from "@polkadot/keyring";
+import { DEFAULT_SS58 } from "./defaults";
 
 // A static class to manage the discovery and importing of extensions.
 export class Extensions {
@@ -95,11 +96,11 @@ export class Extensions {
 
   // Calls `enable` and formats the results of an extension's `enable` function.
   static getAllAccounts = async (
-    extensions: ExtensionEnableResults,
-    ss58: number
+    extensions: ExtensionEnableResults
   ): Promise<ExtensionAccount[]> => {
+    // By default, format addresses with the default ss58 prefix.
     const keyring = new Keyring();
-    keyring.setSS58Format(ss58);
+    keyring.setSS58Format(DEFAULT_SS58);
 
     try {
       const results = await Promise.allSettled(
@@ -118,7 +119,7 @@ export class Extensions {
 
         if (result.status === "fulfilled") {
           const filtered = result.value
-            // Reformat addresses with correct ss58 prefix.
+            // Reformat addresses with default ss58 prefix.
             .map((newAccount) => ({
               ...newAccount,
               address: keyring.addFromAddress(newAccount.address).address,

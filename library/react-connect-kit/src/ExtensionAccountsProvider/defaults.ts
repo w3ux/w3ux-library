@@ -8,7 +8,7 @@ export const defaultExtensionAccountsContext: ExtensionAccountsContextInterface 
   {
     connectExtensionAccounts: () => Promise.resolve(false),
     extensionAccountsSynced: "unsynced",
-    extensionAccounts: [],
+    getExtensionAccounts: (ss58) => [],
   };
 
 export const defaultHandleImportExtension = {
@@ -18,3 +18,5 @@ export const defaultHandleImportExtension = {
     removedActiveAccount: null,
   },
 };
+
+export const DEFAULT_SS58 = 0;
