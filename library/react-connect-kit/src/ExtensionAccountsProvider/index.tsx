@@ -3,7 +3,10 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { localStorageOrDefault, setStateWithRef } from "@w3ux/utils";
-import { defaultExtensionAccountsContext } from "./defaults";
+import {
+  DEFAULT_SS58_PREFIX,
+  defaultExtensionAccountsContext,
+} from "./defaults";
 import { ImportedAccount, AnyFunction, Sync, VoidFn } from "../types";
 import {
   ExtensionAccount,
@@ -24,6 +27,7 @@ import {
 } from "./utils";
 import { useExtensions } from "../ExtensionsProvider";
 import { useEffectIgnoreInitial } from "@w3ux/hooks";
+import Keyring from "@polkadot/keyring";
 
 export const ExtensionAccountsContext =
   createContext<ExtensionAccountsContextInterface>(
@@ -35,7 +39,6 @@ export const useExtensionAccounts = () => useContext(ExtensionAccountsContext);
 export const ExtensionAccountsProvider = ({
   children,
   network,
-  ss58,
   dappName,
   activeAccount,
   setActiveAccount,
@@ -128,14 +131,12 @@ export const ExtensionAccountsProvider = ({
     // ----------------------------------------------------------------------------
 
     // Get full list of imported accounts.
-    const initialAccounts = await Extensions.getAllAccounts(
-      connectedExtensions,
-      ss58
-    );
+    const initialAccounts =
+      await Extensions.getAllAccounts(connectedExtensions);
 
     // Connect to the active account if found in initial accounts.
     const activeAccountInInitial = initialAccounts.find(
-      ({ address }) => address === getActiveAccountLocal(network, ss58)
+      ({ address }) => address === getActiveAccountLocal(network)
     );
 
     // Perform all initial state updates.
@@ -173,10 +174,7 @@ export const ExtensionAccountsProvider = ({
         extensionAccountsRef.current,
         signer,
         accounts,
-        {
-          network,
-          ss58,
-        }
+        network
       );
 
       // Update added and removed accounts.
@@ -234,12 +232,12 @@ export const ExtensionAccountsProvider = ({
               extensionAccountsRef.current,
               extension.signer,
               accounts,
-              { network, ss58 }
+              network
             );
             // Set active account for network if not yet set.
             if (!activeAccount) {
               const activeExtensionAccount = getActiveExtensionAccount(
-                { network, ss58 },
+                network,
                 newAccounts
               );
               if (
@@ -313,7 +311,7 @@ export const ExtensionAccountsProvider = ({
     if (extensionIds.find((id) => id === "metamask-polkadot-snap")) {
       await initPolkadotSnap({
         networkName: network as SnapNetworks,
-        addressPrefix: ss58,
+        addressPrefix: DEFAULT_SS58_PREFIX,
       });
     }
   };
@@ -413,17 +411,25 @@ export const ExtensionAccountsProvider = ({
     }
   };
 
+  // Get extension accounts based on the provided ss58 prefix.
+  const getExtensionAccounts = (ss58: number) => {
+    // NOTE: This is a temporary solution until we have a light weight solution to reformat
+    // addresses.
+    const keyring = new Keyring();
+    keyring.setSS58Format(ss58);
+
+    return extensionAccounts.map((account) => ({
+      ...account,
+      address: keyring.addFromAddress(account.address).address,
+    }));
+  };
+
   // Re-sync extensions accounts on `unsynced`.
   useEffect(() => {
     handleSyncExtensionAccounts();
 
     return () => unsubscribe();
   }, [extensionsStatus, checkingInjectedWeb3, extensionAccountsSynced]);
-
-  // Change syncing to unsynced on `ss58` change.
-  useEffectIgnoreInitial(() => {
-    setExtensionAccountsSynced("unsynced");
-  }, [ss58]);
 
   // Once initialised extensions equal total extensions present in `injectedWeb3`, mark extensions
   // as fetched.
@@ -441,7 +447,7 @@ export const ExtensionAccountsProvider = ({
       value={{
         connectExtensionAccounts,
         extensionAccountsSynced,
-        extensionAccounts: extensionAccountsRef.current,
+        getExtensionAccounts,
       }}
     >
       {children}

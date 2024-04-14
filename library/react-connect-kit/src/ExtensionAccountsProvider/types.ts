@@ -8,13 +8,12 @@ import { ImportedAccount, MaybeAddress, Sync } from "../types";
 export interface ExtensionAccountsContextInterface {
   connectExtensionAccounts: (id?: string) => Promise<boolean>;
   extensionAccountsSynced: Sync;
-  extensionAccounts: ImportedAccount[];
+  getExtensionAccounts: (ss58: number) => ImportedAccount[];
 }
 
 export interface ExtensionAccountsProviderProps {
   children: ReactNode;
   network: string;
-  ss58: number;
   dappName: string;
   activeAccount?: MaybeAddress;
   setActiveAccount?: (address: MaybeAddress) => void;
@@ -27,9 +26,4 @@ export interface HandleImportExtension {
     accountsToRemove: ExtensionAccount[];
     removedActiveAccount: MaybeAddress;
   };
-}
-
-export interface NetworkSS58 {
-  network: string;
-  ss58: number;
 }

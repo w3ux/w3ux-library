@@ -5,31 +5,32 @@ import { localStorageOrDefault } from "@w3ux/utils";
 import Keyring from "@polkadot/keyring";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
 import { AnyFunction, ExternalAccount } from "../types";
-import { NetworkSS58 } from "./types";
+import { DEFAULT_SS58_PREFIX } from "./defaults";
 
 /*------------------------------------------------------------
    Active account utils.
  ------------------------------------------------------------*/
 
 // Gets local `active_acount` for a network.
-export const getActiveAccountLocal = (network: string, ss58: number) => {
+export const getActiveAccountLocal = (network: string) => {
   const keyring = new Keyring();
-  keyring.setSS58Format(ss58);
+  keyring.setSS58Format(DEFAULT_SS58_PREFIX);
+
   let account = localStorageOrDefault(`${network}_active_account`, null);
   if (account !== null) {
     account = keyring.addFromAddress(account).address;
   }
+
   return account;
 };
 
 // Checks if the local active account is the provided accounts.
 export const getActiveExtensionAccount = (
-  { network, ss58 }: NetworkSS58,
+  network: string,
   accounts: ExtensionAccount[]
 ) =>
-  accounts.find(
-    ({ address }) => address === getActiveAccountLocal(network, ss58)
-  ) ?? null;
+  accounts.find(({ address }) => address === getActiveAccountLocal(network)) ??
+  null;
 
 // Connects to active account, and calls an optional callback, if provided.
 export const connectActiveExtensionAccount = (
@@ -59,7 +60,7 @@ export const getInExternalAccounts = (
   );
 };
 
-// Gets local external accounts, formatting their addresses using active network ss58 format.
+// Gets local external accounts for a network.
 export const getLocalExternalAccounts = (network?: string) => {
   let localAccounts = localStorageOrDefault<ExternalAccount[]>(
     "external_accounts",
