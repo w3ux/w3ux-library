@@ -10,5 +10,6 @@ export const defaultVaultAccountsContext: VaultAccountsContextInterface = {
   removeVaultAccount: (address, callback) => {},
   renameVaultAccount: (address, newName) => {},
   getVaultAccount: (address) => null,
+  getVaultAccounts: (network) => [],
   vaultAccounts: [],
 };

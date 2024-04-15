@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { ellipsisFn, setStateWithRef } from "@w3ux/utils";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import { getLocalVaultAccounts, isLocalNetworkAddress } from "./utils";
 import type {
   VaultAccountsContextInterface,
@@ -21,7 +21,7 @@ export const VaultAccountsProvider = ({
   children,
 }: VaultAccountsProviderProps) => {
   const [vaultAccounts, seVaultAccountsState] = useState<VaultAccount[]>(
-    getLocalVaultAccounts(network)
+    getLocalVaultAccounts()
   );
   const vaultAccountsRef = useRef(vaultAccounts);
 
@@ -140,14 +140,9 @@ export const VaultAccountsProvider = ({
     );
   };
 
-  // Refresh imported vault accounts on network change.
-  useEffect(() => {
-    setStateWithRef(
-      getLocalVaultAccounts(network),
-      seVaultAccountsState,
-      vaultAccountsRef
-    );
-  }, [network]);
+  // Gets Vault accounts for a network.
+  const getVaultAccounts = (network: string) =>
+    vaultAccountsRef.current.filter((a) => a.network === network);
 
   return (
     <VaultAccountsContext.Provider
@@ -157,6 +152,7 @@ export const VaultAccountsProvider = ({
         removeVaultAccount,
         renameVaultAccount,
         getVaultAccount,
+        getVaultAccounts,
         vaultAccounts: vaultAccountsRef.current,
       }}
     >

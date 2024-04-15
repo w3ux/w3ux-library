@@ -19,5 +19,6 @@ export interface VaultAccountsContextInterface {
   removeVaultAccount: (address: string, callback?: () => void) => void;
   renameVaultAccount: (address: string, newName: string) => void;
   getVaultAccount: (address: string) => VaultAccount | null;
+  getVaultAccounts: (network: string) => VaultAccount[];
   vaultAccounts: VaultAccount[];
 }
