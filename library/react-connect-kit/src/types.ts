@@ -13,6 +13,7 @@ import {
 export * from "./ExtensionsProvider/types";
 export * from "./ExtensionAccountsProvider/types";
 export * from "./LedgerAccountsProvider/types";
+export * from "./VaultAccountsProvider/types";
 
 /*------------------------------------------------------------
    Imported account types.
