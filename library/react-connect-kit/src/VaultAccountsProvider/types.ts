@@ -10,15 +10,24 @@ export interface VaultAccountsProviderProps {
 }
 
 export interface VaultAccountsContextInterface {
-  vaultAccountExists: (address: string) => boolean;
+  vaultAccountExists: (network: string, address: string) => boolean;
   addVaultAccount: (
+    network: string,
     address: string,
     index: number,
     callback?: () => void
   ) => VaultAccount | null;
-  removeVaultAccount: (address: string, callback?: () => void) => void;
-  renameVaultAccount: (address: string, newName: string) => void;
-  getVaultAccount: (address: string) => VaultAccount | null;
+  removeVaultAccount: (
+    network: string,
+    address: string,
+    callback?: () => void
+  ) => void;
+  renameVaultAccount: (
+    network: string,
+    address: string,
+    newName: string
+  ) => void;
+  getVaultAccount: (network: string, address: string) => VaultAccount | null;
   getVaultAccounts: (network: string) => VaultAccount[];
   vaultAccounts: VaultAccount[];
 }

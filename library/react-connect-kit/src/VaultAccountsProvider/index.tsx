@@ -17,7 +17,6 @@ export const VaultAccountsContext =
 export const useVaultAccounts = () => useContext(VaultAccountsContext);
 
 export const VaultAccountsProvider = ({
-  network,
   children,
 }: VaultAccountsProviderProps) => {
   const [vaultAccounts, seVaultAccountsState] = useState<VaultAccount[]>(
@@ -26,13 +25,14 @@ export const VaultAccountsProvider = ({
   const vaultAccountsRef = useRef(vaultAccounts);
 
   // Check if a Vault address exists in imported addresses.
-  const vaultAccountExists = (address: string) =>
+  const vaultAccountExists = (network: string, address: string) =>
     !!getLocalVaultAccounts().find((a) =>
       isLocalNetworkAddress(network, a, address)
     );
 
   // Adds a vault account to state and local storage.
   const addVaultAccount = (
+    network: string,
     address: string,
     index: number,
     callback?: () => void
@@ -73,7 +73,11 @@ export const VaultAccountsProvider = ({
     return null;
   };
 
-  const removeVaultAccount = (address: string, callback?: () => void) => {
+  const removeVaultAccount = (
+    network: string,
+    address: string,
+    callback?: () => void
+  ) => {
     let newVaultAccounts = getLocalVaultAccounts();
 
     newVaultAccounts = newVaultAccounts.filter((a) => {
@@ -106,7 +110,7 @@ export const VaultAccountsProvider = ({
     }
   };
 
-  const getVaultAccount = (address: string) => {
+  const getVaultAccount = (network: string, address: string) => {
     const localVaultAccounts = getLocalVaultAccounts();
     if (!localVaultAccounts) {
       return null;
@@ -118,7 +122,11 @@ export const VaultAccountsProvider = ({
     );
   };
 
-  const renameVaultAccount = (address: string, newName: string) => {
+  const renameVaultAccount = (
+    network: string,
+    address: string,
+    newName: string
+  ) => {
     let newVaultAccounts = getLocalVaultAccounts();
 
     newVaultAccounts = newVaultAccounts.map((a) =>

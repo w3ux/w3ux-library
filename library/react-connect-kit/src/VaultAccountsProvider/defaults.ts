@@ -5,11 +5,11 @@ SPDX-License-Identifier: GPL-3.0-only */
 import type { VaultAccountsContextInterface } from "./types";
 
 export const defaultVaultAccountsContext: VaultAccountsContextInterface = {
-  vaultAccountExists: (address) => false,
-  addVaultAccount: (address, index, callback) => null,
-  removeVaultAccount: (address, callback) => {},
-  renameVaultAccount: (address, newName) => {},
-  getVaultAccount: (address) => null,
+  vaultAccountExists: (network, address) => false,
+  addVaultAccount: (network, address, index, callback) => null,
+  removeVaultAccount: (network, address, callback) => {},
+  renameVaultAccount: (network, address, newName) => {},
+  getVaultAccount: (network, address) => null,
   getVaultAccounts: (network) => [],
   vaultAccounts: [],
 };
