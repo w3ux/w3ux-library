@@ -5,21 +5,26 @@ import { ReactNode } from "react";
 import { LedgerAccount } from "../types";
 
 export interface LedgerAccountsContextInterface {
-  ledgerAccountExists: (a: string) => boolean;
+  ledgerAccountExists: (network: string, a: string) => boolean;
   addLedgerAccount: (
+    network: string,
     address: string,
     index: number,
     callback?: () => void
   ) => LedgerAccount | null;
-  removeLedgerAccount: (address: string, callback?: () => void) => void;
-  renameLedgerAccount: (address: string, name: string) => void;
-  getLedgerAccount: (address: string) => LedgerAccount | null;
+  removeLedgerAccount: (
+    network: string,
+    address: string,
+    callback?: () => void
+  ) => void;
+  renameLedgerAccount: (network: string, address: string, name: string) => void;
+  getLedgerAccount: (network: string, address: string) => LedgerAccount | null;
+  getLedgerAccounts: (network: string) => LedgerAccount[];
   ledgerAccounts: LedgerAccount[];
 }
 
 export interface LedgerAccountsProviderProps {
   children: ReactNode;
-  network: string;
 }
 
 export interface LedgerAddress {

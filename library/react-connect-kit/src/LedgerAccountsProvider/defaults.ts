@@ -5,10 +5,11 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { LedgerAccountsContextInterface } from "./types";
 
 export const defaultLedgerAccountsContext: LedgerAccountsContextInterface = {
-  ledgerAccountExists: (address) => false,
-  addLedgerAccount: (address, index, callback) => null,
-  removeLedgerAccount: (address, callback) => {},
-  renameLedgerAccount: (address, newName) => {},
-  getLedgerAccount: (address) => null,
+  ledgerAccountExists: (network, address) => false,
+  addLedgerAccount: (network, address, index, callback) => null,
+  removeLedgerAccount: (network, address, callback) => {},
+  renameLedgerAccount: (network, address, newName) => {},
+  getLedgerAccount: (network, address) => null,
+  getLedgerAccounts: (network) => [],
   ledgerAccounts: [],
 };
