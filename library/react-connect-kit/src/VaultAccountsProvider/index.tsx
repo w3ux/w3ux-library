@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { ellipsisFn, setStateWithRef } from "@w3ux/utils";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import { getLocalVaultAccounts, isLocalNetworkAddress } from "./utils";
 import type {
   VaultAccountsContextInterface,
@@ -17,22 +17,22 @@ export const VaultAccountsContext =
 export const useVaultAccounts = () => useContext(VaultAccountsContext);
 
 export const VaultAccountsProvider = ({
-  network,
   children,
 }: VaultAccountsProviderProps) => {
   const [vaultAccounts, seVaultAccountsState] = useState<VaultAccount[]>(
-    getLocalVaultAccounts(network)
+    getLocalVaultAccounts()
   );
   const vaultAccountsRef = useRef(vaultAccounts);
 
   // Check if a Vault address exists in imported addresses.
-  const vaultAccountExists = (address: string) =>
+  const vaultAccountExists = (network: string, address: string) =>
     !!getLocalVaultAccounts().find((a) =>
       isLocalNetworkAddress(network, a, address)
     );
 
   // Adds a vault account to state and local storage.
   const addVaultAccount = (
+    network: string,
     address: string,
     index: number,
     callback?: () => void
@@ -73,7 +73,11 @@ export const VaultAccountsProvider = ({
     return null;
   };
 
-  const removeVaultAccount = (address: string, callback?: () => void) => {
+  const removeVaultAccount = (
+    network: string,
+    address: string,
+    callback?: () => void
+  ) => {
     let newVaultAccounts = getLocalVaultAccounts();
 
     newVaultAccounts = newVaultAccounts.filter((a) => {
@@ -106,7 +110,7 @@ export const VaultAccountsProvider = ({
     }
   };
 
-  const getVaultAccount = (address: string) => {
+  const getVaultAccount = (network: string, address: string) => {
     const localVaultAccounts = getLocalVaultAccounts();
     if (!localVaultAccounts) {
       return null;
@@ -118,7 +122,11 @@ export const VaultAccountsProvider = ({
     );
   };
 
-  const renameVaultAccount = (address: string, newName: string) => {
+  const renameVaultAccount = (
+    network: string,
+    address: string,
+    newName: string
+  ) => {
     let newVaultAccounts = getLocalVaultAccounts();
 
     newVaultAccounts = newVaultAccounts.map((a) =>
@@ -140,14 +148,9 @@ export const VaultAccountsProvider = ({
     );
   };
 
-  // Refresh imported vault accounts on network change.
-  useEffect(() => {
-    setStateWithRef(
-      getLocalVaultAccounts(network),
-      seVaultAccountsState,
-      vaultAccountsRef
-    );
-  }, [network]);
+  // Gets Vault accounts for a network.
+  const getVaultAccounts = (network: string) =>
+    vaultAccountsRef.current.filter((a) => a.network === network);
 
   return (
     <VaultAccountsContext.Provider
@@ -157,6 +160,7 @@ export const VaultAccountsProvider = ({
         removeVaultAccount,
         renameVaultAccount,
         getVaultAccount,
+        getVaultAccounts,
         vaultAccounts: vaultAccountsRef.current,
       }}
     >
