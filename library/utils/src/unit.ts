@@ -6,7 +6,7 @@ import { hexToU8a, isHex, u8aToString, u8aUnwrapBytes } from "@polkadot/util";
 import { BigNumber } from "bignumber.js";
 import type { MutableRefObject, RefObject } from "react";
 import { AnyJson, AnyObject, EvalMessages } from "./types";
-import { ellipsisFn } from "./base";
+import { ellipsisFn, rmCommas } from "./base";
 
 /**
  * @name remToUnit
@@ -537,3 +537,10 @@ export const mergeDeep = (
   }
   return mergeDeep(target, ...sources);
 };
+
+/**
+ * @name stringToBigNumber
+ * @summary Converts a balance string into a `BigNumber`.
+ */
+export const stringToBigNumber = (value: string): BigNumber =>
+  new BigNumber(rmCommas(value));
