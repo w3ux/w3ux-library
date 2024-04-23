@@ -1190,9 +1190,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkagate/extension-dapp@npm:^0.46.12":
-  version: 0.46.12
-  resolution: "@polkagate/extension-dapp@npm:0.46.12"
+"@polkagate/extension-dapp@npm:^0.46.13":
+  version: 0.46.13
+  resolution: "@polkagate/extension-dapp@npm:0.46.13"
   dependencies:
     "@polkadot/extension-inject": "npm:0.46.9"
     "@polkadot/types": "npm:^10.11.2"
@@ -1203,7 +1203,7 @@ __metadata:
     "@polkadot/api": "*"
     "@polkadot/util": "*"
     "@polkadot/util-crypto": "*"
-  checksum: 10c0/a4e41d566eb6cf4d2b5092627b03ec1b1a4a029445264a340cb3ede6b2e9e60e6cc658a58291395194700542842626b859d82b60aca1deb1166a1fce9c76c3d8
+  checksum: 10c0/fecad5ba8ed04c7a745b5870c75d67636dd8bbe8230a809aad443d73dcac3ba4d0bc4ba164317564f1e1fcb425e47c0c2189d5ada583e39975ec64b47254fa17
   languageName: node
   linkType: hard
 
@@ -1743,7 +1743,7 @@ __metadata:
     "@chainsafe/metamask-polkadot-adapter": "npm:^0.6.0"
     "@chainsafe/metamask-polkadot-types": "npm:^0.6.0"
     "@polkadot/util": "npm:^12.6.2"
-    "@polkagate/extension-dapp": "npm:^0.46.12"
+    "@polkagate/extension-dapp": "npm:^0.46.13"
     "@types/react": "npm:^18"
     "@w3ux/extension-assets": "npm:^0.2.3"
     "@w3ux/hooks": "npm:^0.0.3"
