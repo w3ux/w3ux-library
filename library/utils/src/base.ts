@@ -209,3 +209,10 @@ export const formatAccountSs58 = (address: string, ss58: number) => {
     return null;
   }
 };
+
+/**
+ * @name removeHexPrefix
+ * @summary Takes a string str as input and returns a new string with the "0x" prefix removed if it
+ * exists at the beginning of the input string.
+ */
+export const removeHexPrefix = (str: string): string => str.replace(/^0x/, "");
