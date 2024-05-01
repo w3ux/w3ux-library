@@ -10,7 +10,7 @@
   "dependencies": {
     "@polkadot/util": "^12.6.2",
     "@w3ux/utils": "^0.1.2",
-    "framer-motion": "^11.0.24"
+    "framer-motion": "^11.1.7"
   },
   "devDependencies": {
     "@types/react": "^18",
