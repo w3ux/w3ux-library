@@ -16,7 +16,7 @@
     "@w3ux/utils": "^0.1.2"
   },
   "devDependencies": {
-    "@chainsafe/metamask-polkadot-types": "^0.6.0",
+    "@chainsafe/metamask-polkadot-types": "^0.7.0",
     "@types/react": "^18",
     "gulp": "^4.0.2",
     "gulp-sourcemaps": "^3.0.0",
