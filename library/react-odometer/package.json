@@ -15,7 +15,7 @@
     "gulp-strip-comments": "^2.6.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "react": "^18",
-    "sass": "^1.72.0",
+    "sass": "^1.77.4",
     "typescript": "^5.4.3"
   }
 }
