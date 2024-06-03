@@ -688,4 +688,18 @@ export const ValidatorCommunity: ValidatorEntry[] = [
       ],
     },
   },
+  {
+    name: "Stakin",
+    icon: "Stakin",
+    bio: "Institutional-grade web3 infrastructure provider and staking service. We provide secure and reliable validators for the Kusama, Polkadot and Substrate ecosystem, with both community validators and dedicated enterprise nodes.",
+    email: "hello@stakin.com",
+    x: "@StakinOfficial",
+    website: "https://stakin.com",
+    validators: {
+      kusama: [
+        "DDdwYhRXzGWBvvaqMEQ7acJs21FiB96L7nnJZfq6HxseFxW",
+        "J7GBXrco7J5varAbb5TEUhYbjCZLzKXcTgUTpkFbUoa9GVm",
+      ],
+    },
+  },  
 ];
