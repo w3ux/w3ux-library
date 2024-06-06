@@ -5,4 +5,4 @@ directory:
 npm:
   title: Odometer
   contents:
-    - item:  An odometer effect used for number and balance transitions.
+    - item: An odometer effect used for number and balance transitions.
