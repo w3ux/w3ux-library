@@ -701,5 +701,5 @@ export const ValidatorCommunity: ValidatorEntry[] = [
         "J7GBXrco7J5varAbb5TEUhYbjCZLzKXcTgUTpkFbUoa9GVm",
       ],
     },
-  },  
+  },
 ];
