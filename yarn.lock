@@ -1677,12 +1677,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/hooks@npm:^0.0.3":
-  version: 0.0.3
-  resolution: "@w3ux/hooks@npm:0.0.3"
+"@w3ux/hooks@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@w3ux/hooks@npm:1.0.0"
   peerDependencies:
     react: ^18
-  checksum: 10c0/11c697be0485111b91bc26cf7629c1ddc8e4f86a8c0f84f2e5d9ecff9cb3d2ddb86ddff5645f1f32b22077473981313fa1c63c0625783793f4e7e66ae20d4b2b
+  checksum: 10c0/f92ace1fcb0364f0479f22f2af2f36759b630b815911c6c15646e4ac5840c3393829becaf9b6f9ec006560f07cdbfec2c4166baf88ab10360af7132fa92c63d2
   languageName: node
   linkType: hard
 
@@ -1696,8 +1696,8 @@ __metadata:
     "@polkagate/extension-dapp": "npm:^0.46.13"
     "@types/react": "npm:^18"
     "@w3ux/extension-assets": "npm:^0.2.6"
-    "@w3ux/hooks": "npm:^0.0.3"
-    "@w3ux/utils": "npm:^0.1.2"
+    "@w3ux/hooks": "npm:^1.0.0"
+    "@w3ux/utils": "npm:^0.2.0"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-strip-comments: "npm:^2.6.0"
@@ -1731,7 +1731,7 @@ __metadata:
   dependencies:
     "@polkadot/util": "npm:^12.6.2"
     "@types/react": "npm:^18"
-    "@w3ux/utils": "npm:^0.1.2"
+    "@w3ux/utils": "npm:^0.2.0"
     framer-motion: "npm:^11.2.10"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
@@ -1756,14 +1756,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/utils@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@w3ux/utils@npm:0.1.2"
+"@w3ux/utils@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@w3ux/utils@npm:0.2.0"
   dependencies:
     "@polkadot/keyring": "npm:^12.6.2"
     "@polkadot/util": "npm:^12.6.2"
     bignumber.js: "npm:^9.1.1"
-  checksum: 10c0/bbcbffc340c1fa45d241ff50b4a1b0223c85cd1a52a4baac5105661b74a14b6faa63aae90ee7ae969b35b9b2a636d4ad5c44ac3c8841ec2c74e3691a710e568d
+  checksum: 10c0/33f0fa63f04338f72f1569d1e2c44470a7dfbf8ec3edfc087e29d6ebfa254928985ba94a534d1965620a4d35143deb0a201f6a37d0b349771b8ce049342ba77f
   languageName: node
   linkType: hard
 
