@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/builder",
   "license": "GPL-3.0-only",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "build": "rm -fr dist && tsup",
