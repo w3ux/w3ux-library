@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "minimist": "^1.2.8",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.1",
     "yaml": "^2.4.3"
   },
   "devDependencies": {
