@@ -5,8 +5,9 @@ import { decodeAddress, encodeAddress } from "@polkadot/keyring";
 import { hexToU8a, isHex, u8aToString, u8aUnwrapBytes } from "@polkadot/util";
 import { BigNumber } from "bignumber.js";
 import type { MutableRefObject, RefObject } from "react";
-import { AnyJson, AnyObject, EvalMessages } from "./types";
+import { AnyObject, EvalMessages } from "./types";
 import { ellipsisFn, rmCommas } from "./base";
+import { AnyJson } from "@w3ux/types";
 
 /**
  * @name remToUnit

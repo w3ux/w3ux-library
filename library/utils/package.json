@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/utils-source",
   "license": "GPL-3.0-only",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@types/react": "^18",
+    "@w3ux/types": "^0.1.0",
     "react": "^18",
     "tsup": "^8.0.2",
     "vitest": "^1.6.0"

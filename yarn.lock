@@ -1767,6 +1767,7 @@ __metadata:
     "@polkadot/keyring": "npm:^12.6.2"
     "@polkadot/util": "npm:^12.6.2"
     "@types/react": "npm:^18"
+    "@w3ux/types": "npm:^0.1.0"
     bignumber.js: "npm:^9.1.1"
     react: "npm:^18"
     tsup: "npm:^8.0.2"
