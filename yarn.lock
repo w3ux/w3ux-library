@@ -1742,6 +1742,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@w3ux/types-source@workspace:library/types":
+  version: 0.0.0-use.local
+  resolution: "@w3ux/types-source@workspace:library/types"
+  dependencies:
+    "@types/react": "npm:^18"
+    tsup: "npm:^8.0.2"
+  languageName: unknown
+  linkType: soft
+
 "@w3ux/utils-source@workspace:library/utils":
   version: 0.0.0-use.local
   resolution: "@w3ux/utils-source@workspace:library/utils"

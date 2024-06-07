@@ -4,6 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import minimist from "minimist";
 import * as extensionAssets from "./builders/extension-assets";
 import * as validatorAssets from "./builders/validator-assets";
+import * as types from "./builders/types";
 import * as utils from "./builders/utils";
 import * as directory from "./builders/directory";
 import * as reactOdometer from "./builders/react-odometer";
@@ -42,6 +43,10 @@ switch (task) {
 
   case "build:react-connect-kit":
     reactConnectKit.build();
+    break;
+
+  case "build:types":
+    types.build();
     break;
 
   case "build:utils":
