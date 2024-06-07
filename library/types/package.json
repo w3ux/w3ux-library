@@ -8,8 +8,8 @@
     "build": "tsup src/**/* --format esm --target es2022 --dts --no-splitting"
   },
   "devDependencies": {
-    "react": "^18",
     "@types/react": "^18",
+    "react": "^18",
     "tsup": "^8.0.2"
   }
 }

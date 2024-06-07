@@ -74,17 +74,3 @@ export interface ExtensionEnableResult {
   connected: boolean;
   error?: string;
 }
-
-/*------------------------------------------------------------
-   Miscellaneous types.
- ------------------------------------------------------------*/
-
-export type VoidFn = () => void;
-
-export type Sync = "synced" | "unsynced" | "syncing";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyFunction = any;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyJson = any;
