@@ -1,0 +1,8 @@
+directory:
+  - name: Types
+    description: Common types used throughout the w3ux library.
+
+npm:
+  title: Types
+  contents:
+    - item: Common types used throughout the w3ux library.

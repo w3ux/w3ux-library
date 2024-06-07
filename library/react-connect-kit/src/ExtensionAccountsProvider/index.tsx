@@ -4,7 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { localStorageOrDefault, setStateWithRef } from "@w3ux/utils";
 import { DEFAULT_SS58, defaultExtensionAccountsContext } from "./defaults";
-import { ImportedAccount, AnyFunction, Sync, VoidFn } from "../types";
+import { ImportedAccount } from "../types";
 import {
   ExtensionAccount,
   ExtensionInterface,
@@ -25,6 +25,7 @@ import {
 import { useExtensions } from "../ExtensionsProvider";
 import { useEffectIgnoreInitial } from "@w3ux/hooks";
 import Keyring from "@polkadot/keyring";
+import { AnyFunction, Sync, VoidFn } from "@w3ux/types";
 
 export const ExtensionAccountsContext =
   createContext<ExtensionAccountsContextInterface>(

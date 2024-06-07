@@ -3,7 +3,8 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { ReactNode } from "react";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
-import { ImportedAccount, MaybeAddress, Sync } from "../types";
+import { ImportedAccount, MaybeAddress } from "../types";
+import { Sync } from "@w3ux/types";
 
 export interface ExtensionAccountsContextInterface {
   connectExtensionAccounts: (id?: string) => Promise<boolean>;

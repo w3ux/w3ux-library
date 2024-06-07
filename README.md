@@ -20,6 +20,10 @@ An odometer effect used for number and balance transitions.
 
 A light-weight and customisable Polkadot Icon.
 
+#### `@w3ux/types`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/types)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/types)]
+
+Common types used throughout the w3ux library.
+
 #### `@w3ux/utils`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/utils)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/utils)]
 
 A collection of reusable utilities for manipulating data.

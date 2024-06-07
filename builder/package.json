@@ -12,6 +12,7 @@
     "build:react-polkicon": "node dist/index.js -t build:react-polkicon",
     "build:react-connect-kit": "node dist/index.js -t build:react-connect-kit",
     "build:hooks": "node dist/index.js -t build:hooks",
+    "build:types": "node dist/index.js -t build:types",
     "build:utils": "node dist/index.js -t build:utils",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },

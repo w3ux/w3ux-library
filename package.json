@@ -36,11 +36,12 @@
   "workspaces": [
     "builder",
     "library/utils",
+    "library/types",
+    "library/hooks",
     "library/extension-assets",
     "library/validator-assets",
     "library/react-polkicon",
     "library/react-odometer",
-    "library/hooks",
     "library/react-connect-kit"
   ],
   "repository": {

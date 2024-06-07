@@ -6,8 +6,8 @@ import {
   hasMetaMask,
 } from "@chainsafe/metamask-polkadot-adapter/src/utils";
 import { SnapRpcMethodRequest } from "@chainsafe/metamask-polkadot-types";
+import { AnyJson } from "@w3ux/types";
 import { withTimeout } from "@w3ux/utils";
-import { AnyJson } from "../types";
 
 // Workaround for current `ethereum` snap types. See
 // https://github.com/ChainSafe/metamask-snap-polkadot/blob/e0f3d4fc0be7366c62211e29d3a276e4fab5669e/packages/adapter/src/types.ts#L40

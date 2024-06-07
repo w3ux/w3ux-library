@@ -4,8 +4,9 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { localStorageOrDefault } from "@w3ux/utils";
 import Keyring from "@polkadot/keyring";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
-import { AnyFunction, ExternalAccount } from "../types";
+import { ExternalAccount } from "../types";
 import { DEFAULT_SS58 } from "./defaults";
+import { AnyFunction } from "@w3ux/types";
 
 /*------------------------------------------------------------
    Active account utils.

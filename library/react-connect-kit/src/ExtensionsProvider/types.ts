@@ -2,7 +2,8 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import type { FunctionComponent, SVGProps } from "react";
-import { AnyJson, ExternalAccountAddedBy, VoidFn } from "../types";
+import { ExternalAccountAddedBy } from "../types";
+import { AnyJson, VoidFn } from "@w3ux/types";
 
 // Extensions context interface.
 export interface ExtensionsContextInterface {

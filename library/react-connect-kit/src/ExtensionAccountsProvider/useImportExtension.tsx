@@ -7,7 +7,7 @@ import type { ExtensionAccount } from "../ExtensionsProvider/types";
 import { HandleImportExtension } from "./types";
 import { getActiveAccountLocal, getInExternalAccounts } from "./utils";
 import { DEFAULT_SS58, defaultHandleImportExtension } from "./defaults";
-import { AnyFunction } from "../types";
+import { AnyFunction } from "@w3ux/types";
 
 export const useImportExtension = () => {
   // Handles importing of extension accounts.

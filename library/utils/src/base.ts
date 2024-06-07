@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { BigNumber } from "bignumber.js";
-import { AnyFunction, AnyJson } from "./types";
+import { AnyFunction, AnyJson } from "@w3ux/types";
 import Keyring from "@polkadot/keyring";
 
 /**
