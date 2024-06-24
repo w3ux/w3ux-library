@@ -103,7 +103,7 @@ export const generatePackageJson = async (
     const parsedPackageJson = JSON.parse(originalPackageJson);
 
     // Extract only the specified fields.
-    const { name, version, license, type, dependencies, peerDependencies } =
+    const { name, version, license, types, dependencies, peerDependencies } =
       parsedPackageJson;
     const packageName = name.replace(/-source$/, ""); // Remove '-source' suffix.
 
@@ -112,8 +112,16 @@ export const generatePackageJson = async (
       name: packageName,
       version,
       license,
-      type,
+      types,
       dependencies,
+      main: "cjs/index.js",
+      module: "mjs/index.js",
+      exports: {
+        ".": {
+          import: "./mjs/index.js",
+          require: "./cjs/index.js",
+        },
+      },
     };
 
     if (dependencies) {

@@ -1,11 +1,11 @@
 {
   "name": "@w3ux/react-polkicon-source",
   "license": "GPL-3.0-only",
-  "version": "1.1.1",
+  "version": "1.2.0-alpha.8",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "gulp --silent"
+    "build": "gulp"
   },
   "dependencies": {
     "@polkadot/util": "^12.6.2",
