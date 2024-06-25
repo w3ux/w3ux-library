@@ -1652,12 +1652,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/extension-assets@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@w3ux/extension-assets@npm:0.3.0"
+"@w3ux/extension-assets@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@w3ux/extension-assets@npm:0.3.1"
   peerDependencies:
     react: ^18
-  checksum: 10c0/05673b0b6dcb5d38a06a7884e32fce331516b69835ae417d76403072f7aa1551d04418b5a22c8cf5ef867755c9f5d9c6f39f1e6d7595ddb7573e984f451f8c3e
+  checksum: 10c0/2fccfde2b3a0e30047ea88be9b066124d8915042a7bb1a2bc679f325143377b2671daee3b5798e72f19098b789670a27bb85a10b3d73f4e624b9cada8944f3ad
   languageName: node
   linkType: hard
 
@@ -1695,7 +1695,7 @@ __metadata:
     "@polkadot/util": "npm:^12.6.2"
     "@polkagate/extension-dapp": "npm:^0.46.13"
     "@types/react": "npm:^18"
-    "@w3ux/extension-assets": "npm:^0.3.0"
+    "@w3ux/extension-assets": "npm:^0.3.1"
     "@w3ux/hooks": "npm:^1.1.0"
     "@w3ux/types": "npm:^0.2.0"
     "@w3ux/utils": "npm:^0.4.0"
