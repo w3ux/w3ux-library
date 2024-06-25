@@ -4,22 +4,40 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import gulp from "gulp";
 import ts from "gulp-typescript";
-import strip from "gulp-strip-comments";
 import sourcemaps from "gulp-sourcemaps";
 import merge from "merge-stream";
 
-const { src, dest, series } = gulp;
+const { dest, series } = gulp;
 
-const buildComponents = () => {
-  var tsProject = ts.createProject("tsconfig.json");
+// Buld CommonJS module.
+const buildCommonJs = () =>
+  doBuild(
+    ts.createProject("tsconfig.json", {
+      module: "commonjs",
+      target: "es2015",
+      removeComments: true,
+    }),
+    "cjs"
+  );
+
+// Build ES module.
+const buildEsm = () =>
+  doBuild(
+    ts.createProject("tsconfig.json", {
+      module: "esnext",
+      target: "esnext",
+      removeComments: true,
+    }),
+    "mjs"
+  );
+
+// Build package with provided Typescript project.
+const doBuild = (tsProject, outDir) => {
   var tsResult = tsProject.src().pipe(sourcemaps.init()).pipe(tsProject());
 
   return merge(tsResult, tsResult.js)
     .pipe(sourcemaps.write("."))
-    .pipe(dest("dist"));
+    .pipe(dest(`dist/${outDir}`));
 };
 
-const stripComments = () =>
-  src("dist/**/*.js").pipe(strip()).pipe(dest("dist"));
-
-export default series(buildComponents, stripComments);
+export default series(buildCommonJs, buildEsm);

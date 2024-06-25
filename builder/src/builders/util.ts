@@ -94,7 +94,8 @@ export const getTemplate = async (name) => {
 // -----------------------------------------------------------
 export const generatePackageJson = async (
   inputDir: string,
-  outputDir: string
+  outputDir: string,
+  bundler: "gulp" | "tsup" | "module" | null
 ): Promise<boolean> => {
   try {
     // Read the original package.json.
@@ -103,18 +104,53 @@ export const generatePackageJson = async (
     const parsedPackageJson = JSON.parse(originalPackageJson);
 
     // Extract only the specified fields.
-    const { name, version, license, type, dependencies, peerDependencies } =
+    const { name, version, license, dependencies, peerDependencies } =
       parsedPackageJson;
     const packageName = name.replace(/-source$/, ""); // Remove '-source' suffix.
 
     // Construct the minimal package.json object
-    const minimalPackageJson = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let minimalPackageJson: any = {
       name: packageName,
       version,
       license,
-      type,
       dependencies,
     };
+
+    if (bundler === "module") {
+      minimalPackageJson = {
+        ...minimalPackageJson,
+        type: "module",
+      };
+    }
+
+    if (bundler === "gulp") {
+      minimalPackageJson = {
+        ...minimalPackageJson,
+        main: "cjs/index.js",
+        module: "mjs/index.js",
+        exports: {
+          ".": {
+            import: "./mjs/index.js",
+            require: "./cjs/index.js",
+          },
+        },
+      };
+    }
+
+    if (bundler === "tsup") {
+      minimalPackageJson = {
+        ...minimalPackageJson,
+        main: "index.cjs",
+        module: "index.js",
+        exports: {
+          ".": {
+            import: "./index.js",
+            require: "./index.cjs",
+          },
+        },
+      };
+    }
 
     if (dependencies) {
       minimalPackageJson["dependencies"] = dependencies;

@@ -34,7 +34,8 @@ export const build = async () => {
     if (
       !(await generatePackageJson(
         libDirectory,
-        `${libDirectory}/${PACKAGE_OUTPUT}`
+        `${libDirectory}/${PACKAGE_OUTPUT}`,
+        null
       ))
     ) {
       throw `Failed to generate package.json file.`;

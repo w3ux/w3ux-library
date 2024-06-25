@@ -4,31 +4,55 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import gulp from "gulp";
 import ts from "gulp-typescript";
-import strip from "gulp-strip-comments";
 import sourcemaps from "gulp-sourcemaps";
 import merge from "merge-stream";
 import * as sass from "sass";
 import sassFrom from "gulp-sass";
 
 const gulpSass = sassFrom(sass);
-
 const { src, dest, series } = gulp;
 
-const buildComponents = () => {
-  var tsProject = ts.createProject("tsconfig.json");
+// Buld CommonJS module.
+const buildCommonJs = () =>
+  doBuild(
+    ts.createProject("tsconfig.json", {
+      module: "commonjs",
+      target: "es2015",
+      removeComments: true,
+    }),
+    "cjs"
+  );
+
+// Build ES module.
+const buildEsm = () =>
+  doBuild(
+    ts.createProject("tsconfig.json", {
+      module: "esnext",
+      target: "esnext",
+      removeComments: true,
+    }),
+    "mjs"
+  );
+
+// Build CSS CommonJS.
+const buildSassCommonJs = () =>
+  src("./src/**/*.css")
+    .pipe(gulpSass({ outputStyle: "compressed" }))
+    .pipe(dest("dist/cjs"));
+
+// Build CSS ES module.
+const buildSassEsm = () =>
+  src("./src/**/*.css")
+    .pipe(gulpSass({ outputStyle: "compressed" }))
+    .pipe(dest("dist/mjs"));
+
+// Build package with provided Typescript project.
+const doBuild = (tsProject, outDir) => {
   var tsResult = tsProject.src().pipe(sourcemaps.init()).pipe(tsProject());
 
   return merge(tsResult, tsResult.js)
     .pipe(sourcemaps.write("."))
-    .pipe(dest("dist"));
+    .pipe(dest(`dist/${outDir}`));
 };
 
-const buildSass = () =>
-  src("./src/**/*.css")
-    .pipe(gulpSass({ outputStyle: "compressed" }))
-    .pipe(dest("dist"));
-
-const stripComments = () =>
-  src("dist/**/*.js").pipe(strip()).pipe(dest("dist"));
-
-export default series(buildSass, buildComponents, stripComments);
+export default series(buildCommonJs, buildEsm, buildSassCommonJs, buildSassEsm);

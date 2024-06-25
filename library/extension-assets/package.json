@@ -1,11 +1,11 @@
 {
   "name": "@w3ux/extension-assets-source",
   "license": "GPL-3.0-only",
-  "version": "0.2.6",
+  "version": "0.3.1",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup .build/**/*{.ts,.tsx} --format esm --target es2022 --dts --no-splitting"
+    "build": "tsup .build/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting"
   },
   "peerDependencies": {
     "react": "^18"
