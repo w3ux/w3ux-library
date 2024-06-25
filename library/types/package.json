@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup src/**/* --format esm --target es2022 --dts --no-splitting"
+    "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting"
   },
   "devDependencies": {
     "@types/react": "^18",

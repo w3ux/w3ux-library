@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "gulp"
+    "build": "gulp --silent"
   },
   "dependencies": {
     "@polkadot/util": "^12.6.2",
