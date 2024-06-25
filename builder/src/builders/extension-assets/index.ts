@@ -60,7 +60,7 @@ export const build = async () => {
       `${libDirectory}/${TEMP_BUILD_OUTPUT}/`
     );
 
-    // Call tsup command to generate types in dist folder.
+    // Call tsup command to generate hybrid files and types in dist folder.
     try {
       await execPromisify(`cd ../library/${folder} && yarn build`);
     } catch (e) {
@@ -82,7 +82,7 @@ export const build = async () => {
       !(await generatePackageJson(
         libDirectory,
         `${libDirectory}/${PACKAGE_OUTPUT}`,
-        "tsup"
+        null
       ))
     ) {
       throw `Failed to generate package.json file.`;
