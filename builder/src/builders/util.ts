@@ -95,7 +95,7 @@ export const getTemplate = async (name) => {
 export const generatePackageJson = async (
   inputDir: string,
   outputDir: string,
-  bundler: "gulp" | "tsup" | null
+  bundler: "gulp" | "tsup" | "module" | null
 ): Promise<boolean> => {
   try {
     // Read the original package.json.
@@ -116,6 +116,13 @@ export const generatePackageJson = async (
       license,
       dependencies,
     };
+
+    if (bundler === "module") {
+      minimalPackageJson = {
+        ...minimalPackageJson,
+        type: "module",
+      };
+    }
 
     if (bundler === "gulp") {
       minimalPackageJson = {

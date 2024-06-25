@@ -9,17 +9,6 @@ import merge from "merge-stream";
 
 const { dest, series } = gulp;
 
-// Buld CommonJS module.
-const buildCommonJs = () =>
-  doBuild(
-    ts.createProject("tsconfig.json", {
-      module: "commonjs",
-      target: "es2015",
-      removeComments: true,
-    }),
-    "cjs"
-  );
-
 // Build ES module.
 const buildEsm = () =>
   doBuild(
@@ -28,7 +17,7 @@ const buildEsm = () =>
       target: "esnext",
       removeComments: true,
     }),
-    "mjs"
+    "."
   );
 
 // Build package with provided Typescript project.
@@ -40,4 +29,4 @@ const doBuild = (tsProject, outDir) => {
     .pipe(dest(`dist/${outDir}`));
 };
 
-export default series(buildCommonJs, buildEsm);
+export default series(buildEsm);
