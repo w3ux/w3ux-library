@@ -6,8 +6,11 @@ import gulp from "gulp";
 import ts from "gulp-typescript";
 import sourcemaps from "gulp-sourcemaps";
 import merge from "merge-stream";
+import * as sass from "sass";
+import sassFrom from "gulp-sass";
 
-const { dest, series } = gulp;
+const gulpSass = sassFrom(sass);
+const { src, dest, series } = gulp;
 
 // Buld CommonJS module.
 const buildCommonJs = () =>
@@ -31,6 +34,18 @@ const buildEsm = () =>
     "mjs"
   );
 
+// Build CSS CommonJS.
+const buildSassCommonJs = () =>
+  src("./src/**/*.css")
+    .pipe(gulpSass({ outputStyle: "compressed" }))
+    .pipe(dest("dist/cjs"));
+
+// Build CSS ES module.
+const buildSassEsm = () =>
+  src("./src/**/*.css")
+    .pipe(gulpSass({ outputStyle: "compressed" }))
+    .pipe(dest("dist/mjs"));
+
 // Build package with provided Typescript project.
 const doBuild = (tsProject, outDir) => {
   var tsResult = tsProject.src().pipe(sourcemaps.init()).pipe(tsProject());
@@ -40,4 +55,4 @@ const doBuild = (tsProject, outDir) => {
     .pipe(dest(`dist/${outDir}`));
 };
 
-export default series(buildCommonJs, buildEsm);
+export default series(buildCommonJs, buildEsm, buildSassCommonJs, buildSassEsm);
