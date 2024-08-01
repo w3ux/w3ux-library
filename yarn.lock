@@ -12,14 +12,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chainsafe/metamask-polkadot-adapter@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "@chainsafe/metamask-polkadot-adapter@npm:0.6.0"
+"@chainsafe/metamask-polkadot-adapter@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "@chainsafe/metamask-polkadot-adapter@npm:0.8.0"
   dependencies:
     "@polkadot/api": "npm:^10.9.1"
     "@polkadot/extension-inject": "npm:^0.46.5"
     "@polkadot/types-augment": "npm:^10.9.1"
-  checksum: 10c0/a9cdfdd175dc6d9f6aa1d6f4515185d3f2b4089154dd0cd47749f66c6e5965cd7ff0187245763f7aafa1be49d41e1d2e8d721c78a0e831afc506fb6ff229ae15
+  checksum: 10c0/2ac9bf379cc65820f58c1a3cb5e6728c5e6dd10770d70fa288809d1a5e89bf38922867ec9eb2e517bfe945c7b860c0a36ef4b67fac5c1a91224df7d1f40124e2
   languageName: node
   linkType: hard
 
@@ -1690,7 +1690,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w3ux/react-connect-kit-source@workspace:library/react-connect-kit"
   dependencies:
-    "@chainsafe/metamask-polkadot-adapter": "npm:^0.6.0"
+    "@chainsafe/metamask-polkadot-adapter": "npm:^0.8.0"
     "@chainsafe/metamask-polkadot-types": "npm:^0.7.0"
     "@polkadot/util": "npm:^12.6.2"
     "@polkagate/extension-dapp": "npm:^0.46.13"
