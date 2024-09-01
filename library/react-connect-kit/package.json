@@ -8,7 +8,7 @@
     "build": "gulp --silent"
   },
   "dependencies": {
-    "@chainsafe/metamask-polkadot-adapter": "^0.6.0",
+    "@chainsafe/metamask-polkadot-adapter": "^0.8.1",
     "@polkadot/util": "^12.6.2",
     "@polkagate/extension-dapp": "^0.46.13",
     "@w3ux/extension-assets": "^0.3.1",
