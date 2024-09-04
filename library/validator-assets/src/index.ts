@@ -578,6 +578,9 @@ export const ValidatorCommunity: ValidatorEntry[] = [
       polkadot: [
         "14kpNbU4XjEHfYdqp95Gq3NkBWbgFd6J8Yjd2SneWNzvf1Yp",
         "14ebRSbCJepTp2X3YwDsyE3wRRQ1RZYa8nEFnLxLe19qdHna",
+        "15MS9CHMMRtM5NQax9rAh2HTbmAehVdpEPMf4UzsBL6Mn6mz",
+        "13CKU6wfn1j3SB8ena6Heb3hgo35yCFtvkAotyCPpJRnEkFg",
+        "1RsqWYLNuHr9fw961TBABLM4R76mZSZEZv3ohWeiNE6Pixb",
       ],
       kusama: [
         "CtEni6wrP7Kz2KWus9Y6vQWuhLqJpd9mQFTmTvw8T7FLui8",
