@@ -28,7 +28,8 @@ export type ImportedAccount =
   | ExtensionAccount
   | ExternalAccount
   | LedgerAccount
-  | VaultAccount;
+  | VaultAccount
+  | WCAccount;
 
 export interface ExternalAccount {
   address: string;
@@ -47,6 +48,14 @@ export interface LedgerAccount {
 }
 
 export interface VaultAccount {
+  address: string;
+  network: string;
+  name: string;
+  source: string;
+  index: number;
+}
+
+export interface WCAccount {
   address: string;
   network: string;
   name: string;
