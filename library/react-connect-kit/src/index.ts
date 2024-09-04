@@ -5,3 +5,4 @@ export * from "./ExtensionsProvider/index";
 export * from "./ExtensionAccountsProvider/index";
 export * from "./LedgerAccountsProvider/index";
 export * from "./VaultAccountsProvider/index";
+export * from "./WCAccountsProvider/index";
