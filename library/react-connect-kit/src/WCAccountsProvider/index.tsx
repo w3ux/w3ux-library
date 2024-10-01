@@ -24,7 +24,7 @@ export const WCAccountsProvider = ({ children }: WCAccountsProviderProps) => {
 
   // Check if a Wallet Connect address exists in imported addresses.
   const wcAccountExists = (network: string, address: string) =>
-    !!getLocalWcAccounts().find((a) =>
+    !!wcAccountsRef.current.find((a) =>
       isLocalNetworkAddress(network, a, address)
     );
 
@@ -35,7 +35,7 @@ export const WCAccountsProvider = ({ children }: WCAccountsProviderProps) => {
     index: number,
     callback?: () => void
   ) => {
-    let newAccounts = getLocalWcAccounts();
+    let newAccounts = [...wcAccountsRef.current];
 
     if (!newAccounts.find((a) => isLocalNetworkAddress(network, a, address))) {
       const account = {
@@ -52,12 +52,8 @@ export const WCAccountsProvider = ({ children }: WCAccountsProviderProps) => {
         JSON.stringify(newAccounts)
       );
 
-      // store only those accounts on the current network in state.
-      setStateWithRef(
-        newAccounts.filter((a) => a.network === network),
-        setWcAccountsState,
-        wcAccountsRef
-      );
+      // Persist the new accounts to state.
+      setStateWithRef(newAccounts, setWcAccountsState, wcAccountsRef);
 
       // Handle optional callback function.
       if (typeof callback === "function") {
@@ -74,7 +70,7 @@ export const WCAccountsProvider = ({ children }: WCAccountsProviderProps) => {
     address: string,
     callback?: () => void
   ) => {
-    let newAccounts = getLocalWcAccounts();
+    let newAccounts = [...wcAccountsRef.current];
 
     newAccounts = newAccounts.filter((a) => {
       if (a.address !== address) {
@@ -94,11 +90,7 @@ export const WCAccountsProvider = ({ children }: WCAccountsProviderProps) => {
         JSON.stringify(newAccounts)
       );
     }
-    setStateWithRef(
-      newAccounts.filter((a) => a.network === network),
-      setWcAccountsState,
-      wcAccountsRef
-    );
+    setStateWithRef(newAccounts, setWcAccountsState, wcAccountsRef);
 
     // Handle optional callback function.
     if (typeof callback === "function") {
@@ -106,25 +98,17 @@ export const WCAccountsProvider = ({ children }: WCAccountsProviderProps) => {
     }
   };
 
-  const getWcAccount = (network: string, address: string) => {
-    const localAccounts = getLocalWcAccounts();
-    if (!localAccounts) {
-      return null;
-    }
-    return (
-      localAccounts.find((a) => isLocalNetworkAddress(network, a, address)) ??
-      null
-    );
-  };
+  const getWcAccount = (network: string, address: string) =>
+    wcAccountsRef.current.find((a) =>
+      isLocalNetworkAddress(network, a, address)
+    ) ?? null;
 
   const renameWcAccount = (
     network: string,
     address: string,
     newName: string
   ) => {
-    let newAccounts = getLocalWcAccounts();
-
-    newAccounts = newAccounts.map((a) =>
+    const newAccounts = wcAccountsRef.current.map((a) =>
       isLocalNetworkAddress(network, a, address)
         ? {
             ...a,
@@ -136,11 +120,8 @@ export const WCAccountsProvider = ({ children }: WCAccountsProviderProps) => {
       "wallet_connect_accounts",
       JSON.stringify(newAccounts)
     );
-    setStateWithRef(
-      newAccounts.filter((a) => a.network === network),
-      setWcAccountsState,
-      wcAccountsRef
-    );
+
+    setStateWithRef(newAccounts, setWcAccountsState, wcAccountsRef);
   };
 
   // Gets Wallet Connect accounts for a network.
