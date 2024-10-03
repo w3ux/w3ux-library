@@ -95,7 +95,14 @@ export const getTemplate = async (name) => {
 export const generatePackageJson = async (
   inputDir: string,
   outputDir: string,
-  bundler: "gulp" | "tsup" | "module" | null
+  bundler: "gulp" | "tsup" | "module" | null,
+  additionalExports: Record<
+    string,
+    {
+      import: string;
+      require: string;
+    }
+  > = {}
 ): Promise<boolean> => {
   try {
     // Read the original package.json.
@@ -134,6 +141,7 @@ export const generatePackageJson = async (
             import: "./mjs/index.js",
             require: "./cjs/index.js",
           },
+          ...additionalExports,
         },
       };
     }
@@ -148,6 +156,7 @@ export const generatePackageJson = async (
             import: "./index.js",
             require: "./index.cjs",
           },
+          ...additionalExports,
         },
       };
     }

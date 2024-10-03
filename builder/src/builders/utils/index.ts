@@ -35,7 +35,19 @@ export const build = async () => {
       !(await generatePackageJson(
         libDirectory,
         `${libDirectory}/${PACKAGE_OUTPUT}`,
-        "tsup"
+        "tsup",
+        // Defining the additional entry points as `polkadot/util` and `polkadot/util-crypto`
+        // packages are re-exported.
+        {
+          "./util": {
+            import: "./util/index.js",
+            require: "./util/index.cjs",
+          },
+          "./util-crypto": {
+            import: "./util-crypto/index.js",
+            require: "./util-crypto/index.cjs",
+          },
+        }
       ))
     ) {
       throw `Failed to generate package.json file.`;
