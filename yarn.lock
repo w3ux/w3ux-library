@@ -1090,7 +1090,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/util@npm:13.1.1":
+"@polkadot/util@npm:13.1.1, @polkadot/util@npm:^13.1.1":
   version: 13.1.1
   resolution: "@polkadot/util@npm:13.1.1"
   dependencies:
@@ -1883,7 +1883,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w3ux/utils-source@workspace:library/utils"
   dependencies:
-    "@polkadot/util": "npm:^12.6.2"
+    "@polkadot/util": "npm:^13.1.1"
     "@polkadot/util-crypto": "npm:^13.1.1"
     "@types/react": "npm:^18"
     "@w3ux/types": "npm:^0.1.0"

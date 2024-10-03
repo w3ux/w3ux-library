@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/utils-source",
   "license": "GPL-3.0-only",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
@@ -9,7 +9,7 @@
     "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting"
   },
   "dependencies": {
-    "@polkadot/util": "^12.6.2",
+    "@polkadot/util": "^13.1.1",
     "@polkadot/util-crypto": "^13.1.1",
     "bignumber.js": "^9.1.1"
   },

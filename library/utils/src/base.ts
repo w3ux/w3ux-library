@@ -198,7 +198,7 @@ export const appendOr = (
 export const formatAccountSs58 = (
   address: string,
   ss58Prefix: number
-): string => {
+): string | null => {
   try {
     // Decode the input address.
     const decodedAddress = decodeAddress(address);
