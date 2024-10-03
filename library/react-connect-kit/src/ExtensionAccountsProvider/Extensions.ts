@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { localStorageOrDefault } from "@w3ux/utils";
+import { formatAccountSs58, localStorageOrDefault } from "@w3ux/utils";
 import {
   ExtensionEnableResult,
   ExtensionEnableResults,
@@ -12,7 +12,6 @@ import {
   ExtensionAccount,
   ExtensionInterface,
 } from "../ExtensionsProvider/types";
-import Keyring from "@polkadot/keyring";
 import { DEFAULT_SS58 } from "./defaults";
 
 // A static class to manage the discovery and importing of extensions.
@@ -98,10 +97,6 @@ export class Extensions {
   static getAllAccounts = async (
     extensions: ExtensionEnableResults
   ): Promise<ExtensionAccount[]> => {
-    // By default, format addresses with the default ss58 prefix.
-    const keyring = new Keyring();
-    keyring.setSS58Format(DEFAULT_SS58);
-
     try {
       const results = await Promise.allSettled(
         Array.from(extensions.values()).map(({ extension }) =>
@@ -120,10 +115,21 @@ export class Extensions {
         if (result.status === "fulfilled") {
           const filtered = result.value
             // Reformat addresses with default ss58 prefix.
-            .map((newAccount) => ({
-              ...newAccount,
-              address: keyring.addFromAddress(newAccount.address).address,
-            }))
+            .map((account) => {
+              const formattedAddress = formatAccountSs58(
+                account.address,
+                DEFAULT_SS58
+              );
+              if (!formattedAddress) {
+                return null;
+              }
+              return {
+                ...account,
+                address: formattedAddress,
+              };
+            })
+            // Remove null entries resulting from invalid formatted addresses.
+            .filter((account) => account !== null)
             // Remove accounts that have already been imported.
             .filter(
               ({ address }) =>

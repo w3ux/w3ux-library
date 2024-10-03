@@ -1804,13 +1804,13 @@ __metadata:
   dependencies:
     "@chainsafe/metamask-polkadot-adapter": "npm:^0.6.0"
     "@chainsafe/metamask-polkadot-types": "npm:^0.7.0"
-    "@polkadot/util": "npm:^12.6.2"
+    "@polkadot/util": "npm:^13.1.1"
     "@polkagate/extension-dapp": "npm:^0.46.13"
     "@types/react": "npm:^18"
     "@w3ux/extension-assets": "npm:^0.3.1"
     "@w3ux/hooks": "npm:^1.1.0"
     "@w3ux/types": "npm:^0.2.0"
-    "@w3ux/utils": "npm:^0.4.0"
+    "@w3ux/utils": "npm:^0.7.0"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-strip-comments: "npm:^2.6.0"
@@ -1902,6 +1902,17 @@ __metadata:
     "@polkadot/util": "npm:^12.6.2"
     bignumber.js: "npm:^9.1.1"
   checksum: 10c0/4384bccedcd7bccdad928393ca419a7fabc685b735df68d48243d7f7e4663cc1101a9e81073a666549a843bc130952a016125092b9a138f321900f6909a13960
+  languageName: node
+  linkType: hard
+
+"@w3ux/utils@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "@w3ux/utils@npm:0.7.0"
+  dependencies:
+    "@polkadot/util": "npm:^13.1.1"
+    "@polkadot/util-crypto": "npm:^13.1.1"
+    bignumber.js: "npm:^9.1.1"
+  checksum: 10c0/7b754a29716d575180501b6ac998afd7fb6b727e702af1b8f65be44503152573663b694df29fbe7e6bfec7da7c8bd43cf2047dde8820d61551abeeb778a1590a
   languageName: node
   linkType: hard
 

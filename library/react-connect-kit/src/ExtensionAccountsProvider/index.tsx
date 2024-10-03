@@ -2,7 +2,11 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { localStorageOrDefault, setStateWithRef } from "@w3ux/utils";
+import {
+  formatAccountSs58,
+  localStorageOrDefault,
+  setStateWithRef,
+} from "@w3ux/utils";
 import { DEFAULT_SS58, defaultExtensionAccountsContext } from "./defaults";
 import { ImportedAccount } from "../types";
 import {
@@ -24,7 +28,6 @@ import {
 } from "./utils";
 import { useExtensions } from "../ExtensionsProvider";
 import { useEffectIgnoreInitial } from "@w3ux/hooks";
-import Keyring from "@polkadot/keyring";
 import { AnyFunction, Sync, VoidFn } from "@w3ux/types";
 
 export const ExtensionAccountsContext =
@@ -415,17 +418,20 @@ export const ExtensionAccountsProvider = ({
   };
 
   // Get extension accounts based on the provided ss58 prefix.
-  const getExtensionAccounts = (ss58: number) => {
-    // NOTE: This is a temporary solution until we have a light weight solution to reformat
-    // addresses.
-    const keyring = new Keyring();
-    keyring.setSS58Format(ss58);
-
-    return extensionAccounts.map((account) => ({
-      ...account,
-      address: keyring.addFromAddress(account.address).address,
-    }));
-  };
+  const getExtensionAccounts = (ss58: number): ImportedAccount[] =>
+    extensionAccounts
+      .map((account) => {
+        const formattedAddress = formatAccountSs58(account.address, ss58);
+        if (!formattedAddress) {
+          return null;
+        }
+        return {
+          ...account,
+          address: formattedAddress,
+        };
+      })
+      // Remove null entries resulting from invalid formatted addresses.
+      .filter((account) => account !== null);
 
   // Re-sync extensions accounts on `unsynced`.
   useEffect(() => {

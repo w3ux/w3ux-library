@@ -1,8 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { localStorageOrDefault } from "@w3ux/utils";
-import Keyring from "@polkadot/keyring";
+import { formatAccountSs58, localStorageOrDefault } from "@w3ux/utils";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
 import { ExternalAccount } from "../types";
 import { DEFAULT_SS58 } from "./defaults";
@@ -13,16 +12,16 @@ import { AnyFunction } from "@w3ux/types";
  ------------------------------------------------------------*/
 
 // Gets local `active_acount` for a network.
-export const getActiveAccountLocal = (network: string) => {
-  const keyring = new Keyring();
-  keyring.setSS58Format(DEFAULT_SS58);
+export const getActiveAccountLocal = (network: string): string | null => {
+  const account = localStorageOrDefault(`${network}_active_account`, null);
 
-  let account = localStorageOrDefault(`${network}_active_account`, null);
   if (account !== null) {
-    account = keyring.addFromAddress(account).address;
+    const formattedAddress = formatAccountSs58(account, DEFAULT_SS58);
+    if (formattedAddress) {
+      return formattedAddress;
+    }
   }
-
-  return account;
+  return null;
 };
 
 // Checks if the local active account is the provided accounts.
