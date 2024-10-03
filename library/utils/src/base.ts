@@ -3,7 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { BigNumber } from "bignumber.js";
 import { AnyFunction, AnyJson } from "@w3ux/types";
-import Keyring from "@polkadot/keyring";
+import { decodeAddress, encodeAddress } from "@polkadot/util-crypto";
 
 /**
  * @name camelize
@@ -192,19 +192,19 @@ export const appendOr = (
 ) => (condition ? ` ${value}` : ` ${fallback}`);
 
 /**
- * @name appendOr
+ * @name formatAccountSs58
  * @summary Formats an address with the supplied ss58 prefix, or returns null if invalid.
  */
-export const formatAccountSs58 = (address: string, ss58: number) => {
+export const formatAccountSs58 = (
+  address: string,
+  ss58Prefix: number
+): string | null => {
   try {
-    const keyring = new Keyring();
-    keyring.setSS58Format(ss58);
-    const formatted = keyring.addFromAddress(address).address;
-    if (formatted !== address) {
-      return formatted;
-    }
-
-    return null;
+    // Decode the input address.
+    const decodedAddress = decodeAddress(address);
+    // Encode the address with the desired SS58 prefix.
+    const formattedAddress = encodeAddress(decodedAddress, ss58Prefix);
+    return formattedAddress;
   } catch (e) {
     return null;
   }

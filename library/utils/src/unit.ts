@@ -1,8 +1,8 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { decodeAddress, encodeAddress } from "@polkadot/keyring";
-import { hexToU8a, isHex, u8aToString, u8aUnwrapBytes } from "@polkadot/util";
+import { decodeAddress } from "@polkadot/util-crypto";
+import { isHex, u8aToString, u8aUnwrapBytes } from "@polkadot/util";
 import { BigNumber } from "bignumber.js";
 import type { MutableRefObject, RefObject } from "react";
 import { AnyObject, EvalMessages } from "./types";
@@ -100,9 +100,14 @@ export const localStorageOrDefault = <T>(
  * @name isValidAddress
  * @summary Return whether an address is valid Substrate address.
  */
-export const isValidAddress = (address: string) => {
+export const isValidAddress = (address: string): boolean => {
   try {
-    encodeAddress(isHex(address) ? hexToU8a(address) : decodeAddress(address));
+    // Check if the address is a valid hex string (which is a common public key format).
+    if (isHex(address)) {
+      return true;
+    }
+    // Try to decode the address; if it's not valid, this will throw an error.
+    decodeAddress(address);
     return true;
   } catch (e) {
     return false;
