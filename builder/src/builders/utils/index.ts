@@ -36,7 +36,7 @@ export const build = async () => {
         libDirectory,
         `${libDirectory}/${PACKAGE_OUTPUT}`,
         "tsup",
-        // Defining the additional entry points as `@polkadot/util` and `@polkadot/util-crypto`
+        // Defining the additional entry points as `polkadot/util` and `polkadot/util-crypto`
         // packages are re-exported.
         {
           "./util": {

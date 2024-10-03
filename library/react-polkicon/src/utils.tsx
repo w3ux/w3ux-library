@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { decodeAddress, blake2AsU8a } from "@polkadot/util-crypto";
+import { decodeAddress, blake2AsU8a } from "@w3ux/utils/util-crypto";
 
 /*
   A generic identity icon, taken from

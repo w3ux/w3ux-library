@@ -15,9 +15,9 @@ import type {
   SignerPayloadRaw,
   SignerResult,
 } from "@polkadot/types/types";
-import type { HexString } from "@polkadot/util/types";
 import { SnapConfig } from "@chainsafe/metamask-polkadot-types";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
+import { HexString } from "types";
 
 interface Web3Window extends InjectedWindow {
   ethereum: unknown;
