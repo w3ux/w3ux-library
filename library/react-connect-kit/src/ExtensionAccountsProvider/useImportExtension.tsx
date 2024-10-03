@@ -1,8 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import Keyring from "@polkadot/keyring";
-import { isValidAddress } from "@w3ux/utils";
+import { formatAccountSs58, isValidAddress } from "@w3ux/utils";
 import type { ExtensionAccount } from "../ExtensionsProvider/types";
 import { HandleImportExtension } from "./types";
 import { getActiveAccountLocal, getInExternalAccounts } from "./utils";
@@ -24,18 +23,24 @@ export const useImportExtension = () => {
       return defaultHandleImportExtension;
     }
 
-    const keyring = new Keyring();
-    keyring.setSS58Format(DEFAULT_SS58);
-
     // Remove accounts that do not contain correctly formatted addresses.
     newAccounts = newAccounts.filter(({ address }) => isValidAddress(address));
 
     // Reformat addresses to ensure default ss58 format.
-    newAccounts.map((account) => {
-      const { address } = keyring.addFromAddress(account.address);
-      account.address = address;
-      return account;
-    });
+    newAccounts
+      .map((account) => {
+        const formattedAddress = formatAccountSs58(
+          account.address,
+          DEFAULT_SS58
+        );
+        if (!formattedAddress) {
+          return null;
+        }
+        account.address = formattedAddress;
+        return account;
+      })
+      // Remove null entries resulting from invalid formatted addresses.
+      .filter((account) => account !== null);
 
     // Remove `newAccounts` from local external accounts if present.
     const inExternal = getInExternalAccounts(newAccounts, network);
