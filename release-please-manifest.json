@@ -1,0 +1,44 @@
+{
+  "packages": {
+    ".": {
+      "release-type": "node"
+    },
+    "library/extension-assets/dist": {
+      "release-type": "node",
+      "package-name": "@polkadot-cloud/extension-assets"
+    },
+    "library/hooks/dist": {
+      "release-type": "node",
+      "package-name": "@polkadot-cloud/hooks"
+    },
+    "library/react-connect-kit/dist": {
+      "release-type": "node",
+      "package-name": "@polkadot-cloud/react-connect-kit"
+    }, 
+    "library/react-odometer/dist": {
+      "release-type": "node",
+      "package-name": "@polkadot-cloud/react-odometer"
+    },
+    "library/react-polkicon/dist": {
+      "release-type": "node",
+      "package-name": "@polkadot-cloud/react-polkicon"
+    },
+    "library/types/dist": {
+      "release-type": "node",
+      "package-name": "@polkadot-cloud/types"
+    },
+    "library/utils/dist": {
+      "release-type": "node",
+      "package-name": "@polkadot-cloud/utils"
+    },
+    "library/validator-assets/dist": {
+      "release-type": "node",
+      "package-name": "@polkadot-cloud/validator-assets"
+    }
+  },
+  "plugins": [
+    {
+      "type": "node-workspace"
+    }
+  ]
+}
