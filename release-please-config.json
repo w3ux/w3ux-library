@@ -1,0 +1,13 @@
+{
+  "last-release-sha": "c5f552b302fd33c11afc86d153dcfe64f3e4444e",
+  "packages": {
+    "library/extension-assets": {},
+    "library/hooks": {},
+    "library/react-connect-kit": {}, 
+    "library/react-odometer": {},
+    "library/react-polkicon": {},
+    "library/types": {},
+    "library/utils": {},
+    "library/validator-assets": {}
+  }
+}
