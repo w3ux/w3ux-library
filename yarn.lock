@@ -1665,6 +1665,7 @@ __metadata:
   resolution: "@w3ux/hooks-source@workspace:library/hooks"
   dependencies:
     "@types/react": "npm:^18"
+    "@w3ux/types": "npm:^0.2.0"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-strip-comments: "npm:^2.6.0"
