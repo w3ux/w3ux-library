@@ -705,4 +705,23 @@ export const ValidatorCommunity: ValidatorEntry[] = [
       ],
     },
   },
+  {
+    name: "🍯 HoneyStake.xyz 🍯",
+    icon: "HoneyStake",
+    bio: "🍯 HoneyStake.xyz 🍯 is an independent validator operator with bare-metal nodes on dedicated hardware in Zaragoza, Spain. We provide low-commission, secure services for Polkadot and Kusama, with high uptime and a 💰 Bonus Rewards Program 💰 to maximize staking returns.",
+    email: "honeystake@honeystake.xyz",
+    website: "https://honeystake.xyz",
+    validators: {
+      polkadot: [
+        "1KikY9PK1kYwawnGcERnzLbSi39cJyxMRW5iLNsg2nfjWiN",
+        "156dG94Rcq61HVrn6Ndx33NysDimutzAq7j5Mz7yo2Hxf6wh",
+      ],
+      kusama: [
+        "Cu3GXEC5bW1Fhki5fzUYnsSjgKjigEzjJcLwhfUbjyeJPC6",
+        "Gfwn89EPQqTbcfhuSPznquqAC1N2GFDCzqLbMQaijUwDspf",
+        "FVkxBDehfaTfRiGtE2m2zLnMXQXji66KVpd7xviufZpGYYC",
+        "HPrV3G2PR2AtyMf2uoDBE4GyvRGdz9UhUASEvSGEENmobBB",
+      ],
+    },
+  },
 ];
