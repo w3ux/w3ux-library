@@ -6,7 +6,7 @@
     "declarationDir": ".",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "target": "es5",
+    "target": "es2015",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "sourceMap": false,
     "jsx": "react-jsx",
