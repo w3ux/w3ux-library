@@ -1,3 +1,5 @@
+![W3uxOG](https://github.com/user-attachments/assets/f35f990a-6e9c-4870-b2cb-8122231cefcf)
+
 # w3ux Library
 
 #### `@w3ux/extension-assets`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/extension-assets)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/extension-assets)]
