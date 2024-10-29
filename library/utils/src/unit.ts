@@ -1,13 +1,13 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { decodeAddress } from "@polkadot/util-crypto";
-import { isHex, u8aToString, u8aUnwrapBytes } from "@polkadot/util";
+import { u8aToString, u8aUnwrapBytes } from "@polkadot/util";
 import { BigNumber } from "bignumber.js";
 import type { MutableRefObject, RefObject } from "react";
 import { AnyObject, EvalMessages } from "./types";
 import { ellipsisFn, rmCommas } from "./base";
 import { AnyJson } from "@w3ux/types";
+import { AccountId } from "@polkadot-api/substrate-bindings";
 
 /**
  * @name remToUnit
@@ -102,12 +102,8 @@ export const localStorageOrDefault = <T>(
  */
 export const isValidAddress = (address: string): boolean => {
   try {
-    // Check if the address is a valid hex string (which is a common public key format).
-    if (isHex(address)) {
-      return true;
-    }
-    // Try to decode the address; if it's not valid, this will throw an error.
-    decodeAddress(address);
+    const codec = AccountId();
+    codec.dec(codec.enc(address));
     return true;
   } catch (e) {
     return false;

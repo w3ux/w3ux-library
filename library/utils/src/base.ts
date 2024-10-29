@@ -3,7 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { BigNumber } from "bignumber.js";
 import { AnyFunction, AnyJson } from "@w3ux/types";
-import { decodeAddress, encodeAddress } from "@polkadot/util-crypto";
+import { AccountId } from "@polkadot-api/substrate-bindings";
 
 /**
  * @name camelize
@@ -200,11 +200,8 @@ export const formatAccountSs58 = (
   ss58Prefix: number
 ): string | null => {
   try {
-    // Decode the input address.
-    const decodedAddress = decodeAddress(address);
-    // Encode the address with the desired SS58 prefix.
-    const formattedAddress = encodeAddress(decodedAddress, ss58Prefix);
-    return formattedAddress;
+    const codec = AccountId(ss58Prefix);
+    return codec.dec(codec.enc(address));
   } catch (e) {
     return null;
   }
