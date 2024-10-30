@@ -3,7 +3,6 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { describe, expect, test } from "vitest";
 import * as fn from "../src/index";
-import BigNumber from "bignumber.js";
 
 describe("Tests suite - planckToUnit Function", () => {
   test("should correctly convert a BigInt to a string", () => {
@@ -14,11 +13,11 @@ describe("Tests suite - planckToUnit Function", () => {
     expect(result).toEqual(expectedOutput);
   });
 
-  test("Negative units are converted to positive units", () => {
+  test("Negative units are converted to 0 units", () => {
     const inputValue = 10000000n;
     const units = -2;
     const result = fn.planckToUnit(inputValue, units);
-    expect(result).toEqual("100000.00");
+    expect(result).toEqual("10000000");
   });
 });
 
@@ -26,7 +25,7 @@ describe("Test suite - unitToPlanck Function", () => {
   test("should correctly convert a string to planck with positive units", () => {
     const val = "10";
     const units = 6;
-    const expectedOutput = new BigNumber("10000000");
+    const expectedOutput = 10000000n;
     const result = fn.unitToPlanck(val, units);
     expect(result).toEqual(expectedOutput);
   });
@@ -34,7 +33,7 @@ describe("Test suite - unitToPlanck Function", () => {
   test("should correctly convert a string to planck with zero units", () => {
     const val = "42";
     const units = 0;
-    const expectedOutput = new BigNumber("42");
+    const expectedOutput = 42n;
     const result = fn.unitToPlanck(val, units);
     expect(result).toEqual(expectedOutput);
   });
@@ -42,7 +41,7 @@ describe("Test suite - unitToPlanck Function", () => {
   test("should correctly convert a string to planck with negative units but return integer", () => {
     const val = "100000";
     const units = -6;
-    const expectedOutput = new BigNumber("0");
+    const expectedOutput = 0n;
     const result = fn.unitToPlanck(val, units);
     expect(result).toEqual(expectedOutput);
   });
@@ -50,7 +49,7 @@ describe("Test suite - unitToPlanck Function", () => {
   test("should return 0 for an empty string", () => {
     const val = "";
     const units = 8;
-    const expectedOutput = new BigNumber("0");
+    const expectedOutput = 0n;
     const result = fn.unitToPlanck(val, units);
     expect(result).toEqual(expectedOutput);
   });
@@ -58,7 +57,7 @@ describe("Test suite - unitToPlanck Function", () => {
   test("should return 0 for a non-numeric string", () => {
     const val = "invalid";
     const units = 4;
-    const expectedOutput = new BigNumber("0");
+    const expectedOutput = 0n;
     const result = fn.unitToPlanck(val, units);
     expect(result).toEqual(expectedOutput);
   });

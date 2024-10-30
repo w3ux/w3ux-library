@@ -2,10 +2,9 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { u8aToString, u8aUnwrapBytes } from "@polkadot/util";
-import { BigNumber } from "bignumber.js";
 import type { MutableRefObject, RefObject } from "react";
 import { AnyObject } from "./types";
-import { ellipsisFn, rmCommas } from "./base";
+import { ellipsisFn } from "./base";
 import { AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
 
@@ -28,39 +27,66 @@ export const planckToUnit = (
   val: number | bigint | string,
   units: number
 ): string => {
-  // Ensure `units` is not negative.
-  units = Math.abs(units);
-  // Convert `val` to BigInt based on its type
-  const bigIntVal =
-    typeof val === "bigint"
-      ? val
-      : BigInt(typeof val === "number" ? Math.floor(val).toString() : val);
+  try {
+    // Ensure `units` is not negative.
+    units = Math.max(units, 0);
 
-  const divisor = BigInt(10) ** BigInt(units);
+    // Convert `val` to BigInt based on its type
+    const bigIntVal =
+      typeof val === "bigint"
+        ? val
+        : BigInt(typeof val === "number" ? Math.floor(val).toString() : val);
 
-  // Integer division and remainder for the fractional part
-  const integerPart = bigIntVal / divisor;
-  const fractionalPart = bigIntVal % divisor;
+    const divisor = units === 0 ? 1n : BigInt(10) ** BigInt(units);
 
-  // Format fractional part with leading zeros to maintain `units` decimal places
-  const fractionalStr = fractionalPart.toString().padStart(units, "0");
+    // Integer division and remainder for the fractional part
+    const integerPart = bigIntVal / divisor;
+    const fractionalPart = bigIntVal % divisor;
 
-  // Combine integer and fractional parts as a decimal string
-  return `${integerPart}.${fractionalStr}`;
+    // Format fractional part with leading zeros to maintain `units` decimal places
+    const fractionalStr =
+      units > 0 ? `.${fractionalPart.toString().padStart(units, "0")}` : ``;
+
+    // Combine integer and fractional parts as a decimal string
+    return `${integerPart}${fractionalStr}`;
+  } catch (e) {
+    return "0";
+  }
 };
 
 /**
  * @name unitToPlanck
- * @summary Convert the token unit to planck.
+ * @summary Convert token unit to planck.
  * @description
- * Converts a balance in token unit to an equivalent value in planck by applying the chain decimals
- * point. (1 token = 10^units planck).
+ * Converts a token unit value (as `string`, `number`, or `BigInt`) to an integer value in planck.
+ * (1 token = 10^units planck).
  */
-export const unitToPlanck = (val: string, units: number): BigNumber => {
-  const init = new BigNumber(!val.length || !val ? "0" : val);
-  return (!init.isNaN() ? init : new BigNumber(0))
-    .multipliedBy(new BigNumber(10).exponentiatedBy(units))
-    .integerValue();
+export const unitToPlanck = (
+  val: string | number | bigint,
+  units: number
+): bigint => {
+  try {
+    // Parse `val` to a number if it's a string; if empty or invalid, default to "0"
+    const strVal = (typeof val === "string" ? val : val.toString()) || "0";
+
+    // Separate integer and fractional parts
+    const [integerPart, fractionalPart = ""] = strVal.split(".");
+
+    // Construct BigInt representation for integer part
+    let bigIntValue = BigInt(integerPart) * BigInt(10) ** BigInt(units);
+
+    // Add fractional part if it exists, scaled to appropriate power of 10
+    if (fractionalPart) {
+      const fractionalScale =
+        BigInt(10) ** BigInt(units - fractionalPart.length);
+      const fractionalValue = BigInt(fractionalPart.padEnd(units, "0")); // pad fractional part if needed
+      bigIntValue += fractionalValue / fractionalScale;
+    }
+
+    return bigIntValue;
+  } catch (e) {
+    return BigInt(0);
+  }
 };
 
 /**
@@ -464,10 +490,3 @@ export const mergeDeep = (
   }
   return mergeDeep(target, ...sources);
 };
-
-/**
- * @name stringToBigNumber
- * @summary Converts a balance string into a `BigNumber`.
- */
-export const stringToBigNumber = (value: string): BigNumber =>
-  new BigNumber(rmCommas(value));
