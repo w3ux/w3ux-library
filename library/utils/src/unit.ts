@@ -19,15 +19,35 @@ export const remToUnit = (rem: string) =>
 
 /**
  * @name planckToUnit
- * @summary convert planck to the token unit.
+ * @summary Convert planck to the token unit.
  * @description
- * Converts an on chain balance value in BigNumber planck to a decimal value in token unit. (1 token
- * = 10^units planck).
+ * Converts an on-chain balance value from `number`, `BigInt`, or `string` (representing planck)
+ * to a decimal value in token units. (1 token = 10^units planck).
  */
-export const planckToUnit = (val: BigNumber, units: number) =>
-  new BigNumber(
-    val.dividedBy(new BigNumber(10).exponentiatedBy(units)).toFixed(units)
-  );
+export const planckToUnit = (
+  val: number | bigint | string,
+  units: number
+): string => {
+  // Ensure `units` is not negative.
+  units = Math.abs(units);
+  // Convert `val` to BigInt based on its type
+  const bigIntVal =
+    typeof val === "bigint"
+      ? val
+      : BigInt(typeof val === "number" ? Math.floor(val).toString() : val);
+
+  const divisor = BigInt(10) ** BigInt(units);
+
+  // Integer division and remainder for the fractional part
+  const integerPart = bigIntVal / divisor;
+  const fractionalPart = bigIntVal % divisor;
+
+  // Format fractional part with leading zeros to maintain `units` decimal places
+  const fractionalStr = fractionalPart.toString().padStart(units, "0");
+
+  // Combine integer and fractional parts as a decimal string
+  return `${integerPart}.${fractionalStr}`;
+};
 
 /**
  * @name unitToPlanck

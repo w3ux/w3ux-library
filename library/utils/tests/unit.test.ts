@@ -6,20 +6,19 @@ import * as fn from "../src/index";
 import BigNumber from "bignumber.js";
 
 describe("Tests suite - planckToUnit Function", () => {
-  test("should correctly convert a BigNumber to units", () => {
-    const inputValue = new BigNumber("10000000");
+  test("should correctly convert a BigInt to a string", () => {
+    const inputValue = "10000000";
     const units = 6;
-    const expectedOutput = new BigNumber("10.000000");
+    const expectedOutput = "10.000000";
     const result = fn.planckToUnit(inputValue, units);
     expect(result).toEqual(expectedOutput);
   });
 
-  test("should throw error when negative units", () => {
-    const inputValue = new BigNumber("10000000");
+  test("Negative units are converted to positive units", () => {
+    const inputValue = 10000000n;
     const units = -2;
-    expect(() => fn.planckToUnit(inputValue, units)).toThrowError(
-      "[BigNumber Error] Argument out of range: -2"
-    );
+    const result = fn.planckToUnit(inputValue, units);
+    expect(result).toEqual("100000.00");
   });
 });
 

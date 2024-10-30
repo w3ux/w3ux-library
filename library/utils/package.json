@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/utils-source",
   "license": "GPL-3.0-only",
-  "version": "0.10.0",
+  "version": "0.10.1-alpha.3",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
