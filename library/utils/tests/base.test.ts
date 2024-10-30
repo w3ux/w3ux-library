@@ -2,10 +2,9 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { describe, expect, test } from "vitest";
-import { AnyObject, EvalMessages } from "../src/types";
+import { AnyObject } from "../src/types";
 import * as fn from "../src/index";
 
-const defaultChainDecimals = 9;
 const address = "234CHvWmTuaVtkJpLS9oxuhFd3HamcEMrfFAPYoFaetEZmY7";
 
 describe("Tests suite - minDecimalPlaces Function", () => {
@@ -565,75 +564,5 @@ describe("Tests suite - ellipsisFn Function", () => {
   test("Should return a string with given amount of digits (here 8), starting with ellipsis when the amount is more than the default(4) and less than the length of the string", () => {
     const result = fn.ellipsisFn("Some random value", 8, "end");
     expect(result).toBe("Some ran...");
-  });
-});
-
-describe("Tests suite - evalUnits Function", () => {
-  // Happy paths
-  test("Should input string", () => {
-    const [actualResult, msg] = fn.evalUnits("666", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("666000000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
-  });
-
-  test("Should accept as input, float (dot for decimal symbol)", () => {
-    const [actualResult, msg] = fn.evalUnits("1.23", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1230000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
-  });
-
-  test("Should accept as input, float (comma for decimal symbol)", () => {
-    const [actualResult, msg] = fn.evalUnits("1,23", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1230000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
-  });
-
-  test("Should accept as input an expression (1k)", () => {
-    const [actualResult, msg] = fn.evalUnits("1k", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1000000000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
-  });
-
-  test("Should accept as input an float expression with dot as dec separator (1.2k)", () => {
-    const [actualResult, msg] = fn.evalUnits("1.2k", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1200000000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
-  });
-
-  test("Should accept as input an float expression with comma as dec separator (1,2k)", () => {
-    const [actualResult, msg] = fn.evalUnits("1,2k", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1200000000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
-  });
-
-  test("Should accept as input an float expression with mili symbol (1.2m)", () => {
-    const [actualResult, msg] = fn.evalUnits("1.2m", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1200000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
-  });
-
-  test("Should accept as input an float expression with mili symbol (0.002μ)", () => {
-    const [actualResult, msg] = fn.evalUnits("0.002μ", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("2");
-    expect(msg).toBe(EvalMessages.SUCCESS);
-  });
-
-  test("Should accept as input an float expression with mili symbol (13000000f)", () => {
-    const [actualResult, msg] = fn.evalUnits("13000000f", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("13");
-    expect(msg).toBe(EvalMessages.SUCCESS);
-  });
-
-  // Not so happy paths
-  test("Should accept as input something gibberish (good23) and return error message", () => {
-    const [actualValue, msg] = fn.evalUnits("good23", defaultChainDecimals);
-    expect(actualValue).toBeFalsy;
-    expect(msg).toBe(EvalMessages.GIBBERISH);
-  });
-
-  test("Should accept as input double decimal symbols (1,23.445k) and return error message", () => {
-    const [actualValue, msg] = fn.evalUnits("1,23.445k", defaultChainDecimals);
-    expect(actualValue).toBeFalsy;
-    expect(msg).toBe(EvalMessages.GIBBERISH);
   });
 });

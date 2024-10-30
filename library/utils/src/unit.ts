@@ -4,7 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { u8aToString, u8aUnwrapBytes } from "@polkadot/util";
 import { BigNumber } from "bignumber.js";
 import type { MutableRefObject, RefObject } from "react";
-import { AnyObject, EvalMessages } from "./types";
+import { AnyObject } from "./types";
 import { ellipsisFn, rmCommas } from "./base";
 import { AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
@@ -362,101 +362,6 @@ export const makeCancelable = (promise: Promise<AnyObject>) => {
       hasCanceled = true;
     },
   };
-};
-
-// Private for evalUnits
-const getSiValue = (si: number): BigNumber =>
-  new BigNumber(10).pow(new BigNumber(si));
-
-const si = [
-  { value: getSiValue(24), symbol: "y", isMil: true },
-  { value: getSiValue(21), symbol: "z", isMil: true },
-  { value: getSiValue(18), symbol: "a", isMil: true },
-  { value: getSiValue(15), symbol: "f", isMil: true },
-  { value: getSiValue(12), symbol: "p", isMil: true },
-  { value: getSiValue(9), symbol: "n", isMil: true },
-  { value: getSiValue(6), symbol: "μ", isMil: true },
-  { value: getSiValue(3), symbol: "m", isMil: true },
-  { value: new BigNumber(1), symbol: "" },
-  { value: getSiValue(3), symbol: "k" },
-  { value: getSiValue(6), symbol: "M" },
-  { value: getSiValue(9), symbol: "G" },
-  { value: getSiValue(12), symbol: "T" },
-  { value: getSiValue(15), symbol: "P" },
-  { value: getSiValue(18), symbol: "E" },
-  { value: getSiValue(21), symbol: "Y" },
-  { value: getSiValue(24), symbol: "Z" },
-];
-
-const allowedSymbols = si
-  .map((s) => s.symbol)
-  .join(", ")
-  .replace(", ,", ",");
-const floats = new RegExp("^[+]?[0-9]*[.,]{1}[0-9]*$");
-const ints = new RegExp("^[+]?[0-9]+$");
-const alphaFloats = new RegExp(
-  "^[+]?[0-9]*[.,]{1}[0-9]*[" + allowedSymbols + "]{1}$"
-);
-const alphaInts = new RegExp("^[+]?[0-9]*[" + allowedSymbols + "]{1}$");
-
-/**
- * A function that identifes integer/float(comma or dot)/expressions (such as 1k)
- * and converts to actual value (or reports an error).
- * @param {string} input
- * @returns {[number | null, string]} an array of 2 items
- * the first is the actual calculated number (or null if none) while
- * the second is the message that should appear in case of error
- */
-export const evalUnits = (
-  input: string,
-  chainDecimals: number
-): [BigNumber | null, string] => {
-  //sanitize input to remove + char if exists
-  input = input && input.replace("+", "");
-  if (
-    !floats.test(input) &&
-    !ints.test(input) &&
-    !alphaInts.test(input) &&
-    !alphaFloats.test(input)
-  ) {
-    return [null, EvalMessages.GIBBERISH];
-  }
-  // find the character from the alphanumerics
-  const symbol = input.replace(/[0-9.,]/g, "");
-  // find the value from the si list
-  const siVal = si.find((s) => s.symbol === symbol);
-  const numberStr = input.replace(symbol, "").replace(",", ".");
-  let numeric: BigNumber = new BigNumber(0);
-
-  if (!siVal) {
-    return [null, EvalMessages.SYMBOL_ERROR];
-  }
-  const decimalsBn = new BigNumber(10).pow(new BigNumber(chainDecimals));
-  const containDecimal = numberStr.includes(".");
-  const [decPart, fracPart] = numberStr.split(".");
-  const fracDecimals = fracPart?.length || 0;
-  const fracExp = new BigNumber(10).pow(new BigNumber(fracDecimals));
-  numeric = containDecimal
-    ? new BigNumber(
-        new BigNumber(decPart)
-          .multipliedBy(fracExp)
-          .plus(new BigNumber(fracPart))
-      )
-    : new BigNumber(new BigNumber(numberStr));
-  numeric = numeric.multipliedBy(decimalsBn);
-  if (containDecimal) {
-    numeric = siVal.isMil
-      ? numeric.dividedBy(siVal.value).dividedBy(fracExp)
-      : numeric.multipliedBy(siVal.value).dividedBy(fracExp);
-  } else {
-    numeric = siVal.isMil
-      ? numeric.dividedBy(siVal.value)
-      : numeric.multipliedBy(siVal.value);
-  }
-  if (numeric.eq(new BigNumber(0))) {
-    return [null, EvalMessages.ZERO];
-  }
-  return [numeric, EvalMessages.SUCCESS];
 };
 
 /**
