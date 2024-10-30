@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/utils-source",
   "license": "GPL-3.0-only",
-  "version": "0.10.1-alpha.3",
+  "version": "0.10.1-alpha.4",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
@@ -9,8 +9,7 @@
     "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting"
   },
   "dependencies": {
-    "@polkadot-api/substrate-bindings": "^0.9.3",
-    "bignumber.js": "^9.1.1"
+    "@polkadot-api/substrate-bindings": "^0.9.3"
   },
   "devDependencies": {
     "@types/react": "^18",
