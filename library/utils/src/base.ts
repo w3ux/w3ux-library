@@ -1,7 +1,6 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { BigNumber } from "bignumber.js";
 import { AnyFunction, AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
 
@@ -90,30 +89,26 @@ export const ellipsisFn = (
 };
 
 /**
- * @name greaterThanZero
- * @summary Returns whether a BigNumber is greater than zero.
- */
-export const greaterThanZero = (val: BigNumber) => val.isGreaterThan(0);
-
-/**
- * @name isNotZero
- * @summary Returns whether a BigNumber is zero.
- */
-export const isNotZero = (val: BigNumber) => !val.isZero();
-
-/**
  * @name minDecimalPlaces
  * @summary Forces a number to have at least the provided decimal places.
  */
 export const minDecimalPlaces = (val: string, minDecimals: number): string => {
-  const whole = new BigNumber(rmCommas(val).split(".")[0] || 0);
-  const decimals = val.split(".")[1] || "";
-  const missingDecimals = new BigNumber(minDecimals).minus(decimals.length);
-  return missingDecimals.isGreaterThan(0)
-    ? `${whole.toFormat(0)}.${decimals.toString()}${"0".repeat(
-        missingDecimals.toNumber()
-      )}`
-    : val;
+  try {
+    // Parse and handle the integer (whole number) part as BigInt
+    const whole = BigInt(rmCommas(val).split(".")[0] || "0");
+
+    // Extract the decimals part and calculate the length difference with minDecimals
+    const decimals = val.split(".")[1] || "";
+    const missingDecimals = minDecimals - decimals.length;
+
+    // If missingDecimals is positive, we need to add extra zeroes to the decimal part
+    return missingDecimals > 0
+      ? `${whole.toString()}.${decimals}${"0".repeat(missingDecimals)}`
+      : val;
+  } catch (e) {
+    // The provided value is not a valid number, return 0.
+    return "0";
+  }
 };
 
 /**
