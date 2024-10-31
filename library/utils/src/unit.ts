@@ -9,19 +9,15 @@ import { AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
 
 /**
- * @name remToUnit
- * @summary Converts a rem string to a number.
- */
-export const remToUnit = (rem: string) =>
-  Number(rem.slice(0, rem.length - 3)) *
-  parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-/**
- * @name planckToUnit
- * @summary Convert planck to the token unit.
- * @description
- * Converts an on-chain balance value from `number`, `BigInt`, or `string` (representing planck)
- * to a decimal value in token units. (1 token = 10^units planck).
+ * Converts an on-chain balance value from planck to a decimal value in token units.
+ *
+ * @function planckToUnit
+ * @param {number | BigInt | string} val - The balance value in planck. Accepts a `number`, `BigInt`, or `string`.
+ * @param {number} units - The number of decimal places in the token unit (10^units planck per 1 token).
+ * @returns {string} The equivalent token unit value as a decimal string.
+ * @example
+ * // Convert 1500000000000 planck to tokens with 12 decimal places
+ * planckToUnit("1500000000000", 12); // returns "1.5"
  */
 export const planckToUnit = (
   val: number | bigint | string,
@@ -55,11 +51,15 @@ export const planckToUnit = (
 };
 
 /**
- * @name unitToPlanck
- * @summary Convert token unit to planck.
- * @description
- * Converts a token unit value (as `string`, `number`, or `BigInt`) to an integer value in planck.
- * (1 token = 10^units planck).
+ * Converts a token unit value to an integer value in planck.
+ *
+ * @function unitToPlanck
+ * @param {string | number | BigInt} val - The token unit value to convert. Accepts a string, number, or BigInt.
+ * @param {number} units - The number of decimal places for conversion (10^units planck per 1 token).
+ * @returns {BigInt} The equivalent value in planck as a BigInt.
+ * @example
+ * // Convert "1.5" tokens to planck with 12 decimal places
+ * unitToPlanck("1.5", 12); // returns BigInt("1500000000000")
  */
 export const unitToPlanck = (
   val: string | number | bigint,
@@ -88,6 +88,14 @@ export const unitToPlanck = (
     return BigInt(0);
   }
 };
+
+/**
+ * @name remToUnit
+ * @summary Converts a rem string to a number.
+ */
+export const remToUnit = (rem: string) =>
+  Number(rem.slice(0, rem.length - 3)) *
+  parseFloat(getComputedStyle(document.documentElement).fontSize);
 
 /**
  * @name capitalizeFirstLetter
