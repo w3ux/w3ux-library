@@ -64,6 +64,16 @@ describe("unitToPlanck", () => {
     expect(result).toEqual(10000000n);
   });
 
+  test("Invalid when units are smaller than decimals - returns zero.", () => {
+    const result = fn.unitToPlanck("0.0001", 3);
+    expect(result).toEqual(0n);
+  });
+
+  test("Valid when unit value is decimals + 1.", () => {
+    const result = fn.unitToPlanck("0.0001", 4);
+    expect(result).toEqual(1n);
+  });
+
   test("should return valid planck value for a string input", () => {
     const result = fn.unitToPlanck("5", 6);
     expect(result).toEqual(5000000n);

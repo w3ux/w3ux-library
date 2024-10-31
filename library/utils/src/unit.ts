@@ -77,9 +77,16 @@ export const unitToPlanck = (
 
     // Process the fractional part if it exists
     if (fractionalPart) {
-      // Scale the fractional part by padding to the full number of decimal places
-      const paddedFractional = fractionalPart.padEnd(units, "0");
-      const fractionalValue = BigInt(paddedFractional);
+      let fractionalValue: bigint;
+
+      if (fractionalPart.length > units) {
+        // If fractional part exceeds units, truncate it
+        fractionalValue = BigInt(fractionalPart.slice(0, units));
+      } else {
+        // Otherwise, pad the fractional part to match units
+        fractionalValue = BigInt(fractionalPart.padEnd(units, "0"));
+      }
+
       bigIntValue += fractionalValue;
     }
 
