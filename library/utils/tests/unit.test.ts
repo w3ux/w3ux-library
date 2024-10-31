@@ -47,45 +47,46 @@ describe("`planckToUnit` function", () => {
   });
 });
 
-describe("Test suite - unitToPlanck Function", () => {
+// Test suite for the `unitToPlanck` function.
+describe("`unitToPlanck` function", () => {
+  test("should return valid planck value for a BigInt input", () => {
+    const result = fn.unitToPlanck(5n, 8);
+    expect(result).toEqual(500000000n);
+  });
+
+  test("should return valid planck value for a string input", () => {
+    const result = fn.unitToPlanck("5", 6);
+    expect(result).toEqual(5000000n);
+  });
+
+  test("should return valid planck value for a number input", () => {
+    const result = fn.unitToPlanck(5, 4);
+    expect(result).toEqual(50000n);
+  });
+
   test("should correctly convert a string to planck with positive units", () => {
-    const val = "10";
-    const units = 6;
-    const expectedOutput = 10000000n;
-    const result = fn.unitToPlanck(val, units);
-    expect(result).toEqual(expectedOutput);
+    const result = fn.unitToPlanck("10", 6);
+    expect(result).toEqual(10000000n);
   });
 
-  test("should correctly convert a string to planck with zero units", () => {
-    const val = "42";
-    const units = 0;
-    const expectedOutput = 42n;
-    const result = fn.unitToPlanck(val, units);
-    expect(result).toEqual(expectedOutput);
+  test("should correctly return the same number with zero units", () => {
+    const result = fn.unitToPlanck(42, 0);
+    expect(result).toEqual(42n);
   });
 
-  test("should correctly convert a string to planck with negative units but return integer", () => {
-    const val = "100000";
-    const units = -6;
-    const expectedOutput = 0n;
-    const result = fn.unitToPlanck(val, units);
-    expect(result).toEqual(expectedOutput);
+  test("should correctly convert a string to 0n with negative units", () => {
+    const result = fn.unitToPlanck("100000", -6);
+    expect(result).toEqual(0n);
   });
 
   test("should return 0 for an empty string", () => {
-    const val = "";
-    const units = 8;
-    const expectedOutput = 0n;
-    const result = fn.unitToPlanck(val, units);
-    expect(result).toEqual(expectedOutput);
+    const result = fn.unitToPlanck("", 8);
+    expect(result).toEqual(0n);
   });
 
   test("should return 0 for a non-numeric string", () => {
-    const val = "invalid";
-    const units = 4;
-    const expectedOutput = 0n;
-    const result = fn.unitToPlanck(val, units);
-    expect(result).toEqual(expectedOutput);
+    const result = fn.unitToPlanck("invalid&#l-", 4);
+    expect(result).toEqual(0n);
   });
 });
 
