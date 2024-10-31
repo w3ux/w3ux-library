@@ -5,6 +5,60 @@ import { AnyFunction, AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
 
 /**
+ * Ensures a number has at least the specified number of decimal places, retaining commas in the output if they are present in the input.
+ *
+ * @function minDecimalPlaces
+ * @param {string | number | BigInt} val - The input number, which can be a `string` with or without commas, a `number`, or a `BigInt`.
+ * @param {number} minDecimals - The minimum number of decimal places to enforce.
+ * @returns {string} The formatted number as a string, padded with zeros if needed to meet `minDecimals`, retaining commas if originally provided.
+ *                    If `val` is invalid, returns "0".
+ * @example
+ * // Pads "1,234.5" to have at least 3 decimal places, with commas
+ * minDecimalPlaces("1,234.5", 3); // returns "1,234.500"
+ *
+ * // Returns "1234.56" unchanged
+ * minDecimalPlaces(1234.56, 2); // returns "1234.56"
+ *
+ * // Pads BigInt 1234 with 2 decimals
+ * minDecimalPlaces(BigInt(1234), 2); // returns "1234.00"
+ */
+export const minDecimalPlaces = (
+  val: string | number | bigint,
+  minDecimals: number
+): string => {
+  try {
+    // Determine if we should retain commas based on original input type
+    const retainCommas = typeof val === "string" && val.includes(",");
+
+    // Convert `val` to a plain string for processing
+    const strVal =
+      typeof val === "string" ? val.replace(/,/g, "") : val.toString();
+
+    // Separate integer and decimal parts
+    const [integerPart, fractionalPart = ""] = strVal.split(".");
+
+    // Parse the integer part as a BigInt
+    const whole = BigInt(integerPart || "0");
+
+    // Calculate missing decimal places
+    const missingDecimals = minDecimals - fractionalPart.length;
+
+    // Format the integer part back with commas only if the input had commas
+    const formattedWhole = retainCommas
+      ? Intl.NumberFormat("en-US").format(whole)
+      : whole.toString();
+
+    // If missing decimals are needed, pad with zeros; otherwise, return the original value
+    return missingDecimals > 0
+      ? `${formattedWhole}.${fractionalPart}${"0".repeat(missingDecimals)}`
+      : `${formattedWhole}.${fractionalPart}`;
+  } catch (e) {
+    // The provided value is not a valid number, return "0".
+    return "0";
+  }
+};
+
+/**
  * @name camelize
  * @summary Converts a string of text to camelCase.
  */
@@ -85,29 +139,6 @@ export const ellipsisFn = (
       return str.slice(0, amount) + "...";
     }
     return "..." + str.slice(amount);
-  }
-};
-
-/**
- * @name minDecimalPlaces
- * @summary Forces a number to have at least the provided decimal places.
- */
-export const minDecimalPlaces = (val: string, minDecimals: number): string => {
-  try {
-    // Parse and handle the integer (whole number) part as BigInt
-    const whole = BigInt(rmCommas(val).split(".")[0] || "0");
-
-    // Extract the decimals part and calculate the length difference with minDecimals
-    const decimals = val.split(".")[1] || "";
-    const missingDecimals = minDecimals - decimals.length;
-
-    // If missingDecimals is positive, we need to add extra zeroes to the decimal part
-    return missingDecimals > 0
-      ? `${whole.toString()}.${decimals}${"0".repeat(missingDecimals)}`
-      : val;
-  } catch (e) {
-    // The provided value is not a valid number, return 0.
-    return "0";
   }
 };
 

@@ -7,44 +7,86 @@ import * as fn from "../src/index";
 
 const address = "234CHvWmTuaVtkJpLS9oxuhFd3HamcEMrfFAPYoFaetEZmY7";
 
-describe("Tests suite - minDecimalPlaces Function", () => {
+// Test suite for the `minDecimalPlaces` function.
+describe("`minDecimalPlaces` function", () => {
   test("should add trailing zeros to meet the minimum decimal places", () => {
-    const val = "10.5";
-    const minDecimals = 4;
-    const expectedOutput = "10.5000";
-    const result = fn.minDecimalPlaces(val, minDecimals);
-    expect(result).toEqual(expectedOutput);
+    const result = fn.minDecimalPlaces("10.5", 4);
+    expect(result).toEqual("10.5000");
   });
 
   test("should not change the value if it already has more decimal places than the minimum", () => {
-    const val = "8.123456789";
-    const minDecimals = 5;
-    const result = fn.minDecimalPlaces(val, minDecimals);
-    expect(result).toEqual(val);
+    const result = fn.minDecimalPlaces("8.123456789", 5);
+    expect(result).toEqual("8.123456789");
   });
 
   test("should add zeros if the input has no decimal part", () => {
-    const val = "42";
-    const minDecimals = 3;
-    const expectedOutput = "42.000";
-    const result = fn.minDecimalPlaces(val, minDecimals);
-    expect(result).toEqual(expectedOutput);
+    const result = fn.minDecimalPlaces("42", 3);
+    expect(result).toEqual("42.000");
   });
 
-  test("should handle zero as the input", () => {
-    const val = "0";
-    const minDecimals = 2;
-    const expectedOutput = "0.00";
-    const result = fn.minDecimalPlaces(val, minDecimals);
-    expect(result).toEqual(expectedOutput);
+  test("should handle a zero input", () => {
+    const result = fn.minDecimalPlaces("0", 2);
+    expect(result).toEqual("0.00");
   });
 
   test("should handle negative input with trailing zeros", () => {
-    const val = "-123.0000";
-    const minDecimals = 4;
-    const expectedOutput = "-123.0000";
-    const result = fn.minDecimalPlaces(val, minDecimals);
-    expect(result).toEqual(expectedOutput);
+    const result = fn.minDecimalPlaces("-123.0000", 4);
+    expect(result).toEqual("-123.0000");
+  });
+
+  test("should keep inputs that have commas", () => {
+    const result = fn.minDecimalPlaces("8,452", 5);
+    expect(result).toEqual("8,452.00000");
+  });
+
+  test("should not change the value if it already has more decimal places than the minimum", () => {
+    const result = fn.minDecimalPlaces("8.123456789", 5);
+    expect(result).toEqual("8.123456789");
+  });
+
+  test("should pad with zeros if the value has fewer decimal places than the minimum", () => {
+    const result = fn.minDecimalPlaces("8.1", 3);
+    expect(result).toEqual("8.100");
+  });
+
+  test("should not add any padding if the value has exactly the minimum decimal places", () => {
+    const result = fn.minDecimalPlaces("8.123", 3);
+    expect(result).toEqual("8.123");
+  });
+
+  test("should handle numbers with commas and retain them in the output", () => {
+    const result = fn.minDecimalPlaces("1,234.5", 3);
+    expect(result).toEqual("1,234.500");
+  });
+
+  test("should handle number input without commas", () => {
+    const result = fn.minDecimalPlaces(1234.5, 2);
+    expect(result).toEqual("1234.50");
+  });
+
+  test("should handle BigInt input and add decimal places", () => {
+    const result = fn.minDecimalPlaces(123456789n, 5);
+    expect(result).toEqual("123456789.00000");
+  });
+
+  test("should handle zero as input and pad to the specified decimal places", () => {
+    const result = fn.minDecimalPlaces("0", 4);
+    expect(result).toEqual("0.0000");
+  });
+
+  test("should handle a large BigInt input without modifying integer part", () => {
+    const result = fn.minDecimalPlaces(100000000000000000000n, 3);
+    expect(result).toEqual("100000000000000000000.000");
+  });
+
+  test("should handle a large comma formatted string input without modifying integer part", () => {
+    const result = fn.minDecimalPlaces("100,000,000,000,000,000,000", 3);
+    expect(result).toEqual("100,000,000,000,000,000,000.000");
+  });
+
+  test("should return '0' for invalid input", () => {
+    const result = fn.minDecimalPlaces("invalid", 2);
+    expect(result).toEqual("0");
   });
 });
 
