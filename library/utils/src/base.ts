@@ -1,9 +1,62 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { BigNumber } from "bignumber.js";
 import { AnyFunction, AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
+
+/**
+ * Ensures a number has at least the specified number of decimal places, retaining commas in the output if they are present in the input.
+ *
+ * @function minDecimalPlaces
+ * @param {string | number | BigInt} val - The input number, which can be a `string` with or without commas, a `number`, or a `BigInt`.
+ * @param {number} minDecimals - The minimum number of decimal places to enforce.
+ * @returns {string} The formatted number as a string, padded with zeros if needed to meet `minDecimals`, retaining commas if originally provided.
+ *                    If `val` is invalid, returns "0".
+ * @example
+ * // Pads "1,234.5" to have at least 3 decimal places, with commas
+ * minDecimalPlaces("1,234.5", 3); // returns "1,234.500"
+ *
+ * // Returns "1234.56" unchanged
+ * minDecimalPlaces(1234.56, 2); // returns "1234.56"
+ *
+ * // Pads BigInt 1234 with 2 decimals
+ * minDecimalPlaces(BigInt(1234), 2); // returns "1234.00"
+ */
+export const minDecimalPlaces = (
+  val: string | number | bigint,
+  minDecimals: number
+): string => {
+  try {
+    // Determine if we should retain commas based on original input type
+    const retainCommas = typeof val === "string" && val.includes(",");
+
+    // Convert `val` to a plain string for processing
+    const strVal =
+      typeof val === "string" ? val.replace(/,/g, "") : val.toString();
+
+    // Separate integer and decimal parts
+    const [integerPart, fractionalPart = ""] = strVal.split(".");
+
+    // Parse the integer part as a BigInt
+    const whole = BigInt(integerPart || "0");
+
+    // Calculate missing decimal places
+    const missingDecimals = minDecimals - fractionalPart.length;
+
+    // Format the integer part back with commas only if the input had commas
+    const formattedWhole = retainCommas
+      ? Intl.NumberFormat("en-US").format(whole)
+      : whole.toString();
+
+    // If missing decimals are needed, pad with zeros; otherwise, return the original value
+    return missingDecimals > 0
+      ? `${formattedWhole}.${fractionalPart}${"0".repeat(missingDecimals)}`
+      : `${formattedWhole}.${fractionalPart}`;
+  } catch (e) {
+    // The provided value is not a valid number, return "0".
+    return "0";
+  }
+};
 
 /**
  * @name camelize
@@ -87,33 +140,6 @@ export const ellipsisFn = (
     }
     return "..." + str.slice(amount);
   }
-};
-
-/**
- * @name greaterThanZero
- * @summary Returns whether a BigNumber is greater than zero.
- */
-export const greaterThanZero = (val: BigNumber) => val.isGreaterThan(0);
-
-/**
- * @name isNotZero
- * @summary Returns whether a BigNumber is zero.
- */
-export const isNotZero = (val: BigNumber) => !val.isZero();
-
-/**
- * @name minDecimalPlaces
- * @summary Forces a number to have at least the provided decimal places.
- */
-export const minDecimalPlaces = (val: string, minDecimals: number): string => {
-  const whole = new BigNumber(rmCommas(val).split(".")[0] || 0);
-  const decimals = val.split(".")[1] || "";
-  const missingDecimals = new BigNumber(minDecimals).minus(decimals.length);
-  return missingDecimals.isGreaterThan(0)
-    ? `${whole.toFormat(0)}.${decimals.toString()}${"0".repeat(
-        missingDecimals.toNumber()
-      )}`
-    : val;
 };
 
 /**
@@ -229,3 +255,29 @@ export const isSuperset = (set: Set<any>, subset: Set<any>) => {
   }
   return true;
 };
+
+/**
+ * Finds the maximum value among a list of BigInt values.
+ *
+ * @function maxBigInt
+ * @param {...bigint} values - A list of BigInt values to compare.
+ * @returns {bigint} The largest BigInt value in the provided list.
+ * @example
+ * // Returns the maximum BigInt value
+ * maxBigInt(10n, 50n, 30n, 100n, 20n); // 100n
+ */
+export const maxBigInt = (...values: bigint[]): bigint =>
+  values.reduce((max, current) => (current > max ? current : max));
+
+/**
+ * Finds the minimum value among a list of BigInt values.
+ *
+ * @function minBigInt
+ * @param {...bigint} values - A list of BigInt values to compare.
+ * @returns {bigint} The smallest BigInt value in the provided list.
+ * @example
+ * // Returns the minimum BigInt value
+ * minBigInt(10n, 50n, 30n, 100n, 20n); // 10n
+ */
+export const minBigInt = (...values: bigint[]): bigint =>
+  values.reduce((min, current) => (current < min ? current : min));

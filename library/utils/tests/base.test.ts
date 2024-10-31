@@ -2,51 +2,91 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { describe, expect, test } from "vitest";
-import { AnyObject, EvalMessages } from "../src/types";
+import { AnyObject } from "../src/types";
 import * as fn from "../src/index";
-import BigNumber from "bignumber.js";
 
-const defaultChainDecimals = 9;
 const address = "234CHvWmTuaVtkJpLS9oxuhFd3HamcEMrfFAPYoFaetEZmY7";
 
-describe("Tests suite - minDecimalPlaces Function", () => {
+// Test suite for the `minDecimalPlaces` function.
+describe("minDecimalPlaces", () => {
   test("should add trailing zeros to meet the minimum decimal places", () => {
-    const val = "10.5";
-    const minDecimals = 4;
-    const expectedOutput = "10.5000";
-    const result = fn.minDecimalPlaces(val, minDecimals);
-    expect(result).toEqual(expectedOutput);
+    const result = fn.minDecimalPlaces("10.5", 4);
+    expect(result).toEqual("10.5000");
   });
 
   test("should not change the value if it already has more decimal places than the minimum", () => {
-    const val = "8.123456789";
-    const minDecimals = 5;
-    const result = fn.minDecimalPlaces(val, minDecimals);
-    expect(result).toEqual(val);
+    const result = fn.minDecimalPlaces("8.123456789", 5);
+    expect(result).toEqual("8.123456789");
   });
 
   test("should add zeros if the input has no decimal part", () => {
-    const val = "42";
-    const minDecimals = 3;
-    const expectedOutput = "42.000";
-    const result = fn.minDecimalPlaces(val, minDecimals);
-    expect(result).toEqual(expectedOutput);
+    const result = fn.minDecimalPlaces("42", 3);
+    expect(result).toEqual("42.000");
   });
 
-  test("should handle zero as the input", () => {
-    const val = "0";
-    const minDecimals = 2;
-    const expectedOutput = "0.00";
-    const result = fn.minDecimalPlaces(val, minDecimals);
-    expect(result).toEqual(expectedOutput);
+  test("should handle a zero input", () => {
+    const result = fn.minDecimalPlaces("0", 2);
+    expect(result).toEqual("0.00");
   });
 
   test("should handle negative input with trailing zeros", () => {
-    const val = "-123.0000";
-    const minDecimals = 4;
-    const expectedOutput = "-123.0000";
-    const result = fn.minDecimalPlaces(val, minDecimals);
-    expect(result).toEqual(expectedOutput);
+    const result = fn.minDecimalPlaces("-123.0000", 4);
+    expect(result).toEqual("-123.0000");
+  });
+
+  test("should keep inputs that have commas", () => {
+    const result = fn.minDecimalPlaces("8,452", 5);
+    expect(result).toEqual("8,452.00000");
+  });
+
+  test("should not change the value if it already has more decimal places than the minimum", () => {
+    const result = fn.minDecimalPlaces("8.123456789", 5);
+    expect(result).toEqual("8.123456789");
+  });
+
+  test("should pad with zeros if the value has fewer decimal places than the minimum", () => {
+    const result = fn.minDecimalPlaces("8.1", 3);
+    expect(result).toEqual("8.100");
+  });
+
+  test("should not add any padding if the value has exactly the minimum decimal places", () => {
+    const result = fn.minDecimalPlaces("8.123", 3);
+    expect(result).toEqual("8.123");
+  });
+
+  test("should handle numbers with commas and retain them in the output", () => {
+    const result = fn.minDecimalPlaces("1,234.5", 3);
+    expect(result).toEqual("1,234.500");
+  });
+
+  test("should handle number input without commas", () => {
+    const result = fn.minDecimalPlaces(1234.5, 2);
+    expect(result).toEqual("1234.50");
+  });
+
+  test("should handle BigInt input and add decimal places", () => {
+    const result = fn.minDecimalPlaces(123456789n, 5);
+    expect(result).toEqual("123456789.00000");
+  });
+
+  test("should handle zero as input and pad to the specified decimal places", () => {
+    const result = fn.minDecimalPlaces("0", 4);
+    expect(result).toEqual("0.0000");
+  });
+
+  test("should handle a large BigInt input without modifying integer part", () => {
+    const result = fn.minDecimalPlaces(100000000000000000000n, 3);
+    expect(result).toEqual("100000000000000000000.000");
+  });
+
+  test("should handle a large comma formatted string input without modifying integer part", () => {
+    const result = fn.minDecimalPlaces("100,000,000,000,000,000,000", 3);
+    expect(result).toEqual("100,000,000,000,000,000,000.000");
+  });
+
+  test("should return '0' for invalid input", () => {
+    const result = fn.minDecimalPlaces("invalid", 2);
+    expect(result).toEqual("0");
   });
 });
 
@@ -70,70 +110,6 @@ describe("Tests suite - rmCommas Function", () => {
     const expectedOutput = "";
     const result = fn.rmCommas(inputValue);
     expect(result).toBe(expectedOutput);
-  });
-});
-
-describe("Tests suite - greaterThanZero Function", () => {
-  test("should return true when the input is greater than 0", () => {
-    const val = new BigNumber("10");
-    const result = fn.greaterThanZero(val);
-    expect(result).toBe(true);
-  });
-
-  test("should return false when the input is equal to 0", () => {
-    const val = new BigNumber("0");
-    const result = fn.greaterThanZero(val);
-    expect(result).toBe(false);
-  });
-
-  test("should return false when the input is less than 0", () => {
-    const val = new BigNumber("-5");
-    const result = fn.greaterThanZero(val);
-    expect(result).toBe(false);
-  });
-
-  test("should return true when the input is a large positive number", () => {
-    const val = new BigNumber("999999999999999999999999999");
-    const result = fn.greaterThanZero(val);
-    expect(result).toBe(true);
-  });
-
-  test("should return false when the input is a large negative number", () => {
-    const val = new BigNumber("-999999999999999999999999999");
-    const result = fn.greaterThanZero(val);
-    expect(result).toBe(false);
-  });
-});
-
-describe("Tests suite - isNotZero Function", () => {
-  test("should return true when the input is greater than 0", () => {
-    const val = new BigNumber("10");
-    const result = fn.isNotZero(val);
-    expect(result).toBe(true);
-  });
-
-  test("should return false when the input is equal to 0", () => {
-    const val = new BigNumber("0");
-    const result = fn.isNotZero(val);
-    expect(result).toBe(false);
-  });
-
-  test("should return true when the input is less than 0", () => {
-    const val = new BigNumber("-5");
-    const result = fn.isNotZero(val);
-    expect(result).toBe(true);
-  });
-
-  test("should return true when the input is a large positive number", () => {
-    const val = new BigNumber("999999999999999999999999999");
-    const result = fn.isNotZero(val);
-    expect(result).toBe(true);
-  });
-
-  test("should return true when the input is a large negative number", () => {
-    const val = new BigNumber("-999999999999999999999999999");
-    const result = fn.isNotZero(val);
-    expect(result).toBe(true);
   });
 });
 
@@ -633,72 +609,46 @@ describe("Tests suite - ellipsisFn Function", () => {
   });
 });
 
-describe("Tests suite - evalUnits Function", () => {
-  // Happy paths
-  test("Should input string", () => {
-    const [actualResult, msg] = fn.evalUnits("666", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("666000000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
+describe("maxBigInt", () => {
+  test("returns the maximum value in a list of positive BigInts", () => {
+    expect(fn.maxBigInt(10n, 50n, 30n, 100n, 20n)).toEqual(100n);
   });
 
-  test("Should accept as input, float (dot for decimal symbol)", () => {
-    const [actualResult, msg] = fn.evalUnits("1.23", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1230000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
+  test("returns the maximum value in a list containing negative BigInts", () => {
+    expect(fn.maxBigInt(-10n, -50n, -30n, -100n, -20n)).toEqual(-10n);
   });
 
-  test("Should accept as input, float (comma for decimal symbol)", () => {
-    const [actualResult, msg] = fn.evalUnits("1,23", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1230000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
+  test("returns the correct maximum value when only one BigInt is provided", () => {
+    expect(fn.maxBigInt(42n)).toEqual(42n);
   });
 
-  test("Should accept as input an expression (1k)", () => {
-    const [actualResult, msg] = fn.evalUnits("1k", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1000000000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
+  test("returns the maximum value when BigInts of varying signs are provided", () => {
+    expect(fn.maxBigInt(-1000n, 500n, -200n, 1000n)).toEqual(1000n);
   });
 
-  test("Should accept as input an float expression with dot as dec separator (1.2k)", () => {
-    const [actualResult, msg] = fn.evalUnits("1.2k", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1200000000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
+  test("throws a TypeError if no values are provided", () => {
+    expect(() => fn.maxBigInt()).toThrow(TypeError);
+  });
+});
+
+describe("minBigInt", () => {
+  test("returns the minimum value in a list of positive BigInts", () => {
+    expect(fn.minBigInt(10n, 50n, 30n, 100n, 20n)).toEqual(10n);
   });
 
-  test("Should accept as input an float expression with comma as dec separator (1,2k)", () => {
-    const [actualResult, msg] = fn.evalUnits("1,2k", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1200000000000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
+  test("returns the minimum value in a list containing negative BigInts", () => {
+    expect(fn.minBigInt(-10n, -50n, -30n, -100n, -20n)).toEqual(-100n);
   });
 
-  test("Should accept as input an float expression with mili symbol (1.2m)", () => {
-    const [actualResult, msg] = fn.evalUnits("1.2m", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("1200000");
-    expect(msg).toBe(EvalMessages.SUCCESS);
+  test("returns the correct minimum value when only one BigInt is provided", () => {
+    expect(fn.minBigInt(42n)).toEqual(42n);
   });
 
-  test("Should accept as input an float expression with mili symbol (0.002μ)", () => {
-    const [actualResult, msg] = fn.evalUnits("0.002μ", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("2");
-    expect(msg).toBe(EvalMessages.SUCCESS);
+  test("returns the minimum value when BigInts of varying signs are provided", () => {
+    expect(fn.minBigInt(-1000n, 500n, -200n, 1000n)).toEqual(-1000n);
   });
 
-  test("Should accept as input an float expression with mili symbol (13000000f)", () => {
-    const [actualResult, msg] = fn.evalUnits("13000000f", defaultChainDecimals);
-    expect(actualResult?.toString()).toBe("13");
-    expect(msg).toBe(EvalMessages.SUCCESS);
-  });
-
-  // Not so happy paths
-  test("Should accept as input something gibberish (good23) and return error message", () => {
-    const [actualValue, msg] = fn.evalUnits("good23", defaultChainDecimals);
-    expect(actualValue).toBeFalsy;
-    expect(msg).toBe(EvalMessages.GIBBERISH);
-  });
-
-  test("Should accept as input double decimal symbols (1,23.445k) and return error message", () => {
-    const [actualValue, msg] = fn.evalUnits("1,23.445k", defaultChainDecimals);
-    expect(actualValue).toBeFalsy;
-    expect(msg).toBe(EvalMessages.GIBBERISH);
+  test("throws a TypeError if no values are provided", () => {
+    expect(() => fn.minBigInt()).toThrow(TypeError);
   });
 });

@@ -2,12 +2,92 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { u8aToString, u8aUnwrapBytes } from "@polkadot/util";
-import { BigNumber } from "bignumber.js";
 import type { MutableRefObject, RefObject } from "react";
-import { AnyObject, EvalMessages } from "./types";
-import { ellipsisFn, rmCommas } from "./base";
+import { AnyObject } from "./types";
+import { ellipsisFn } from "./base";
 import { AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
+
+/**
+ * Converts an on-chain balance value from planck to a decimal value in token units.
+ *
+ * @function planckToUnit
+ * @param {number | BigInt | string} val - The balance value in planck. Accepts a `number`, `BigInt`, or `string`.
+ * @param {number} units - The number of decimal places in the token unit (10^units planck per 1 token).
+ * @returns {string} The equivalent token unit value as a decimal string.
+ * @example
+ * // Convert 1500000000000 planck to tokens with 12 decimal places
+ * planckToUnit("1500000000000", 12); // returns "1.5"
+ */
+export const planckToUnit = (
+  val: number | bigint | string,
+  units: number
+): string => {
+  try {
+    // Ensure `units` is not negative.
+    units = Math.max(units, 0);
+
+    // Convert `val` to BigInt based on its type
+    const bigIntVal =
+      typeof val === "bigint"
+        ? val
+        : BigInt(typeof val === "number" ? Math.floor(val).toString() : val);
+
+    const divisor = units === 0 ? 1n : BigInt(10) ** BigInt(units);
+
+    // Integer division and remainder for the fractional part
+    const integerPart = bigIntVal / divisor;
+    const fractionalPart = bigIntVal % divisor;
+
+    // Format fractional part with leading zeros to maintain `units` decimal places
+    const fractionalStr =
+      units > 0 ? `.${fractionalPart.toString().padStart(units, "0")}` : ``;
+
+    // Combine integer and fractional parts as a decimal string
+    return `${integerPart}${fractionalStr}`;
+  } catch (e) {
+    return "0";
+  }
+};
+
+/**
+ * Converts a token unit value to an integer value in planck.
+ *
+ * @function unitToPlanck
+ * @param {string | number | BigInt} val - The token unit value to convert. Accepts a string, number, or BigInt.
+ * @param {number} units - The number of decimal places for conversion (10^units planck per 1 token).
+ * @returns {BigInt} The equivalent value in planck as a BigInt.
+ * @example
+ * // Convert "1.5" tokens to planck with 12 decimal places
+ * unitToPlanck("1.5", 12); // returns BigInt("1500000000000")
+ */
+export const unitToPlanck = (
+  val: string | number | bigint,
+  units: number
+): bigint => {
+  try {
+    // Parse `val` to a number if it's a string; if empty or invalid, default to "0"
+    const strVal = (typeof val === "string" ? val : val.toString()) || "0";
+
+    // Separate integer and fractional parts
+    const [integerPart, fractionalPart = ""] = strVal.split(".");
+
+    // Construct BigInt representation for integer part
+    let bigIntValue = BigInt(integerPart) * BigInt(10) ** BigInt(units);
+
+    // Add fractional part if it exists, scaled to appropriate power of 10
+    if (fractionalPart) {
+      const fractionalScale =
+        BigInt(10) ** BigInt(units - fractionalPart.length);
+      const fractionalValue = BigInt(fractionalPart.padEnd(units, "0")); // pad fractional part if needed
+      bigIntValue += fractionalValue / fractionalScale;
+    }
+
+    return bigIntValue;
+  } catch (e) {
+    return BigInt(0);
+  }
+};
 
 /**
  * @name remToUnit
@@ -16,32 +96,6 @@ import { AccountId } from "@polkadot-api/substrate-bindings";
 export const remToUnit = (rem: string) =>
   Number(rem.slice(0, rem.length - 3)) *
   parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-/**
- * @name planckToUnit
- * @summary convert planck to the token unit.
- * @description
- * Converts an on chain balance value in BigNumber planck to a decimal value in token unit. (1 token
- * = 10^units planck).
- */
-export const planckToUnit = (val: BigNumber, units: number) =>
-  new BigNumber(
-    val.dividedBy(new BigNumber(10).exponentiatedBy(units)).toFixed(units)
-  );
-
-/**
- * @name unitToPlanck
- * @summary Convert the token unit to planck.
- * @description
- * Converts a balance in token unit to an equivalent value in planck by applying the chain decimals
- * point. (1 token = 10^units planck).
- */
-export const unitToPlanck = (val: string, units: number): BigNumber => {
-  const init = new BigNumber(!val.length || !val ? "0" : val);
-  return (!init.isNaN() ? init : new BigNumber(0))
-    .multipliedBy(new BigNumber(10).exponentiatedBy(units))
-    .integerValue();
-};
 
 /**
  * @name capitalizeFirstLetter
@@ -364,139 +418,6 @@ export const makeCancelable = (promise: Promise<AnyObject>) => {
   };
 };
 
-// Private for evalUnits
-const getSiValue = (si: number): BigNumber =>
-  new BigNumber(10).pow(new BigNumber(si));
-
-const si = [
-  { value: getSiValue(24), symbol: "y", isMil: true },
-  { value: getSiValue(21), symbol: "z", isMil: true },
-  { value: getSiValue(18), symbol: "a", isMil: true },
-  { value: getSiValue(15), symbol: "f", isMil: true },
-  { value: getSiValue(12), symbol: "p", isMil: true },
-  { value: getSiValue(9), symbol: "n", isMil: true },
-  { value: getSiValue(6), symbol: "μ", isMil: true },
-  { value: getSiValue(3), symbol: "m", isMil: true },
-  { value: new BigNumber(1), symbol: "" },
-  { value: getSiValue(3), symbol: "k" },
-  { value: getSiValue(6), symbol: "M" },
-  { value: getSiValue(9), symbol: "G" },
-  { value: getSiValue(12), symbol: "T" },
-  { value: getSiValue(15), symbol: "P" },
-  { value: getSiValue(18), symbol: "E" },
-  { value: getSiValue(21), symbol: "Y" },
-  { value: getSiValue(24), symbol: "Z" },
-];
-
-const allowedSymbols = si
-  .map((s) => s.symbol)
-  .join(", ")
-  .replace(", ,", ",");
-const floats = new RegExp("^[+]?[0-9]*[.,]{1}[0-9]*$");
-const ints = new RegExp("^[+]?[0-9]+$");
-const alphaFloats = new RegExp(
-  "^[+]?[0-9]*[.,]{1}[0-9]*[" + allowedSymbols + "]{1}$"
-);
-const alphaInts = new RegExp("^[+]?[0-9]*[" + allowedSymbols + "]{1}$");
-
-/**
- * A function that identifes integer/float(comma or dot)/expressions (such as 1k)
- * and converts to actual value (or reports an error).
- * @param {string} input
- * @returns {[number | null, string]} an array of 2 items
- * the first is the actual calculated number (or null if none) while
- * the second is the message that should appear in case of error
- */
-export const evalUnits = (
-  input: string,
-  chainDecimals: number
-): [BigNumber | null, string] => {
-  //sanitize input to remove + char if exists
-  input = input && input.replace("+", "");
-  if (
-    !floats.test(input) &&
-    !ints.test(input) &&
-    !alphaInts.test(input) &&
-    !alphaFloats.test(input)
-  ) {
-    return [null, EvalMessages.GIBBERISH];
-  }
-  // find the character from the alphanumerics
-  const symbol = input.replace(/[0-9.,]/g, "");
-  // find the value from the si list
-  const siVal = si.find((s) => s.symbol === symbol);
-  const numberStr = input.replace(symbol, "").replace(",", ".");
-  let numeric: BigNumber = new BigNumber(0);
-
-  if (!siVal) {
-    return [null, EvalMessages.SYMBOL_ERROR];
-  }
-  const decimalsBn = new BigNumber(10).pow(new BigNumber(chainDecimals));
-  const containDecimal = numberStr.includes(".");
-  const [decPart, fracPart] = numberStr.split(".");
-  const fracDecimals = fracPart?.length || 0;
-  const fracExp = new BigNumber(10).pow(new BigNumber(fracDecimals));
-  numeric = containDecimal
-    ? new BigNumber(
-        new BigNumber(decPart)
-          .multipliedBy(fracExp)
-          .plus(new BigNumber(fracPart))
-      )
-    : new BigNumber(new BigNumber(numberStr));
-  numeric = numeric.multipliedBy(decimalsBn);
-  if (containDecimal) {
-    numeric = siVal.isMil
-      ? numeric.dividedBy(siVal.value).dividedBy(fracExp)
-      : numeric.multipliedBy(siVal.value).dividedBy(fracExp);
-  } else {
-    numeric = siVal.isMil
-      ? numeric.dividedBy(siVal.value)
-      : numeric.multipliedBy(siVal.value);
-  }
-  if (numeric.eq(new BigNumber(0))) {
-    return [null, EvalMessages.ZERO];
-  }
-  return [numeric, EvalMessages.SUCCESS];
-};
-
-/**
- * The transformToBaseUnit function is used to transform a given estimated
- * fee value from its current representation to its base unit representation,
- * considering the provided chain decimals. The function is designed to handle
- * cases where the chain decimals are either greater or less than the length
- * of the estimated fee.
- * @param {string} estFee : The estimated fee value that needs to be transformed
- * to its base unit representation.
- * @param {number} chainDecimals: The number of decimal places used by the blockchain.
- */
-export const transformToBaseUnit = (
-  estFee: string,
-  chainDecimals: number
-): string => {
-  const t = estFee.length - chainDecimals;
-  let s = "";
-  // if chainDecimals are more than the estFee length
-  if (t < 0) {
-    // add 0 in front (1 less as we want the 0.)
-    for (let i = 0; i < Math.abs(t) - 1; i++) {
-      s += "0";
-    }
-    s = s + estFee;
-    // remove trailing 0s
-    // eslint-disable-next-line @typescript-eslint/prefer-for-of
-    for (let i = 0; i < s.length; i++) {
-      if (s.slice(s.length - 1) !== "0") {
-        break;
-      }
-      s = s.substring(0, s.length - 1);
-    }
-    s = "0." + s;
-  } else {
-    s = (parseInt(estFee) / 10 ** chainDecimals).toString();
-  }
-  return parseFloat(s) !== 0 ? s : "0";
-};
-
 /**
  * @name unimplemented
  * @summary A placeholder function to signal a deliberate unimplementation.
@@ -539,10 +460,3 @@ export const mergeDeep = (
   }
   return mergeDeep(target, ...sources);
 };
-
-/**
- * @name stringToBigNumber
- * @summary Converts a balance string into a `BigNumber`.
- */
-export const stringToBigNumber = (value: string): BigNumber =>
-  new BigNumber(rmCommas(value));
