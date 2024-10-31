@@ -59,6 +59,66 @@ export const minDecimalPlaces = (
 };
 
 /**
+ * Formats a number with a specified number of decimal places and optional comma inclusion.
+ *
+ * @param {string | number | BigInt} val - The input value to format. Can be a string with or without commas, a number, or a BigInt.
+ * @param {number | "auto"} decimals - The number of decimal places to include. If "auto", adheres to the original decimal count in `val`.
+ * @param {boolean | "auto"} [commas="auto"] - Whether to include commas. If "auto", includes commas only if `val` has them originally.
+ * @returns {string} The formatted number as a string.
+ */
+export const formatNumber = (
+  val: string | number | bigint,
+  decimals: number | "auto",
+  commas: boolean | "auto" = "auto"
+): string => {
+  // If val is an empty string, assign 0.
+  if (val === "") {
+    val = "0";
+  }
+
+  // Convert `val` to a string, handle BigInt and number types
+  let strVal = typeof val === "string" ? val : val.toString();
+
+  // Check if `val` originally had commas (only relevant for string inputs)
+  const originalHasCommas = typeof val === "string" && /,/.test(val);
+
+  // Remove any commas for internal processing
+  strVal = strVal.replace(/,/g, "");
+
+  // Split into integer and fractional parts
+  const [integerPart, fractionalPart = ""] = strVal.split(".");
+
+  // Determine decimal places based on `decimals` parameter
+  let formattedFractional = fractionalPart;
+  if (decimals !== "auto") {
+    // TODO: Would be nice to support rounding when truncating decimal places.
+
+    // Pad or slice the fractional part to match `decimals`
+    formattedFractional = fractionalPart
+      .padEnd(decimals, "0")
+      .slice(0, decimals);
+  }
+
+  // Assemble the formatted number without commas first
+  const formattedNumber = formattedFractional
+    ? `${integerPart}.${formattedFractional}`
+    : integerPart;
+
+  // Apply commas based on `commas` parameter
+  const shouldAddCommas = commas === "auto" ? originalHasCommas : commas;
+  if (shouldAddCommas) {
+    // Format integer part with commas, then reassemble with fractional part
+    const formattedIntegerWithCommas =
+      BigInt(integerPart).toLocaleString("en-US");
+    return formattedFractional
+      ? `${formattedIntegerWithCommas}.${formattedFractional}`
+      : formattedIntegerWithCommas;
+  }
+
+  return formattedNumber;
+};
+
+/**
  * @name camelize
  * @summary Converts a string of text to camelCase.
  */
