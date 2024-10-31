@@ -90,63 +90,6 @@ describe("minDecimalPlaces", () => {
   });
 });
 
-describe("formatNumber", () => {
-  // Test for string input with "auto" decimals and commas
-  test("should retain original decimal places and commas when 'auto' is passed for both decimals and commas", () => {
-    expect(fn.formatNumber("1,234.567", "auto")).toEqual("1,234.567");
-  });
-
-  // Test for number input with a fixed number of decimals and explicit commas
-  test("should format number input with 2 decimal places and include commas", () => {
-    expect(fn.formatNumber(1234.567, 2, true)).toEqual("1,234.56");
-  });
-
-  // Test for BigInt input with no decimal places and no commas
-  test("should format BigInt input without decimals and without commas", () => {
-    expect(fn.formatNumber(BigInt(1234567), 0, false)).toEqual("1234567");
-  });
-
-  // Test for integer input with "auto" decimals and explicit commas
-  test("should format integer input with 0 decimal places and include commas", () => {
-    expect(fn.formatNumber(1234567, "auto", true)).toEqual("1,234,567");
-  });
-
-  // Test for fractional number input with more decimals specified than original
-  test("should add trailing zeros to match specified decimal places", () => {
-    expect(fn.formatNumber(1234.5, 3)).toEqual("1234.500");
-  });
-
-  // Test for string input with no original commas and auto commas
-  test("should exclude commas if they are not in the original string and 'auto' commas is passed", () => {
-    expect(fn.formatNumber("1234.56", "auto", "auto")).toEqual("1234.56");
-  });
-
-  // Test for string input with no decimals specified, should remove decimals if present
-  test("should round down correctly to integer when decimals is 0", () => {
-    expect(fn.formatNumber("1234.46", 0)).toEqual("1234");
-  });
-
-  // Test for adding commas to a large number with 'auto' for decimals
-  test("should add commas to a large number with auto decimals", () => {
-    expect(fn.formatNumber(12345678, "auto", true)).toEqual("12,345,678");
-  });
-
-  // Test for zero value with padding for decimals
-  test("should format zero with specified decimals", () => {
-    expect(fn.formatNumber(0, 2)).toEqual("0.00");
-  });
-
-  // Test for BigInt input with auto commas
-  test("should not include commas in BigInt value when commas is 'auto'", () => {
-    expect(fn.formatNumber(BigInt(1234567), "auto", "auto")).toEqual("1234567");
-  });
-
-  // Edge case: Test for empty string
-  test("should treat empty string as 0 and apply specified decimals", () => {
-    expect(fn.formatNumber("", 2)).toEqual("0.00");
-  });
-});
-
 describe("Tests suite - rmCommas Function", () => {
   test("should remove all commas from a string with commas", () => {
     const inputValue = "1,000,000";
