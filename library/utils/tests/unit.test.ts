@@ -5,7 +5,7 @@ import { describe, expect, test } from "vitest";
 import * as fn from "../src/index";
 
 // Test suite for the `planckToUnit` function.
-describe("`planckToUnit` function", () => {
+describe("planckToUnit", () => {
   test("should correctly output a `string` given another`BigInt`", () => {
     const result = fn.planckToUnit(10000000n, 6);
     expect(result).toEqual("10.000000");
@@ -48,7 +48,7 @@ describe("`planckToUnit` function", () => {
 });
 
 // Test suite for the `unitToPlanck` function.
-describe("`unitToPlanck` function", () => {
+describe("unitToPlanck", () => {
   test("should return valid planck value for a BigInt input", () => {
     const result = fn.unitToPlanck(5n, 8);
     expect(result).toEqual(500000000n);
@@ -90,7 +90,7 @@ describe("`unitToPlanck` function", () => {
   });
 });
 
-describe("Tests suite - transformToBaseUnit Function", () => {
+describe("transformToBaseUnit", () => {
   test("Should accept a fee (275002583), chain has 9 decimals", () => {
     const result = fn.transformToBaseUnit("275002583", 9);
     expect(result).toBe("0.275002583");
@@ -129,5 +129,49 @@ describe("Tests suite - transformToBaseUnit Function", () => {
   test("Should has 0.0000 fee and return 0", () => {
     const result = fn.transformToBaseUnit("0.0000", 20);
     expect(result).toBe("0");
+  });
+});
+
+describe("maxBigInt", () => {
+  test("returns the maximum value in a list of positive BigInts", () => {
+    expect(fn.maxBigInt(10n, 50n, 30n, 100n, 20n)).toEqual(100n);
+  });
+
+  test("returns the maximum value in a list containing negative BigInts", () => {
+    expect(fn.maxBigInt(-10n, -50n, -30n, -100n, -20n)).toEqual(-10n);
+  });
+
+  test("returns the correct maximum value when only one BigInt is provided", () => {
+    expect(fn.maxBigInt(42n)).toEqual(42n);
+  });
+
+  test("returns the maximum value when BigInts of varying signs are provided", () => {
+    expect(fn.maxBigInt(-1000n, 500n, -200n, 1000n)).toEqual(1000n);
+  });
+
+  test("throws a TypeError if no values are provided", () => {
+    expect(() => fn.maxBigInt()).toThrow(TypeError);
+  });
+});
+
+describe("minBigInt", () => {
+  test("returns the minimum value in a list of positive BigInts", () => {
+    expect(fn.minBigInt(10n, 50n, 30n, 100n, 20n)).toEqual(10n);
+  });
+
+  test("returns the minimum value in a list containing negative BigInts", () => {
+    expect(fn.minBigInt(-10n, -50n, -30n, -100n, -20n)).toEqual(-100n);
+  });
+
+  test("returns the correct minimum value when only one BigInt is provided", () => {
+    expect(fn.minBigInt(42n)).toEqual(42n);
+  });
+
+  test("returns the minimum value when BigInts of varying signs are provided", () => {
+    expect(fn.minBigInt(-1000n, 500n, -200n, 1000n)).toEqual(-1000n);
+  });
+
+  test("throws a TypeError if no values are provided", () => {
+    expect(() => fn.minBigInt()).toThrow(TypeError);
   });
 });

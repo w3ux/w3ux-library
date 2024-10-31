@@ -498,3 +498,29 @@ export const mergeDeep = (
   }
   return mergeDeep(target, ...sources);
 };
+
+/**
+ * Finds the maximum value among a list of BigInt values.
+ *
+ * @function maxBigInt
+ * @param {...bigint} values - A list of BigInt values to compare.
+ * @returns {bigint} The largest BigInt value in the provided list.
+ * @example
+ * // Returns the maximum BigInt value
+ * maxBigInt(10n, 50n, 30n, 100n, 20n); // 100n
+ */
+export const maxBigInt = (...values: bigint[]): bigint =>
+  values.reduce((max, current) => (current > max ? current : max));
+
+/**
+ * Finds the minimum value among a list of BigInt values.
+ *
+ * @function minBigInt
+ * @param {...bigint} values - A list of BigInt values to compare.
+ * @returns {bigint} The smallest BigInt value in the provided list.
+ * @example
+ * // Returns the minimum BigInt value
+ * minBigInt(10n, 50n, 30n, 100n, 20n); // 10n
+ */
+export const minBigInt = (...values: bigint[]): bigint =>
+  values.reduce((min, current) => (current < min ? current : min));
