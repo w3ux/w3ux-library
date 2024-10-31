@@ -66,21 +66,21 @@ export const unitToPlanck = (
   units: number
 ): bigint => {
   try {
-    // Parse `val` to a number if it's a string; if empty or invalid, default to "0"
+    // Convert `val` to a string; if empty or invalid, default to "0"
     const strVal = (typeof val === "string" ? val : val.toString()) || "0";
 
-    // Separate integer and fractional parts
+    // Split into integer and fractional parts
     const [integerPart, fractionalPart = ""] = strVal.split(".");
 
-    // Construct BigInt representation for integer part
+    // Process the integer part by converting to BigInt and scaling it to the given units
     let bigIntValue = BigInt(integerPart) * BigInt(10) ** BigInt(units);
 
-    // Add fractional part if it exists, scaled to appropriate power of 10
+    // Process the fractional part if it exists
     if (fractionalPart) {
-      const fractionalScale =
-        BigInt(10) ** BigInt(units - fractionalPart.length);
-      const fractionalValue = BigInt(fractionalPart.padEnd(units, "0")); // pad fractional part if needed
-      bigIntValue += fractionalValue / fractionalScale;
+      // Scale the fractional part by padding to the full number of decimal places
+      const paddedFractional = fractionalPart.padEnd(units, "0");
+      const fractionalValue = BigInt(paddedFractional);
+      bigIntValue += fractionalValue;
     }
 
     return bigIntValue;

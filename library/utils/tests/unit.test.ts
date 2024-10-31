@@ -54,6 +54,16 @@ describe("unitToPlanck", () => {
     expect(result).toEqual(500000000n);
   });
 
+  test("should return valid planck value for a string input.", () => {
+    const result = fn.unitToPlanck("0.2", 10);
+    expect(result).toEqual(2000000000n);
+  });
+
+  test("should return valid planck value for a string input.", () => {
+    const result = fn.unitToPlanck("0.001", 10);
+    expect(result).toEqual(10000000n);
+  });
+
   test("should return valid planck value for a string input", () => {
     const result = fn.unitToPlanck("5", 6);
     expect(result).toEqual(5000000n);
