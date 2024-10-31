@@ -4,19 +4,45 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { describe, expect, test } from "vitest";
 import * as fn from "../src/index";
 
-describe("Tests suite - planckToUnit Function", () => {
-  test("should correctly convert a BigInt to a string", () => {
-    const inputValue = "10000000";
-    const units = 6;
-    const expectedOutput = "10.000000";
-    const result = fn.planckToUnit(inputValue, units);
-    expect(result).toEqual(expectedOutput);
+// Test suite for the `planckToUnit` function.
+describe("`planckToUnit` function", () => {
+  test("should correctly output a `string` given another`BigInt`", () => {
+    const result = fn.planckToUnit(10000000n, 6);
+    expect(result).toEqual("10.000000");
   });
 
-  test("Negative units are converted to 0 units", () => {
-    const inputValue = 10000000n;
-    const units = -2;
-    const result = fn.planckToUnit(inputValue, units);
+  test("should correctly output a `string` given another`string`", () => {
+    const result = fn.planckToUnit("10000000", 6);
+    expect(result).toEqual("10.000000");
+  });
+
+  test("should correctly output a `string` given a `number`", () => {
+    const result = fn.planckToUnit(10000000, 6);
+    expect(result).toEqual("10.000000");
+  });
+
+  test("should correctly return a decimal string if units are greater than exponent", () => {
+    const result = fn.planckToUnit(10n, 10);
+    expect(result).toEqual("0.0000000010");
+  });
+
+  test("values with commas are not supported and will result in a '0' result", () => {
+    const result = fn.planckToUnit("10,000,000", 2);
+    expect(result).toEqual("0");
+  });
+
+  test("Invalid number values should result in a '0' result", () => {
+    const result = fn.planckToUnit("invalid&#l-", 2);
+    expect(result).toEqual("0");
+  });
+
+  test("should correctly convert a BigInt to a string", () => {
+    const result = fn.planckToUnit("10000000", 6);
+    expect(result).toEqual("10.000000");
+  });
+
+  test("negative units are converted to 0 units", () => {
+    const result = fn.planckToUnit(10000000n, -2);
     expect(result).toEqual("10000000");
   });
 });
