@@ -419,44 +419,6 @@ export const makeCancelable = (promise: Promise<AnyObject>) => {
 };
 
 /**
- * The transformToBaseUnit function is used to transform a given estimated
- * fee value from its current representation to its base unit representation,
- * considering the provided chain decimals. The function is designed to handle
- * cases where the chain decimals are either greater or less than the length
- * of the estimated fee.
- * @param {string} estFee : The estimated fee value that needs to be transformed
- * to its base unit representation.
- * @param {number} chainDecimals: The number of decimal places used by the blockchain.
- */
-export const transformToBaseUnit = (
-  estFee: string,
-  chainDecimals: number
-): string => {
-  const t = estFee.length - chainDecimals;
-  let s = "";
-  // if chainDecimals are more than the estFee length
-  if (t < 0) {
-    // add 0 in front (1 less as we want the 0.)
-    for (let i = 0; i < Math.abs(t) - 1; i++) {
-      s += "0";
-    }
-    s = s + estFee;
-    // remove trailing 0s
-    // eslint-disable-next-line @typescript-eslint/prefer-for-of
-    for (let i = 0; i < s.length; i++) {
-      if (s.slice(s.length - 1) !== "0") {
-        break;
-      }
-      s = s.substring(0, s.length - 1);
-    }
-    s = "0." + s;
-  } else {
-    s = (parseInt(estFee) / 10 ** chainDecimals).toString();
-  }
-  return parseFloat(s) !== 0 ? s : "0";
-};
-
-/**
  * @name unimplemented
  * @summary A placeholder function to signal a deliberate unimplementation.
  * Consumes an arbitrary number of props.

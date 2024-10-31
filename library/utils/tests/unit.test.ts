@@ -90,48 +90,6 @@ describe("unitToPlanck", () => {
   });
 });
 
-describe("transformToBaseUnit", () => {
-  test("Should accept a fee (275002583), chain has 9 decimals", () => {
-    const result = fn.transformToBaseUnit("275002583", 9);
-    expect(result).toBe("0.275002583");
-  });
-
-  test("Should accept a fee (275002583), chain has 20 decimals", () => {
-    const result = fn.transformToBaseUnit("275002583", 20);
-    expect(result).toBe("0.0000000000275002583");
-  });
-
-  test("Should accept a very small fee (23), chain has 9 decimals", () => {
-    const result = fn.transformToBaseUnit("23", 9);
-    expect(result).toBe("0.00000023");
-  });
-
-  test("Should accept a very small fee (23), chain has 18 decimals", () => {
-    const result = fn.transformToBaseUnit("23", 18);
-    expect(result).toBe("0.00000000000000023");
-  });
-
-  test("Should accept a fee (20000000000), chain has 18 decimals (aka ETH example)", () => {
-    const result = fn.transformToBaseUnit((20 * 10 ** 7).toString(), 18);
-    expect(result).toBe("0.000000002");
-  });
-
-  test("Should accept a huge fee (2350000000), chain has 9 decimals", () => {
-    const result = fn.transformToBaseUnit((235 * 10 ** 7).toString(), 9);
-    expect(result).toBe("2.35");
-  });
-
-  test("Should has 0 fee and return 0", () => {
-    const result = fn.transformToBaseUnit("0", 9);
-    expect(result).toBe("0");
-  });
-
-  test("Should has 0.0000 fee and return 0", () => {
-    const result = fn.transformToBaseUnit("0.0000", 20);
-    expect(result).toBe("0");
-  });
-});
-
 describe("maxBigInt", () => {
   test("returns the maximum value in a list of positive BigInts", () => {
     expect(fn.maxBigInt(10n, 50n, 30n, 100n, 20n)).toEqual(100n);
