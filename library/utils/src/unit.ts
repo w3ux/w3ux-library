@@ -4,7 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { u8aToString, u8aUnwrapBytes } from "@polkadot/util";
 import type { MutableRefObject, RefObject } from "react";
 import { AnyObject } from "./types";
-import { ellipsisFn } from "./base";
+import { ellipsisFn, rmCommas } from "./base";
 import { AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
 
@@ -24,14 +24,16 @@ export const planckToUnit = (
   units: number
 ): string => {
   try {
-    // Ensure `units` is not negative.
-    units = Math.max(units, 0);
+    // Ensure `units` is a positive integer.
+    units = Math.max(Math.round(units), 0);
 
     // Convert `val` to BigInt based on its type
     const bigIntVal =
       typeof val === "bigint"
         ? val
-        : BigInt(typeof val === "number" ? Math.floor(val).toString() : val);
+        : BigInt(
+            typeof val === "number" ? Math.floor(val).toString() : rmCommas(val)
+          );
 
     const divisor = units === 0 ? 1n : BigInt(10) ** BigInt(units);
 
@@ -66,8 +68,12 @@ export const unitToPlanck = (
   units: number
 ): bigint => {
   try {
+    // Ensure `units` is a positive integer.
+    units = Math.max(Math.round(units), 0);
+
     // Convert `val` to a string; if empty or invalid, default to "0"
-    const strVal = (typeof val === "string" ? val : val.toString()) || "0";
+    const strVal =
+      (typeof val === "string" ? rmCommas(val) : val.toString()) || "0";
 
     // Split into integer and fractional parts
     const [integerPart, fractionalPart = ""] = strVal.split(".");

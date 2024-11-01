@@ -26,9 +26,9 @@ describe("planckToUnit", () => {
     expect(result).toEqual("0.0000000010");
   });
 
-  test("values with commas are not supported and will result in a '0' result", () => {
+  test("commas are removed from strings and the conversion works.", () => {
     const result = fn.planckToUnit("10,000,000", 2);
-    expect(result).toEqual("0");
+    expect(result).toEqual("100000.00");
   });
 
   test("Invalid number values should result in a '0' result", () => {
@@ -37,13 +37,40 @@ describe("planckToUnit", () => {
   });
 
   test("should correctly convert a BigInt to a string", () => {
-    const result = fn.planckToUnit("10000000", 6);
+    const result = fn.planckToUnit(10000000n, 6);
     expect(result).toEqual("10.000000");
   });
 
   test("negative units are converted to 0 units", () => {
     const result = fn.planckToUnit(10000000n, -2);
     expect(result).toEqual("10000000");
+  });
+
+  test("negative units are converted to 0 units", () => {
+    const result = fn.planckToUnit(119324831n, -2);
+    expect(result).toEqual("119324831");
+  });
+
+  test("function handles very large unit values.", () => {
+    const result = fn.planckToUnit(10n, 100);
+    expect(result).toEqual(
+      "0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010"
+    );
+  });
+
+  test("function rounds down decimal unit values to an integer.", () => {
+    const result = fn.planckToUnit(10n, 0.1);
+    expect(result).toEqual("10");
+  });
+
+  test("function rounds up decimal unit values to an integer.", () => {
+    const result = fn.planckToUnit(10n, 0.7);
+    expect(result).toEqual("1.0");
+  });
+
+  test("function rounds up decimal larger unit values to an integer.", () => {
+    const result = fn.planckToUnit(10n, 9.7);
+    expect(result).toEqual("0.0000000010");
   });
 });
 
@@ -94,9 +121,19 @@ describe("unitToPlanck", () => {
     expect(result).toEqual(42n);
   });
 
-  test("should correctly convert a string to 0n with negative units", () => {
+  test("should correctly return the same value if negative units are provided", () => {
     const result = fn.unitToPlanck("100000", -6);
-    expect(result).toEqual(0n);
+    expect(result).toEqual(100000n);
+  });
+
+  test("should correctly return the same value if negative units are provided", () => {
+    const result = fn.unitToPlanck("1012192100", -3);
+    expect(result).toEqual(1012192100n);
+  });
+
+  test("should correctly return the same value if negative units are provided", () => {
+    const result = fn.unitToPlanck("1,012,192,100", -3);
+    expect(result).toEqual(1012192100n);
   });
 
   test("should return 0 for an empty string", () => {
@@ -107,5 +144,22 @@ describe("unitToPlanck", () => {
   test("should return 0 for a non-numeric string", () => {
     const result = fn.unitToPlanck("invalid&#l-", 4);
     expect(result).toEqual(0n);
+  });
+
+  test("function rounds down decimal unit values to an integer.", () => {
+    const result = fn.unitToPlanck(1000000n, 5.2);
+    expect(result).toEqual(100000000000n);
+  });
+
+  test("function rounds up decimal unit values to an integer.", () => {
+    const result = fn.unitToPlanck(1234567789012n, 14.8);
+    expect(result).toEqual(1234567789012000000000000000n);
+  });
+
+  test("function handles very large unit values.", () => {
+    const result = fn.unitToPlanck(10n, 100);
+    expect(result).toEqual(
+      100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000n
+    );
   });
 });
