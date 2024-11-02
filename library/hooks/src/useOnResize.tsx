@@ -5,7 +5,16 @@ interface UseOnResizeOptions {
   throttle?: number;
 }
 
-// Hook to execute a callback function on window resize, with optional throttling.
+/**
+ * Custom hook that triggers a callback function when the specified element
+ * or the window is resized.
+ *
+ * @param callback - The function to be executed on resize.
+ * @param options - Optional parameters to customize the behavior:
+ *   - outerElement: A ref to an HTMLElement to listen for resize events.
+ *   - throttle: Optional duration in milliseconds to throttle the callback execution.
+ *               Default is 100 milliseconds.
+ */
 export const useOnResize = (
   callback: () => void,
   options: UseOnResizeOptions = {}
@@ -13,9 +22,11 @@ export const useOnResize = (
   const { outerElement, throttle: throttleDuration = 100 } = options;
   const lastExecutedRef = useRef<number>(0);
 
-  // Throttled resize handler
+  // Throttled resize handler to limit the frequency of callback execution.
   const handleResize = () => {
     const now = Date.now();
+
+    // Check if the callback can be executed based on the throttle duration.
     if (now - lastExecutedRef.current < throttleDuration) {
       return;
     }
@@ -26,15 +37,14 @@ export const useOnResize = (
 
   useEffect(() => {
     // Determine the target for the resize event listener.
-    // If `outerElement` is provided, listen to its resize events; otherwise, listen to the window's.
-    const listenFor = outerElement?.current || window;
+    const target = outerElement?.current || window;
 
-    // Add event listener for resize on mount.
-    listenFor.addEventListener("resize", handleResize);
+    // Add the resize event listener when the component mounts.
+    target.addEventListener("resize", handleResize);
 
-    // Clean up event listener on unmount.
+    // Clean up the event listener when the component unmounts.
     return () => {
-      listenFor.removeEventListener("resize", handleResize);
+      target.removeEventListener("resize", handleResize);
     };
   }, [throttleDuration, callback]);
 };
