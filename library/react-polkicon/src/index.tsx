@@ -2,15 +2,10 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { useEffect, useState } from "react";
-import {
-  Circle,
-  getCircleCoordinates,
-  outerCircle,
-  renderCircle,
-  Z,
-  getColors,
-} from "./utils";
+import { getCircleCoordinates, getColors } from "./utils";
 import { isValidAddress } from "@w3ux/utils";
+import { CircleRadius, PolkiconCenter } from "./consts";
+import { Circle } from "./types";
 
 interface PolkiconProps {
   size?: number | string;
@@ -27,8 +22,19 @@ export const Polkicon = ({
 }: PolkiconProps) => {
   const [colors, setColors] = useState<string[]>([]);
   const [xy, setXy] = useState<[number, number][] | undefined>();
-
   const [s, setS] = useState<string | number>();
+
+  // Renders the outer circle of the Polkicon.
+  const renderOuterCircle = (fill: string): Circle => ({
+    cx: PolkiconCenter,
+    cy: PolkiconCenter,
+    fill,
+    r: PolkiconCenter,
+  });
+
+  const renderCircle = ({ cx, cy, fill, r }: Circle, key: number) => (
+    <circle cx={cx} cy={cy} fill={fill} key={key} r={r} />
+  );
 
   useEffect(() => {
     const InfoText = (type: string, value: string | number) =>
@@ -117,20 +123,14 @@ export const Polkicon = ({
           width={s}
           height={s}
         >
-          {[
-            outerColor
-              ? outerCircle(outerColor)
-              : outerCircle("var(--background-default"),
-          ]
+          {[renderOuterCircle(outerColor || "var(--background-default)")]
             .concat(
-              xy.map(
-                ([cx, cy], index): Circle => ({
-                  cx,
-                  cy,
-                  fill: colors[index],
-                  r: Z,
-                })
-              )
+              xy.map(([cx, cy], index) => ({
+                cx,
+                cy,
+                fill: colors[index],
+                r: CircleRadius,
+              }))
             )
             .map(renderCircle)}
         </svg>

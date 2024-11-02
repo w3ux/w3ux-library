@@ -1,14 +1,15 @@
 {
   "name": "@w3ux/react-polkicon-source",
   "license": "GPL-3.0-only",
-  "version": "1.5.0",
+  "version": "2.0.0-alpha.2",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "build": "gulp --silent"
   },
   "dependencies": {
-    "@w3ux/utils": "^1.1.0"
+    "@polkadot-api/substrate-bindings": "^0.9.3",
+    "@polkadot/util-crypto": "^13.2.2"
   },
   "devDependencies": {
     "@types/react": "^18",
