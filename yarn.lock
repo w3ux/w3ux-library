@@ -1679,6 +1679,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@w3ux/factories-source@workspace:library/factories":
+  version: 0.0.0-use.local
+  resolution: "@w3ux/factories-source@workspace:library/factories"
+  dependencies:
+    "@types/react": "npm:^18"
+    "@w3ux/types": "npm:^0.2.0"
+    gulp: "npm:^5.0.0"
+    gulp-sourcemaps: "npm:^3.0.0"
+    gulp-strip-comments: "npm:^2.6.0"
+    gulp-typescript: "npm:^6.0.0-alpha.1"
+    react: "npm:^18"
+    typescript: "npm:^5.4.5"
+  peerDependencies:
+    react: ^18
+  languageName: unknown
+  linkType: soft
+
 "@w3ux/hooks-source@workspace:library/hooks":
   version: 0.0.0-use.local
   resolution: "@w3ux/hooks-source@workspace:library/hooks"

@@ -4,7 +4,7 @@
   "license": "GPL-3.0-only",
   "description": "w3ux library source code",
   "scripts": {
-    "build:directory": "node builder/run.mjs -t directory:build",
+    "build:directory": "node builder/dist/index.js -t build:directory",
     "clear": "npm run --workspaces clear && rm -rf node_modules coverage",
     "build": "npm run build --workspaces --if-present",
     "lint": "eslint './**' --fix && npx prettier --write .",
@@ -37,6 +37,7 @@
     "builder",
     "library/utils",
     "library/types",
+    "library/factories",
     "library/hooks",
     "library/extension-assets",
     "library/validator-assets",
