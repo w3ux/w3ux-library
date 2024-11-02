@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@polkadot-api/substrate-bindings": "^0.9.3",
+    "@w3ux/crypto": "1.0.0-beta.0",
     "blakejs": "^1.2.1"
   },
   "devDependencies": {
