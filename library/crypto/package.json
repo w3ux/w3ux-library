@@ -8,6 +8,9 @@
     "test": "vitest run",
     "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting"
   },
+  "dependencies": {
+    "blakejs": "^1.2.1"
+  },
   "devDependencies": {
     "tsup": "^8.3.5"
   }
