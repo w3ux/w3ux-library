@@ -2,32 +2,23 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { useEffect, useState } from "react";
-import { getCircleCoordinates, getColors } from "./utils";
+import { generateCssTransform, getCircleCoordinates, getColors } from "./utils";
 import { isValidAddress } from "@w3ux/utils";
-import { CircleRadius, PolkiconCenter } from "./consts";
-import { Circle, Coordinate } from "./types";
-
-interface PolkiconProps {
-  size?: number | string;
-  address: string;
-  inactive?: boolean;
-  outerColor?: string;
-}
+import { CircleRadius, PolkiconCenter, PolkiconSize } from "./consts";
+import { Circle, Coordinate, PolkiconProps } from "./types";
 
 export const Polkicon = ({
   size = "2rem",
   address,
   inactive,
   outerColor,
+  transform: propTransform,
 }: PolkiconProps) => {
   // The colors of the Polkicon and inner circles.
   const [colors, setColors] = useState<string[]>([]);
 
   // The coordinates of the Polkicon circles.
   const [coords, setCoords] = useState<Coordinate[]>();
-
-  // TODO: Refactor this in favor of `transform` and sizing based on parent element.
-  const [s, setS] = useState<string | number>();
 
   // Renders the outer circle of the Polkicon.
   const renderOuterCircle = (fill: string): Circle => ({
@@ -41,6 +32,10 @@ export const Polkicon = ({
   const renderCircle = ({ cx, cy, fill, r }: Circle, key: number) => (
     <circle cx={cx} cy={cy} fill={fill} key={key} r={r} />
   );
+
+  const transform = propTransform
+    ? generateCssTransform(propTransform)
+    : undefined;
 
   useEffect(() => {
     const InfoText = (type: string, value: string | number) =>
@@ -74,11 +69,6 @@ export const Polkicon = ({
       sizeNumb = size;
     }
 
-    setS(
-      fontType
-        ? `${fontType === "px" ? sizeNumb + "px" : sizeNumb / 10 + "rem"}`
-        : sizeNumb
-    );
     if (sizeNumb < 12) {
       InfoText(
         fontType || "number",
@@ -108,17 +98,19 @@ export const Polkicon = ({
     coords && (
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          display: "inline-block",
+          height: "1em",
+          width: "auto",
+          verticalAlign: "-0.125em",
+          transform,
         }}
       >
         <svg
-          viewBox="0 0 64 64"
+          viewBox={`0 0 ${PolkiconSize} ${PolkiconSize}`}
           id={address}
           name={address}
-          width={s}
-          height={s}
+          width="100%"
+          height="100%"
         >
           {[renderOuterCircle(outerColor || "var(--background-default)")]
             .concat(

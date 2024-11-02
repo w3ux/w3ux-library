@@ -146,3 +146,17 @@ const addressToId = (address: string): Uint8Array => {
   // Adjust each byte in the hash relative to zeroHash and return as a Uint8Array.
   return pubKeyHash.map((x, i) => (x + 256 - zeroHash[i]) % 256);
 };
+
+/**
+ * Generates a CSS `scale` transform based on an input string that specifies an action ("grow" or
+ * "shrink") and a numeric factor. The factor adjusts the scale up or down by 10% increments.
+ *
+ * @param input - A string in the format "action-factor" (e.g., "grow-2" or "shrink-3").
+ * @returns A CSS `scale` transform string.
+ */
+export const generateCssTransform = (input: string) => {
+  const [action, factorStr] = input.split("-");
+  const factor = parseInt(factorStr, 10) * 0.1;
+  const scaleValue = action === "grow" ? 1 + factor : 1 - factor;
+  return `scale(${scaleValue})`;
+};
