@@ -5,23 +5,28 @@ import { useEffect, useState } from "react";
 import { getCircleCoordinates, getColors } from "./utils";
 import { isValidAddress } from "@w3ux/utils";
 import { CircleRadius, PolkiconCenter } from "./consts";
-import { Circle } from "./types";
+import { Circle, Coordinate } from "./types";
 
 interface PolkiconProps {
   size?: number | string;
   address: string;
-  colors?: string[];
+  inactive?: boolean;
   outerColor?: string;
 }
 
 export const Polkicon = ({
   size = "2rem",
   address,
-  colors: initialColors,
+  inactive,
   outerColor,
 }: PolkiconProps) => {
+  // The colors of the Polkicon and inner circles.
   const [colors, setColors] = useState<string[]>([]);
-  const [xy, setXy] = useState<[number, number][] | undefined>();
+
+  // The coordinates of the Polkicon circles.
+  const [coords, setCoords] = useState<Coordinate[]>();
+
+  // TODO: Refactor this in favor of `transform` and sizing based on parent element.
   const [s, setS] = useState<string | number>();
 
   // Renders the outer circle of the Polkicon.
@@ -32,6 +37,7 @@ export const Polkicon = ({
     r: PolkiconCenter,
   });
 
+  // Renders a circle element of the Polkicon.
   const renderCircle = ({ cx, cy, fill, r }: Circle, key: number) => (
     <circle cx={cx} cy={cy} fill={fill} key={key} r={r} />
   );
@@ -81,34 +87,25 @@ export const Polkicon = ({
     }
   }, [size]);
 
+  // Generate Polkicon coordinates and colors based on the address validity and inactivity status.
+  // Re-renders on `address` change.
   useEffect(() => {
+    // Generate Polkicon coordinates.
     const circleXy = getCircleCoordinates();
-    if (initialColors && initialColors?.length < circleXy.length) {
-      let initColIdx = 0;
-      for (let i = 0; i < circleXy.length; i++) {
-        if (!initialColors[i]) {
-          initialColors[i] = initialColors[initColIdx++];
-        }
-        if (initColIdx == initialColors.length) {
-          initColIdx = 0;
-        }
-      }
-    }
-    const defaultColors = new Array<string>(circleXy.length).fill("#ddd");
-    const deactiveColors = new Array<string>(circleXy.length).fill(
-      "var(--background-invert)"
-    );
+    // Get the amount of Polkicon circles.
+    const length = circleXy.length;
+    // Generate the colors of the Polkicon.
+    const colors =
+      isValidAddress(address) && !inactive
+        ? getColors(address)
+        : Array.from({ length }, () => "var(--background-invert)");
 
-    setXy(circleXy);
-    setColors(
-      isValidAddress(address)
-        ? initialColors || getColors(address) || defaultColors
-        : deactiveColors
-    );
+    setCoords(circleXy);
+    setColors(colors);
   }, [address]);
 
   return (
-    xy && (
+    coords && (
       <div
         style={{
           display: "flex",
@@ -125,7 +122,7 @@ export const Polkicon = ({
         >
           {[renderOuterCircle(outerColor || "var(--background-default)")]
             .concat(
-              xy.map(([cx, cy], index) => ({
+              coords.map(([cx, cy], index) => ({
                 cx,
                 cy,
                 fill: colors[index],

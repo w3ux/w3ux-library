@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/react-polkicon-source",
   "license": "GPL-3.0-only",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.4",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@polkadot-api/substrate-bindings": "^0.9.3",
-    "@polkadot/util-crypto": "^13.2.2"
+    "blakejs": "^1.2.1"
   },
   "devDependencies": {
     "@types/react": "^18",

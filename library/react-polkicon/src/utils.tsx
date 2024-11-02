@@ -2,9 +2,33 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { AccountId } from "@polkadot-api/substrate-bindings";
-import { blake2AsU8a } from "@polkadot/util-crypto";
-import { Scheme } from "./types";
+import { Coordinate, Scheme } from "./types";
 import { PolkiconCenter, SCHEMA } from "./consts";
+import { blake2b } from "blakejs";
+
+/**
+ * Creates a BLAKE2b hash of the input data and returns it as a Uint8Array.
+ *
+ * @param data - The input data to hash, as a string, Uint8Array, or Buffer.
+ * @param bitLength - The bit length of the hash output (default 256).
+ * @returns The BLAKE2b hash output as a Uint8Array.
+ */
+export function blake2AsU8a(
+  data: Uint8Array | string | Buffer,
+  bitLength = 256
+): Uint8Array {
+  // Convert input to Uint8Array if it's a string
+  const input =
+    typeof data === "string" ? new TextEncoder().encode(data) : data;
+
+  // Calculate byte length from bit length (256 bits => 32 bytes)
+  const byteLength = bitLength / 8;
+
+  // Generate the hash using blake2b with the specified output length
+  const hash = blake2b(input, undefined, byteLength);
+
+  return new Uint8Array(hash);
+}
 
 /* A generic identity icon. Circle generation logic taken from:
 https://github.com/polkadot-js/ui/tree/master/packages/react-identicon */
@@ -79,13 +103,22 @@ const getRotation = (): {
   return { r, r3o4, ro2, ro4, rroot3o2, rroot3o4 };
 };
 
-export const getCircleCoordinates = (): [number, number][] => {
+/*
+ * Generates an array of (x, y) coordinates representing positions in a circular pattern.
+ * - Uses `getRotation` to retrieve pre-calculated radial distances (`r`, `ro2`, `r3o4`, etc.) for
+ *   positioning points around a central point `C` (assumed to be `PolkiconCenter`).
+ * - Returns an array of coordinate pairs arranged symmetrically around `C`, forming a circular
+ *   pattern by applying the radial distances in various combinations to `C`.
+ *
+ * @returns An array of [x, y] coordinates for each point in the circle pattern.
+ */
+export const getCircleCoordinates = (): Coordinate[] => {
   const { r, r3o4, ro2, ro4, rroot3o2, rroot3o4 } = getRotation();
 
   // Alias center coordinate for more concise code.
   const C = PolkiconCenter;
 
-  // Return all coordinates
+  // Return all coordinates.
   return [
     [C, C - r],
     [C, C - ro2],
