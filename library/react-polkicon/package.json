@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/react-polkicon-source",
   "license": "GPL-3.0-only",
-  "version": "2.0.0-beta.1",
+  "version": "1.6.0",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
