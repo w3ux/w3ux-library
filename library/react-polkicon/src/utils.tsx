@@ -3,12 +3,8 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { decodeAddress, blake2AsU8a } from "@w3ux/utils/util-crypto";
 
-/*
-  A generic identity icon, taken from
-  https://github.com/polkadot-js/ui/tree/master/packages/react-identicon
-*/
-
-export type ChainName = "polkadot" | "kusama" | "westend" | "generic";
+/* A generic identity icon, taken from:
+https://github.com/polkadot-js/ui/tree/master/packages/react-identicon */
 
 export interface Circle {
   cx: number;
@@ -32,9 +28,10 @@ export const renderCircle = ({ cx, cy, fill, r }: Circle, key: number) => (
   <circle cx={cx} cy={cy} fill={fill} key={key} r={r} />
 );
 
-const getRotation = (
-  ch: ChainName
-): {
+// Calculates and returns several rotational values based on an initial parameter C.
+//
+// The result is an object containing each of these computed rotational values.
+const getRotation = (): {
   r: number;
   ro2: number;
   r3o4: number;
@@ -42,25 +39,13 @@ const getRotation = (
   rroot3o2: number;
   rroot3o4: number;
 } => {
-  let param_r: number;
-  let param_rroot3o2: number;
-  let param_ro2: number;
-  let param_rroot3o4: number;
-  let param_ro4: number;
-  let param_r3o4: number;
-  switch (ch) {
-    case "generic":
-    case "kusama":
-    case "westend":
-    default:
-      param_r = 3;
-      param_rroot3o2 = 2;
-      param_ro2 = 2;
-      param_rroot3o4 = 4;
-      param_ro4 = 4;
-      param_r3o4 = 4;
-      break;
-  }
+  const param_r = 3;
+  const param_rroot3o2 = 2;
+  const param_ro2 = 2;
+  const param_rroot3o4 = 4;
+  const param_ro4 = 4;
+  const param_r3o4 = 4;
+
   const r = (C / 4) * param_r;
   const rroot3o2 = (r * Math.sqrt(3)) / param_rroot3o2;
   const ro2 = r / param_ro2;
@@ -71,8 +56,8 @@ const getRotation = (
   return { r, r3o4, ro2, ro4, rroot3o2, rroot3o4 };
 };
 
-export const getCircleXY = (ch: ChainName): [number, number][] => {
-  const { r, r3o4, ro2, ro4, rroot3o2, rroot3o4 } = getRotation(ch);
+export const getCircleCoordinates = (): [number, number][] => {
+  const { r, r3o4, ro2, ro4, rroot3o2, rroot3o4 } = getRotation();
 
   return [
     [C, C - r],
@@ -97,20 +82,10 @@ export const getCircleXY = (ch: ChainName): [number, number][] => {
   ];
 };
 
-/*
-  A generic identity icon, taken from
-  https://github.com/polkadot-js/ui/tree/master/packages/react-identicon
-*/
-
 interface Scheme {
   freq: number;
   colors: number[];
 }
-
-/*
-    A generic identity icon, taken from
-    https://github.com/polkadot-js/ui/tree/master/packages/react-identicon
-  */
 
 export const SCHEMA: Record<string, Scheme> = {
   target: {
@@ -143,21 +118,15 @@ export const SCHEMA: Record<string, Scheme> = {
   },
 };
 
-export const findScheme = (d: number): Scheme => {
-  let out = 0;
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const schema = Object.values(SCHEMA).find((schema): boolean => {
-    out += schema.freq;
-
-    return d < out;
-  });
-
-  if (!schema) {
-    throw new Error("Unable to find a valid schema.");
-  }
-
-  return schema;
-};
+// Takes a number `d` and returns a scheme from `SCHEMA` based on cumulative frequency.
+//
+// Iterates over each scheme and checks if the cumulative frequency exceeds `d`. If `d` is less than
+// the current cumulative `out`, it returns that scheme.
+//
+// In effect, this function acts like a weighted random selector. Each scheme has a chance of being
+// picked based on its `freq` relative to the total frequency across all schemes.
+export const findScheme = (d: number): Scheme =>
+  Object.values(SCHEMA).find((scheme) => (d -= scheme.freq) < 0);
 
 let zeroHash: Uint8Array = new Uint8Array();
 
@@ -173,8 +142,9 @@ const addressToId = (address: string): Uint8Array => {
 
 export const getColors = (address: string): string[] => {
   const total = Object.values(SCHEMA)
-    .map((s): number => s.freq)
-    .reduce((a, b): number => a + b);
+    .map(({ freq }) => freq)
+    .reduce((a, b) => a + b);
+
   const id = addressToId(address);
   const d = Math.floor((id[30] + id[31] * 256) % total);
   const rot = (id[28] % 6) * 3;
