@@ -1,8 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { useCallback, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   Circle,
   getCircleXY,
@@ -17,46 +16,20 @@ import { isValidAddress } from "@w3ux/utils";
 interface PolkiconProps {
   size?: number | string;
   address: string;
-  copy?: boolean;
   colors?: string[];
   outerColor?: string;
-  copyTimeout?: number;
 }
-
-const copyPopup = {
-  initial: {
-    opacity: 0,
-    scale: 0.5,
-  },
-  animate: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      ease: "easeInOut",
-      duration: 0.1,
-    },
-  },
-  exit: {
-    opacity: 0,
-  },
-};
 
 export const Polkicon = ({
   size = "2rem",
   address,
-  copy = false,
   colors: initialColors,
   outerColor,
-  copyTimeout = 500,
 }: PolkiconProps) => {
   const [colors, setColors] = useState<string[]>([]);
   const [xy, setXy] = useState<[number, number][] | undefined>();
-  const [copySuccess, setCopySuccess] = useState(false);
-  const [message, setMessage] = useState<string>("Copied!");
 
   const [s, setS] = useState<string | number>();
-  const [f, setF] = useState<string>();
-  const [p, setP] = useState<string>();
 
   useEffect(() => {
     const InfoText = (type: string, value: string | number) =>
@@ -100,20 +73,6 @@ export const Polkicon = ({
         fontType || "number",
         fontType === "px" ? "12px" : fontType === "rem" ? "1.2rem" : 12
       );
-    }
-
-    if (sizeNumb < 32) {
-      setP("0rem 0.5rem");
-      setF("0.5rem");
-    } else if (sizeNumb >= 32 && sizeNumb < 64) {
-      setP("1rem 0.5rem");
-      setF("1rem");
-    } else if (sizeNumb >= 64 && sizeNumb < 100) {
-      setP("2rem 1rem");
-      setF("1.5rem");
-    } else if (sizeNumb >= 100) {
-      setP("3rem 1rem");
-      setF("2rem");
     }
   }, [size]);
 
@@ -161,47 +120,14 @@ export const Polkicon = ({
     );
   }, [address]);
 
-  const handleClick = useCallback(() => {
-    const copyText = async (text: string) => {
-      try {
-        await navigator.clipboard.writeText(text);
-        setCopySuccess(true);
-        setMessage("Copied!");
-      } catch (err) {
-        setCopySuccess(true);
-        setMessage("Failed!");
-      }
-    };
-    copy && copyText(address);
-  }, [copy, address]);
-
-  useEffect(() => {
-    if (copy && copySuccess) {
-      setTimeout(() => {
-        setCopySuccess(false);
-      }, copyTimeout);
-    }
-  }, [copy, copySuccess]);
-
   return (
     xy && (
       <div
-        onClick={copy ? handleClick : undefined}
-        style={
-          copy
-            ? {
-                cursor: copySuccess ? "none" : "copy",
-                position: "relative",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }
-            : {
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }
-        }
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
         <svg
           viewBox="0 0 64 64"
@@ -227,27 +153,6 @@ export const Polkicon = ({
             )
             .map(renderCircle)}
         </svg>
-        {copy && (
-          <AnimatePresence>
-            {copySuccess && (
-              <motion.div
-                variants={copyPopup}
-                initial={"initial"}
-                animate={"animate"}
-                exit={"exit"}
-                style={{
-                  position: "absolute",
-                  padding: p,
-                  borderRadius: "100%",
-                  backgroundColor: "var(--background-default)",
-                  fontWeight: "bold",
-                }}
-              >
-                <p style={{ fontSize: f, fontWeight: "bold" }}>{message}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        )}
       </div>
     )
   );
