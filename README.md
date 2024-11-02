@@ -1,5 +1,9 @@
 # w3ux Library
 
+#### `@w3ux/crypto`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/crypto)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/crypto)]
+
+Cryptographic utilities for Dapps.
+
 #### `@w3ux/extension-assets`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/extension-assets)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/extension-assets)]
 
 A list of popular Web3 wallet extensions with metadata and icons.
