@@ -14,6 +14,7 @@
     "build:hooks": "node dist/index.js -t build:hooks",
     "build:factories": "node dist/index.js -t build:factories",
     "build:types": "node dist/index.js -t build:types",
+    "build:crypto": "node dist/index.js -t build:crypto",
     "build:utils": "node dist/index.js -t build:utils",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },

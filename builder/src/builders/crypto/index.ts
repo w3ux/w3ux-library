@@ -14,7 +14,7 @@ import { exec } from "child_process";
 const execPromisify = promisify(exec);
 
 export const build = async () => {
-  const folder = "utils";
+  const folder = "crypto";
   const libDirectory = gePackageDirectory(folder);
 
   try {

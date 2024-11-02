@@ -5,6 +5,7 @@ import minimist from "minimist";
 import * as extensionAssets from "./builders/extension-assets";
 import * as validatorAssets from "./builders/validator-assets";
 import * as types from "./builders/types";
+import * as crypto from "./builders/crypto";
 import * as utils from "./builders/utils";
 import * as directory from "./builders/directory";
 import * as reactOdometer from "./builders/react-odometer";
@@ -56,6 +57,10 @@ switch (task) {
 
   case "build:utils":
     utils.build();
+    break;
+
+  case "build:crypto":
+    crypto.build();
     break;
 
   default:
