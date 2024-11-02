@@ -1,0 +1,23 @@
+{
+  "name": "@w3ux/factories-source",
+  "license": "GPL-3.0-only",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
+    "build": "gulp --silent"
+  },
+  "peerDependencies": {
+    "react": "^18"
+  },
+  "devDependencies": {
+    "@types/react": "^18",
+    "@w3ux/types": "^0.2.0",
+    "gulp": "^5.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-strip-comments": "^2.6.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "react": "^18",
+    "typescript": "^5.4.5"
+  }
+}
