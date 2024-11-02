@@ -8,8 +8,7 @@
     "build": "gulp --silent"
   },
   "dependencies": {
-    "@w3ux/utils": "^0.9.0",
-    "framer-motion": "^11.2.10"
+    "@w3ux/utils": "^0.9.0"
   },
   "devDependencies": {
     "@types/react": "^18",
