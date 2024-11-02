@@ -1,0 +1,8 @@
+directory:
+  - name: Crypto
+    description: Cryptographic utilities for Dapps.
+
+npm:
+  title: Crypto
+  contents:
+    - item: Cryptographic utilities for Dapps.
