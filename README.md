@@ -10,7 +10,7 @@ A collection of general purpose TypeScript factories.
 
 #### `@w3ux/hooks`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/hooks)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/hooks)]
 
-A collection of generic React hooks.
+A collection of general purpose React hooks.
 
 #### `@w3ux/react-connect-kit`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/react-connect-kit)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/react-connect-kit)]
 
