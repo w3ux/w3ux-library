@@ -6,7 +6,9 @@ import type { FC } from "react";
 // `providers` accepts standalone functional components or an array of a functional component and its props.
 export type Provider<T> = FC<T> | [FC<T>, T];
 
-// A pure function that applies an arbitrary amount of context providers to a wrapped component.
+// A higher-order component that wraps a specified React component (Wrapped) with multiple context
+// providers. Each provider can either be a standalone component or a component with specified
+// props. The first provider in the array becomes the outermost wrapper in the rendered output.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const withProviders = (providers: Provider<any>[], Wrapped: FC) =>
   providers.reduceRight(
