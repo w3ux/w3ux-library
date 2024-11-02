@@ -19,7 +19,6 @@ export interface Scheme {
 export type Coordinate = [number, number];
 
 export interface PolkiconProps {
-  size?: number | string;
   address: string;
   inactive?: boolean;
   outerColor?: string;

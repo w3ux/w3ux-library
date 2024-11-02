@@ -8,7 +8,6 @@ import { CircleRadius, PolkiconCenter, PolkiconSize } from "./consts";
 import { Circle, Coordinate, PolkiconProps } from "./types";
 
 export const Polkicon = ({
-  size = "2rem",
   address,
   inactive,
   outerColor,
@@ -36,46 +35,6 @@ export const Polkicon = ({
   const transform = propTransform
     ? generateCssTransform(propTransform)
     : undefined;
-
-  useEffect(() => {
-    const InfoText = (type: string, value: string | number) =>
-      console.warn(
-        `Polkicon: 'Size' expressed in '${type}' cannot be less than ${value}. Will be resized to minimum size.`
-      );
-
-    if (
-      typeof size === "string" &&
-      !size.includes("px") &&
-      !size.includes("rem")
-    ) {
-      throw new Error(
-        "Providing a string for 'size' in Polkicon should be expressed either in 'px', 'rem' or 'em'"
-      );
-    }
-
-    let sizeNumb: number;
-    let fontType: string;
-    if (typeof size === "string") {
-      fontType = size.replace(/[0-9.]/g, "");
-      switch (fontType) {
-        case "px":
-          sizeNumb = parseFloat(size);
-          break;
-        case "rem":
-          sizeNumb = parseFloat(size) * 10;
-          break;
-      }
-    } else if (typeof size === "number") {
-      sizeNumb = size;
-    }
-
-    if (sizeNumb < 12) {
-      InfoText(
-        fontType || "number",
-        fontType === "px" ? "12px" : fontType === "rem" ? "1.2rem" : 12
-      );
-    }
-  }, [size]);
 
   // Generate Polkicon coordinates and colors based on the address validity and inactivity status.
   // Re-renders on `address` change.
