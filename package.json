@@ -35,6 +35,7 @@
   },
   "workspaces": [
     "builder",
+    "library/crypto",
     "library/utils",
     "library/types",
     "library/factories",

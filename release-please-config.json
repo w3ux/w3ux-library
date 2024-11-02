@@ -10,6 +10,7 @@
     "library/react-polkicon": {},
     "library/types": {},
     "library/utils": {},
+    "library/crypto": {},
     "library/validator-assets": {}
   }
 }
