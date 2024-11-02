@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.6.0](https://github.com/w3ux/w3ux-library/compare/react-polkicon-source-v1.5.0...react-polkicon-source-v1.6.0) (2024-11-02)
+## [2.0.0](https://github.com/w3ux/w3ux-library/compare/react-polkicon-source-v1.5.0...react-polkicon-source-v2.0.0) (2024-11-02)
 
 
 ### Features
