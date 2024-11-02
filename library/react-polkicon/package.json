@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@polkadot-api/substrate-bindings": "^0.9.3",
-    "@w3ux/crypto": "^0.9.1"
+    "@w3ux/crypto": "1.0.0"
   },
   "devDependencies": {
     "@types/react": "^18",
