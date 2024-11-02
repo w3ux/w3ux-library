@@ -3,6 +3,6 @@ directory:
     description: A collection of general purpose TypeScript factories.
 
 npm:
-  title: Hooks
+  title: Factories
   contents:
     - item: A collection of general purpose TypeScript factories.
