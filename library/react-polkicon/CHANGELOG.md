@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.0](https://github.com/w3ux/w3ux-library/compare/react-polkicon-source-v1.5.0...react-polkicon-source-v2.0.0) (2024-11-02)
+
+
+### Features
+
+* Rewrite and improve Polkicon - `@w3ux/react-polkicon` ([#139](https://github.com/w3ux/w3ux-library/issues/139)) ([b16c7e7](https://github.com/w3ux/w3ux-library/commit/b16c7e7cfd5be4ffa0384bbe9e5406b330dbf0a3))
+
 ## [1.5.0](https://github.com/w3ux/w3ux-library/compare/react-polkicon-source-v1.4.0...react-polkicon-source-v1.5.0) (2024-11-02)
 
 
