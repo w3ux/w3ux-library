@@ -37,6 +37,7 @@
     "builder",
     "library/utils",
     "library/types",
+    "library/factories",
     "library/hooks",
     "library/extension-assets",
     "library/validator-assets",

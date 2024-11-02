@@ -3,6 +3,7 @@
   "include-component-in-tag": true,
   "packages": {
     "library/extension-assets": {},
+    "library/factories": {},
     "library/hooks": {},
     "library/react-connect-kit": {}, 
     "library/react-odometer": {},
