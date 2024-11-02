@@ -9,6 +9,48 @@ import { PolkiconCenter, SCHEMA } from "./consts";
 /* A generic identity icon. Circle generation logic taken from:
 https://github.com/polkadot-js/ui/tree/master/packages/react-identicon */
 
+/**
+ * Generates a color palette based on an address by creating a hashed identifier and using it to
+ * select a color scheme and adjust colors for hue, saturation, and lightness.
+ * - Calculates a unique `id` from the address and determines a `scheme` based on weighted
+ *   frequency.
+ * - Uses specific bytes in `id` to control rotation (`rot`) and saturation (`sat`) values for color
+ *   adjustments.
+ * - Creates a palette of HSL colors, mapping the selected `scheme` colors to the final output.
+ *
+ * @param address The input address string.
+ * @returns An array of color strings in HSL format.
+ */
+export const getColors = (address: string): string[] => {
+  const total = Object.values(SCHEMA)
+    .map(({ freq }) => freq)
+    .reduce((a, b) => a + b);
+
+  const id = addressToId(address);
+  const d = Math.floor((id[30] + id[31] * 256) % total);
+  const rot = (id[28] % 6) * 3;
+  const sat = (Math.floor((id[29] * 70) / 256 + 26) % 80) + 30;
+  const scheme = findScheme(d);
+  const palette = Array.from(id).map((x, i): string => {
+    const b = (x + (i % 28) * 58) % 256;
+
+    if (b === 0) {
+      return "#444";
+    } else if (b === 255) {
+      return "transparent";
+    }
+
+    const h = Math.floor(((b % 64) * 360) / 64);
+    const l = [53, 15, 35, 75][Math.floor(b / 64)];
+
+    return `hsl(${h}, ${sat}%, ${l}%)`;
+  });
+
+  return scheme.colors.map(
+    (_, i): string => palette[scheme.colors[i < 18 ? (i + rot) % 18 : 18]]
+  );
+};
+
 // Calculates and returns several rotational values based on an initial parameter C.
 //
 // The result is an object containing each of these computed rotational values.
@@ -67,51 +109,31 @@ export const getCircleCoordinates = (): [number, number][] => {
   ];
 };
 
-// Takes a number `d` and returns a scheme from `SCHEMA` based on cumulative frequency.
-//
-// Iterates over each scheme and checks if the cumulative frequency exceeds `d`. If `d` is less than
-// the current cumulative `out`, it returns that scheme.
-//
-// In effect, this function acts like a weighted random selector. Each scheme has a chance of being
-// picked based on its `freq` relative to the total frequency across all schemes.
-export const findScheme = (d: number): Scheme =>
+/* Takes a number `d` and returns a scheme from `SCHEMA` based on cumulative frequency.
+ *
+ * Iterates over each scheme and checks if the cumulative frequency exceeds `d`. If `d` is less than
+ * the current cumulative `out`, it returns that scheme.
+ *
+ * In effect, this function acts like a weighted random selector. Each scheme has a chance of being
+ * picked based on its `freq` relative to the total frequency across all schemes.
+ */
+const findScheme = (d: number): Scheme =>
   Object.values(SCHEMA).find((scheme) => (d -= scheme.freq) < 0);
 
+/**
+ * Converts an address string into a unique identifier by first encoding and decoding the address
+ * using `AccountId`, then hashing it with BLAKE2.
+ *
+ * Each byte of the resulting hash is adjusted based on a predefined zero hash, creating a
+ * consistent `Uint8Array` ID derived from the address.
+ */
 const addressToId = (address: string): Uint8Array => {
+  // Generate a zero hash from a 32-byte zeroed array.
   const zeroHash = blake2AsU8a(new Uint8Array(32));
-  const codec = AccountId();
-  const pubKey = codec.dec(codec.enc(address)).toString();
-  return blake2AsU8a(pubKey).map(
-    (x: number, i: string | number) => (x + 256 - zeroHash[i]) % 256
-  );
-};
 
-export const getColors = (address: string): string[] => {
-  const total = Object.values(SCHEMA)
-    .map(({ freq }) => freq)
-    .reduce((a, b) => a + b);
+  // Get the encoded and decoded representation of the address, then hash it.
+  const pubKeyHash = blake2AsU8a(AccountId().dec(AccountId().enc(address)));
 
-  const id = addressToId(address);
-  const d = Math.floor((id[30] + id[31] * 256) % total);
-  const rot = (id[28] % 6) * 3;
-  const sat = (Math.floor((id[29] * 70) / 256 + 26) % 80) + 30;
-  const scheme = findScheme(d);
-  const palette = Array.from(id).map((x, i): string => {
-    const b = (x + (i % 28) * 58) % 256;
-
-    if (b === 0) {
-      return "#444";
-    } else if (b === 255) {
-      return "transparent";
-    }
-
-    const h = Math.floor(((b % 64) * 360) / 64);
-    const l = [53, 15, 35, 75][Math.floor(b / 64)];
-
-    return `hsl(${h}, ${sat}%, ${l}%)`;
-  });
-
-  return scheme.colors.map(
-    (_, i): string => palette[scheme.colors[i < 18 ? (i + rot) % 18 : 18]]
-  );
+  // Adjust each byte in the hash relative to zeroHash and return as a Uint8Array.
+  return pubKeyHash.map((x, i) => (x + 256 - zeroHash[i]) % 256);
 };

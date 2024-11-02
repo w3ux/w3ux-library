@@ -3,6 +3,16 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { Scheme } from "./types";
 
+// Size of the Polkicon in pixels.
+export const PolkiconSize = 64;
+
+// Center coordinate of the Polkicon.
+export const PolkiconCenter = PolkiconSize / 2;
+
+// Radius of a Polkicon circle.
+export const CircleRadius = 5;
+
+// Schemas for the Polkicon.
 export const SCHEMA: Record<string, Scheme> = {
   target: {
     colors: [0, 28, 0, 0, 28, 0, 0, 28, 0, 0, 28, 0, 0, 28, 0, 0, 28, 0, 1],
@@ -33,12 +43,3 @@ export const SCHEMA: Record<string, Scheme> = {
     freq: 128,
   },
 };
-
-// Size of the Polkicon in pixels.
-export const PolkiconSize = 64;
-
-// Center coordinate of the Polkicon.
-export const PolkiconCenter = PolkiconSize / 2;
-
-// Radius of a Polkicon circle.
-export const CircleRadius = 5;
