@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/hooks-source",
   "license": "GPL-3.0-only",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
