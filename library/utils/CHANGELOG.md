@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/w3ux/w3ux-library/compare/utils-source-v1.0.0...utils-source-v1.1.0) (2024-11-02)
+
+
+### Features
+
+* **utils:** unit fn enhancements + more tests ([#133](https://github.com/w3ux/w3ux-library/issues/133)) ([958b4cf](https://github.com/w3ux/w3ux-library/commit/958b4cf46c89a8cd9506f191768fee87b29e1960))
+
 ## 1.0.0 (2024-10-31)
 
 
