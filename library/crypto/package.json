@@ -1,12 +1,15 @@
 {
   "name": "@w3ux/crypto-source",
   "license": "GPL-3.0-only",
-  "version": "1.0.0-beta.0",
+  "version": "0.9.1",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "test": "vitest run",
     "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting"
+  },
+  "dependencies": {
+    "blakejs": "^1.2.1"
   },
   "devDependencies": {
     "tsup": "^8.3.5"
