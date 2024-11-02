@@ -20,8 +20,8 @@ export type Coordinate = [number, number];
 
 export interface PolkiconProps {
   address: string;
+  background?: string;
   inactive?: boolean;
-  outerColor?: string;
   transform?: TransformProp;
 }
 

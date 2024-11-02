@@ -9,8 +9,8 @@ import { Circle, Coordinate, PolkiconProps } from "./types";
 
 export const Polkicon = ({
   address,
+  background,
   inactive,
-  outerColor,
   transform: propTransform,
 }: PolkiconProps) => {
   // The colors of the Polkicon and inner circles.
@@ -71,7 +71,7 @@ export const Polkicon = ({
           width="100%"
           height="100%"
         >
-          {[renderOuterCircle(outerColor || "var(--background-default)")]
+          {[renderOuterCircle(background || "var(--background-default)")]
             .concat(
               coords.map(([cx, cy], index) => ({
                 cx,
