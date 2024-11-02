@@ -1,10 +1,12 @@
-![W3uxOG](https://github.com/user-attachments/assets/f35f990a-6e9c-4870-b2cb-8122231cefcf)
-
 # w3ux Library
 
 #### `@w3ux/extension-assets`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/extension-assets)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/extension-assets)]
 
 A list of popular Web3 wallet extensions with metadata and icons.
+
+#### `@w3ux/factories`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/factories)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/factories)]
+
+A collection of general purpose TypeScript factories.
 
 #### `@w3ux/hooks`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/hooks)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/hooks)]
 

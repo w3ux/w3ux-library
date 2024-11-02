@@ -1,8 +1,8 @@
 directory:
   - name: Factories
-    description: A collection of generic TypeScript factories.
+    description: A collection of general purpose TypeScript factories.
 
 npm:
   title: Hooks
   contents:
-    - item: A collection of generic TypeScript factories.
+    - item: A collection of general purpose TypeScript factories.
