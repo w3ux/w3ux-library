@@ -23,6 +23,7 @@ export interface PolkiconProps {
   background?: string;
   inactive?: boolean;
   transform?: TransformProp;
+  fontSize?: number | string;
 }
 
 export type TransformProp =
