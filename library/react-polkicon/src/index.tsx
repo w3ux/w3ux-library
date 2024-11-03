@@ -12,6 +12,7 @@ export const Polkicon = ({
   background,
   inactive,
   transform: propTransform,
+  fontSize,
 }: PolkiconProps) => {
   // The colors of the Polkicon and inner circles.
   const [colors, setColors] = useState<string[]>([]);
@@ -55,13 +56,15 @@ export const Polkicon = ({
 
   return (
     coords && (
-      <div
+      <span
+        className="polkicon"
         style={{
           display: "inline-block",
+          verticalAlign: "-0.125em",
           height: "1em",
           width: "auto",
-          verticalAlign: "-0.125em",
           transform,
+          fontSize,
         }}
       >
         <svg
@@ -82,7 +85,7 @@ export const Polkicon = ({
             )
             .map(renderCircle)}
         </svg>
-      </div>
+      </span>
     )
   );
 };
