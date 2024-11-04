@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/utils-source",
   "license": "GPL-3.0-only",
-  "version": "1.1.0",
+  "version": "1.1.1-beta.6",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
