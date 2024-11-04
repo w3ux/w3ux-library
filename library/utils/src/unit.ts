@@ -1,10 +1,9 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { u8aToString, u8aUnwrapBytes } from "@polkadot/util";
 import type { MutableRefObject, RefObject } from "react";
 import { AnyObject } from "./types";
-import { ellipsisFn, rmCommas } from "./base";
+import { rmCommas } from "./base";
 import { AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
 
@@ -175,30 +174,6 @@ export const isValidAddress = (address: string): boolean => {
   } catch (e) {
     return false;
   }
-};
-
-/**
- * @name determinePoolDisplay
- * @summary A pool will be displayed with either its set metadata or its address.
- */
-export const determinePoolDisplay = (address: string, batchItem: AnyJson) => {
-  // default display value
-  const defaultDisplay = ellipsisFn(address, 6);
-
-  // fallback to address on empty metadata string
-  let display = batchItem ?? defaultDisplay;
-
-  // check if super identity has been byte encoded
-  const displayAsBytes = u8aToString(u8aUnwrapBytes(display));
-  if (displayAsBytes !== "") {
-    display = displayAsBytes;
-  }
-  // if still empty string, default to clipped address
-  if (display === "") {
-    display = defaultDisplay;
-  }
-
-  return display;
 };
 
 /**
