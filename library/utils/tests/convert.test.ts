@@ -1,117 +1,56 @@
 // /* @license Copyright 2024 w3ux authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only */
 
-// import { describe, expect, test } from "vitest";
-// import * as fn from "../src/index";
+import { describe, expect, test } from "vitest";
+import * as fn from "../src/index";
 
-// describe("stringToU8a", () => {
-//   test("should convert a simple string to a Uint8Array", () => {
-//     const input = "Hello";
-//     const expectedOutput = new Uint8Array([72, 101, 108, 108, 111]); // ASCII values for 'H', 'e', 'l', 'l', 'o'
-//     const result = fn.stringToU8a(input);
-//     expect(result).toEqual(expectedOutput);
-//   });
+describe("u8aConcat", () => {
+  test("should concatenate multiple Uint8Array instances", () => {
+    const u8a1 = new Uint8Array([1, 2, 3]);
+    const u8a2 = new Uint8Array([4, 5, 6]);
+    const u8a3 = new Uint8Array([7, 8]);
 
-//   test("should handle an empty string", () => {
-//     const input = "";
-//     const expectedOutput = new Uint8Array(0); // Empty input results in an empty Uint8Array
-//     const result = fn.stringToU8a(input);
-//     expect(result).toEqual(expectedOutput);
-//   });
+    const result = fn.u8aConcat(u8a1, u8a2, u8a3);
+    expect(result).toEqual(new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]));
+  });
 
-//   test("should handle a string with numeric characters", () => {
-//     const input = "12345";
-//     const expectedOutput = new Uint8Array([49, 50, 51, 52, 53]); // ASCII values for '1', '2', '3', '4', '5'
-//     const result = fn.stringToU8a(input);
-//     expect(result).toEqual(expectedOutput);
-//   });
+  test("should handle an empty Uint8Array", () => {
+    const u8a1 = new Uint8Array([1, 2, 3]);
+    const u8a2 = new Uint8Array([]); // Empty array
 
-//   test("should handle whitespace characters", () => {
-//     const input = " \t\n";
-//     const expectedOutput = new Uint8Array([32, 9, 10]); // ASCII values for space, tab, and newline
-//     const result = fn.stringToU8a(input);
-//     expect(result).toEqual(expectedOutput);
-//   });
-// });
-// describe("u8aToString", () => {
-//   test("should convert a simple Uint8Array to a string", () => {
-//     const u8a = new Uint8Array([72, 101, 108, 108, 111]); // ASCII values for 'Hello'
-//     const result = fn.u8aToString(u8a);
-//     expect(result).toBe("Hello");
-//   });
+    const result = fn.u8aConcat(u8a1, u8a2);
+    expect(result).toEqual(new Uint8Array([1, 2, 3])); // Should return the first array
+  });
 
-//   test("should handle an empty Uint8Array", () => {
-//     const u8a = new Uint8Array(0); // Empty input results in an empty string
-//     const result = fn.u8aToString(u8a);
-//     expect(result).toBe("");
-//   });
+  test("should handle multiple empty Uint8Arrays", () => {
+    const u8a1 = new Uint8Array([]);
+    const u8a2 = new Uint8Array([]);
 
-//   test("should handle numeric characters", () => {
-//     const u8a = new Uint8Array([49, 50, 51, 52, 53]); // ASCII values for '12345'
-//     const result = fn.u8aToString(u8a);
-//     expect(result).toBe("12345");
-//   });
+    const result = fn.u8aConcat(u8a1, u8a2);
+    expect(result).toEqual(new Uint8Array([])); // Should return an empty array
+  });
 
-//   test("should handle whitespace characters", () => {
-//     const u8a = new Uint8Array([32, 9, 10]); // ASCII values for space, tab, and newline
-//     const result = fn.u8aToString(u8a);
-//     expect(result).toBe(" \t\n"); // Expect whitespace characters to be preserved
-//   });
+  test("should handle single Uint8Array", () => {
+    const u8a1 = new Uint8Array([9, 10, 11]);
 
-//   test("should handle a Uint8Array with a single byte", () => {
-//     const u8a = new Uint8Array([65]); // ASCII value for 'A'
-//     const result = fn.u8aToString(u8a);
-//     expect(result).toBe("A");
-//   });
-// });
+    const result = fn.u8aConcat(u8a1);
+    expect(result).toEqual(u8a1); // Should return the same array
+  });
 
-// describe("u8aConcat", () => {
-//   test("should concatenate multiple Uint8Array instances", () => {
-//     const u8a1 = new Uint8Array([1, 2, 3]);
-//     const u8a2 = new Uint8Array([4, 5, 6]);
-//     const u8a3 = new Uint8Array([7, 8]);
+  test("should handle concatenation of different lengths", () => {
+    const u8a1 = new Uint8Array([1, 2]);
+    const u8a2 = new Uint8Array([3]);
+    const u8a3 = new Uint8Array([4, 5, 6]);
 
-//     const result = fn.u8aConcat(u8a1, u8a2, u8a3);
-//     expect(result).toEqual(new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]));
-//   });
+    const result = fn.u8aConcat(u8a1, u8a2, u8a3);
+    expect(result).toEqual(new Uint8Array([1, 2, 3, 4, 5, 6])); // Should return concatenated result
+  });
 
-//   test("should handle an empty Uint8Array", () => {
-//     const u8a1 = new Uint8Array([1, 2, 3]);
-//     const u8a2 = new Uint8Array([]); // Empty array
+  test("should handle Uint8Arrays with non-consecutive values", () => {
+    const u8a1 = new Uint8Array([0, 255]);
+    const u8a2 = new Uint8Array([128, 64]);
 
-//     const result = fn.u8aConcat(u8a1, u8a2);
-//     expect(result).toEqual(new Uint8Array([1, 2, 3])); // Should return the first array
-//   });
-
-//   test("should handle multiple empty Uint8Arrays", () => {
-//     const u8a1 = new Uint8Array([]);
-//     const u8a2 = new Uint8Array([]);
-
-//     const result = fn.u8aConcat(u8a1, u8a2);
-//     expect(result).toEqual(new Uint8Array([])); // Should return an empty array
-//   });
-
-//   test("should handle single Uint8Array", () => {
-//     const u8a1 = new Uint8Array([9, 10, 11]);
-
-//     const result = fn.u8aConcat(u8a1);
-//     expect(result).toEqual(u8a1); // Should return the same array
-//   });
-
-//   test("should handle concatenation of different lengths", () => {
-//     const u8a1 = new Uint8Array([1, 2]);
-//     const u8a2 = new Uint8Array([3]);
-//     const u8a3 = new Uint8Array([4, 5, 6]);
-
-//     const result = fn.u8aConcat(u8a1, u8a2, u8a3);
-//     expect(result).toEqual(new Uint8Array([1, 2, 3, 4, 5, 6])); // Should return concatenated result
-//   });
-
-//   test("should handle Uint8Arrays with non-consecutive values", () => {
-//     const u8a1 = new Uint8Array([0, 255]);
-//     const u8a2 = new Uint8Array([128, 64]);
-
-//     const result = fn.u8aConcat(u8a1, u8a2);
-//     expect(result).toEqual(new Uint8Array([0, 255, 128, 64])); // Should concatenate properly
-//   });
-// });
+    const result = fn.u8aConcat(u8a1, u8a2);
+    expect(result).toEqual(new Uint8Array([0, 255, 128, 64])); // Should concatenate properly
+  });
+});
