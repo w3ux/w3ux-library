@@ -8,8 +8,8 @@ import type {
   TimeLeftRaw,
   TimeleftDuration,
   UseTimeleftProps,
-} from "./types";
-import { getDuration } from "./utils";
+} from "@w3ux/types";
+import { getDuration } from "../util";
 
 export const useTimeLeft = (props?: UseTimeleftProps) => {
   const depsTimeleft = props?.depsTimeleft || [];
@@ -108,6 +108,7 @@ export const useTimeLeft = (props?: UseTimeleftProps) => {
     []
   );
 
+  // Set the end time and calculate timeleft.
   const setFromNow = (dateFrom: Date, dateTo: Date) => {
     setTimeleft(getTimeleft(getDuration(dateFrom)));
     setStateWithRef(dateTo, setTo, toRef);
