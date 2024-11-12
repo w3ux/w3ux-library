@@ -35,7 +35,13 @@ export const build = async () => {
       !(await generatePackageJson(
         libDirectory,
         `${libDirectory}/${PACKAGE_OUTPUT}`,
-        "gulp"
+        "gulp",
+        {
+          "./util": {
+            import: "./mjs/util.js",
+            require: "./cjs/util.js",
+          },
+        }
       ))
     ) {
       throw `Failed to generate package.json file.`;
