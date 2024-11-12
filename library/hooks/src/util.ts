@@ -3,7 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { TimeleftDuration } from "@w3ux/types";
 import { differenceInDays, getUnixTime, intervalToDuration } from "date-fns";
-import { defaultDuration } from "./useTimeLeft/defaults";
+import { defaultDuration } from "./useTime/defaults";
 
 // calculates the current timeleft duration.
 export const getDuration = (toDate: Date | null): TimeleftDuration => {
