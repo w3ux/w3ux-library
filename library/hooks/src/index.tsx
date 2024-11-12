@@ -5,4 +5,4 @@ export * from "./useEffectIgnoreInitial";
 export * from "./useOnResize";
 export * from "./useOutsideAlerter";
 export * from "./useSize";
-export * from "./useTime";
+export * from "./useTimeLeft";
