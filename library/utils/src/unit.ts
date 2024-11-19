@@ -3,7 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import type { MutableRefObject, RefObject } from "react";
 import { AnyObject } from "./types";
-import { rmCommas } from "./base";
+import { rmCommas, rmDecimals } from "./base";
 import { AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
 
@@ -31,7 +31,9 @@ export const planckToUnit = (
       typeof val === "bigint"
         ? val
         : BigInt(
-            typeof val === "number" ? Math.floor(val).toString() : rmCommas(val)
+            typeof val === "number"
+              ? Math.floor(val).toString()
+              : rmDecimals(rmCommas(val))
           );
 
     const divisor = units === 0 ? 1n : BigInt(10) ** BigInt(units);
