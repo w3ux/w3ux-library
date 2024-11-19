@@ -159,6 +159,12 @@ export const pageFromUri = (pathname: string, fallback: string) => {
 export const rmCommas = (val: string): string => val.replace(/,/g, "");
 
 /**
+ * @name rmCommas
+ * @summary Removes the decimal point and decimals from a string.
+ */
+export const rmDecimals = (str) => str.split(".")[0];
+
+/**
  * @name shuffle
  * @summary Shuffle a set of objects.
  */

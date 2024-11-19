@@ -113,6 +113,39 @@ describe("Tests suite - rmCommas Function", () => {
   });
 });
 
+describe("rmDecimals", () => {
+  test("should remove decimals from a string with a decimal point", () => {
+    expect(fn.rmDecimals("123.45")).toBe("123");
+    expect(fn.rmDecimals("45.6789")).toBe("45");
+  });
+
+  test("should return the original string if no decimal point exists", () => {
+    expect(fn.rmDecimals("678")).toBe("678");
+    expect(fn.rmDecimals("123")).toBe("123");
+  });
+
+  test("should handle empty strings", () => {
+    expect(fn.rmDecimals("")).toBe("");
+  });
+
+  test("should handle strings with multiple decimal points by removing everything after the first", () => {
+    expect(fn.rmDecimals("123.45.67")).toBe("123");
+  });
+
+  test("should handle strings with only a decimal point", () => {
+    expect(fn.rmDecimals(".")).toBe("");
+  });
+
+  test("should handle strings that start with a decimal point", () => {
+    expect(fn.rmDecimals(".123")).toBe("");
+  });
+
+  test("should handle strings with non-numeric characters", () => {
+    expect(fn.rmDecimals("abc.123")).toBe("abc");
+    expect(fn.rmDecimals("test.")).toBe("test");
+  });
+});
+
 describe("Test suite - shuffle Function", () => {
   test("should shuffle an array of numbers", () => {
     const inputArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
