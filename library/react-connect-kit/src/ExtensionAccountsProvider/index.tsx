@@ -7,7 +7,7 @@ import {
   localStorageOrDefault,
   setStateWithRef,
 } from "@w3ux/utils";
-import { DEFAULT_SS58, defaultExtensionAccountsContext } from "./defaults";
+import { defaultExtensionAccountsContext } from "./defaults";
 import { ImportedAccount } from "../types";
 import {
   ExtensionAccount,
@@ -18,8 +18,6 @@ import {
   ExtensionAccountsProviderProps,
 } from "./types";
 import { useImportExtension } from "./useImportExtension";
-import { initPolkadotSnap } from "./snap";
-import { SnapNetworks } from "@chainsafe/metamask-polkadot-types";
 import { Extensions } from "./Extensions";
 import {
   connectActiveExtensionAccount,
@@ -103,9 +101,6 @@ export const ExtensionAccountsProvider = ({
     if (!extensionIds.length) {
       return;
     }
-
-    // Pre-connect: Inject extensions into `injectedWeb3` if not already injected.
-    await handleExtensionAdapters(extensionIds);
 
     // Iterate previously connected extensions and retreive valid `enable` functions.
     // ------------------------------------------------------------------------------
@@ -211,9 +206,6 @@ export const ExtensionAccountsProvider = ({
         `unknown_extension_${extensionsInitialisedRef.current.length + 1}`
       );
     } else {
-      // Pre-connect: Inject into `injectedWeb3` if the provided extension is not already injected.
-      await handleExtensionAdapters([id]);
-
       try {
         // Attempt to get extension `enable` property.
         const { enable } = window.injectedWeb3[id];
@@ -304,22 +296,6 @@ export const ExtensionAccountsProvider = ({
     }
     // mark extension as initialised.
     updateInitialisedExtensions(id);
-  };
-
-  // Handle adaptors for extensions that are not supported by `injectedWeb3`.
-  const handleExtensionAdapters = async (extensionIds: string[]) => {
-    try {
-      // Connect to Metamask Polkadot Snap and inject into `injectedWeb3` if avaialble.
-      if (extensionIds.find((id) => id === "metamask-polkadot-snap")) {
-        await initPolkadotSnap({
-          networkName: network as SnapNetworks,
-          addressPrefix: DEFAULT_SS58,
-        });
-      }
-    } catch (e) {
-      // Provided network is not supported, or something else went wrong with initialisation.
-      // Silently fail.
-    }
   };
 
   // Update initialised extensions.
