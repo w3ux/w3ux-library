@@ -3,13 +3,13 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import {
   ExtensionAccount,
+  ExtensionInjected,
   ExtensionInterface,
 } from "./ExtensionsProvider/types";
 
 declare global {
   interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    injectedWeb3?: Record<string, { enable: (id: string) => any }>;
+    injectedWeb3?: Record<string, ExtensionInjected>;
   }
 }
 
