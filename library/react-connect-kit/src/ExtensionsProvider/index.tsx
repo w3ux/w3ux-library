@@ -12,7 +12,6 @@ import {
 } from "react";
 import type { ExtensionStatus, ExtensionsContextInterface } from "./types";
 import { defaultExtensionsContext } from "./defaults";
-import { polkadotSnapAvailable } from "./utils";
 import extensions from "@w3ux/extension-assets";
 import { web3Enable } from "@polkagate/extension-dapp";
 
@@ -50,11 +49,6 @@ export const ExtensionsProvider = ({
   const extensionsStatusRef = useRef(extensionsStatus);
 
   // Store whether Metamask Snaps are enabled.
-  const [chainSafeSnapEnabled] = useState<boolean>(
-    options?.chainSafeSnapEnabled || false
-  );
-
-  // Store whether Metamask Snaps are enabled.
   const [polkaGateSnapEnabled] = useState<boolean>(
     options?.polkagateSnapEnabled || false
   );
@@ -66,30 +60,18 @@ export const ExtensionsProvider = ({
   // Handle completed interval check for `injectedWeb3`.
   //
   // Clear interval and move on to checking for Metamask Polkadot Snap.
-  const handleClearInterval = (hasInjectedWeb3: boolean) => {
+  const handleClearInterval = () => {
     clearInterval(injectedWeb3Interval);
     // Check if Metamask Polkadot Snap is available.
-    handleSnapInjection(hasInjectedWeb3);
+    handleSnapInjection();
   };
 
   // Handle injecting of `metamask-polkadot-snap` into injectedWeb3 if avaialble, and complete
   // `injectedWeb3` syncing process.
-  const handleSnapInjection = async (hasInjectedWeb3: boolean) => {
-    // Inject ChainSafe Snap if enabled.
-    const snapAvailable =
-      (await polkadotSnapAvailable()) && chainSafeSnapEnabled;
-
+  const handleSnapInjection = async () => {
     // Inject PolkaGate Snap if enabled.
     if (polkaGateSnapEnabled) {
       await withTimeout(500, web3Enable("snap_only"));
-    }
-
-    if (hasInjectedWeb3 || snapAvailable) {
-      setStateWithRef(
-        getExtensionsStatus(snapAvailable),
-        setExtensionsStatus,
-        extensionsStatusRef
-      );
     }
 
     setStateWithRef(false, setCheckingInjectedWeb3, checkingInjectedWeb3Ref);
@@ -117,34 +99,6 @@ export const ExtensionsProvider = ({
       setExtensionsStatus,
       extensionsStatusRef
     );
-  };
-
-  // Getter for the currently installed extensions.
-  //
-  // Loops through the supported extensios and checks if they are present in `injectedWeb3`. Adds
-  // `installed` status to the extension if it is present.
-  const getExtensionsStatus = (snapAvailable: boolean) => {
-    const { injectedWeb3 } = window;
-
-    const newExtensionsStatus = { ...extensionsStatus };
-    if (snapAvailable) {
-      newExtensionsStatus["metamask-polkadot-snap"] = "installed";
-    }
-
-    const extensionsAsArray = Object.entries(extensions).map(
-      ([key, value]) => ({
-        id: key,
-        ...value,
-      })
-    );
-
-    extensionsAsArray.forEach((e) => {
-      if (injectedWeb3[e.id] !== undefined) {
-        newExtensionsStatus[e.id] = "installed";
-      }
-    });
-
-    return newExtensionsStatus;
   };
 
   // Checks if an extension has been installed.
@@ -179,15 +133,8 @@ export const ExtensionsProvider = ({
 
       injectedWeb3Interval = setInterval(() => {
         injectCounter.current++;
-
         if (injectCounter.current === totalChecks) {
-          handleClearInterval(false);
-        } else {
-          // `injectedWeb3` is present
-          const injectedWeb3 = window?.injectedWeb3 || null;
-          if (injectedWeb3 !== null) {
-            handleClearInterval(true);
-          }
+          handleClearInterval();
         }
       }, checkEveryMs);
     }

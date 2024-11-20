@@ -6,6 +6,13 @@ import {
   ExtensionInterface,
 } from "./ExtensionsProvider/types";
 
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    injectedWeb3?: Record<string, { enable: (id: string) => any }>;
+  }
+}
+
 /*------------------------------------------------------------
    Re-export package inner types.
  ------------------------------------------------------------*/
