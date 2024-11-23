@@ -2076,8 +2076,6 @@ __metadata:
     gulp-typescript: "npm:^6.0.0-alpha.1"
     react: "npm:^18"
     typescript: "npm:^5.4.5"
-  peerDependencies:
-    "@polkadot/api": ^11
   languageName: unknown
   linkType: soft
 
