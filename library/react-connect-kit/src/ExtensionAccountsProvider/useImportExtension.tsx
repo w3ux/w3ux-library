@@ -5,7 +5,7 @@ import { formatAccountSs58, isValidAddress } from "@w3ux/utils";
 import type { ExtensionAccount } from "../ExtensionsProvider/types";
 import { HandleImportExtension } from "./types";
 import { getActiveAccountLocal, getInExternalAccounts } from "./utils";
-import { DEFAULT_SS58, defaultHandleImportExtension } from "./defaults";
+import { defaultHandleImportExtension } from "./defaults";
 import { AnyFunction } from "@w3ux/types";
 
 export const useImportExtension = () => {
@@ -17,7 +17,8 @@ export const useImportExtension = () => {
     currentAccounts: ExtensionAccount[],
     signer: AnyFunction,
     newAccounts: ExtensionAccount[],
-    network: string
+    network: string,
+    ss58: number
   ): HandleImportExtension => {
     if (!newAccounts.length) {
       return defaultHandleImportExtension;
@@ -29,10 +30,7 @@ export const useImportExtension = () => {
     // Reformat addresses to ensure default ss58 format.
     newAccounts
       .map((account) => {
-        const formattedAddress = formatAccountSs58(
-          account.address,
-          DEFAULT_SS58
-        );
+        const formattedAddress = formatAccountSs58(account.address, ss58);
         if (!formattedAddress) {
           return null;
         }
@@ -53,7 +51,7 @@ export const useImportExtension = () => {
     // Check whether active account is present in forgotten accounts.
     const removedActiveAccount =
       removedAccounts.find(
-        ({ address }) => address === getActiveAccountLocal(network)
+        ({ address }) => address === getActiveAccountLocal(network, ss58)
       )?.address || null;
 
     // Remove accounts that have already been added to `currentAccounts` via another extension.

@@ -4,7 +4,6 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { formatAccountSs58, localStorageOrDefault } from "@w3ux/utils";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
 import { ExternalAccount } from "../types";
-import { DEFAULT_SS58 } from "./defaults";
 import { AnyFunction } from "@w3ux/types";
 
 /*------------------------------------------------------------
@@ -12,11 +11,14 @@ import { AnyFunction } from "@w3ux/types";
  ------------------------------------------------------------*/
 
 // Gets local `active_acount` for a network.
-export const getActiveAccountLocal = (network: string): string | null => {
+export const getActiveAccountLocal = (
+  network: string,
+  ss58: number
+): string | null => {
   const account = localStorageOrDefault(`${network}_active_account`, null);
 
   if (account !== null) {
-    const formattedAddress = formatAccountSs58(account, DEFAULT_SS58);
+    const formattedAddress = formatAccountSs58(account, ss58);
     if (formattedAddress) {
       return formattedAddress;
     }
@@ -27,10 +29,12 @@ export const getActiveAccountLocal = (network: string): string | null => {
 // Checks if the local active account is the provided accounts.
 export const getActiveExtensionAccount = (
   network: string,
+  ss58: number,
   accounts: ExtensionAccount[]
 ) =>
-  accounts.find(({ address }) => address === getActiveAccountLocal(network)) ??
-  null;
+  accounts.find(
+    ({ address }) => address === getActiveAccountLocal(network, ss58)
+  ) ?? null;
 
 // Connects to active account, and calls an optional callback, if provided.
 export const connectActiveExtensionAccount = (

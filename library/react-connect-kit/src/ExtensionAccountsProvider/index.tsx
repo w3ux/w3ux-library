@@ -38,6 +38,7 @@ export const useExtensionAccounts = () => useContext(ExtensionAccountsContext);
 export const ExtensionAccountsProvider = ({
   children,
   network,
+  ss58,
   dappName,
   activeAccount,
   setActiveAccount,
@@ -130,10 +131,14 @@ export const ExtensionAccountsProvider = ({
     const initialAccounts =
       await Extensions.getAllAccounts(connectedExtensions);
 
-    // Connect to the active account if found in initial accounts.
-    const activeAccountInInitial = initialAccounts.find(
-      ({ address }) => address === getActiveAccountLocal(network)
-    );
+    // Get the active account if found in initial accounts. Format initial account addresses to the
+    // correct ss58 format before finding.
+    const activeAccountInInitial = initialAccounts
+      .map((acc) => ({
+        ...acc,
+        address: formatAccountSs58(acc.address, ss58),
+      }))
+      .find(({ address }) => address === getActiveAccountLocal(network, ss58));
 
     // Perform all initial state updates.
     // ----------------------------------
@@ -148,10 +153,6 @@ export const ExtensionAccountsProvider = ({
     });
 
     updateExtensionAccounts({ add: initialAccounts, remove: [] });
-
-    if (activeAccountInInitial) {
-      connectActiveExtensionAccount(activeAccountInInitial, connectToAccount);
-    }
 
     // Initiate account subscriptions for connected extensions.
     // --------------------------------------------------------
@@ -170,7 +171,8 @@ export const ExtensionAccountsProvider = ({
         extensionAccountsRef.current,
         signer,
         accounts,
-        network
+        network,
+        ss58
       );
 
       // Update added and removed accounts.
@@ -186,10 +188,14 @@ export const ExtensionAccountsProvider = ({
         const unsub = extension.accounts.subscribe((accounts) => {
           handleAccounts(id, accounts || [], extension.signer);
         });
-
         // Add unsub to context ref.
         addToUnsubscribe(id, unsub);
       }
+    }
+
+    // Connect to active account if found in initial accounts.
+    if (activeAccountInInitial) {
+      connectActiveExtensionAccount(activeAccountInInitial, connectToAccount);
     }
   };
 
@@ -225,12 +231,14 @@ export const ExtensionAccountsProvider = ({
               extensionAccountsRef.current,
               extension.signer,
               accounts,
-              network
+              network,
+              ss58
             );
             // Set active account for network if not yet set.
             if (!activeAccount) {
               const activeExtensionAccount = getActiveExtensionAccount(
                 network,
+                ss58,
                 newAccounts
               );
               if (
