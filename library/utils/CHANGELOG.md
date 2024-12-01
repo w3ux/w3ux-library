@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/w3ux/w3ux-library/compare/utils-source-v1.1.0...utils-source-v1.2.0) (2024-12-01)
+
+
+### Features
+
+* add `rmDecimals` to utils, apply to `planckToUnit` ([#144](https://github.com/w3ux/w3ux-library/issues/144)) ([77dc9b8](https://github.com/w3ux/w3ux-library/commit/77dc9b89ff244e7938d1240da4af3dfde10109f5))
+* **refactor:** Misc utils improvements ([#142](https://github.com/w3ux/w3ux-library/issues/142)) ([a31932f](https://github.com/w3ux/w3ux-library/commit/a31932f3b1df39c0e1ff8d66ebbea426d9cbf95b))
+
 ## [1.1.0](https://github.com/w3ux/w3ux-library/compare/utils-source-v1.0.0...utils-source-v1.1.0) (2024-11-02)
 
 
