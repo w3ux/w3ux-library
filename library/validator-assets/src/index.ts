@@ -460,6 +460,24 @@ export const ValidatorCommunity: ValidatorEntry[] = [
     },
   },
   {
+    name: "ProStakers.com 💎",
+    icon: "ProStakers",
+    bio: "ProStakers is a supporter of the Polkadot ecosystem running network validators. We prioritize security by monitoring our systems 24/7. Our team provides competitive services with low comissions.",
+    email: "polkadot@prostakers.com",
+    x: "@ProStakersCom",
+    website: "https://prostakers.com/",
+    validators: {
+      polkadot: [
+        "12R2eXcE2QhMa9BkMsWktt9wmoxbgiQBDG9YUM1p94r2F5UD",
+        "13sULqZ2NidBvrocYwJYxT6WJkcSY77SiQXtFiJHsurTZgqN",
+        "16ccKvsUEj7zuvxadvrpsVpGUNKjycdQcads4u2afwvfLtbp",
+      ],
+      kusama: [
+        "JLcdsEGtVtR22RuRPDa2tCMwBCox1FnyhJS8UWwSge1q8L6",
+      ],
+    },
+  },
+  {
     name: "🍀ARISTOPHANES🍀",
     icon: "PythagorasCapitalInvestment",
     bio: "Our motto is responsibility and transparency. We never go offline willfully or negligently, or impose exorbitant commission rates. Our record proves the trust people have placed on us. Being a Tokyo-based node, staking at us strengthens geological resistance of the network to disruptions.",
