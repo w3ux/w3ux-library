@@ -188,6 +188,20 @@ export const ValidatorCommunity: ValidatorEntry[] = [
     },
   },
   {
+    name: "Frog🐸",
+    icon: "Frog",
+    bio: "At Frogstaking.com we provide secure and reliable staking nodes. We are an experienced team of dedicated node operators for the DotSama ecosystem aiming to provide low-fee on-chain services.",
+    email: "info@frogstaking.com",
+    website: "https://frogstaking.com/",
+    validators: {
+      polkadot: ["16PpE8pMFscQ34aCbFcCqGmmhj9HFyDJJxKqZNQse1kVjyXc"],
+      kusama: [
+        "EoUT1KcbyPJr5tDQkejjzHsF9p6EGP2c5Q8bYonvhZ7giY7",
+        "D3NG36j7JXeP1pi5ZsiJBtHBsbbtrTddJQdAgYKff3eTAX9",
+      ],
+    },
+  },
+  {
     name: "GATOTECH 😸",
     icon: "Gatotech",
     bio: "Gatotech Ltd is a Scottish IT company focused on the adoption of decentralised ledger technologies (DLT) for the benefit of humankind.",
