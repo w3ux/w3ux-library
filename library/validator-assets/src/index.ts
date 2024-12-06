@@ -742,4 +742,22 @@ export const ValidatorCommunity: ValidatorEntry[] = [
       ],
     },
   },
+   {
+    name: "helixstreet",
+    icon: "helixstreet",
+    bio: "helixstreet: a Polkadot project revolutionising life sciences with blockchain. Our validators? Independent, bare metal, and crucial to our success. Nominate them, champion innovation.",
+    email: "t@helixstreet.io",
+    website: "https://helixstreet.io",
+    validators: {
+      polkadot: [
+        "1HMQVknF2rGz2vBegqA9jU4NhZKQtW7nZTDQykgeSm8FgPa",  
+      ],
+      kusama: [
+        "J6K1vA6ynGo2GrotGpP5ocHKr82JFTv7NUnzJcoRfTcCn8T",
+        "F3EJS4BsGsxjvigBcgte4ZfYUhpcizMQizQ5TxkR5ts378r",
+        "DGvPFG7dHMWryfHQD2XBQ4WX1nM5KnyHmsLSj2k7DaBRhUD",
+        "CrfvUqb1cbjJ9j7TkbCuXzuffquXFmAASZUeM3Ha9x6pXjX",
+      ],
+    },
+  },
 ];
