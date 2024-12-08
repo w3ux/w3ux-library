@@ -155,6 +155,20 @@ export const ValidatorCommunity: ValidatorEntry[] = [
     },
   },
   {
+    name: "deigenvektor.io",
+    icon: "Deigenvektor",
+    bio: "deigenvektor.io is an independent validator operating its own hardware in the Canton of Zug, Switzerland. We focus on delivering reliable and secure validator services using the highest-performing hardware available.",
+    email: "info@deigenvektor.io",
+    website: "https://deigenvektor.io",
+    validators: {
+      polkadot: ["1guBaaUmYpYPmsNmooQApqFmpmRHeaipb1CxoncMuiaqXGh"],
+      kusama: [
+        "Dd93SeZZD6F8z68q7VNi2GdT8u1cgU5f2mTifA1f5v5A5km",
+        "F2WyUUFXLYnBg6acv7t2KFzH6D7CyNcvC4mRCwUdsHTUB4t",
+      ],
+    },
+  },
+  {
     name: "Dionysus🍇",
     icon: "Dionysus",
     bio: "Independent secure rigorously monitored validation service for Polkadot and Kusama Networks operated by Web3 researchers and engineers with a proven record in running reliable secure infrastructure.",
