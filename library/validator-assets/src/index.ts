@@ -543,6 +543,20 @@ export const ValidatorCommunity: ValidatorEntry[] = [
     },
   },
   {
+    name: "Stake🧲Magnet",
+    icon: "StakeMagnet",
+    bio: "Our platform is proud to offer comprehensive staking services for both the Polkadot and Kusama networks. Our validators have proven history of 100% availability and zero slashes, stake with us on-chain.",
+    email: "info@stakemagnet.com",
+    website: "https://stakemagnet.com/",
+    validators: {
+      polkadot: ["13Emjax1tBfQMEKisppTMMe7jMbqpmCH1jRpTXudLocaevND"],
+      kusama: [
+        "HKk5gnHuuePbKq6UbMn7sV3UxsifyZXyhYQqyrL8RPRBdq8",
+        "DaCVzWm7vqbJdRd9U9Cwgqx74DC9m1dasEXNTkftdAwwaRc",
+      ],
+    },
+  },
+  {
     name: "Stakepile.com",
     icon: "Stakepile",
     bio: "Reliable, independent staking service with low fees to help you earn better yields. We actively participate in all community on-chain governance. Our nodes are geographically distributed across several regions for better redundancy and decentralization.",
