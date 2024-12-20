@@ -1969,7 +1969,7 @@ __metadata:
   dependencies:
     minimist: "npm:^1.2.8"
     prettier: "npm:^3.2.5"
-    tsup: "npm:^8.0.2"
+    tsup: "npm:^8.3.5"
     yaml: "npm:^2.4.3"
   languageName: unknown
   linkType: soft
@@ -2117,7 +2117,7 @@ __metadata:
   dependencies:
     "@types/react": "npm:^18"
     react: "npm:^18"
-    tsup: "npm:^8.0.2"
+    tsup: "npm:^8.3.5"
   languageName: unknown
   linkType: soft
 
@@ -2136,7 +2136,7 @@ __metadata:
     "@types/react": "npm:^18"
     "@w3ux/types": "npm:^1.0.0"
     react: "npm:^18"
-    tsup: "npm:^8.0.2"
+    tsup: "npm:^8.3.5"
     vitest: "npm:^1.6.0"
   languageName: unknown
   linkType: soft
@@ -2165,7 +2165,7 @@ __metadata:
   dependencies:
     "@types/react": "npm:^18"
     react: "npm:^18"
-    tsup: "npm:^8.0.2"
+    tsup: "npm:^8.3.5"
   peerDependencies:
     react: ^18
   languageName: unknown
@@ -7721,7 +7721,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^8.0.2, tsup@npm:^8.3.5":
+"tsup@npm:^8.3.5":
   version: 8.3.5
   resolution: "tsup@npm:8.3.5"
   dependencies:
