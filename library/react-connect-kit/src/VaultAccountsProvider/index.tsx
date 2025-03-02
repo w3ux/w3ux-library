@@ -9,7 +9,7 @@ import type {
   VaultAccountsProviderProps,
 } from "./types";
 import { defaultVaultAccountsContext } from "./defaults";
-import { VaultAccount } from "../types";
+import { VaultAccount } from "@w3ux/types";
 
 export const VaultAccountsContext =
   createContext<VaultAccountsContextInterface>(defaultVaultAccountsContext);

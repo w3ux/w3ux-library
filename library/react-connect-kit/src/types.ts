@@ -2,7 +2,6 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import {
-  ExtensionAccount,
   ExtensionInjected,
   ExtensionInterface,
 } from "./ExtensionsProvider/types";
@@ -21,54 +20,6 @@ export * from "./ExtensionsProvider/types";
 export * from "./ExtensionAccountsProvider/types";
 export * from "./LedgerAccountsProvider/types";
 export * from "./VaultAccountsProvider/types";
-
-/*------------------------------------------------------------
-   Imported account types.
- ------------------------------------------------------------*/
-export type MaybeAddress = string | null;
-
-export type AccountSource = "extension" | "external" | "ledger" | "vault";
-
-export type ExternalAccountAddedBy = "system" | "user";
-
-export type ImportedAccount =
-  | ExtensionAccount
-  | ExternalAccount
-  | LedgerAccount
-  | VaultAccount
-  | WCAccount;
-
-export interface ExternalAccount {
-  address: string;
-  network: string;
-  name: string;
-  source: string;
-  addedBy: ExternalAccountAddedBy;
-}
-
-export interface LedgerAccount {
-  address: string;
-  network: string;
-  name: string;
-  source: string;
-  index: number;
-}
-
-export interface VaultAccount {
-  address: string;
-  network: string;
-  name: string;
-  source: string;
-  index: number;
-}
-
-export interface WCAccount {
-  address: string;
-  network: string;
-  name: string;
-  source: string;
-  index: number;
-}
 
 /*------------------------------------------------------------
    Extension import process types.

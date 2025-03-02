@@ -2,11 +2,10 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { formatAccountSs58, isValidAddress } from "@w3ux/utils";
-import type { ExtensionAccount } from "../ExtensionsProvider/types";
 import { HandleImportExtension } from "./types";
 import { getActiveAccountLocal, getInExternalAccounts } from "./utils";
 import { defaultHandleImportExtension } from "./defaults";
-import { AnyFunction } from "@w3ux/types";
+import { AnyFunction, ExtensionAccount } from "@w3ux/types";
 
 export const useImportExtension = () => {
   // Handles importing of extension accounts.

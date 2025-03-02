@@ -8,11 +8,9 @@ import {
   RawExtensionEnable,
   RawExtensions,
 } from "../types";
-import {
-  ExtensionAccount,
-  ExtensionInterface,
-} from "../ExtensionsProvider/types";
+import { ExtensionInterface } from "../ExtensionsProvider/types";
 import { DEFAULT_SS58 } from "./defaults";
+import { ExtensionAccount } from "@w3ux/types";
 
 // A static class to manage the discovery and importing of extensions.
 export class Extensions {

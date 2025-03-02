@@ -2,8 +2,12 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import type { FunctionComponent, SVGProps } from "react";
-import { ExternalAccountAddedBy } from "../types";
-import { AnyJson, VoidFn } from "@w3ux/types";
+import {
+  AnyJson,
+  ExtensionAccount,
+  ExtensionStatus,
+  VoidFn,
+} from "@w3ux/types";
 
 // Extensions context interface.
 export interface ExtensionsContextInterface {
@@ -33,14 +37,6 @@ export interface ExtensionInterface {
   signer: AnyJson;
 }
 
-// Required properties returned after subscribing to accounts.
-export interface ExtensionAccount extends ExtensionMetadata {
-  address: string;
-  meta?: AnyJson;
-  name: string;
-  signer?: AnyJson;
-}
-
 // Configuration item of an extension.
 export interface ExtensionConfig {
   id: string;
@@ -50,11 +46,3 @@ export interface ExtensionConfig {
   >;
   url: string;
 }
-
-// Miscellaneous metadata added to an extension.
-export interface ExtensionMetadata {
-  addedBy?: ExternalAccountAddedBy;
-  source: string;
-}
-
-export type ExtensionStatus = "installed" | "not_authenticated" | "connected";
