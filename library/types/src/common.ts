@@ -4,7 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { CSSProperties, ReactNode } from "react";
 
 // An optional string.
-export type MaybeString = string | null | undefined;
+export type MaybeString = string | null;
 
 // A hex string
 export type HexString = `0x${string}`;

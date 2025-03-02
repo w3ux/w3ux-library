@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/react-connect-kit-source",
   "license": "GPL-3.0-only",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@types/react": "^18",
-    "@w3ux/types": "^1.0.1",
+    "@w3ux/types": "^1.0.2",
     "gulp": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-strip-comments": "^2.6.0",
