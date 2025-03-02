@@ -2,9 +2,12 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { ReactNode } from "react";
-import { ExtensionAccount } from "../ExtensionsProvider/types";
-import { ImportedAccount, MaybeAddress } from "../types";
-import { Sync } from "@w3ux/types";
+import {
+  Sync,
+  MaybeString,
+  ImportedAccount,
+  ExtensionAccount,
+} from "@w3ux/types";
 
 export interface ExtensionAccountsContextInterface {
   connectExtensionAccounts: (id?: string) => Promise<boolean>;
@@ -17,8 +20,8 @@ export interface ExtensionAccountsProviderProps {
   network: string;
   ss58: number;
   dappName: string;
-  activeAccount?: MaybeAddress;
-  setActiveAccount?: (address: MaybeAddress) => void;
+  activeAccount?: MaybeString;
+  setActiveAccount?: (address: MaybeString) => void;
   onExtensionEnabled?: (id: string) => void;
 }
 
@@ -26,8 +29,6 @@ export interface HandleImportExtension {
   newAccounts: ExtensionAccount[];
   meta: {
     accountsToRemove: ExtensionAccount[];
-    removedActiveAccount: MaybeAddress;
+    removedActiveAccount: MaybeString;
   };
 }
-
-export type HexString = `0x${string}`;

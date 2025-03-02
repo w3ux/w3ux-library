@@ -1,8 +1,8 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
+import { WCAccount } from "@w3ux/types";
 import { localStorageOrDefault } from "@w3ux/utils";
-import { WCAccount } from "../types";
 
 // Gets imported Wallet Connect accounts from local storage.
 export const getLocalWcAccounts = (network?: string) => {

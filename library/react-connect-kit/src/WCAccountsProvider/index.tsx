@@ -9,7 +9,7 @@ import type {
   WCAccountsProviderProps,
 } from "./types";
 import { defaultWcAccountsContext } from "./defaults";
-import { WCAccount } from "../types";
+import { WCAccount } from "@w3ux/types";
 
 export const WCAccountsContext = createContext<WCAccountsContextInterface>(
   defaultWcAccountsContext

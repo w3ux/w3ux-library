@@ -1,8 +1,8 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
+import { WCAccount } from "@w3ux/types";
 import { ReactNode } from "react";
-import { WCAccount } from "../types";
 
 export interface WCAccountsProviderProps {
   children: ReactNode;

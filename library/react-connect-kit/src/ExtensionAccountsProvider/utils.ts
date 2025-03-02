@@ -2,9 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { formatAccountSs58, localStorageOrDefault } from "@w3ux/utils";
-import { ExtensionAccount } from "../ExtensionsProvider/types";
-import { ExternalAccount } from "../types";
-import { AnyFunction } from "@w3ux/types";
+import { AnyFunction, ExtensionAccount, ExternalAccount } from "@w3ux/types";
 
 /*------------------------------------------------------------
    Active account utils.

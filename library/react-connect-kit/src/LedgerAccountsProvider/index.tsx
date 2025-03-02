@@ -7,7 +7,6 @@ import {
   LedgerAccountsContextInterface,
   LedgerAccountsProviderProps,
 } from "./types";
-import { LedgerAccount } from "../types";
 import {
   getLocalLedgerAccounts,
   getLocalLedgerAddresses,
@@ -15,6 +14,7 @@ import {
   renameLocalLedgerAddress,
 } from "./utils";
 import { setStateWithRef } from "@w3ux/utils";
+import { LedgerAccount } from "@w3ux/types";
 
 export const LedgerAccountsContext =
   createContext<LedgerAccountsContextInterface>(defaultLedgerAccountsContext);

@@ -1,4 +1,13 @@
+/* @license Copyright 2024 w3ux authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
+
 import { CSSProperties, ReactNode } from "react";
+
+// An optional string.
+export type MaybeString = string | null | undefined;
+
+// A hex string
+export type HexString = `0x${string}`;
 
 // A general purpose sync status, tracking whether an item is not synced, in progress, or completed
 // syncing. Useful for tracking async function progress, used as React refs, etc.

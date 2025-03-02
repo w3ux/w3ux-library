@@ -8,11 +8,7 @@ import {
   setStateWithRef,
 } from "@w3ux/utils";
 import { defaultExtensionAccountsContext } from "./defaults";
-import { ImportedAccount } from "../types";
-import {
-  ExtensionAccount,
-  ExtensionInterface,
-} from "../ExtensionsProvider/types";
+import { ExtensionInterface } from "../ExtensionsProvider/types";
 import {
   ExtensionAccountsContextInterface,
   ExtensionAccountsProviderProps,
@@ -26,7 +22,13 @@ import {
 } from "./utils";
 import { useExtensions } from "../ExtensionsProvider";
 import { useEffectIgnoreInitial } from "@w3ux/hooks";
-import { AnyFunction, Sync, VoidFn } from "@w3ux/types";
+import {
+  AnyFunction,
+  ExtensionAccount,
+  ImportedAccount,
+  Sync,
+  VoidFn,
+} from "@w3ux/types";
 
 export const ExtensionAccountsContext =
   createContext<ExtensionAccountsContextInterface>(

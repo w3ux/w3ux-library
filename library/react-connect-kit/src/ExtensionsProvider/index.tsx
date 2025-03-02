@@ -10,10 +10,11 @@ import {
   createContext,
   useContext,
 } from "react";
-import type { ExtensionStatus, ExtensionsContextInterface } from "./types";
+import type { ExtensionsContextInterface } from "./types";
 import { defaultExtensionsContext } from "./defaults";
 import extensions from "@w3ux/extension-assets";
 import { web3Enable } from "@polkagate/extension-dapp";
+import { ExtensionStatus } from "@w3ux/types";
 
 export const ExtensionsContext = createContext<ExtensionsContextInterface>(
   defaultExtensionsContext

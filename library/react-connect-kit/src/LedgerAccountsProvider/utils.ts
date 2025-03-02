@@ -2,8 +2,8 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { localStorageOrDefault } from "@w3ux/utils";
-import { LedgerAccount } from "../types";
 import { LedgerAddress } from "./types";
+import { LedgerAccount } from "@w3ux/types";
 
 // Gets imported Ledger accounts from local storage.
 export const getLocalLedgerAccounts = (network?: string): LedgerAccount[] => {
