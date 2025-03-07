@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/w3ux/w3ux-library/compare/hooks-source-v1.4.0...hooks-source-v1.5.0) (2025-03-07)
+
+
+### Features
+
+* **refactor:** move high level connect-kit types to `types` package ([#202](https://github.com/w3ux/w3ux-library/issues/202)) ([c8b324e](https://github.com/w3ux/w3ux-library/commit/c8b324ea6671e3ae842719bdbd74b1703cdf09a1))
+
 ## [1.4.0](https://github.com/w3ux/w3ux-library/compare/hooks-source-v1.3.0...hooks-source-v1.4.0) (2024-12-01)
 
 
