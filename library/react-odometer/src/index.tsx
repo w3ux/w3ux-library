@@ -10,7 +10,7 @@ export const Odometer = ({
   spaceBefore = 0,
   spaceAfter = "0.25rem",
   wholeColor = "var(--text-color-primary)",
-  decimalColor = "var(--text-color-tertiary)",
+  decimalColor = "var(--text-color-secondary)",
   zeroDecimals = 0,
 }: Props) => {
   // Store all possible digits.
