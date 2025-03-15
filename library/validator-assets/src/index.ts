@@ -810,12 +810,17 @@ export const ValidatorCommunity: ValidatorEntry[] = [
     email: "t@helixstreet.io",
     website: "https://helixstreet.io",
     validators: {
-      polkadot: ["1HMQVknF2rGz2vBegqA9jU4NhZKQtW7nZTDQykgeSm8FgPa"],
+      polkadot: [
+        "1HMQVknF2rGz2vBegqA9jU4NhZKQtW7nZTDQykgeSm8FgPa",
+        "16WzVw5JDCXLiA3t5D4LL15S2sqSBtCsjVNXkwLCVxGdeQGj",
+      ],
       kusama: [
         "J6K1vA6ynGo2GrotGpP5ocHKr82JFTv7NUnzJcoRfTcCn8T",
         "F3EJS4BsGsxjvigBcgte4ZfYUhpcizMQizQ5TxkR5ts378r",
         "DGvPFG7dHMWryfHQD2XBQ4WX1nM5KnyHmsLSj2k7DaBRhUD",
         "CrfvUqb1cbjJ9j7TkbCuXzuffquXFmAASZUeM3Ha9x6pXjX",
+        "HR3EBGE3KimuXEGRmsf6xD8oC7xKdoAiSZizEubogFhaPMb",
+        "EyPp5yimu5tw2XM78UUAkbByDL1wHdz6T25iqTaySmZ3CdW",
       ],
     },
   },
