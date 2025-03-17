@@ -161,10 +161,16 @@ export const ValidatorCommunity: ValidatorEntry[] = [
     email: "info@deigenvektor.io",
     website: "https://deigenvektor.io",
     validators: {
-      polkadot: ["1guBaaUmYpYPmsNmooQApqFmpmRHeaipb1CxoncMuiaqXGh"],
+      polkadot: [
+        "1guBaaUmYpYPmsNmooQApqFmpmRHeaipb1CxoncMuiaqXGh",
+        "16UpmQgoFroRH1i4Gi1wVZmomXxSZc8gqkGQG2czD1yJHoEu",
+      ],
       kusama: [
         "Dd93SeZZD6F8z68q7VNi2GdT8u1cgU5f2mTifA1f5v5A5km",
         "F2WyUUFXLYnBg6acv7t2KFzH6D7CyNcvC4mRCwUdsHTUB4t",
+        "DNBrjMnPyjEeBsDUkyeWJ9ba6eVdaFHixUPM2MGgms4xcyK",
+        "J74NYK6912dg3Za2T5Rz4apEnKUX4AaGLgurogCq1FQUSX3",
+        "EovMGEb2zrXpC3ZMs7kyEUbfUnYMBN4FaFpd5aLwEdvr5AG",
       ],
     },
   },
