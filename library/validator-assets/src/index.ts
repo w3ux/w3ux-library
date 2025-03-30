@@ -161,10 +161,16 @@ export const ValidatorCommunity: ValidatorEntry[] = [
     email: "info@deigenvektor.io",
     website: "https://deigenvektor.io",
     validators: {
-      polkadot: ["1guBaaUmYpYPmsNmooQApqFmpmRHeaipb1CxoncMuiaqXGh"],
+      polkadot: [
+        "1guBaaUmYpYPmsNmooQApqFmpmRHeaipb1CxoncMuiaqXGh",
+        "16UpmQgoFroRH1i4Gi1wVZmomXxSZc8gqkGQG2czD1yJHoEu",
+      ],
       kusama: [
         "Dd93SeZZD6F8z68q7VNi2GdT8u1cgU5f2mTifA1f5v5A5km",
         "F2WyUUFXLYnBg6acv7t2KFzH6D7CyNcvC4mRCwUdsHTUB4t",
+        "DNBrjMnPyjEeBsDUkyeWJ9ba6eVdaFHixUPM2MGgms4xcyK",
+        "J74NYK6912dg3Za2T5Rz4apEnKUX4AaGLgurogCq1FQUSX3",
+        "EovMGEb2zrXpC3ZMs7kyEUbfUnYMBN4FaFpd5aLwEdvr5AG",
       ],
     },
   },
@@ -810,12 +816,17 @@ export const ValidatorCommunity: ValidatorEntry[] = [
     email: "t@helixstreet.io",
     website: "https://helixstreet.io",
     validators: {
-      polkadot: ["1HMQVknF2rGz2vBegqA9jU4NhZKQtW7nZTDQykgeSm8FgPa"],
+      polkadot: [
+        "1HMQVknF2rGz2vBegqA9jU4NhZKQtW7nZTDQykgeSm8FgPa",
+        "16WzVw5JDCXLiA3t5D4LL15S2sqSBtCsjVNXkwLCVxGdeQGj",
+      ],
       kusama: [
         "J6K1vA6ynGo2GrotGpP5ocHKr82JFTv7NUnzJcoRfTcCn8T",
         "F3EJS4BsGsxjvigBcgte4ZfYUhpcizMQizQ5TxkR5ts378r",
         "DGvPFG7dHMWryfHQD2XBQ4WX1nM5KnyHmsLSj2k7DaBRhUD",
         "CrfvUqb1cbjJ9j7TkbCuXzuffquXFmAASZUeM3Ha9x6pXjX",
+        "HR3EBGE3KimuXEGRmsf6xD8oC7xKdoAiSZizEubogFhaPMb",
+        "EyPp5yimu5tw2XM78UUAkbByDL1wHdz6T25iqTaySmZ3CdW",
       ],
     },
   },
