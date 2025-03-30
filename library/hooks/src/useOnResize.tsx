@@ -1,10 +1,10 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { MutableRefObject, useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 
 interface UseOnResizeOptions {
-  outerElement?: MutableRefObject<HTMLElement | null | undefined>;
+  outerElement?: RefObject<HTMLElement | null>;
   throttle?: number;
 }
 

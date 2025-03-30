@@ -1,19 +1,19 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { MutableRefObject } from "react";
+import type { RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 
 // Define the type for the options parameter.
 interface UseSizeOptions {
-  outerElement?: MutableRefObject<HTMLElement | null | undefined>;
+  outerElement?: RefObject<HTMLElement | null>;
   throttle?: number;
 }
 
 // Custom hook to get the width and height of a specified element. Updates the `size` state when the
 // specified "outer element" (or the window by default) resizes.
 export const useSize = (
-  element: MutableRefObject<HTMLElement | null | undefined>,
+  element: RefObject<HTMLElement | null>,
   options: UseSizeOptions = {}
 ) => {
   const { outerElement, throttle: throttleDuration = 100 } = options;

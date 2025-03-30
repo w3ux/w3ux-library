@@ -261,8 +261,8 @@ export const sortWithNull =
  * @summary Applies width of subject to paddingRight of container.
  */
 export const applyWidthAsPadding = (
-  subjectRef: RefObject<HTMLDivElement>,
-  containerRef: RefObject<HTMLDivElement>
+  subjectRef: RefObject<HTMLDivElement | null>,
+  containerRef: RefObject<HTMLDivElement | null>
 ) => {
   if (containerRef.current && subjectRef.current) {
     containerRef.current.style.paddingRight = `${

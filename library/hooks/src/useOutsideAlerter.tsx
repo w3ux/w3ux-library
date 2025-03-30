@@ -6,7 +6,7 @@ import type { AnyFunction, AnyJson } from "@w3ux/types";
 
 // A hook that alerts clicks outside of the passed ref.
 export const useOutsideAlerter = (
-  ref: RefObject<HTMLElement>,
+  ref: RefObject<HTMLElement | null>,
   callback: AnyFunction,
   ignore: string[] = []
 ) => {

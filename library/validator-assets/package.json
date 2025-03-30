@@ -1,18 +1,18 @@
 {
   "name": "@w3ux/validator-assets-source",
   "license": "GPL-3.0-only",
-  "version": "0.3.3",
+  "version": "1.0.0-alpha.1",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "build": "tsup src/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting"
   },
   "peerDependencies": {
-    "react": "^18"
+    "react": "^19"
   },
   "devDependencies": {
-    "@types/react": "^18",
-    "react": "^18",
+    "@types/react": "^19",
+    "react": "^19",
     "tsup": "^8.3.5"
   }
 }
