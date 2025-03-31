@@ -5,7 +5,7 @@ import { formatAccountSs58, isValidAddress } from "@w3ux/utils";
 import { HandleImportExtension } from "./types";
 import { getActiveAccountLocal, getInExternalAccounts } from "./utils";
 import { defaultHandleImportExtension } from "./defaults";
-import { AnyFunction, ExtensionAccount } from "@w3ux/types";
+import { ExtensionAccount } from "@w3ux/types";
 
 export const useImportExtension = () => {
   // Handles importing of extension accounts.
@@ -14,7 +14,7 @@ export const useImportExtension = () => {
   const handleImportExtension = (
     id: string,
     currentAccounts: ExtensionAccount[],
-    signer: AnyFunction,
+    signer: unknown,
     newAccounts: ExtensionAccount[],
     network: string,
     ss58: number

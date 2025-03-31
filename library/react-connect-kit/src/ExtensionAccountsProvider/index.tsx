@@ -22,13 +22,7 @@ import {
 } from "./utils";
 import { useExtensions } from "../ExtensionsProvider";
 import { useEffectIgnoreInitial } from "@w3ux/hooks";
-import {
-  AnyFunction,
-  ExtensionAccount,
-  ImportedAccount,
-  Sync,
-  VoidFn,
-} from "@w3ux/types";
+import { ExtensionAccount, ImportedAccount, Sync, VoidFn } from "@w3ux/types";
 
 export const ExtensionAccountsContext =
   createContext<ExtensionAccountsContextInterface>(
@@ -163,7 +157,7 @@ export const ExtensionAccountsProvider = ({
     const handleAccounts = (
       extensionId: string,
       accounts: ExtensionAccount[],
-      signer: AnyFunction
+      signer: unknown
     ) => {
       const {
         newAccounts,

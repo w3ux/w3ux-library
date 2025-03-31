@@ -2027,7 +2027,7 @@ __metadata:
   dependencies:
     "@types/react": "npm:^19"
     "@w3ux/types": "npm:^2.0.3"
-    "@w3ux/utils": "npm:^2.0.3"
+    "@w3ux/utils": "npm:^2.0.6"
     date-fns: "npm:^4.1.0"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
@@ -2040,15 +2040,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/hooks@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@w3ux/hooks@npm:2.0.2"
+"@w3ux/hooks@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "@w3ux/hooks@npm:2.0.4"
   dependencies:
-    "@w3ux/utils": "npm:^2.0.2"
+    "@w3ux/utils": "npm:^2.0.6"
     date-fns: "npm:^4.1.0"
   peerDependencies:
     react: ^19
-  checksum: 10c0/15d24f734a9ae24723a51bd5988499a2d5edca83639e32bd4a4ee21c9868cd3c02145601944032c7a3e1c4b81ae31cc59fbfc5d6409760a7ff57f390429b458f
+  checksum: 10c0/0e98a1652aec0e89fa2f1af97e01320f691ed525b359bf5fb075ad0a6c8bdc11d810e007c765ea3ec93c1d4a86f9bcbfff11dd79178c78556877cd53e942364f
   languageName: node
   linkType: hard
 
@@ -2059,9 +2059,9 @@ __metadata:
     "@polkagate/extension-dapp": "npm:^0.48.2"
     "@types/react": "npm:^19"
     "@w3ux/extension-assets": "npm:^2.0.0"
-    "@w3ux/hooks": "npm:^2.0.2"
+    "@w3ux/hooks": "npm:^2.0.4"
     "@w3ux/types": "npm:^2.0.3"
-    "@w3ux/utils": "npm:^2.0.3"
+    "@w3ux/utils": "npm:^2.0.6"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-strip-comments: "npm:^2.6.0"
@@ -2133,21 +2133,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/utils@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@w3ux/utils@npm:2.0.2"
+"@w3ux/utils@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "@w3ux/utils@npm:2.0.6"
   dependencies:
     "@polkadot-api/substrate-bindings": "npm:^0.9.3"
-  checksum: 10c0/9997501321d5108003a2cc391366fa5c69cbd4cdcae2fe0e5959075f4978258b22d500f6b665a95f8af7d25b111bddc41c17a055e964123b5aed40ece52a383d
-  languageName: node
-  linkType: hard
-
-"@w3ux/utils@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "@w3ux/utils@npm:2.0.3"
-  dependencies:
-    "@polkadot-api/substrate-bindings": "npm:^0.9.3"
-  checksum: 10c0/3a94ccc1ff2dbdb707afd29581e3e18196805ccb231601a2ef983c18d9f0c811c837b06c826d8c919335722746c0ff977c218f74c8cae0a86446976a5be67122
+  checksum: 10c0/7ed7f23c24f368b2a51ab2643050938ca42db61b6048e51c4954fa54c92b48f3e20157864d563137db9639405e074c29574be95da42b81357d0c01581529064e
   languageName: node
   linkType: hard
 

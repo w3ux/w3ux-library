@@ -2,7 +2,11 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { formatAccountSs58, localStorageOrDefault } from "@w3ux/utils";
-import { AnyFunction, ExtensionAccount, ExternalAccount } from "@w3ux/types";
+import {
+  ExtensionAccount,
+  ExternalAccount,
+  ImportedAccount,
+} from "@w3ux/types";
 
 /*------------------------------------------------------------
    Active account utils.
@@ -37,7 +41,7 @@ export const getActiveExtensionAccount = (
 // Connects to active account, and calls an optional callback, if provided.
 export const connectActiveExtensionAccount = (
   account: ExtensionAccount | null,
-  callback: AnyFunction
+  callback: (account: ImportedAccount | null) => void
 ) => {
   if (account !== null) {
     callback(account);
