@@ -204,6 +204,24 @@ export const withTimeout = (
 };
 
 /**
+ * @name appendOrEmpty
+ * @summary Returns ` value` if a condition is truthy, or an empty string otherwise.
+ */
+export const appendOrEmpty = (
+  condition: boolean | string | undefined,
+  value: string
+) => (condition ? ` ${value}` : "");
+
+/**
+ * @name appendOr
+ * @summary Returns ` value` if condition is truthy, or ` fallback` otherwise.
+ */
+export const appendOr = (
+  condition: boolean | string | undefined,
+  value: string,
+  fallback: string
+) => (condition ? ` ${value}` : ` ${fallback}`);
+
 /**
  * @name formatAccountSs58
  * @summary Formats an address with the supplied ss58 prefix, or returns null if invalid.
