@@ -2,12 +2,11 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { useEffect, type RefObject } from "react";
-import type { AnyFunction } from "@w3ux/types";
 
 // A hook that alerts clicks outside of the passed ref.
 export const useOutsideAlerter = (
   ref: RefObject<HTMLElement | null>,
-  callback: AnyFunction,
+  callback: () => void,
   ignore: string[] = []
 ) => {
   useEffect(() => {
