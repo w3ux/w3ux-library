@@ -2009,7 +2009,7 @@ __metadata:
   resolution: "@w3ux/factories-source@workspace:library/factories"
   dependencies:
     "@types/react": "npm:^19"
-    "@w3ux/types": "npm:^2.0.2"
+    "@w3ux/types": "npm:^2.0.3"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-strip-comments: "npm:^2.6.0"
@@ -2026,8 +2026,8 @@ __metadata:
   resolution: "@w3ux/hooks-source@workspace:library/hooks"
   dependencies:
     "@types/react": "npm:^19"
-    "@w3ux/types": "npm:^2.0.2"
-    "@w3ux/utils": "npm:^2.0.2"
+    "@w3ux/types": "npm:^2.0.3"
+    "@w3ux/utils": "npm:^2.0.3"
     date-fns: "npm:^4.1.0"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
@@ -2060,8 +2060,8 @@ __metadata:
     "@types/react": "npm:^19"
     "@w3ux/extension-assets": "npm:^2.0.0"
     "@w3ux/hooks": "npm:^2.0.2"
-    "@w3ux/types": "npm:^2.0.2"
-    "@w3ux/utils": "npm:^2.0.2"
+    "@w3ux/types": "npm:^2.0.3"
+    "@w3ux/utils": "npm:^2.0.3"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-strip-comments: "npm:^2.6.0"
@@ -2113,10 +2113,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/types@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@w3ux/types@npm:2.0.2"
-  checksum: 10c0/5bf4a85a8f56e323b71ce2b7c1b97fdb087211e6d7836d190c1d2c73537b1ed42280439a3ebde265d70d9f9d0bcaaf57f061f435895672f8d34ad45f8e1b5728
+"@w3ux/types@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@w3ux/types@npm:2.0.3"
+  checksum: 10c0/0f121c0db40755130769a4a138d33007650291e80dc5e9ea5a8d568d19da0068f1b1b6b9d7301cd845baa4197882f99c190f56cc6da397a665d3ddc68bde713f
   languageName: node
   linkType: hard
 
@@ -2126,7 +2126,7 @@ __metadata:
   dependencies:
     "@polkadot-api/substrate-bindings": "npm:^0.9.3"
     "@types/react": "npm:^19"
-    "@w3ux/types": "npm:^2.0.2"
+    "@w3ux/types": "npm:^2.0.3"
     react: "npm:^19"
     tsup: "npm:^8.3.5"
     vitest: "npm:^1.6.0"
@@ -2139,6 +2139,15 @@ __metadata:
   dependencies:
     "@polkadot-api/substrate-bindings": "npm:^0.9.3"
   checksum: 10c0/9997501321d5108003a2cc391366fa5c69cbd4cdcae2fe0e5959075f4978258b22d500f6b665a95f8af7d25b111bddc41c17a055e964123b5aed40ece52a383d
+  languageName: node
+  linkType: hard
+
+"@w3ux/utils@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@w3ux/utils@npm:2.0.3"
+  dependencies:
+    "@polkadot-api/substrate-bindings": "npm:^0.9.3"
+  checksum: 10c0/3a94ccc1ff2dbdb707afd29581e3e18196805ccb231601a2ef983c18d9f0c811c837b06c826d8c919335722746c0ff977c218f74c8cae0a86446976a5be67122
   languageName: node
   linkType: hard
 
