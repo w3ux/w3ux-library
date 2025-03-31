@@ -1,8 +1,6 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { AnyFunction } from "./common";
-
 export type AccountSource = "extension" | "external" | "ledger" | "vault";
 
 export type ExternalAccountAddedBy = "system" | "user";
@@ -26,7 +24,7 @@ export type ImportedAccount =
 export interface ExtensionAccount extends ExtensionMetadata {
   address: string;
   name: string;
-  signer?: AnyFunction;
+  signer?: unknown;
 }
 
 export interface ExternalAccount {

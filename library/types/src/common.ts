@@ -13,7 +13,3 @@ export type Sync = "synced" | "unsynced" | "syncing";
 
 // A funtion with no arguments and no return value.
 export type VoidFn = () => void;
-
-// A function definition.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyFunction = any;
