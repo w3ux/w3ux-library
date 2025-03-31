@@ -4,7 +4,6 @@ SPDX-License-Identifier: GPL-3.0-only */
 import type { MutableRefObject, RefObject } from "react";
 import { AnyObject } from "./types";
 import { rmCommas, rmDecimals } from "./base";
-import { AnyJson } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
 
 /**
@@ -236,7 +235,7 @@ export const removeVarFromUrlHash = (key: string) => {
  * @summary Sorts an array with nulls last.
  */
 export const sortWithNull =
-  (ascending: boolean) => (a: AnyJson, b: AnyJson) => {
+  (ascending: boolean) => (a: unknown, b: unknown) => {
     // equal items sort equally
     if (a === b) {
       return 0;
@@ -282,9 +281,10 @@ export const unescape = (val: string) => val.replace(/\\"/g, '"');
  * @summary Whether the application is rendering in Chrome.
  */
 export const inChrome = () => {
-  const isChromium = (window as AnyJson)?.chrome || null;
-  const winNav = (window as AnyJson)?.navigator || null;
-  const isOpera = typeof (window as AnyJson)?.opr !== "undefined";
+  const isChromium = (window as Window & { chrome?: boolean })?.chrome || null;
+  const winNav = (window as Window)?.navigator || null;
+  const isOpera =
+    typeof (window as Window & { opr?: boolean })?.opr !== "undefined";
   const isIEedge = winNav?.userAgent.indexOf("Edg") > -1 || false;
   const isIOSChrome = winNav?.userAgent.match("CriOS") || false;
 

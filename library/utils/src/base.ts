@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { AnyFunction, AnyJson } from "@w3ux/types";
+import { AnyFunction } from "@w3ux/types";
 import { AccountId } from "@polkadot-api/substrate-bindings";
 
 /**
@@ -63,7 +63,7 @@ export const minDecimalPlaces = (
  * @summary Converts a string of text to camelCase.
  */
 export const camelize = (str: string) => {
-  const convertToString = (string: AnyJson) => {
+  const convertToString = (string: string) => {
     if (string) {
       if (typeof string === "string") {
         return string;
