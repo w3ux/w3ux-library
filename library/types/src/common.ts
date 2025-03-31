@@ -14,10 +14,6 @@ export type Sync = "synced" | "unsynced" | "syncing";
 // A funtion with no arguments and no return value.
 export type VoidFn = () => void;
 
-// A JSON value: string, number, object, array, true, false, null.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyJson = any;
-
 // A function definition.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyFunction = any;

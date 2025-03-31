@@ -2,12 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import type { FunctionComponent, SVGProps } from "react";
-import {
-  AnyJson,
-  ExtensionAccount,
-  ExtensionStatus,
-  VoidFn,
-} from "@w3ux/types";
+import { ExtensionAccount, ExtensionStatus, VoidFn } from "@w3ux/types";
 
 // Extensions context interface.
 export interface ExtensionsContextInterface {
@@ -32,9 +27,9 @@ export interface ExtensionInterface {
     subscribe: (a: (b: ExtensionAccount[]) => void) => VoidFn;
     get: () => Promise<ExtensionAccount[]>;
   };
-  provider: AnyJson;
-  metadata: AnyJson;
-  signer: AnyJson;
+  provider: unknown;
+  metadata: unknown;
+  signer: unknown;
 }
 
 // Configuration item of an extension.

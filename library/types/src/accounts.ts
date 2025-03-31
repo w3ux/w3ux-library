@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { AnyJson } from "./common";
+import { AnyFunction } from "./common";
 
 export type AccountSource = "extension" | "external" | "ledger" | "vault";
 
@@ -25,9 +25,8 @@ export type ImportedAccount =
 
 export interface ExtensionAccount extends ExtensionMetadata {
   address: string;
-  meta?: AnyJson;
   name: string;
-  signer?: AnyJson;
+  signer?: AnyFunction;
 }
 
 export interface ExternalAccount {

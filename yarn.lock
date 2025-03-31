@@ -1975,7 +1975,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/crypto@npm:1.0.0":
+"@w3ux/crypto@npm:^1.0.0":
   version: 1.0.0
   resolution: "@w3ux/crypto@npm:1.0.0"
   dependencies:
@@ -1995,7 +1995,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/extension-assets@npm:2.0.0":
+"@w3ux/extension-assets@npm:^2.0.0":
   version: 2.0.0
   resolution: "@w3ux/extension-assets@npm:2.0.0"
   peerDependencies:
@@ -2009,7 +2009,7 @@ __metadata:
   resolution: "@w3ux/factories-source@workspace:library/factories"
   dependencies:
     "@types/react": "npm:^19"
-    "@w3ux/types": "npm:^2.0.0"
+    "@w3ux/types": "npm:^2.0.2"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-strip-comments: "npm:^2.6.0"
@@ -2026,8 +2026,8 @@ __metadata:
   resolution: "@w3ux/hooks-source@workspace:library/hooks"
   dependencies:
     "@types/react": "npm:^19"
-    "@w3ux/types": "npm:^2.0.0"
-    "@w3ux/utils": "npm:^2.0.0"
+    "@w3ux/types": "npm:^2.0.2"
+    "@w3ux/utils": "npm:^2.0.2"
     date-fns: "npm:^4.1.0"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
@@ -2040,15 +2040,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/hooks@npm:2.0.0":
-  version: 2.0.0
-  resolution: "@w3ux/hooks@npm:2.0.0"
+"@w3ux/hooks@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@w3ux/hooks@npm:2.0.2"
   dependencies:
-    "@w3ux/utils": "npm:^2.0.0"
+    "@w3ux/utils": "npm:^2.0.2"
     date-fns: "npm:^4.1.0"
   peerDependencies:
     react: ^19
-  checksum: 10c0/b5d3394d7018591689ce6427697e072c9c94f428028e498fbe871f0ab3595fcc6bab4284a0e8619b088c78aebdfbaf059a692795f0c5df25264b75fc4fd90ea4
+  checksum: 10c0/15d24f734a9ae24723a51bd5988499a2d5edca83639e32bd4a4ee21c9868cd3c02145601944032c7a3e1c4b81ae31cc59fbfc5d6409760a7ff57f390429b458f
   languageName: node
   linkType: hard
 
@@ -2058,10 +2058,10 @@ __metadata:
   dependencies:
     "@polkagate/extension-dapp": "npm:^0.48.2"
     "@types/react": "npm:^19"
-    "@w3ux/extension-assets": "npm:2.0.0"
-    "@w3ux/hooks": "npm:2.0.0"
-    "@w3ux/types": "npm:^2.0.0"
-    "@w3ux/utils": "npm:2.0.0"
+    "@w3ux/extension-assets": "npm:^2.0.0"
+    "@w3ux/hooks": "npm:^2.0.2"
+    "@w3ux/types": "npm:^2.0.2"
+    "@w3ux/utils": "npm:^2.0.2"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-strip-comments: "npm:^2.6.0"
@@ -2093,7 +2093,7 @@ __metadata:
   dependencies:
     "@polkadot-api/substrate-bindings": "npm:^0.9.3"
     "@types/react": "npm:^19"
-    "@w3ux/crypto": "npm:1.0.0"
+    "@w3ux/crypto": "npm:^1.0.0"
     gulp: "npm:^5.0.0"
     gulp-sourcemaps: "npm:^3.0.0"
     gulp-strip-comments: "npm:^2.6.0"
@@ -2113,10 +2113,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w3ux/types@npm:2.0.0, @w3ux/types@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@w3ux/types@npm:2.0.0"
-  checksum: 10c0/8335d85acb468e7dd41362b170a57e7ba79d9104a71e8ac11e5e84c4b3bc122baec4f55c670add283447532cbea3f8b3e6bd54bd4cea12fd8d819e427d0e78bb
+"@w3ux/types@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@w3ux/types@npm:2.0.2"
+  checksum: 10c0/5bf4a85a8f56e323b71ce2b7c1b97fdb087211e6d7836d190c1d2c73537b1ed42280439a3ebde265d70d9f9d0bcaaf57f061f435895672f8d34ad45f8e1b5728
   languageName: node
   linkType: hard
 
@@ -2126,19 +2126,19 @@ __metadata:
   dependencies:
     "@polkadot-api/substrate-bindings": "npm:^0.9.3"
     "@types/react": "npm:^19"
-    "@w3ux/types": "npm:2.0.0"
+    "@w3ux/types": "npm:^2.0.2"
     react: "npm:^19"
     tsup: "npm:^8.3.5"
     vitest: "npm:^1.6.0"
   languageName: unknown
   linkType: soft
 
-"@w3ux/utils@npm:2.0.0, @w3ux/utils@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@w3ux/utils@npm:2.0.0"
+"@w3ux/utils@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@w3ux/utils@npm:2.0.2"
   dependencies:
     "@polkadot-api/substrate-bindings": "npm:^0.9.3"
-  checksum: 10c0/dd6c9e78ee5746f5fc6503d1264655c7dcfbdcab73dacdc6ee9b84e9e0b7d0d8ae963d3865ef2063f2c31bfdedb67e468b0d3ee9e1c66874d43d2d8ddc796b9e
+  checksum: 10c0/9997501321d5108003a2cc391366fa5c69cbd4cdcae2fe0e5959075f4978258b22d500f6b665a95f8af7d25b111bddc41c17a055e964123b5aed40ece52a383d
   languageName: node
   linkType: hard
 
