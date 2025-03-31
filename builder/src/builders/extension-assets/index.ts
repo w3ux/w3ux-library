@@ -169,6 +169,8 @@ const generateReactComponent = (svgContent: string, componentName: string) => {
   svgContent = svgContent.replace(/clip-path/g, "clipPath");
 
   return `
+import type { JSX } from "react";
+
 export const ${componentName} = (): JSX.Element => {
   return (
     ${svgContent}
