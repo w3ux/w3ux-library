@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "license": "GPL-3.0-only",
   "description": "w3ux library source code",
+  "homepage": "https://github.com/w3ux/w3ux-library",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w3ux/w3ux-library.git"
+  },
+  "keywords": [
+    "w3ux"
+  ],
   "scripts": {
     "build:directory": "node builder/dist/index.js -t build:directory",
-    "clear": "npm run --workspaces clear && rm -rf node_modules coverage",
-    "build": "npm run build --workspaces --if-present",
+    "clear": "pnpm run --workspaces clear && rm -rf node_modules coverage",
+    "build": "pnpm run build --workspaces --if-present",
     "lint": "eslint './**' --fix && npx prettier --write .",
-    "test": "npm run test --workspaces --if-present"
+    "test": "pnpm run test --workspaces --if-present"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.12.0",
@@ -33,26 +41,5 @@
     "typescript": "^5.4.5",
     "yaml": "^2.4.3"
   },
-  "workspaces": [
-    "builder",
-    "library/crypto",
-    "library/utils",
-    "library/types",
-    "library/factories",
-    "library/hooks",
-    "library/extension-assets",
-    "library/validator-assets",
-    "library/react-polkicon",
-    "library/react-odometer",
-    "library/react-connect-kit"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/w3ux/w3ux-library.git"
-  },
-  "keywords": [
-    "w3ux"
-  ],
-  "homepage": "https://github.com/w3ux/w3ux-library",
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "pnpm@10.7.0"
 }
