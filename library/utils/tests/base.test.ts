@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { describe, expect, test } from 'vitest'
-import type * as fn from '../src/index'
+import * as fn from '../src/index'
 import type { AnyObject } from '../src/types'
 
 const address = '234CHvWmTuaVtkJpLS9oxuhFd3HamcEMrfFAPYoFaetEZmY7'
