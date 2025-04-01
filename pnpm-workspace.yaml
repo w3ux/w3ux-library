@@ -1,0 +1,7 @@
+packages:
+  - builder
+  - library/*
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - es5-ext
+  - esbuild
