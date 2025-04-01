@@ -7,7 +7,7 @@ import {
   generatePackageJson,
   removePackageOutput,
 } from 'builders/util'
-import type { exec } from 'child_process'
+import { exec } from 'child_process'
 import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from 'config'
 import fs from 'fs/promises'
 import { extname, join } from 'path'

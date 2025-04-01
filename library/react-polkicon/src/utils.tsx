@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { AccountId } from '@polkadot-api/substrate-bindings'
-import type { blake2AsU8a } from '@w3ux/crypto'
+import { blake2AsU8a } from '@w3ux/crypto'
 import { PolkiconCenter, SCHEMA } from './consts'
 import type { Coordinate, Scheme } from './types'
 
