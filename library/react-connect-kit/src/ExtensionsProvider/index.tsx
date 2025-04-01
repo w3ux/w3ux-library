@@ -3,18 +3,15 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { web3Enable } from '@polkagate/extension-dapp'
 import extensions from '@w3ux/extension-assets'
+import { createSafeContext } from '@w3ux/hooks'
 import type { ExtensionStatus } from '@w3ux/types'
 import { setStateWithRef, withTimeout } from '@w3ux/utils'
 import type { ReactNode } from 'react'
-import { createContext, useContext, useEffect, useRef, useState } from 'react'
-import { defaultExtensionsContext } from './defaults'
+import { useEffect, useRef, useState } from 'react'
 import type { ExtensionsContextInterface } from './types'
 
-export const ExtensionsContext = createContext<ExtensionsContextInterface>(
-  defaultExtensionsContext
-)
-
-export const useExtensions = () => useContext(ExtensionsContext)
+export const [ExtensionsContext, useExtensions] =
+  createSafeContext<ExtensionsContextInterface>()
 
 export const ExtensionsProvider = ({
   children,

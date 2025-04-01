@@ -1,21 +1,18 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
+import { createSafeContext } from '@w3ux/hooks'
 import type { WCAccount } from '@w3ux/types'
 import { ellipsisFn, setStateWithRef } from '@w3ux/utils'
-import { createContext, useContext, useRef, useState } from 'react'
-import { defaultWcAccountsContext } from './defaults'
+import { useRef, useState } from 'react'
 import type {
   WCAccountsContextInterface,
   WCAccountsProviderProps,
 } from './types'
 import { getLocalWcAccounts, isLocalNetworkAddress } from './utils'
 
-export const WCAccountsContext = createContext<WCAccountsContextInterface>(
-  defaultWcAccountsContext
-)
-
-export const useWcAccounts = () => useContext(WCAccountsContext)
+export const [WCAccountsContext, useWcAccounts] =
+  createSafeContext<WCAccountsContextInterface>()
 
 export const WCAccountsProvider = ({ children }: WCAccountsProviderProps) => {
   const [wcAccounts, setWcAccountsState] =

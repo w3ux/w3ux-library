@@ -1,17 +1,9 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 
-import type { ExtensionAccountsContextInterface } from './types'
+import type { HandleImportExtension } from './types'
 
-export const defaultExtensionAccountsContext: ExtensionAccountsContextInterface =
-  {
-    connectExtensionAccounts: () => Promise.resolve(false),
-    extensionAccountsSynced: 'unsynced',
-    getExtensionAccounts: (ss58) => [],
-  }
-
-export const defaultHandleImportExtension = {
+export const defaultHandleImportExtension: HandleImportExtension = {
   newAccounts: [],
   meta: {
     accountsToRemove: [],
