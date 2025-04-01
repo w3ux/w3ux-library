@@ -11,14 +11,14 @@
     "react": "^19"
   },
   "devDependencies": {
-    "@types/react": "^19",
+    "@types/react": "^19.0.12",
     "@w3ux/types": "^2.0.3",
     "gulp": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-strip-comments": "^2.6.0",
-    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-typescript": "6.0.0-alpha.1",
     "merge-stream": "^2.0.0",
-    "react": "^19",
-    "typescript": "^5.4.5"
+    "react": "^19.1.0",
+    "typescript": "^5.8.2"
   }
 }
