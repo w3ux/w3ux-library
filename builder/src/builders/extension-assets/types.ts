@@ -2,6 +2,6 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 export interface AdditionalAsset {
-  input: string;
-  outputFilename: string;
+  input: string
+  outputFilename: string
 }

@@ -1,25 +1,25 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { createContext, useContext, useRef, useState } from "react";
-import { defaultLedgerAccountsContext } from "./defaults";
-import {
+import type { LedgerAccount } from '@w3ux/types'
+import { setStateWithRef } from '@w3ux/utils'
+import { createContext, useContext, useRef, useState } from 'react'
+import { defaultLedgerAccountsContext } from './defaults'
+import type {
   LedgerAccountsContextInterface,
   LedgerAccountsProviderProps,
-} from "./types";
+} from './types'
 import {
   getLocalLedgerAccounts,
   getLocalLedgerAddresses,
   isLocalLedgerAccount,
   renameLocalLedgerAddress,
-} from "./utils";
-import { setStateWithRef } from "@w3ux/utils";
-import { LedgerAccount } from "@w3ux/types";
+} from './utils'
 
 export const LedgerAccountsContext =
-  createContext<LedgerAccountsContextInterface>(defaultLedgerAccountsContext);
+  createContext<LedgerAccountsContextInterface>(defaultLedgerAccountsContext)
 
-export const useLedgerAccounts = () => useContext(LedgerAccountsContext);
+export const useLedgerAccounts = () => useContext(LedgerAccountsContext)
 
 export const LedgerAccountsProvider = ({
   children,
@@ -27,14 +27,14 @@ export const LedgerAccountsProvider = ({
   // Store the fetched ledger accounts.
   const [ledgerAccounts, setLedgerAccountsState] = useState<LedgerAccount[]>(
     getLocalLedgerAccounts()
-  );
-  const ledgerAccountsRef = useRef(ledgerAccounts);
+  )
+  const ledgerAccountsRef = useRef(ledgerAccounts)
 
   // Check if a Ledger address exists in imported addresses.
   const ledgerAccountExists = (network: string, address: string) =>
     !!getLocalLedgerAccounts().find((account) =>
       isLocalLedgerAccount(network, account, address)
-    );
+    )
 
   // Adds a ledger address to the list of fetched addresses.
   const addLedgerAccount = (
@@ -43,11 +43,11 @@ export const LedgerAccountsProvider = ({
     index: number,
     callback?: () => void
   ) => {
-    let newLedgerAccounts = getLocalLedgerAccounts();
+    let newLedgerAccounts = getLocalLedgerAccounts()
 
     const ledgerAddress = getLocalLedgerAddresses().find((a) =>
       isLocalLedgerAccount(network, a, address)
-    );
+    )
 
     if (
       ledgerAddress &&
@@ -59,32 +59,29 @@ export const LedgerAccountsProvider = ({
         address,
         network,
         name: ledgerAddress.name,
-        source: "ledger",
+        source: 'ledger',
         index,
-      };
+      }
 
       // Update the full list of local ledger accounts with new entry.
-      newLedgerAccounts = [...newLedgerAccounts].concat(newAccount);
-      localStorage.setItem(
-        "ledger_accounts",
-        JSON.stringify(newLedgerAccounts)
-      );
+      newLedgerAccounts = [...newLedgerAccounts].concat(newAccount)
+      localStorage.setItem('ledger_accounts', JSON.stringify(newLedgerAccounts))
 
       // Store only those accounts on the current network in state.
       setStateWithRef(
         newLedgerAccounts.filter((account) => account.network === network),
         setLedgerAccountsState,
         ledgerAccountsRef
-      );
+      )
 
       // Handle optional callback function.
-      if (typeof callback === "function") {
-        callback();
+      if (typeof callback === 'function') {
+        callback()
       }
-      return newAccount;
+      return newAccount
     }
-    return null;
-  };
+    return null
+  }
 
   // Removes a Ledger account from state and local storage.
   const removeLedgerAccount = (
@@ -95,20 +92,17 @@ export const LedgerAccountsProvider = ({
     // Remove th account from local storage records
     const newLedgerAccounts = getLocalLedgerAccounts().filter((account) => {
       if (account.address !== address) {
-        return true;
+        return true
       }
       if (account.network !== network) {
-        return true;
+        return true
       }
-      return false;
-    });
+      return false
+    })
     if (!newLedgerAccounts.length) {
-      localStorage.removeItem("ledger_accounts");
+      localStorage.removeItem('ledger_accounts')
     } else {
-      localStorage.setItem(
-        "ledger_accounts",
-        JSON.stringify(newLedgerAccounts)
-      );
+      localStorage.setItem('ledger_accounts', JSON.stringify(newLedgerAccounts))
     }
 
     // Update state with the new list of accounts.
@@ -116,13 +110,13 @@ export const LedgerAccountsProvider = ({
       newLedgerAccounts.filter((account) => account.network === network),
       setLedgerAccountsState,
       ledgerAccountsRef
-    );
+    )
 
     // Handle optional callback function.
-    if (typeof callback === "function") {
-      callback();
+    if (typeof callback === 'function') {
+      callback()
     }
-  };
+  }
 
   // Renames an imported ledger account.
   const renameLedgerAccount = (
@@ -138,34 +132,34 @@ export const LedgerAccountsProvider = ({
             name: newName,
           }
         : account
-    );
-    renameLocalLedgerAddress(address, newName, network);
-    localStorage.setItem("ledger_accounts", JSON.stringify(newLedgerAccounts));
+    )
+    renameLocalLedgerAddress(address, newName, network)
+    localStorage.setItem('ledger_accounts', JSON.stringify(newLedgerAccounts))
 
     // Update state with the new list of accounts.
     setStateWithRef(
       newLedgerAccounts.filter((account) => account.network === network),
       setLedgerAccountsState,
       ledgerAccountsRef
-    );
-  };
+    )
+  }
 
   // Gets an imported address along with its Ledger metadata.
   const getLedgerAccount = (network: string, address: string) => {
-    const localLedgerAccounts = getLocalLedgerAccounts();
+    const localLedgerAccounts = getLocalLedgerAccounts()
     if (!localLedgerAccounts) {
-      return null;
+      return null
     }
     return (
       localLedgerAccounts.find((account) =>
         isLocalLedgerAccount(network, account, address)
       ) || null
-    );
-  };
+    )
+  }
 
   // Gets Ledger accounts for a network.
   const getLedgerAccounts = (network: string) =>
-    ledgerAccountsRef.current.filter((a) => a.network === network);
+    ledgerAccountsRef.current.filter((a) => a.network === network)
 
   return (
     <LedgerAccountsContext.Provider
@@ -181,5 +175,5 @@ export const LedgerAccountsProvider = ({
     >
       {children}
     </LedgerAccountsContext.Provider>
-  );
-};
+  )
+}

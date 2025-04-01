@@ -3,37 +3,37 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 export interface UseTimeleftProps {
   // Dependencies to trigger re-calculation of timeleft.
-  depsTimeleft: unknown[];
+  depsTimeleft: unknown[]
   // Dependencies to trigger re-render of timeleft, e.g. if language switching occurs.
-  depsFormat: unknown[];
+  depsFormat: unknown[]
 }
 
 export interface TimeleftDuration {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  lastMinute: boolean;
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
+  lastMinute: boolean
 }
 
 export interface TimeLeftRaw {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds?: number;
+  days: number
+  hours: number
+  minutes: number
+  seconds?: number
 }
 
 export interface TimeLeftFormatted {
-  days: [number, string];
-  hours: [number, string];
-  minutes: [number, string];
-  seconds?: [number, string];
+  days: [number, string]
+  hours: [number, string]
+  minutes: [number, string]
+  seconds?: [number, string]
 }
 
 export interface TimeLeftAll {
-  raw: TimeLeftRaw;
+  raw: TimeLeftRaw
 }
 
 export interface TimeleftHookProps {
-  refreshInterval: number;
+  refreshInterval: number
 }

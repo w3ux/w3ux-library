@@ -1,11 +1,12 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { RefObject, useEffect, useRef } from "react";
+import type { RefObject } from 'react'
+import { useEffect, useRef } from 'react'
 
 interface UseOnResizeOptions {
-  outerElement?: RefObject<HTMLElement | null>;
-  throttle?: number;
+  outerElement?: RefObject<HTMLElement | null>
+  throttle?: number
 }
 
 /**
@@ -22,32 +23,32 @@ export const useOnResize = (
   callback: () => void,
   options: UseOnResizeOptions = {}
 ) => {
-  const { outerElement, throttle: throttleDuration = 100 } = options;
-  const lastExecutedRef = useRef<number>(0);
+  const { outerElement, throttle: throttleDuration = 100 } = options
+  const lastExecutedRef = useRef<number>(0)
 
   // Throttled resize handler to limit the frequency of callback execution.
   const handleResize = () => {
-    const now = Date.now();
+    const now = Date.now()
 
     // Check if the callback can be executed based on the throttle duration.
     if (now - lastExecutedRef.current < throttleDuration) {
-      return;
+      return
     }
 
-    lastExecutedRef.current = now;
-    callback();
-  };
+    lastExecutedRef.current = now
+    callback()
+  }
 
   useEffect(() => {
     // Determine the target for the resize event listener.
-    const target = outerElement?.current || window;
+    const target = outerElement?.current || window
 
     // Add the resize event listener when the component mounts.
-    target.addEventListener("resize", handleResize);
+    target.addEventListener('resize', handleResize)
 
     // Clean up the event listener when the component unmounts.
     return () => {
-      target.removeEventListener("resize", handleResize);
-    };
-  }, [throttleDuration, callback]);
-};
+      target.removeEventListener('resize', handleResize)
+    }
+  }, [throttleDuration, callback])
+}

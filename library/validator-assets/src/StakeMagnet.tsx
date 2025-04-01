@@ -199,6 +199,6 @@ const StakeMagnet = () => (
       fill="#959ba3"
     />
   </svg>
-);
+)
 
-export default StakeMagnet;
+export default StakeMagnet

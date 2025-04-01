@@ -1,35 +1,40 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { useEffectIgnoreInitial } from '@w3ux/hooks'
+import type {
+  ExtensionAccount,
+  ImportedAccount,
+  Sync,
+  VoidFn,
+} from '@w3ux/types'
 import {
   formatAccountSs58,
   localStorageOrDefault,
   setStateWithRef,
-} from "@w3ux/utils";
-import { defaultExtensionAccountsContext } from "./defaults";
-import { ExtensionInterface } from "../ExtensionsProvider/types";
-import {
+} from '@w3ux/utils'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
+import { useExtensions } from '../ExtensionsProvider'
+import type { ExtensionInterface } from '../ExtensionsProvider/types'
+import { defaultExtensionAccountsContext } from './defaults'
+import { Extensions } from './Extensions'
+import type {
   ExtensionAccountsContextInterface,
   ExtensionAccountsProviderProps,
-} from "./types";
-import { useImportExtension } from "./useImportExtension";
-import { Extensions } from "./Extensions";
+} from './types'
+import { useImportExtension } from './useImportExtension'
 import {
   connectActiveExtensionAccount,
   getActiveAccountLocal,
   getActiveExtensionAccount,
-} from "./utils";
-import { useExtensions } from "../ExtensionsProvider";
-import { useEffectIgnoreInitial } from "@w3ux/hooks";
-import { ExtensionAccount, ImportedAccount, Sync, VoidFn } from "@w3ux/types";
+} from './utils'
 
 export const ExtensionAccountsContext =
   createContext<ExtensionAccountsContextInterface>(
     defaultExtensionAccountsContext
-  );
+  )
 
-export const useExtensionAccounts = () => useContext(ExtensionAccountsContext);
+export const useExtensionAccounts = () => useContext(ExtensionAccountsContext)
 
 export const ExtensionAccountsProvider = ({
   children,
@@ -40,7 +45,7 @@ export const ExtensionAccountsProvider = ({
   setActiveAccount,
   onExtensionEnabled,
 }: ExtensionAccountsProviderProps) => {
-  const { handleImportExtension } = useImportExtension();
+  const { handleImportExtension } = useImportExtension()
 
   const {
     extensionsStatus,
@@ -48,44 +53,44 @@ export const ExtensionAccountsProvider = ({
     removeExtensionStatus,
     checkingInjectedWeb3,
     extensionHasFeature,
-  } = useExtensions();
+  } = useExtensions()
 
   // Store connected extension accounts.
   const [extensionAccounts, setExtensionAccounts] = useState<ImportedAccount[]>(
     []
-  );
-  const extensionAccountsRef = useRef(extensionAccounts);
+  )
+  const extensionAccountsRef = useRef(extensionAccounts)
 
   // Store whether extension accounts have been synced.
   const [extensionAccountsSynced, setExtensionAccountsSynced] =
-    useState<Sync>("unsynced");
+    useState<Sync>('unsynced')
 
   // Store extensions whose account subscriptions have been initialised.
   const [extensionsInitialised, setExtensionsInitialised] = useState<string[]>(
     []
-  );
-  const extensionsInitialisedRef = useRef(extensionsInitialised);
+  )
+  const extensionsInitialisedRef = useRef(extensionsInitialised)
 
   // Store unsubscribe handlers for connected extensions.
-  const unsubs = useRef<Record<string, VoidFn>>({});
+  const unsubs = useRef<Record<string, VoidFn>>({})
 
   // Helper for setting active account. Ignores if not a valid function.
   const maybeSetActiveAccount = (address: string) => {
-    if (typeof setActiveAccount === "function") {
-      setActiveAccount(address ?? null);
+    if (typeof setActiveAccount === 'function') {
+      setActiveAccount(address ?? null)
     }
-  };
+  }
 
   // Helper for calling extension enabled callback. Ignores if not a valid function.
   const maybeOnExtensionEnabled = (id: string) => {
-    if (typeof onExtensionEnabled === "function") {
-      onExtensionEnabled(id);
+    if (typeof onExtensionEnabled === 'function') {
+      onExtensionEnabled(id)
     }
-  };
+  }
 
   const connectToAccount = (account: ImportedAccount | null) => {
-    maybeSetActiveAccount(account?.address ?? null);
-  };
+    maybeSetActiveAccount(account?.address ?? null)
+  }
 
   // connectActiveExtensions
   //
@@ -94,38 +99,37 @@ export const ExtensionAccountsProvider = ({
   // all extensions are looped before connecting to it; there is no guarantee it still exists - must
   // explicitly find it.
   const connectActiveExtensions = async () => {
-    const extensionIds = Object.keys(extensionsStatus);
+    const extensionIds = Object.keys(extensionsStatus)
     if (!extensionIds.length) {
-      return;
+      return
     }
 
     // Iterate previously connected extensions and retreive valid `enable` functions.
     // ------------------------------------------------------------------------------
-    const rawExtensions = Extensions.getFromIds(extensionIds);
+    const rawExtensions = Extensions.getFromIds(extensionIds)
 
     // Attempt to connect to extensions via `enable` and format the results.
     const enableResults = Extensions.formatEnabled(
       rawExtensions,
       await Extensions.enable(rawExtensions, dappName)
-    );
+    )
 
     // Retrieve the resulting connected extensions only.
-    const connectedExtensions = Extensions.connected(enableResults);
+    const connectedExtensions = Extensions.connected(enableResults)
 
     // Retrieve  extensions that failed to connect.
-    const extensionsWithError = Extensions.withError(enableResults);
+    const extensionsWithError = Extensions.withError(enableResults)
 
     // Add connected extensions to local storage.
     Array.from(connectedExtensions.keys()).forEach((id) =>
       Extensions.addToLocal(id)
-    );
+    )
 
     // Initial fetch of extension accounts to populate accounts & extensions state.
     // ----------------------------------------------------------------------------
 
     // Get full list of imported accounts.
-    const initialAccounts =
-      await Extensions.getAllAccounts(connectedExtensions);
+    const initialAccounts = await Extensions.getAllAccounts(connectedExtensions)
 
     // Get the active account if found in initial accounts. Format initial account addresses to the
     // correct ss58 format before finding.
@@ -134,21 +138,21 @@ export const ExtensionAccountsProvider = ({
         ...acc,
         address: formatAccountSs58(acc.address, ss58),
       }))
-      .find(({ address }) => address === getActiveAccountLocal(network, ss58));
+      .find(({ address }) => address === getActiveAccountLocal(network, ss58))
 
     // Perform all initial state updates.
     // ----------------------------------
 
     Array.from(extensionsWithError.entries()).forEach(([id, state]) => {
-      handleExtensionError(id, state.error);
-    });
+      handleExtensionError(id, state.error)
+    })
 
     Array.from(connectedExtensions.keys()).forEach((id) => {
-      setExtensionStatus(id, "connected");
-      updateInitialisedExtensions(id);
-    });
+      setExtensionStatus(id, 'connected')
+      updateInitialisedExtensions(id)
+    })
 
-    updateExtensionAccounts({ add: initialAccounts, remove: [] });
+    updateExtensionAccounts({ add: initialAccounts, remove: [] })
 
     // Initiate account subscriptions for connected extensions.
     // --------------------------------------------------------
@@ -169,51 +173,51 @@ export const ExtensionAccountsProvider = ({
         accounts,
         network,
         ss58
-      );
+      )
 
       // Update added and removed accounts.
-      updateExtensionAccounts({ add: newAccounts, remove: accountsToRemove });
-    };
+      updateExtensionAccounts({ add: newAccounts, remove: accountsToRemove })
+    }
 
     // Try to subscribe to accounts for each connected extension.
     for (const [id, { extension }] of Array.from(
       connectedExtensions.entries()
     )) {
       // If enabled, subscribe to accounts.
-      if (extensionHasFeature(id, "subscribeAccounts")) {
+      if (extensionHasFeature(id, 'subscribeAccounts')) {
         const unsub = extension.accounts.subscribe((accounts) => {
-          handleAccounts(id, accounts || [], extension.signer);
-        });
+          handleAccounts(id, accounts || [], extension.signer)
+        })
         // Add unsub to context ref.
-        addToUnsubscribe(id, unsub);
+        addToUnsubscribe(id, unsub)
       }
     }
 
     // Connect to active account if found in initial accounts.
     if (activeAccountInInitial) {
-      connectActiveExtensionAccount(activeAccountInInitial, connectToAccount);
+      connectActiveExtensionAccount(activeAccountInInitial, connectToAccount)
     }
-  };
+  }
 
   // connectExtensionAccounts
   //
   // Similar to the above but only connects to a single extension. This is invoked by the user by
   // clicking on an extension. If activeAccount is not found here, it is simply ignored.
   const connectExtensionAccounts = async (id: string): Promise<boolean> => {
-    const extensionIds = Object.keys(extensionsStatus);
-    const exists = extensionIds.find((key) => key === id) || undefined;
+    const extensionIds = Object.keys(extensionsStatus)
+    const exists = extensionIds.find((key) => key === id) || undefined
 
     if (!exists) {
       updateInitialisedExtensions(
         `unknown_extension_${extensionsInitialisedRef.current.length + 1}`
-      );
+      )
     } else {
       try {
         // Attempt to get extension `enable` property.
-        const { enable } = window.injectedWeb3[id];
+        const { enable } = window.injectedWeb3[id]
 
         // Summons extension popup.
-        const extension: ExtensionInterface = await enable(dappName);
+        const extension: ExtensionInterface = await enable(dappName)
 
         // Continue if `enable` succeeded, and if the current network is supported.
         if (extension !== undefined) {
@@ -229,14 +233,14 @@ export const ExtensionAccountsProvider = ({
               accounts,
               network,
               ss58
-            );
+            )
             // Set active account for network if not yet set.
             if (!activeAccount) {
               const activeExtensionAccount = getActiveExtensionAccount(
                 network,
                 ss58,
                 newAccounts
-              );
+              )
               if (
                 activeExtensionAccount?.address !== removedActiveAccount &&
                 removedActiveAccount !== null
@@ -244,7 +248,7 @@ export const ExtensionAccountsProvider = ({
                 connectActiveExtensionAccount(
                   activeExtensionAccount,
                   connectToAccount
-                );
+                )
               }
             }
 
@@ -252,55 +256,55 @@ export const ExtensionAccountsProvider = ({
             updateExtensionAccounts({
               add: newAccounts,
               remove: accountsToRemove,
-            });
+            })
 
             // Update initialised extensions.
-            updateInitialisedExtensions(id);
-          };
+            updateInitialisedExtensions(id)
+          }
 
           // Call optional `onExtensionEnabled` callback.
-          Extensions.addToLocal(id);
+          Extensions.addToLocal(id)
 
-          maybeOnExtensionEnabled(id);
-          setExtensionStatus(id, "connected");
+          maybeOnExtensionEnabled(id)
+          setExtensionStatus(id, 'connected')
 
           // If account subscriptions are not supported, simply get the account(s) from the extension. Otherwise, subscribe to accounts.
-          if (!extensionHasFeature(id, "subscribeAccounts")) {
-            const accounts = await extension.accounts.get();
-            handleAccounts(accounts);
+          if (!extensionHasFeature(id, 'subscribeAccounts')) {
+            const accounts = await extension.accounts.get()
+            handleAccounts(accounts)
           } else {
             const unsub = extension.accounts.subscribe((accounts) => {
-              handleAccounts(accounts || []);
-            });
-            addToUnsubscribe(id, unsub);
+              handleAccounts(accounts || [])
+            })
+            addToUnsubscribe(id, unsub)
           }
-          return true;
+          return true
         }
       } catch (err) {
-        handleExtensionError(id, String(err));
+        handleExtensionError(id, String(err))
       }
     }
-    return false;
-  };
+    return false
+  }
 
   // Handle errors when communiating with extensions.
   const handleExtensionError = (id: string, err: string) => {
     // if not general error (maybe enabled but no accounts trust app).
-    if (err.startsWith("Error")) {
+    if (err.startsWith('Error')) {
       // remove extension from local `active_extensions`.
-      Extensions.removeFromLocal(id);
+      Extensions.removeFromLocal(id)
 
       // extension not found (does not exist).
-      if (err.substring(0, 17) === "NotInstalledError") {
-        removeExtensionStatus(id);
+      if (err.substring(0, 17) === 'NotInstalledError') {
+        removeExtensionStatus(id)
       } else {
         // declare extension as no imported accounts authenticated.
-        setExtensionStatus(id, "not_authenticated");
+        setExtensionStatus(id, 'not_authenticated')
       }
     }
     // mark extension as initialised.
-    updateInitialisedExtensions(id);
-  };
+    updateInitialisedExtensions(id)
+  }
 
   // Update initialised extensions.
   const updateInitialisedExtensions = (id: string) => {
@@ -309,43 +313,43 @@ export const ExtensionAccountsProvider = ({
         [...extensionsInitialisedRef.current].concat(id),
         setExtensionsInitialised,
         extensionsInitialisedRef
-      );
+      )
     }
-  };
+  }
 
   // Add an extension account to context state.
   const updateExtensionAccounts = ({
     add,
     remove,
   }: {
-    add: ExtensionAccount[];
-    remove: ExtensionAccount[];
+    add: ExtensionAccount[]
+    remove: ExtensionAccount[]
   }) => {
     // Add new accounts and remove any removed accounts.
     const newAccounts = [...extensionAccountsRef.current]
       .concat(add)
-      .filter((a) => remove.find((s) => s.address === a.address) === undefined);
+      .filter((a) => remove.find((s) => s.address === a.address) === undefined)
 
     if (remove.length) {
       // Unsubscribe from removed accounts.
-      unsubAccounts(remove);
+      unsubAccounts(remove)
 
       // Remove active account if it is being forgotten.
       if (
         activeAccount &&
         remove.find(({ address }) => address === activeAccount) !== undefined
       ) {
-        maybeSetActiveAccount(null);
+        maybeSetActiveAccount(null)
       }
     }
 
-    setStateWithRef(newAccounts, setExtensionAccounts, extensionAccountsRef);
-  };
+    setStateWithRef(newAccounts, setExtensionAccounts, extensionAccountsRef)
+  }
 
   // Add an extension id to unsubscribe state.
   const addToUnsubscribe = (id: string, unsub: VoidFn) => {
-    unsubs.current[id] = unsub;
-  };
+    unsubs.current[id] = unsub
+  }
 
   // Handle unsubscribing of an removed extension accounts.
   const unsubAccounts = (accounts: ImportedAccount[]) => {
@@ -353,30 +357,30 @@ export const ExtensionAccountsProvider = ({
     if (accounts.length) {
       for (const { address } of accounts) {
         if (extensionAccountsRef.current.find((a) => a.address === address)) {
-          const unsub = unsubs.current[address];
+          const unsub = unsubs.current[address]
           if (unsub) {
-            unsub();
-            delete unsubs.current[address];
+            unsub()
+            delete unsubs.current[address]
           }
         }
       }
     }
-  };
+  }
 
   // Unsubscrbe all account subscriptions.
   const unsubscribe = () => {
     Object.values(unsubs.current).forEach((unsub) => {
-      unsub();
-    });
-  };
+      unsub()
+    })
+  }
 
   const handleSyncExtensionAccounts = async () => {
     // Wait for injectedWeb3 check to finish before starting account import process.
-    if (!checkingInjectedWeb3 && extensionAccountsSynced === "unsynced") {
+    if (!checkingInjectedWeb3 && extensionAccountsSynced === 'unsynced') {
       // Unsubscribe from all accounts and reset state
-      unsubscribe();
-      setStateWithRef([], setExtensionAccounts, extensionAccountsRef);
-      setStateWithRef([], setExtensionsInitialised, extensionsInitialisedRef);
+      unsubscribe()
+      setStateWithRef([], setExtensionAccounts, extensionAccountsRef)
+      setStateWithRef([], setExtensionsInitialised, extensionsInitialisedRef)
       // If extensions have been fetched, get accounts if extensions exist and local extensions
       // exist (previously connected).
       if (Object.keys(extensionsStatus).length) {
@@ -385,40 +389,40 @@ export const ExtensionAccountsProvider = ({
           `active_extensions`,
           [],
           true
-        );
+        )
         if (Object.keys(extensionsStatus).length && localExtensions.length) {
-          setExtensionAccountsSynced("syncing");
-          await connectActiveExtensions();
+          setExtensionAccountsSynced('syncing')
+          await connectActiveExtensions()
         }
       }
 
       // Syncing is complete. Also covers case where no extensions were found.
-      setExtensionAccountsSynced("synced");
+      setExtensionAccountsSynced('synced')
     }
-  };
+  }
 
   // Get extension accounts based on the provided ss58 prefix.
-  const getExtensionAccounts = (ss58: number): ImportedAccount[] =>
+  const getExtensionAccounts = (ss58Prefix: number): ImportedAccount[] =>
     extensionAccounts
       .map((account) => {
-        const formattedAddress = formatAccountSs58(account.address, ss58);
+        const formattedAddress = formatAccountSs58(account.address, ss58Prefix)
         if (!formattedAddress) {
-          return null;
+          return null
         }
         return {
           ...account,
           address: formattedAddress,
-        };
+        }
       })
       // Remove null entries resulting from invalid formatted addresses.
-      .filter((account) => account !== null);
+      .filter((account) => account !== null)
 
   // Re-sync extensions accounts on `unsynced`.
   useEffect(() => {
-    handleSyncExtensionAccounts();
+    handleSyncExtensionAccounts()
 
-    return () => unsubscribe();
-  }, [extensionsStatus, checkingInjectedWeb3, extensionAccountsSynced]);
+    return () => unsubscribe()
+  }, [extensionsStatus, checkingInjectedWeb3, extensionAccountsSynced])
 
   // Once initialised extensions equal total extensions present in `injectedWeb3`, mark extensions
   // as fetched.
@@ -427,9 +431,9 @@ export const ExtensionAccountsProvider = ({
       !checkingInjectedWeb3 &&
       extensionsInitialised.length === Object.keys(extensionsStatus).length
     ) {
-      setExtensionAccountsSynced("synced");
+      setExtensionAccountsSynced('synced')
     }
-  }, [checkingInjectedWeb3, extensionsInitialised]);
+  }, [checkingInjectedWeb3, extensionsInitialised])
 
   return (
     <ExtensionAccountsContext.Provider
@@ -441,5 +445,5 @@ export const ExtensionAccountsProvider = ({
     >
       {children}
     </ExtensionAccountsContext.Provider>
-  );
-};
+  )
+}

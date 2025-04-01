@@ -5,7 +5,7 @@
     "library/extension-assets": {},
     "library/factories": {},
     "library/hooks": {},
-    "library/react-connect-kit": {}, 
+    "library/react-connect-kit": {},
     "library/react-odometer": {},
     "library/react-polkicon": {},
     "library/types": {},

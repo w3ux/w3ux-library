@@ -13,6 +13,6 @@ const Stakin = () => (
       fill="#124DFC"
     />
   </svg>
-);
+)
 
-export default Stakin;
+export default Stakin

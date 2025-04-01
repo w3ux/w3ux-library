@@ -1,16 +1,16 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-export type AccountSource = "extension" | "external" | "ledger" | "vault";
+export type AccountSource = 'extension' | 'external' | 'ledger' | 'vault'
 
-export type ExternalAccountAddedBy = "system" | "user";
+export type ExternalAccountAddedBy = 'system' | 'user'
 
-export type ExtensionStatus = "installed" | "not_authenticated" | "connected";
+export type ExtensionStatus = 'installed' | 'not_authenticated' | 'connected'
 
 // Miscellaneous metadata added to an extension.
 export interface ExtensionMetadata {
-  addedBy?: ExternalAccountAddedBy;
-  source: string;
+  addedBy?: ExternalAccountAddedBy
+  source: string
 }
 
 // General account type that can be imported.
@@ -19,42 +19,42 @@ export type ImportedAccount =
   | ExternalAccount
   | LedgerAccount
   | VaultAccount
-  | WCAccount;
+  | WCAccount
 
 export interface ExtensionAccount extends ExtensionMetadata {
-  address: string;
-  name: string;
-  signer?: unknown;
+  address: string
+  name: string
+  signer?: unknown
 }
 
 export interface ExternalAccount {
-  address: string;
-  network: string;
-  name: string;
-  source: string;
-  addedBy: ExternalAccountAddedBy;
+  address: string
+  network: string
+  name: string
+  source: string
+  addedBy: ExternalAccountAddedBy
 }
 
 export interface LedgerAccount {
-  address: string;
-  network: string;
-  name: string;
-  source: string;
-  index: number;
+  address: string
+  network: string
+  name: string
+  source: string
+  index: number
 }
 
 export interface VaultAccount {
-  address: string;
-  network: string;
-  name: string;
-  source: string;
-  index: number;
+  address: string
+  network: string
+  name: string
+  source: string
+  index: number
 }
 
 export interface WCAccount {
-  address: string;
-  network: string;
-  name: string;
-  source: string;
-  index: number;
+  address: string
+  network: string
+  name: string
+  source: string
+  index: number
 }

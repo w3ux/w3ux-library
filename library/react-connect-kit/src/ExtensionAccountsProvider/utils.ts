@@ -1,12 +1,12 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { formatAccountSs58, localStorageOrDefault } from "@w3ux/utils";
-import {
+import type {
   ExtensionAccount,
   ExternalAccount,
   ImportedAccount,
-} from "@w3ux/types";
+} from '@w3ux/types'
+import { formatAccountSs58, localStorageOrDefault } from '@w3ux/utils'
 
 /*------------------------------------------------------------
    Active account utils.
@@ -17,16 +17,16 @@ export const getActiveAccountLocal = (
   network: string,
   ss58: number
 ): string | null => {
-  const account = localStorageOrDefault(`${network}_active_account`, null);
+  const account = localStorageOrDefault(`${network}_active_account`, null)
 
   if (account !== null) {
-    const formattedAddress = formatAccountSs58(account, ss58);
+    const formattedAddress = formatAccountSs58(account, ss58)
     if (formattedAddress) {
-      return formattedAddress;
+      return formattedAddress
     }
   }
-  return null;
-};
+  return null
+}
 
 // Checks if the local active account is the provided accounts.
 export const getActiveExtensionAccount = (
@@ -36,7 +36,7 @@ export const getActiveExtensionAccount = (
 ) =>
   accounts.find(
     ({ address }) => address === getActiveAccountLocal(network, ss58)
-  ) ?? null;
+  ) ?? null
 
 // Connects to active account, and calls an optional callback, if provided.
 export const connectActiveExtensionAccount = (
@@ -44,9 +44,9 @@ export const connectActiveExtensionAccount = (
   callback: (account: ImportedAccount | null) => void
 ) => {
   if (account !== null) {
-    callback(account);
+    callback(account)
   }
-};
+}
 
 /*------------------------------------------------------------
    External account utils.
@@ -57,24 +57,24 @@ export const getInExternalAccounts = (
   accounts: ExtensionAccount[],
   network: string
 ) => {
-  const localExternalAccounts = getLocalExternalAccounts(network);
+  const localExternalAccounts = getLocalExternalAccounts(network)
 
   return (
     localExternalAccounts.filter(
       (a) => (accounts || []).find((b) => b.address === a.address) !== undefined
     ) || []
-  );
-};
+  )
+}
 
 // Gets local external accounts for a network.
 export const getLocalExternalAccounts = (network?: string) => {
   let localAccounts = localStorageOrDefault<ExternalAccount[]>(
-    "external_accounts",
+    'external_accounts',
     [],
     true
-  ) as ExternalAccount[];
+  ) as ExternalAccount[]
   if (network) {
-    localAccounts = localAccounts.filter((l) => l.network === network);
+    localAccounts = localAccounts.filter((l) => l.network === network)
   }
-  return localAccounts;
-};
+  return localAccounts
+}

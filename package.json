@@ -19,10 +19,11 @@
     "test": "pnpm run test --workspaces --if-present"
   },
   "devDependencies": {
+    "@eslint/js": "^9.15.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "autoprefixer": "^10.4.21",
-    "eslint": "^8.57.1",
+    "eslint": "^9.23.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.10.0",
     "eslint-plugin-import": "^2.31.0",
@@ -30,16 +31,29 @@
     "eslint-plugin-prefer-arrow-functions": "^3.6.2",
     "eslint-plugin-prettier": "^5.2.5",
     "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-unused-imports": "3.2.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^16.0.0",
     "minimist": "^1.2.8",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
-    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-organize-imports": "^4.1.0",
     "tsc": "^2.0.4",
     "tslib": "^2.8.1",
     "typescript": "^5.8.2",
+    "typescript-eslint": "^8.29.0",
     "yaml": "^2.7.1"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "endOfLine": "auto",
+    "plugins": [
+      "prettier-plugin-organize-imports"
+    ]
   },
   "pnpm": {
     "overrides": {
