@@ -1,20 +1,18 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
+import { createSafeContext } from '@w3ux/hooks'
 import type { VaultAccount } from '@w3ux/types'
 import { ellipsisFn, setStateWithRef } from '@w3ux/utils'
-import { createContext, useContext, useRef, useState } from 'react'
-import { defaultVaultAccountsContext } from './defaults'
+import { useRef, useState } from 'react'
 import type {
   VaultAccountsContextInterface,
   VaultAccountsProviderProps,
 } from './types'
 import { getLocalVaultAccounts, isLocalNetworkAddress } from './utils'
 
-export const VaultAccountsContext =
-  createContext<VaultAccountsContextInterface>(defaultVaultAccountsContext)
-
-export const useVaultAccounts = () => useContext(VaultAccountsContext)
+export const [VaultAccountsContext, useVaultAccounts] =
+  createSafeContext<VaultAccountsContextInterface>()
 
 export const VaultAccountsProvider = ({
   children,

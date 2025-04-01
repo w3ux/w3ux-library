@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { useEffectIgnoreInitial } from '@w3ux/hooks'
+import { createSafeContext, useEffectIgnoreInitial } from '@w3ux/hooks'
 import type {
   ExtensionAccount,
   ImportedAccount,
@@ -13,10 +13,9 @@ import {
   localStorageOrDefault,
   setStateWithRef,
 } from '@w3ux/utils'
-import { createContext, useContext, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useExtensions } from '../ExtensionsProvider'
 import type { ExtensionInterface } from '../ExtensionsProvider/types'
-import { defaultExtensionAccountsContext } from './defaults'
 import { Extensions } from './Extensions'
 import type {
   ExtensionAccountsContextInterface,
@@ -29,12 +28,8 @@ import {
   getActiveExtensionAccount,
 } from './utils'
 
-export const ExtensionAccountsContext =
-  createContext<ExtensionAccountsContextInterface>(
-    defaultExtensionAccountsContext
-  )
-
-export const useExtensionAccounts = () => useContext(ExtensionAccountsContext)
+export const [ExtensionAccountsContext, useExtensionAccounts] =
+  createSafeContext<ExtensionAccountsContextInterface>()
 
 export const ExtensionAccountsProvider = ({
   children,

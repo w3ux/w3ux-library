@@ -1,10 +1,10 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
+import { createSafeContext } from '@w3ux/hooks'
 import type { LedgerAccount } from '@w3ux/types'
 import { setStateWithRef } from '@w3ux/utils'
-import { createContext, useContext, useRef, useState } from 'react'
-import { defaultLedgerAccountsContext } from './defaults'
+import { useRef, useState } from 'react'
 import type {
   LedgerAccountsContextInterface,
   LedgerAccountsProviderProps,
@@ -16,10 +16,8 @@ import {
   renameLocalLedgerAddress,
 } from './utils'
 
-export const LedgerAccountsContext =
-  createContext<LedgerAccountsContextInterface>(defaultLedgerAccountsContext)
-
-export const useLedgerAccounts = () => useContext(LedgerAccountsContext)
+export const [LedgerAccountsContext, useLedgerAccounts] =
+  createSafeContext<LedgerAccountsContextInterface>()
 
 export const LedgerAccountsProvider = ({
   children,
