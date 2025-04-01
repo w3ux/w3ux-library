@@ -1,42 +1,42 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { localStorageOrDefault } from "@w3ux/utils";
-import { LedgerAddress } from "./types";
-import { LedgerAccount } from "@w3ux/types";
+import type { LedgerAccount } from '@w3ux/types'
+import { localStorageOrDefault } from '@w3ux/utils'
+import type { LedgerAddress } from './types'
 
 // Gets imported Ledger accounts from local storage.
 export const getLocalLedgerAccounts = (network?: string): LedgerAccount[] => {
   const localAddresses = localStorageOrDefault(
-    "ledger_accounts",
+    'ledger_accounts',
     [],
     true
-  ) as LedgerAccount[];
+  ) as LedgerAccount[]
 
   return network
     ? localAddresses.filter((a) => a.network === network)
-    : localAddresses;
-};
+    : localAddresses
+}
 
 // Gets whether an address is a local Ledger account.
 export const isLocalLedgerAccount = (
   network: string,
   account: { address: string | null; network: string },
   address: string
-) => account.address === address && account.network === network;
+) => account.address === address && account.network === network
 
 // Gets saved ledger addresses from local storage.
 export const getLocalLedgerAddresses = (network?: string) => {
   const localAddresses = localStorageOrDefault(
-    "ledger_addresses",
+    'ledger_addresses',
     [],
     true
-  ) as LedgerAddress[];
+  ) as LedgerAddress[]
 
   return network
     ? localAddresses.filter((a) => a.network === network)
-    : localAddresses;
-};
+    : localAddresses
+}
 
 // Renames a record from local ledger addresses.
 export const renameLocalLedgerAddress = (
@@ -45,7 +45,7 @@ export const renameLocalLedgerAddress = (
   network: string
 ) => {
   const localLedger = (
-    localStorageOrDefault("ledger_addresses", [], true) as LedgerAddress[]
+    localStorageOrDefault('ledger_addresses', [], true) as LedgerAddress[]
   )?.map((i) =>
     !(i.address === address && i.network === network)
       ? i
@@ -53,8 +53,8 @@ export const renameLocalLedgerAddress = (
           ...i,
           name,
         }
-  );
+  )
   if (localLedger) {
-    localStorage.setItem("ledger_addresses", JSON.stringify(localLedger));
+    localStorage.setItem('ledger_addresses', JSON.stringify(localLedger))
   }
-};
+}

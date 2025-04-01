@@ -14,6 +14,6 @@ const Deigenvektor = () => (
       fill="#e6007a"
     />
   </svg>
-);
+)
 
-export default Deigenvektor;
+export default Deigenvektor

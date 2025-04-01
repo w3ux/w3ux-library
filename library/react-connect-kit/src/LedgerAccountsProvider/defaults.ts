@@ -1,8 +1,8 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
-/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function,  no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { LedgerAccountsContextInterface } from "./types";
+import type { LedgerAccountsContextInterface } from './types'
 
 export const defaultLedgerAccountsContext: LedgerAccountsContextInterface = {
   ledgerAccountExists: (network, address) => false,
@@ -12,4 +12,4 @@ export const defaultLedgerAccountsContext: LedgerAccountsContextInterface = {
   getLedgerAccount: (network, address) => null,
   getLedgerAccounts: (network) => [],
   ledgerAccounts: [],
-};
+}

@@ -1,16 +1,16 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { Scheme } from "./types";
+import type { Scheme } from './types'
 
 // Size of the Polkicon in pixels.
-export const PolkiconSize = 64;
+export const PolkiconSize = 64
 
 // Center coordinate of the Polkicon.
-export const PolkiconCenter = PolkiconSize / 2;
+export const PolkiconCenter = PolkiconSize / 2
 
 // Radius of a Polkicon circle.
-export const CircleRadius = 5;
+export const CircleRadius = 5
 
 // Schemas for the Polkicon.
 export const SCHEMA: Record<string, Scheme> = {
@@ -42,4 +42,4 @@ export const SCHEMA: Record<string, Scheme> = {
     colors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 8, 6, 7, 5, 3, 4, 2, 11],
     freq: 128,
   },
-};
+}

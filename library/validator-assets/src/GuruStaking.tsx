@@ -2411,6 +2411,6 @@ const GuruStaking = () => (
       d="M194.6 357c.8 1.4 1.1 2.7 1.5 4.5-2-.6-4-1.5-6.1-2.5l.3-1.5 4.3-.5z"
     />
   </svg>
-);
+)
 
-export default GuruStaking;
+export default GuruStaking

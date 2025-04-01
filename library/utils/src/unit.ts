@@ -1,10 +1,10 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { MutableRefObject, RefObject } from "react";
-import { AnyObject } from "./types";
-import { rmCommas, rmDecimals } from "./base";
-import { AccountId } from "@polkadot-api/substrate-bindings";
+import { AccountId } from '@polkadot-api/substrate-bindings'
+import type { MutableRefObject, RefObject } from 'react'
+import { rmCommas, rmDecimals } from './base'
+import type { AnyObject } from './types'
 
 /**
  * Converts an on-chain balance value from planck to a decimal value in token units.
@@ -23,34 +23,34 @@ export const planckToUnit = (
 ): string => {
   try {
     // Ensure `units` is a positive integer.
-    units = Math.max(Math.round(units), 0);
+    units = Math.max(Math.round(units), 0)
 
     // Convert `val` to BigInt based on its type
     const bigIntVal =
-      typeof val === "bigint"
+      typeof val === 'bigint'
         ? val
         : BigInt(
-            typeof val === "number"
+            typeof val === 'number'
               ? Math.floor(val).toString()
               : rmDecimals(rmCommas(val))
-          );
+          )
 
-    const divisor = units === 0 ? 1n : BigInt(10) ** BigInt(units);
+    const divisor = units === 0 ? 1n : BigInt(10) ** BigInt(units)
 
     // Integer division and remainder for the fractional part
-    const integerPart = bigIntVal / divisor;
-    const fractionalPart = bigIntVal % divisor;
+    const integerPart = bigIntVal / divisor
+    const fractionalPart = bigIntVal % divisor
 
     // Format fractional part with leading zeros to maintain `units` decimal places
     const fractionalStr =
-      units > 0 ? `.${fractionalPart.toString().padStart(units, "0")}` : ``;
+      units > 0 ? `.${fractionalPart.toString().padStart(units, '0')}` : ``
 
     // Combine integer and fractional parts as a decimal string
-    return `${integerPart}${fractionalStr}`;
+    return `${integerPart}${fractionalStr}`
   } catch (e) {
-    return "0";
+    return '0'
   }
-};
+}
 
 /**
  * Converts a token unit value to an integer value in planck.
@@ -69,38 +69,38 @@ export const unitToPlanck = (
 ): bigint => {
   try {
     // Ensure `units` is a positive integer.
-    units = Math.max(Math.round(units), 0);
+    units = Math.max(Math.round(units), 0)
 
     // Convert `val` to a string; if empty or invalid, default to "0"
     const strVal =
-      (typeof val === "string" ? rmCommas(val) : val.toString()) || "0";
+      (typeof val === 'string' ? rmCommas(val) : val.toString()) || '0'
 
     // Split into integer and fractional parts
-    const [integerPart, fractionalPart = ""] = strVal.split(".");
+    const [integerPart, fractionalPart = ''] = strVal.split('.')
 
     // Process the integer part by converting to BigInt and scaling it to the given units
-    let bigIntValue = BigInt(integerPart) * BigInt(10) ** BigInt(units);
+    let bigIntValue = BigInt(integerPart) * BigInt(10) ** BigInt(units)
 
     // Process the fractional part if it exists
     if (fractionalPart) {
-      let fractionalValue: bigint;
+      let fractionalValue: bigint
 
       if (fractionalPart.length > units) {
         // If fractional part exceeds units, truncate it
-        fractionalValue = BigInt(fractionalPart.slice(0, units));
+        fractionalValue = BigInt(fractionalPart.slice(0, units))
       } else {
         // Otherwise, pad the fractional part to match units
-        fractionalValue = BigInt(fractionalPart.padEnd(units, "0"));
+        fractionalValue = BigInt(fractionalPart.padEnd(units, '0'))
       }
 
-      bigIntValue += fractionalValue;
+      bigIntValue += fractionalValue
     }
 
-    return bigIntValue;
+    return bigIntValue
   } catch (e) {
-    return BigInt(0);
+    return BigInt(0)
   }
-};
+}
 
 /**
  * @name remToUnit
@@ -108,14 +108,14 @@ export const unitToPlanck = (
  */
 export const remToUnit = (rem: string) =>
   Number(rem.slice(0, rem.length - 3)) *
-  parseFloat(getComputedStyle(document.documentElement).fontSize);
+  parseFloat(getComputedStyle(document.documentElement).fontSize)
 
 /**
  * @name capitalizeFirstLetter
  * @summary Capitalize the first letter of a string.
  */
 export const capitalizeFirstLetter = (string: string) =>
-  string.charAt(0).toUpperCase() + string.slice(1);
+  string.charAt(0).toUpperCase() + string.slice(1)
 
 /**
  * @name snakeToCamel
@@ -125,8 +125,8 @@ export const snakeToCamel = (str: string) =>
   str
     .toLowerCase()
     .replace(/([-_][a-z])/g, (group) =>
-      group.toUpperCase().replace("-", "").replace("_", "")
-    );
+      group.toUpperCase().replace('-', '').replace('_', '')
+    )
 
 /**
  * @name setStateWithRef
@@ -137,9 +137,9 @@ export const setStateWithRef = <T>(
   setState: (_state: T) => void,
   ref: MutableRefObject<T>
 ): void => {
-  setState(value);
-  ref.current = value;
-};
+  setState(value)
+  ref.current = value
+}
 
 /**
  * @name localStorageOrDefault
@@ -151,17 +151,17 @@ export const localStorageOrDefault = <T>(
   _default: T,
   parse = false
 ): T | string => {
-  const val: string | null = localStorage.getItem(key);
+  const val: string | null = localStorage.getItem(key)
 
   if (val === null) {
-    return _default;
+    return _default
   }
 
   if (parse) {
-    return JSON.parse(val) as T;
+    return JSON.parse(val) as T
   }
-  return val;
-};
+  return val
+}
 
 /**
  * @name isValidAddress
@@ -169,25 +169,25 @@ export const localStorageOrDefault = <T>(
  */
 export const isValidAddress = (address: string): boolean => {
   try {
-    const codec = AccountId();
-    codec.dec(codec.enc(address));
-    return true;
+    const codec = AccountId()
+    codec.dec(codec.enc(address))
+    return true
   } catch (e) {
-    return false;
+    return false
   }
-};
+}
 
 /**
  * @name extractUrlValue
  * @summary Extracts a URL value from a URL string.
  */
 export const extractUrlValue = (key: string, url?: string) => {
-  if (typeof url === "undefined") {
-    url = window.location.href;
+  if (typeof url === 'undefined') {
+    url = window.location.href
   }
-  const match = url.match(`[?&]${key}=([^&]+)`);
-  return match ? match[1] : null;
-};
+  const match = url.match(`[?&]${key}=([^&]+)`)
+  return match ? match[1] : null
+}
 
 /**
  * @name varToUrlHash
@@ -201,16 +201,16 @@ export const varToUrlHash = (
   val: string,
   addIfMissing: boolean
 ) => {
-  const hash = window.location.hash;
-  const [page, params] = hash.split("?");
-  const searchParams = new URLSearchParams(params);
+  const hash = window.location.hash
+  const [page, params] = hash.split('?')
+  const searchParams = new URLSearchParams(params)
 
   if (searchParams.get(key) === null && !addIfMissing) {
-    return;
+    return
   }
-  searchParams.set(key, val);
-  window.location.hash = `${page}?${searchParams.toString()}`;
-};
+  searchParams.set(key, val)
+  window.location.hash = `${page}?${searchParams.toString()}`
+}
 
 /**
  * @name removeVarFromUrlHash
@@ -219,16 +219,16 @@ export const varToUrlHash = (
  * exist.
  */
 export const removeVarFromUrlHash = (key: string) => {
-  const hash = window.location.hash;
-  const [page, params] = hash.split("?");
-  const searchParams = new URLSearchParams(params);
+  const hash = window.location.hash
+  const [page, params] = hash.split('?')
+  const searchParams = new URLSearchParams(params)
   if (searchParams.get(key) === null) {
-    return;
+    return
   }
-  searchParams.delete(key);
-  const paramsAsStr = searchParams.toString();
-  window.location.hash = `${page}${paramsAsStr ? `?${paramsAsStr}` : ``}`;
-};
+  searchParams.delete(key)
+  const paramsAsStr = searchParams.toString()
+  window.location.hash = `${page}${paramsAsStr ? `?${paramsAsStr}` : ``}`
+}
 
 /**
  * @name sortWithNull
@@ -238,22 +238,22 @@ export const sortWithNull =
   (ascending: boolean) => (a: unknown, b: unknown) => {
     // equal items sort equally
     if (a === b) {
-      return 0;
+      return 0
     }
     // nulls sort after anything else
     if (a === null) {
-      return 1;
+      return 1
     }
     if (b === null) {
-      return -1;
+      return -1
     }
     // otherwise, if we're ascending, lowest sorts first
     if (ascending) {
-      return a < b ? -1 : 1;
+      return a < b ? -1 : 1
     }
     // if descending, highest sorts first
-    return a < b ? 1 : -1;
-  };
+    return a < b ? 1 : -1
+  }
 
 /**
  * @name applyWidthAsPadding
@@ -265,42 +265,42 @@ export const applyWidthAsPadding = (
 ) => {
   if (containerRef.current && subjectRef.current) {
     containerRef.current.style.paddingRight = `${
-      subjectRef.current.offsetWidth + remToUnit("1rem")
-    }px`;
+      subjectRef.current.offsetWidth + remToUnit('1rem')
+    }px`
   }
-};
+}
 
 /**
  * @name unescape
  * @summary Replaces \” with “
  */
-export const unescape = (val: string) => val.replace(/\\"/g, '"');
+export const unescape = (val: string) => val.replace(/\\"/g, '"')
 
 /**
  * @name inChrome
  * @summary Whether the application is rendering in Chrome.
  */
 export const inChrome = () => {
-  const isChromium = (window as Window & { chrome?: boolean })?.chrome || null;
-  const winNav = (window as Window)?.navigator || null;
+  const isChromium = (window as Window & { chrome?: boolean })?.chrome || null
+  const winNav = (window as Window)?.navigator || null
   const isOpera =
-    typeof (window as Window & { opr?: boolean })?.opr !== "undefined";
-  const isIEedge = winNav?.userAgent.indexOf("Edg") > -1 || false;
-  const isIOSChrome = winNav?.userAgent.match("CriOS") || false;
+    typeof (window as Window & { opr?: boolean })?.opr !== 'undefined'
+  const isIEedge = winNav?.userAgent.indexOf('Edg') > -1 || false
+  const isIOSChrome = winNav?.userAgent.match('CriOS') || false
 
   if (isIOSChrome) {
-    return true;
+    return true
   }
   if (
     isChromium !== null &&
-    typeof isChromium !== "undefined" &&
+    typeof isChromium !== 'undefined' &&
     isOpera === false &&
     isIEedge === false
   ) {
-    return true;
+    return true
   }
-  return false;
-};
+  return false
+}
 
 /**
  * @name addedTo
@@ -312,7 +312,7 @@ export const addedTo = (
   stale: AnyObject[],
   keys: string[]
 ): AnyObject[] =>
-  typeof fresh !== "object" || typeof stale !== "object" || !keys.length
+  typeof fresh !== 'object' || typeof stale !== 'object' || !keys.length
     ? []
     : fresh.filter(
         (freshItem) =>
@@ -323,7 +323,7 @@ export const addedTo = (
                 : staleItem[key] === freshItem[key]
             )
           )
-      );
+      )
 
 /**
  * @name removedFrom
@@ -335,7 +335,7 @@ export const removedFrom = (
   stale: AnyObject[],
   keys: string[]
 ): AnyObject[] =>
-  typeof fresh !== "object" || typeof stale !== "object" || !keys.length
+  typeof fresh !== 'object' || typeof stale !== 'object' || !keys.length
     ? []
     : stale.filter(
         (staleItem) =>
@@ -346,7 +346,7 @@ export const removedFrom = (
                 : freshItem[key] === staleItem[key]
             )
           )
-      );
+      )
 
 /**
  * @name matchedProperties
@@ -358,7 +358,7 @@ export const matchedProperties = (
   objY: AnyObject[],
   keys: string[]
 ): AnyObject[] =>
-  typeof objX !== "object" || typeof objY !== "object" || !keys.length
+  typeof objX !== 'object' || typeof objY !== 'object' || !keys.length
     ? []
     : objY.filter((x) =>
         objX.find((y) =>
@@ -366,7 +366,7 @@ export const matchedProperties = (
             !(key in x) || !(key in y) ? false : y[key] === x[key]
           )
         )
-      );
+      )
 
 /**
  * @name isValidHttpUrl
@@ -374,14 +374,14 @@ export const matchedProperties = (
  * @param string  - The string to check.
  */
 export const isValidHttpUrl = (string: string) => {
-  let url: URL;
+  let url: URL
   try {
-    url = new URL(string);
+    url = new URL(string)
   } catch (_) {
-    return false;
+    return false
   }
-  return url.protocol === "http:" || url.protocol === "https:";
-};
+  return url.protocol === 'http:' || url.protocol === 'https:'
+}
 
 /**
  * @name makeCancelable
@@ -389,34 +389,34 @@ export const isValidHttpUrl = (string: string) => {
  * @param promise  - The promise to make cancellable.
  */
 export const makeCancelable = (promise: Promise<AnyObject>) => {
-  let hasCanceled = false;
+  let hasCanceled = false
 
   const wrappedPromise = new Promise((resolve, reject) => {
     promise.then((val) =>
-      hasCanceled ? reject(Error("Cancelled")) : resolve(val)
-    );
+      hasCanceled ? reject(Error('Cancelled')) : resolve(val)
+    )
     promise.catch((error) =>
-      hasCanceled ? reject(Error("Cancelled")) : reject(error)
-    );
-  });
+      hasCanceled ? reject(Error('Cancelled')) : reject(error)
+    )
+  })
 
   return {
     promise: wrappedPromise,
     cancel: () => {
-      hasCanceled = true;
+      hasCanceled = true
     },
-  };
-};
+  }
+}
 
 /**
  * @name unimplemented
  * @summary A placeholder function to signal a deliberate unimplementation.
  * Consumes an arbitrary number of props.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const unimplemented = ({ ...props }) => {
   /* unimplemented */
-};
+}
 
 /**
  * Deep merge two objects.
@@ -429,24 +429,24 @@ export const mergeDeep = (
   ...sources: AnyObject[]
 ): AnyObject => {
   if (!sources.length) {
-    return target;
+    return target
   }
 
   const isObject = (item: AnyObject) =>
-    item && typeof item === "object" && !Array.isArray(item);
-  const source = sources.shift();
+    item && typeof item === 'object' && !Array.isArray(item)
+  const source = sources.shift()
 
   if (isObject(target) && isObject(source)) {
     for (const key in source) {
       if (isObject(source[key])) {
         if (!target[key]) {
-          Object.assign(target, { [key]: {} });
+          Object.assign(target, { [key]: {} })
         }
-        mergeDeep(target[key], source[key]);
+        mergeDeep(target[key], source[key])
       } else {
-        Object.assign(target, { [key]: source[key] });
+        Object.assign(target, { [key]: source[key] })
       }
     }
   }
-  return mergeDeep(target, ...sources);
-};
+  return mergeDeep(target, ...sources)
+}
