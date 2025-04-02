@@ -1,11 +1,10 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { web3Enable } from '@polkagate/extension-dapp'
 import extensions from '@w3ux/extension-assets'
 import { createSafeContext } from '@w3ux/hooks'
 import type { ExtensionStatus } from '@w3ux/types'
-import { setStateWithRef, withTimeout } from '@w3ux/utils'
+import { setStateWithRef } from '@w3ux/utils'
 import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import type { ExtensionsContextInterface } from './types'
@@ -13,16 +12,7 @@ import type { ExtensionsContextInterface } from './types'
 export const [ExtensionsContext, useExtensions] =
   createSafeContext<ExtensionsContextInterface>()
 
-export const ExtensionsProvider = ({
-  children,
-  options,
-}: {
-  children: ReactNode
-  options?: {
-    chainSafeSnapEnabled?: boolean
-    polkagateSnapEnabled?: boolean
-  }
-}) => {
+export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   // Store whether initial `injectedWeb3` checking is underway.
   //
   // Injecting `injectedWeb3` is an asynchronous process, so we need to check for its existence for
@@ -40,11 +30,6 @@ export const ExtensionsProvider = ({
   >({})
   const extensionsStatusRef = useRef(extensionsStatus)
 
-  // Store whether Metamask Snaps are enabled.
-  const [polkaGateSnapEnabled] = useState<boolean>(
-    options?.polkagateSnapEnabled || false
-  )
-
   // Listen for window.injectedWeb3 with an interval.
   let injectedWeb3Interval: ReturnType<typeof setInterval>
   const injectCounter = useRef<number>(0)
@@ -54,18 +39,12 @@ export const ExtensionsProvider = ({
   // Clear interval and move on to checking for Metamask Polkadot Snap.
   const handleClearInterval = async (hasInjectedWeb3: boolean) => {
     clearInterval(injectedWeb3Interval)
-
-    // Check if Metamask PolkaGate Snap is available.
-    if (polkaGateSnapEnabled) {
-      await withTimeout(500, web3Enable('snap_only'))
-
-      if (hasInjectedWeb3) {
-        setStateWithRef(
-          getExtensionsStatus(),
-          setExtensionsStatus,
-          extensionsStatusRef
-        )
-      }
+    if (hasInjectedWeb3) {
+      setStateWithRef(
+        getExtensionsStatus(),
+        setExtensionsStatus,
+        extensionsStatusRef
+      )
     }
     setStateWithRef(false, setCheckingInjectedWeb3, checkingInjectedWeb3Ref)
   }
@@ -134,9 +113,8 @@ export const ExtensionsProvider = ({
     }
   }
 
-  // Check for `injectedWeb3` and Metamask Snap on mount. To trigger interval on soft page
-  // refreshes, no empty dependency array is provided to this `useEffect`. Checks for `injectedWeb3`
-  // for a total of 3 seconds before giving up.
+  // To trigger interval on soft page refreshes, no empty dependency array is provided to this
+  // `useEffect`. Checks for `injectedWeb3` for a total of 3 seconds before giving up.
   //
   // Interval duration.
   const checkEveryMs = 300
