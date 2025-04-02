@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.11.0](https://github.com/w3ux/w3ux-library/compare/react-connect-kit-source-v1.10.0...react-connect-kit-source-v1.11.0) (2025-04-02)
+
+
+### Features
+
+* react 19 alpha support ([c7c0ee8](https://github.com/w3ux/w3ux-library/commit/c7c0ee87ba9fbbde54ab581027a2e2189972a65d))
+* **refactor:** Migrate from yarn to pnpm ([#206](https://github.com/w3ux/w3ux-library/issues/206)) ([93d2a40](https://github.com/w3ux/w3ux-library/commit/93d2a40cc0c455936022ef6a89bc18999d7928e5))
+* **refactor:** Migrate to ESLint 9 ([#207](https://github.com/w3ux/w3ux-library/issues/207)) ([9f8c3ef](https://github.com/w3ux/w3ux-library/commit/9f8c3ef4c5a3ff23c5ad7d5885fd0dad0ee75c7b))
+* **refactor:** move high level connect-kit types to `types` package ([#202](https://github.com/w3ux/w3ux-library/issues/202)) ([c8b324e](https://github.com/w3ux/w3ux-library/commit/c8b324ea6671e3ae842719bdbd74b1703cdf09a1))
+* **refactor:** Use safe contexts ([#214](https://github.com/w3ux/w3ux-library/issues/214)) ([e966da4](https://github.com/w3ux/w3ux-library/commit/e966da43ad9e8de1a8caf1b99dc6f2e93b8191af))
+
 ## [1.10.0](https://github.com/w3ux/w3ux-library/compare/react-connect-kit-source-v1.9.0...react-connect-kit-source-v1.10.0) (2024-12-01)
 
 
