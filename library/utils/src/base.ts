@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { AccountId } from '@polkadot-api/substrate-bindings'
+import { encodeAddress } from 'dedot/utils'
 
 /**
  * Ensures a number has at least the specified number of decimal places, retaining commas in the output if they are present in the input.
@@ -231,8 +231,7 @@ export const formatAccountSs58 = (
   ss58Prefix: number
 ): string | null => {
   try {
-    const codec = AccountId(ss58Prefix)
-    return codec.dec(codec.enc(address))
+    return encodeAddress(address, ss58Prefix)
   } catch (e) {
     return null
   }
