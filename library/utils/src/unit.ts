@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { AccountId } from '@polkadot-api/substrate-bindings'
+import { decodeAddress } from 'dedot/utils'
 import type { MutableRefObject, RefObject } from 'react'
 import { rmCommas, rmDecimals } from './base'
 import type { AnyObject } from './types'
@@ -169,8 +169,7 @@ export const localStorageOrDefault = <T>(
  */
 export const isValidAddress = (address: string): boolean => {
   try {
-    const codec = AccountId()
-    codec.dec(codec.enc(address))
+    decodeAddress(address)
     return true
   } catch (e) {
     return false

@@ -1,8 +1,8 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { AccountId } from '@polkadot-api/substrate-bindings'
 import { blake2AsU8a } from '@w3ux/crypto'
+import { encodeAddress } from 'dedot/utils'
 import { PolkiconCenter, SCHEMA } from './consts'
 import type { Coordinate, Scheme } from './types'
 
@@ -141,7 +141,7 @@ const addressToId = (address: string): Uint8Array => {
   const zeroHash = blake2AsU8a(new Uint8Array(32))
 
   // Get the encoded and decoded representation of the address, then hash it.
-  const pubKeyHash = blake2AsU8a(AccountId().dec(AccountId().enc(address)))
+  const pubKeyHash = blake2AsU8a(encodeAddress(address))
 
   // Adjust each byte in the hash relative to zeroHash and return as a Uint8Array.
   return pubKeyHash.map((x, i) => (x + 256 - zeroHash[i]) % 256)
