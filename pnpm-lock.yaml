@@ -160,8 +160,8 @@ importers:
   library/hooks:
     dependencies:
       '@w3ux/utils':
-        specifier: ^2.0.6
-        version: 2.0.6
+        specifier: ^2.0.8
+        version: 2.0.8
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -197,14 +197,14 @@ importers:
   library/react-connect-kit:
     dependencies:
       '@w3ux/extension-assets':
-        specifier: ^2.1.0
-        version: 2.1.0(react@19.1.0)
+        specifier: ^2.2.0
+        version: 2.2.0(react@19.1.0)
       '@w3ux/hooks':
         specifier: ^2.0.4
         version: 2.0.4(react@19.1.0)
       '@w3ux/utils':
-        specifier: ^2.0.6
-        version: 2.0.6
+        specifier: ^2.0.8
+        version: 2.0.8
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
@@ -273,8 +273,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       '@w3ux/utils':
-        specifier: ^2.0.6
-        version: 2.0.6
+        specifier: ^2.0.8
+        version: 2.0.8
       dedot:
         specifier: ^0.8.1
         version: 0.8.1
@@ -761,12 +761,6 @@ packages:
     resolution: {integrity: sha512-vsJDAkYR6qCPu+ioGScGiMYR7LvZYIXh/dlQeviqoTWNCVfKTLYD/LkNWH4Mxsv2a5vpIRc77FN5DnmK1eBggQ==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@polkadot-api/substrate-bindings@0.9.4':
-    resolution: {integrity: sha512-SUyetILwgUsodSk1qhNu0HflRBdq2VBCbqAqCBNaoCauE3/Q/G6k7xS+1nE6MTcpjZQex+TriJdDz/trLSvwsA==}
-
-  '@polkadot-api/utils@0.1.2':
-    resolution: {integrity: sha512-yhs5k2a8N1SBJcz7EthZoazzLQUkZxbf+0271Xzu42C5AEM9K9uFLbsB+ojzHEM72O5X8lPtSwGKNmS7WQyDyg==}
-
   '@polkadot-api/wasm-executor@0.1.2':
     resolution: {integrity: sha512-a5wGenltB3EFPdf72u8ewi6HsUg2qubUAf3ekJprZf24lTK3+w8a/GUF/y6r08LJF35MALZ32SAtLqtVTIOGnQ==}
 
@@ -1168,8 +1162,8 @@ packages:
   '@w3ux/crypto@1.0.0':
     resolution: {integrity: sha512-nj1mg+ZN8HB07mNsrWNLqd91aNH4rMS2nF+s2jdE8QFAXCI4sykmkgloYv7sC5BCluF1gKZyF6rGz5vqjtD6/A==}
 
-  '@w3ux/extension-assets@2.1.0':
-    resolution: {integrity: sha512-8XV39Z9DlPJMHRMYZRJRbsrc4PcsBkeITpzwxAM8quMtmWlvkaI1mVWyDQEy5YgVYIBH53owy6r3FnFjPzfFlg==}
+  '@w3ux/extension-assets@2.2.0':
+    resolution: {integrity: sha512-jP8sfNkvP72M5+u8q45MOM6RTpshRTkHK/a+s9z2Tk3hYZZXAlEChDyqsb2cx3cFoEIsTBbbqBAY0ZYqqu/5fQ==}
     peerDependencies:
       react: ^19
 
@@ -1181,8 +1175,8 @@ packages:
   '@w3ux/types@2.0.3':
     resolution: {integrity: sha512-D1H1Jdf8isIqxoj1k2NLIPM+3OF38/14eiUlnjEH9ohNx824MR5NlS7Mj3VuLnVAqvq/jLY7WLDhuVCmTcxd5g==}
 
-  '@w3ux/utils@2.0.6':
-    resolution: {integrity: sha512-1MzqiI1QwItTFXOc58sTziBPRfxgu6rYLU6oYPreXTUwSVeTWdhUeoNgro2b8iy+qJo8OyXYxd/dW3WEAB+p0Q==}
+  '@w3ux/utils@2.0.8':
+    resolution: {integrity: sha512-/uRGXVe85n2UNdtwy7w62lMnq7tRe9HQWtzRNp1QRtntTZ9v85FFKOsq2QgnG1gAljE7yHbyDwOVLNqOC3amSg==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -2920,9 +2914,6 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  scale-ts@1.6.1:
-    resolution: {integrity: sha512-PBMc2AWc6wSEqJYBDPcyCLUj9/tMKnLX70jLOSndMtcUoLQucP/DM0vnQo1wJAYjTrQiq8iG9rD0q6wFzgjH7g==}
-
   semver-greatest-satisfied-range@2.0.0:
     resolution: {integrity: sha512-lH3f6kMbwyANB7HuOWRMlLCa2itaCrZJ+SAqqkSZrZKO/cAsk2EOyaKHUtNkVLFyFW9pct22SFesFp3Z7zpA0g==}
     engines: {node: '>= 10.13.0'}
@@ -3895,15 +3886,6 @@ snapshots:
 
   '@pkgr/core@0.2.0': {}
 
-  '@polkadot-api/substrate-bindings@0.9.4':
-    dependencies:
-      '@noble/hashes': 1.7.1
-      '@polkadot-api/utils': 0.1.2
-      '@scure/base': 1.2.4
-      scale-ts: 1.6.1
-
-  '@polkadot-api/utils@0.1.2': {}
-
   '@polkadot-api/wasm-executor@0.1.2': {}
 
   '@polkadot/types-support@15.9.1':
@@ -4330,21 +4312,27 @@ snapshots:
     dependencies:
       blakejs: 1.2.1
 
-  '@w3ux/extension-assets@2.1.0(react@19.1.0)':
+  '@w3ux/extension-assets@2.2.0(react@19.1.0)':
     dependencies:
       react: 19.1.0
 
   '@w3ux/hooks@2.0.4(react@19.1.0)':
     dependencies:
-      '@w3ux/utils': 2.0.6
+      '@w3ux/utils': 2.0.8
       date-fns: 4.1.0
       react: 19.1.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@w3ux/types@2.0.3': {}
 
-  '@w3ux/utils@2.0.6':
+  '@w3ux/utils@2.0.8':
     dependencies:
-      '@polkadot-api/substrate-bindings': 0.9.4
+      dedot: 0.8.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   acorn-jsx@5.3.2(acorn@8.14.1):
     dependencies:
@@ -6322,8 +6310,6 @@ snapshots:
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.5.1
-
-  scale-ts@1.6.1: {}
 
   semver-greatest-satisfied-range@2.0.0:
     dependencies:

@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/hooks-source",
   "license": "GPL-3.0-only",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
@@ -22,7 +22,7 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@w3ux/utils": "^2.0.6",
+    "@w3ux/utils": "^2.0.8",
     "date-fns": "^4.1.0"
   }
 }
