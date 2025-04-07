@@ -11,17 +11,15 @@ export const getExtensions = async () => {
   let injectedWeb3Interval: ReturnType<typeof setInterval> = null
 
   // Format installed extensions
-  const formatInstalled = () => {
-    const value = _extensionsStatus.getValue()
-    return Object.keys(extensions).reduce(
+  const formatInstalled = () =>
+    Object.keys(extensions).reduce(
       (acc, key) => {
         acc[key] =
-          window?.injectedWeb3[key] !== undefined ? 'installed' : value[key]
+          window?.injectedWeb3[key] !== undefined ? 'installed' : acc[key]
         return acc
       },
-      { ...value }
+      { ..._extensionsStatus.getValue() }
     )
-  }
 
   // Handle completed interval check
   const handleCompleted = async (foundExtensions: boolean) => {
@@ -51,16 +49,14 @@ export const getExtensions = async () => {
 }
 
 // Gets an extension status
-export const getStatus = (id: string): ExtensionStatus => {
-  const value = _extensionsStatus.getValue()
-  return value[id] || undefined
-}
+export const getStatus = (id: string): ExtensionStatus =>
+  _extensionsStatus.getValue()[id] || undefined
 
 // Sets an extension status
 export const setStatus = (id: string, status: ExtensionStatus) => {
-  const value = _extensionsStatus.getValue()
-  value[id] = status
-  _extensionsStatus.next(value)
+  const newValue = { ..._extensionsStatus.getValue() }
+  newValue[id] = status
+  _extensionsStatus.next(newValue)
 }
 
 // Removes an extension status
@@ -70,7 +66,5 @@ export const removeStatus = (id: string) => {
 }
 
 // Whether an extension can be connected
-export const canConnect = (id: string) => {
-  const value = _extensionsStatus.getValue()
-  return ![undefined, 'connected'].includes(value[id])
-}
+export const canConnect = (id: string) =>
+  ![undefined, 'connected'].includes(_extensionsStatus.getValue()[id])
