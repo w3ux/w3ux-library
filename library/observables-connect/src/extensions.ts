@@ -4,39 +4,40 @@ SPDX-License-Identifier: GPL-3.0-only */
 import extensions from '@w3ux/extension-assets'
 import { _extensionsStatus, _gettingExtensions } from './index'
 
-// Gets the status of currently discovered extensions
-const formatExtensionsInstalled = () => {
-  const { injectedWeb3 } = window
-  const value = _extensionsStatus.getValue()
-  return Object.keys(extensions).reduce(
-    (acc, key) => {
-      acc[key] = injectedWeb3[key] !== undefined ? 'installed' : value[key]
-      return acc
-    },
-    { ...value }
-  )
-}
-
 // Gets extensions from injectedWeb3
 export const getExtensions = async () => {
   _gettingExtensions.next(true)
   let injectedWeb3Interval: ReturnType<typeof setInterval> = null
 
+  // Format installed extensions
+  const formatInstalled = () => {
+    const value = _extensionsStatus.getValue()
+    return Object.keys(extensions).reduce(
+      (acc, key) => {
+        acc[key] =
+          window?.injectedWeb3[key] !== undefined ? 'installed' : value[key]
+        return acc
+      },
+      { ...value }
+    )
+  }
+
   // Handle completed interval check
   const handleCompleted = async (foundExtensions: boolean) => {
     clearInterval(injectedWeb3Interval)
     if (foundExtensions) {
-      _extensionsStatus.next(formatExtensionsInstalled())
+      _extensionsStatus.next(formatInstalled())
     }
     _gettingExtensions.next(false)
   }
 
-  // Getter for the currently installed extensions every 300ms
-  // Checks a maximum of 10 times
+  // Getter for the currently installed extensions
   let counter = 0
+  const interval = 300
+  const maxChecks = 10
   injectedWeb3Interval = setInterval(() => {
     counter++
-    if (counter === 10) {
+    if (counter === maxChecks) {
       handleCompleted(false)
     } else {
       // `injectedWeb3` is present
@@ -45,5 +46,5 @@ export const getExtensions = async () => {
         handleCompleted(true)
       }
     }
-  }, 300)
+  }, interval)
 }
