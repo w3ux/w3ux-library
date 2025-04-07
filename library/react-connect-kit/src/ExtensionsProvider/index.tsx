@@ -4,8 +4,8 @@ SPDX-License-Identifier: GPL-3.0-only */
 import extensions from '@w3ux/extension-assets'
 import { createSafeContext } from '@w3ux/hooks'
 import {
-  checkingExtensions$,
   extensionsStatus$,
+  gettingExtensions$,
 } from '@w3ux/observables-connect'
 import {
   canConnect,
@@ -61,7 +61,7 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     getExtensions()
     const sub = combineLatest([
-      checkingExtensions$,
+      gettingExtensions$,
       extensionsStatus$,
     ]).subscribe(([checking, exts]) => {
       setStateWithRef(
