@@ -200,7 +200,7 @@ importers:
         specifier: ^2.2.0
         version: 2.2.0(react@19.1.0)
       rxjs:
-        specifier: ^7.8.0
+        specifier: ^7.8.2
         version: 7.8.2
     devDependencies:
       '@w3ux/types':
@@ -236,9 +236,15 @@ importers:
       '@w3ux/hooks':
         specifier: ^2.0.4
         version: 2.0.4(react@19.1.0)
+      '@w3ux/observables-connect':
+        specifier: 0.9.0-alpha.3
+        version: 0.9.0-alpha.3(react@19.1.0)(rxjs@7.8.2)
       '@w3ux/utils':
         specifier: ^2.0.8
         version: 2.0.8
+      rxjs:
+        specifier: ^7.8.2
+        version: 7.8.2
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
@@ -1205,6 +1211,11 @@ packages:
     resolution: {integrity: sha512-BoQXXkWLNiQ+uVctKGqH/XImF7MGDVZL4vkZMmRNXFd6zY9sNd6khtz4x4tDQF1Bn9Y+OMN7SfmF5T+w1rLwHw==}
     peerDependencies:
       react: ^19
+
+  '@w3ux/observables-connect@0.9.0-alpha.3':
+    resolution: {integrity: sha512-NMGZqUzyMpaKi6GmCg+o+79uvBRSafRG8JgOTVoZCpI3i5q/yCCSu4VRO0aVWQKSWLV4avDs0x/bRIj2dwzw5w==}
+    peerDependencies:
+      rxjs: ^7.8.0
 
   '@w3ux/types@2.1.0':
     resolution: {integrity: sha512-08l72OVqKg+/ZcV/uczHCJxfBKFNn52/DHr0+Ksy2mZIQBFOUPr/zzv8SY22yW2wxUmfR7M1uljQ7qXKwXY3Tw==}
@@ -4361,6 +4372,13 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+
+  '@w3ux/observables-connect@0.9.0-alpha.3(react@19.1.0)(rxjs@7.8.2)':
+    dependencies:
+      '@w3ux/extension-assets': 2.2.0(react@19.1.0)
+      rxjs: 7.8.2
+    transitivePeerDependencies:
+      - react
 
   '@w3ux/types@2.1.0': {}
 

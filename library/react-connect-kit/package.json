@@ -10,6 +10,7 @@
   "dependencies": {
     "@w3ux/extension-assets": "^2.2.0",
     "@w3ux/hooks": "^2.0.4",
+    "@w3ux/observables-connect": "0.9.0-alpha.3",
     "@w3ux/utils": "^2.0.8"
   },
   "devDependencies": {
@@ -22,5 +23,8 @@
     "merge-stream": "^2.0.0",
     "react": "^19.1.0",
     "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "rxjs": "^7.8.2"
   }
 }
