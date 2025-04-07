@@ -199,12 +199,6 @@ importers:
       '@w3ux/extension-assets':
         specifier: ^2.2.0
         version: 2.2.0(react@19.1.0)
-      '@w3ux/hooks':
-        specifier: ^2.0.4
-        version: 2.0.4(react@19.1.0)
-      '@w3ux/utils':
-        specifier: ^2.0.8
-        version: 2.0.8
       rxjs:
         specifier: ^7.8.0
         version: 7.8.2
