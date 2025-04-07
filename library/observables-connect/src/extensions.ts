@@ -2,6 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import extensions from '@w3ux/extension-assets'
+import type { ExtensionStatus } from '@w3ux/types'
 import { _extensionsStatus, _gettingExtensions } from './index'
 
 // Gets extensions from injectedWeb3
@@ -47,4 +48,29 @@ export const getExtensions = async () => {
       }
     }
   }, interval)
+}
+
+// Gets an extension status
+export const getStatus = (id: string): ExtensionStatus => {
+  const value = _extensionsStatus.getValue()
+  return value[id] || undefined
+}
+
+// Sets an extension status
+export const setStatus = (id: string, status: ExtensionStatus) => {
+  const value = _extensionsStatus.getValue()
+  value[id] = status
+  _extensionsStatus.next(value)
+}
+
+// Removes an extension status
+export const removeStatus = (id: string) => {
+  const { [id]: _, ...rest } = _extensionsStatus.getValue()
+  _extensionsStatus.next(rest)
+}
+
+// Whether an extension can be connected
+export const canConnect = (id: string) => {
+  const value = _extensionsStatus.getValue()
+  return ![undefined, 'connected'].includes(value[id])
 }
