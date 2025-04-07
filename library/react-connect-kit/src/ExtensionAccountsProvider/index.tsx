@@ -4,6 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { createSafeContext, useEffectIgnoreInitial } from '@w3ux/hooks'
 import type {
   ExtensionAccount,
+  ExtensionInterface,
   ImportedAccount,
   Sync,
   VoidFn,
@@ -15,7 +16,6 @@ import {
 } from '@w3ux/utils'
 import { useEffect, useRef, useState } from 'react'
 import { useExtensions } from '../ExtensionsProvider'
-import type { ExtensionInterface } from '../ExtensionsProvider/types'
 import { Extensions } from './Extensions'
 import type {
   ExtensionAccountsContextInterface,

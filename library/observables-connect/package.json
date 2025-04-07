@@ -1,20 +1,16 @@
 {
-  "name": "@w3ux/react-connect-kit-source",
+  "name": "@w3ux/observables-connect",
   "license": "GPL-3.0-only",
-  "version": "3.2.0",
+  "version": "0.9.0",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "build": "gulp --silent"
   },
   "dependencies": {
-    "@w3ux/extension-assets": "^2.2.0",
-    "@w3ux/hooks": "^2.0.4",
-    "@w3ux/observables-connect": "0.9.0",
-    "@w3ux/utils": "^2.0.8"
+    "@w3ux/extension-assets": "^2.2.0"
   },
   "devDependencies": {
-    "@types/react": "^19.0.12",
     "@w3ux/types": "^2.1.0",
     "gulp": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",

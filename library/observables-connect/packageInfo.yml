@@ -1,0 +1,8 @@
+directory:
+  - name: Observables Connect
+    description: Observables for extensions and accounts discovery.
+
+npm:
+  title: Observables Connect
+  contents:
+    - item: Observables for extensions and accounts discovery.

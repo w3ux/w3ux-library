@@ -10,6 +10,7 @@
     "build:validator-assets": "node dist/index.js -t build:validator-assets",
     "build:react-odometer": "node dist/index.js -t build:react-odometer",
     "build:react-polkicon": "node dist/index.js -t build:react-polkicon",
+    "build:observables-connect": "node dist/index.js -t build:observables-connect",
     "build:react-connect-kit": "node dist/index.js -t build:react-connect-kit",
     "build:hooks": "node dist/index.js -t build:hooks",
     "build:factories": "node dist/index.js -t build:factories",

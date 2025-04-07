@@ -98,6 +98,8 @@ export default [
         'error',
         {
           caughtErrors: 'none',
+          argsIgnorePattern: '^_$',
+          varsIgnorePattern: '^_$',
         },
       ],
       semi: ['error', 'never'],

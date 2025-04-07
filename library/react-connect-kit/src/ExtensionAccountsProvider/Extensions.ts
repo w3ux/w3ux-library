@@ -1,9 +1,8 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { ExtensionAccount } from '@w3ux/types'
+import type { ExtensionAccount, ExtensionInterface } from '@w3ux/types'
 import { formatAccountSs58, localStorageOrDefault } from '@w3ux/utils'
-import type { ExtensionInterface } from '../ExtensionsProvider/types'
 import type {
   ExtensionEnableResult,
   ExtensionEnableResults,

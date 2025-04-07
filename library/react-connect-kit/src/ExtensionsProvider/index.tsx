@@ -3,143 +3,78 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import extensions from '@w3ux/extension-assets'
 import { createSafeContext } from '@w3ux/hooks'
-import type { ExtensionStatus } from '@w3ux/types'
+import {
+  extensionsStatus$,
+  gettingExtensions$,
+} from '@w3ux/observables-connect'
+import {
+  canConnect,
+  getExtensions,
+  getStatus,
+  removeStatus,
+  setStatus,
+} from '@w3ux/observables-connect/extensions'
+import type { ExtensionsStatus, ExtensionStatus } from '@w3ux/types'
 import { setStateWithRef } from '@w3ux/utils'
 import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
+import { combineLatest } from 'rxjs'
 import type { ExtensionsContextInterface } from './types'
 
 export const [ExtensionsContext, useExtensions] =
   createSafeContext<ExtensionsContextInterface>()
 
 export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
-  // Store whether initial `injectedWeb3` checking is underway.
-  //
-  // Injecting `injectedWeb3` is an asynchronous process, so we need to check for its existence for
-  // a period of time.
+  // Store whether extensions are being checked
   const [checkingInjectedWeb3, setCheckingInjectedWeb3] =
     useState<boolean>(true)
   const checkingInjectedWeb3Ref = useRef(checkingInjectedWeb3)
 
-  // Store whether injected interval has been initialised.
-  const intervalInitialisedRef = useRef<boolean>(false)
-
-  // Store each extension's status in state.
-  const [extensionsStatus, setExtensionsStatus] = useState<
-    Record<string, ExtensionStatus>
-  >({})
+  // Store discovered extensions along with their status
+  const [extensionsStatus, setExtensionsStatus] = useState<ExtensionsStatus>({})
   const extensionsStatusRef = useRef(extensionsStatus)
 
-  // Listen for window.injectedWeb3 with an interval.
-  let injectedWeb3Interval: ReturnType<typeof setInterval>
-  const injectCounter = useRef<number>(0)
-
-  // Handle completed interval check for `injectedWeb3`.
-  //
-  // Clear interval and move on to checking for Metamask Polkadot Snap.
-  const handleClearInterval = async (hasInjectedWeb3: boolean) => {
-    clearInterval(injectedWeb3Interval)
-    if (hasInjectedWeb3) {
-      setStateWithRef(
-        getExtensionsStatus(),
-        setExtensionsStatus,
-        extensionsStatusRef
-      )
-    }
-    setStateWithRef(false, setCheckingInjectedWeb3, checkingInjectedWeb3Ref)
-  }
-
-  // Getter for the currently installed extensions.
-  //
-  // Loops through the supported extensios and checks if they are present in `injectedWeb3`. Adds
-  // `installed` status to the extension if it is present.
-  const getExtensionsStatus = () => {
-    const { injectedWeb3 } = window
-    const newExtensionsStatus = { ...extensionsStatus }
-    const extensionsAsArray = Object.entries(extensions).map(
-      ([key, value]) => ({
-        id: key,
-        ...value,
-      })
-    )
-    extensionsAsArray.forEach((e) => {
-      if (injectedWeb3[e.id] !== undefined) {
-        newExtensionsStatus[e.id] = 'installed'
-      }
-    })
-
-    return newExtensionsStatus
-  }
-
-  // Setter for an extension status.
+  // Setter for an extension status
   const setExtensionStatus = (id: string, status: ExtensionStatus) => {
-    setStateWithRef(
-      {
-        ...extensionsStatusRef.current,
-        [id]: status,
-      },
-      setExtensionsStatus,
-      extensionsStatusRef
-    )
+    setStatus(id, status)
   }
 
-  // Removes an extension from the `extensionsStatus` state.
+  // Removes an extension from the `extensionsStatus` state
   const removeExtensionStatus = (id: string) => {
-    const newExtensionsStatus = { ...extensionsStatusRef.current }
-    delete newExtensionsStatus[id]
-
-    setStateWithRef(
-      newExtensionsStatus,
-      setExtensionsStatus,
-      extensionsStatusRef
-    )
+    removeStatus(id)
   }
 
-  // Checks if an extension has been installed.
+  // Checks if an extension has been installed
   const extensionInstalled = (id: string): boolean =>
-    extensionsStatus[id] !== undefined
+    getStatus(id) !== undefined
 
-  // Checks whether an extension can be connected to.
-  const extensionCanConnect = (id: string): boolean =>
-    extensionInstalled(id) && extensionsStatus[id] !== 'connected'
+  // Checks whether an extension can be connected to
+  const extensionCanConnect = (id: string): boolean => canConnect(id)
 
   // Checks whether an extension supports a feature.
   const extensionHasFeature = (id: string, feature: string): boolean => {
-    const { features } = extensions[id]
-    if (features === '*' || features.includes(feature)) {
-      return true
-    } else {
-      return false
-    }
+    const features = extensions[id]?.features || []
+    return features === '*' || features.includes(feature)
   }
 
-  // To trigger interval on soft page refreshes, no empty dependency array is provided to this
-  // `useEffect`. Checks for `injectedWeb3` for a total of 3 seconds before giving up.
-  //
-  // Interval duration.
-  const checkEveryMs = 300
-  // Total interval iterations.
-  const totalChecks = 10
+  // Fetches the extensions and sets the state
   useEffect(() => {
-    if (!intervalInitialisedRef.current) {
-      intervalInitialisedRef.current = true
-
-      injectedWeb3Interval = setInterval(() => {
-        injectCounter.current++
-        if (injectCounter.current === totalChecks) {
-          handleClearInterval(false)
-        } else {
-          // `injectedWeb3` is present
-          const injectedWeb3 = window?.injectedWeb3 || null
-          if (injectedWeb3 !== null) {
-            handleClearInterval(true)
-          }
-        }
-      }, checkEveryMs)
+    getExtensions()
+    const sub = combineLatest([
+      gettingExtensions$,
+      extensionsStatus$,
+    ]).subscribe(([checking, exts]) => {
+      setStateWithRef(
+        checking,
+        setCheckingInjectedWeb3,
+        checkingInjectedWeb3Ref
+      )
+      setStateWithRef(exts, setExtensionsStatus, extensionsStatusRef)
+    })
+    return () => {
+      sub.unsubscribe()
     }
-
-    return () => clearInterval(injectedWeb3Interval)
-  })
+  }, [])
 
   return (
     <ExtensionsContext.Provider
