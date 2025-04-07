@@ -4,6 +4,7 @@
 **/node_modules
 **/package.json
 **/package-lock.json
+**/pnpm-lock.yaml
 **/.eslintrc.js
 **/tsconfig.json
 **/tstsconfig.tsbuildinfo
