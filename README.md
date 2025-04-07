@@ -16,6 +16,10 @@ A collection of general purpose TypeScript factories.
 
 A collection of general purpose React hooks.
 
+#### `@w3ux/observables-connect`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/observables-connect)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/observables-connect)]
+
+Observables for extensions and accounts discovery.
+
 #### `@w3ux/react-connect-kit`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/react-connect-kit)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/react-connect-kit)]
 
 Providers and hooks for connecting to web3 wallets and interacting with accounts.
