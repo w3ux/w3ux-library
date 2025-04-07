@@ -7,6 +7,7 @@ import * as directory from './builders/directory'
 import * as extensionAssets from './builders/extension-assets'
 import * as factories from './builders/factories'
 import * as hooks from './builders/hooks'
+import * as observablesConnect from './builders/observables-connect'
 import * as reactConnectKit from './builders/react-connect-kit'
 import * as reactOdometer from './builders/react-odometer'
 import * as reactPolkicon from './builders/react-polkicon'
@@ -45,6 +46,10 @@ switch (task) {
 
   case 'build:factories':
     factories.build()
+    break
+
+  case 'build:observables-connect':
+    observablesConnect.build()
     break
 
   case 'build:react-connect-kit':
