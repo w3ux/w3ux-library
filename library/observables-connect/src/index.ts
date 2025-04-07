@@ -5,7 +5,7 @@ import type { ExtensionsStatus } from '@w3ux/types'
 import { BehaviorSubject } from 'rxjs'
 
 // Whether extensions are being checked
-export const _gettingExtensions = new BehaviorSubject<boolean>(false)
+export const _gettingExtensions = new BehaviorSubject<boolean>(true)
 export const gettingExtensions$ = _gettingExtensions.asObservable()
 
 // Discovered extensions along with their status

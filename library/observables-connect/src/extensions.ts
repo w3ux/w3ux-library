@@ -10,49 +10,41 @@ export const getExtensions = async () => {
   _gettingExtensions.next(true)
   let injectedWeb3Interval: ReturnType<typeof setInterval> = null
 
-  // Find new installed extensions and update state
-  const findInstalled = () => {
-    let updated = false
-    const current = _extensionsStatus.getValue()
-    const installed = Object.keys(extensions).reduce(
+  // Format installed extensions
+  const formatInstalled = () => {
+    const value = _extensionsStatus.getValue()
+    return Object.keys(extensions).reduce(
       (acc, key) => {
-        if (current[key] !== undefined) {
-          return acc
-        }
-        const maybeExtension = window?.injectedWeb3?.[key]
-        if (maybeExtension !== undefined) {
-          updated = true
-          acc[key] = 'installed'
-        } else {
-          acc[key] = undefined
-        }
+        acc[key] =
+          window?.injectedWeb3[key] !== undefined ? 'installed' : value[key]
         return acc
       },
-      { ...current }
+      { ...value }
     )
-    return { installed, updated }
   }
 
-  // Handle interval iteration
-  const processInterval = async () => {
-    const { installed, updated } = findInstalled()
-    if (updated) {
-      _extensionsStatus.next(installed)
+  // Handle completed interval check
+  const handleCompleted = async (foundExtensions: boolean) => {
+    clearInterval(injectedWeb3Interval)
+    if (foundExtensions) {
+      _extensionsStatus.next(formatInstalled())
     }
+    _gettingExtensions.next(false)
   }
 
   // Getter for the currently installed extensions
-  let i = 0
+  let counter = 0
   const interval = 300
   const maxChecks = 10
   injectedWeb3Interval = setInterval(() => {
-    i++
-    if (i === maxChecks) {
-      _gettingExtensions.next(false)
-      clearInterval(injectedWeb3Interval)
+    counter++
+    if (counter === maxChecks) {
+      handleCompleted(false)
     } else {
-      if (window?.injectedWeb3 !== undefined) {
-        processInterval()
+      // `injectedWeb3` is present
+      const injectedWeb3 = window?.injectedWeb3 || null
+      if (injectedWeb3 !== null) {
+        handleCompleted(true)
       }
     }
   }, interval)
