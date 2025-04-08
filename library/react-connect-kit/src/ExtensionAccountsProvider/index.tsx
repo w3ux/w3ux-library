@@ -127,6 +127,15 @@ export const ExtensionAccountsProvider = ({
     // Add connected extensions to local storage.
     Array.from(connected.keys()).forEach((id) => addExtensionToLocal(id))
 
+    Array.from(withError.entries()).forEach(([id, state]) => {
+      handleExtensionError(id, state.error)
+    })
+
+    Array.from(connected.keys()).forEach((id) => {
+      setExtensionStatus(id, 'connected')
+      updateInitialisedExtensions(id)
+    })
+
     // Initial fetch of extension accounts to populate accounts & extensions state
     // ----------------------------------------------------------------------------
 
@@ -142,17 +151,8 @@ export const ExtensionAccountsProvider = ({
       }))
       .find(({ address }) => address === getActiveAccountLocal(network, ss58))
 
-    // Perform all initial state updates
+    // Perform initial account state update
     // ----------------------------------
-
-    Array.from(withError.entries()).forEach(([id, state]) => {
-      handleExtensionError(id, state.error)
-    })
-
-    Array.from(connected.keys()).forEach((id) => {
-      setExtensionStatus(id, 'connected')
-      updateInitialisedExtensions(id)
-    })
 
     updateExtensionAccounts({ add: initialAccounts, remove: [] })
 

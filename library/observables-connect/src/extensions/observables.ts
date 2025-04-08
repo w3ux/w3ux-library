@@ -11,3 +11,7 @@ export const extensionsStatus$ = _extensionsStatus.asObservable()
 // Whether extensions are being checked
 export const _gettingExtensions = new BehaviorSubject<boolean>(true)
 export const gettingExtensions$ = _gettingExtensions.asObservable()
+
+// Extensions that have successfully connected
+export const _initialisedExtensions = new BehaviorSubject<string[]>([])
+export const initialisedExtensions$ = _initialisedExtensions.asObservable()
