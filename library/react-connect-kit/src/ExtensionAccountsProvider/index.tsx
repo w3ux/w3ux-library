@@ -51,7 +51,7 @@ export const ExtensionAccountsProvider = ({
   setActiveAccount,
   onExtensionEnabled,
 }: ExtensionAccountsProviderProps) => {
-  const { handleImportExtension } = useImportExtension()
+  const { handleExtensionAccountsUdpdate } = useImportExtension()
 
   const {
     extensionsStatus,
@@ -170,7 +170,7 @@ export const ExtensionAccountsProvider = ({
       const {
         newAccounts,
         meta: { accountsToRemove },
-      } = handleImportExtension(
+      } = handleExtensionAccountsUdpdate(
         extensionId,
         extensionAccountsRef.current,
         signer,
@@ -228,7 +228,7 @@ export const ExtensionAccountsProvider = ({
             const {
               newAccounts,
               meta: { removedActiveAccount, accountsToRemove },
-            } = handleImportExtension(
+            } = handleExtensionAccountsUdpdate(
               id,
               extensionAccountsRef.current,
               extension.signer,

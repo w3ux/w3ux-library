@@ -10,7 +10,7 @@ export const useImportExtension = () => {
   // Handles importing of extension accounts.
   //
   // Gets accounts to be imported and commits them to state.
-  const handleImportExtension = (
+  const handleExtensionAccountsUdpdate = (
     id: string,
     currentAccounts: ExtensionAccount[],
     signer: unknown,
@@ -78,6 +78,6 @@ export const useImportExtension = () => {
   }
 
   return {
-    handleImportExtension,
+    handleExtensionAccountsUdpdate,
   }
 }
