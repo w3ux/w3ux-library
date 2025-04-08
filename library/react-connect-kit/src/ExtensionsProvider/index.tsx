@@ -3,17 +3,17 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import extensions from '@w3ux/extension-assets'
 import { createSafeContext } from '@w3ux/hooks'
-import { getExtensions } from '@w3ux/observables-connect/extensions'
+import {
+  canConnect,
+  getExtensions,
+  getStatus,
+  removeStatus,
+  setStatus,
+} from '@w3ux/observables-connect/extensions'
 import {
   extensionsStatus$,
   gettingExtensions$,
 } from '@w3ux/observables-connect/extensions/observables'
-import {
-  canConnect,
-  getStatus,
-  removeStatus,
-  setStatus,
-} from '@w3ux/observables-connect/extensions/state'
 import type { ExtensionsStatus, ExtensionStatus } from '@w3ux/types'
 import { setStateWithRef } from '@w3ux/utils'
 import type { ReactNode } from 'react'

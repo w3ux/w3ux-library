@@ -5,20 +5,16 @@ import { createSafeContext, useEffectIgnoreInitial } from '@w3ux/hooks'
 import {
   getAccountsFromExtensions,
   handleExtensionAccountsUpdate,
-} from '@w3ux/observables-connect/accounts/util'
-import {
-  filterConnectedExtensions,
-  filterFailedExtensions,
-} from '@w3ux/observables-connect/extensions/connect'
-import {
-  doEnableExtensions,
-  formatEnabledExtensions,
-  getExtensionsById,
-} from '@w3ux/observables-connect/extensions/enable'
+} from '@w3ux/observables-connect/accounts'
 import {
   addExtensionToLocal,
+  doEnableExtensions,
+  filterConnectedExtensions,
+  filterFailedExtensions,
+  formatEnabledExtensions,
+  getExtensionsById,
   removeExtensionFromLocal,
-} from '@w3ux/observables-connect/extensions/local'
+} from '@w3ux/observables-connect/extensions'
 import type {
   ExtensionAccount,
   ExtensionInterface,
