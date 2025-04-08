@@ -10,6 +10,12 @@ export const isExtensionLocal = (id: string): boolean => {
   return Array.isArray(current) && current.includes(id)
 }
 
+// Gets all active extensions from local storage
+export const getActiveExtensionsLocal = (): string[] => {
+  const current = localStorageOrDefault<string[]>(ActiveExtensionsKey, [], true)
+  return Array.isArray(current) ? current : []
+}
+
 // Adds an extension to local storage
 export const addExtensionToLocal = (id: string): void => {
   const current = localStorageOrDefault<string[]>(ActiveExtensionsKey, [], true)

@@ -6,18 +6,10 @@ import {
   getAccountsFromExtensions,
   handleExtensionAccountsUpdate,
 } from '@w3ux/observables-connect/accounts'
-import {
-  addExtensionToLocal,
-  doEnableExtensions,
-  filterConnectedExtensions,
-  filterFailedExtensions,
-  formatEnabledExtensions,
-  getExtensionsById,
-  removeExtensionFromLocal,
-} from '@w3ux/observables-connect/extensions'
+import { connectExtensions } from '@w3ux/observables-connect/extensions'
+import { initialisedExtensions$ } from '@w3ux/observables-connect/extensions/observables'
 import type {
   ExtensionAccount,
-  ExtensionInterface,
   ImportedAccount,
   Sync,
   VoidFn,
@@ -53,10 +45,9 @@ export const ExtensionAccountsProvider = ({
 }: ExtensionAccountsProviderProps) => {
   const {
     extensionsStatus,
-    setExtensionStatus,
     gettingExtensions,
     extensionHasFeature,
-    removeExtensionStatus,
+    extensionCanConnect,
   } = useExtensions()
 
   // Store connected extension accounts
@@ -66,14 +57,14 @@ export const ExtensionAccountsProvider = ({
   const extensionAccountsRef = useRef(extensionAccounts)
 
   // Store whether extension accounts have been synced
+  // TODO: Use observable to update this state
   const [extensionAccountsSynced, setExtensionAccountsSynced] =
     useState<Sync>('unsynced')
 
-  // Store extensions whose account subscriptions have been initialised
+  // Stores initialised extensions
   const [extensionsInitialised, setExtensionsInitialised] = useState<string[]>(
     []
   )
-  const extensionsInitialisedRef = useRef(extensionsInitialised)
 
   // Store unsubscribe handlers for connected extensions
   const unsubs = useRef<Record<string, VoidFn>>({})
@@ -96,45 +87,15 @@ export const ExtensionAccountsProvider = ({
     maybeSetActiveAccount(account?.address ?? null)
   }
 
-  // connectActiveExtensions
-  //
   // Connects to extensions that already have been connected to and stored in localStorage. Loop
   // through extensions and connect to accounts. If `activeAccount` exists locally, we wait until
   // all extensions are looped before connecting to it; there is no guarantee it still exists - must
   // explicitly find it
   const connectActiveExtensions = async () => {
-    const extensionIds = Object.keys(extensionsStatus)
-    if (!extensionIds.length) {
+    const { connected } = await connectExtensions(dappName)
+    if (connected.size === 0) {
       return
     }
-
-    // Iterate previously connected extensions and retreive valid `enable` functions
-    // ------------------------------------------------------------------------------
-    const rawExtensions = getExtensionsById(extensionIds)
-
-    // Attempt to connect to extensions via `enable` and format the results
-    const enableResults = formatEnabledExtensions(
-      rawExtensions,
-      await doEnableExtensions(rawExtensions, dappName)
-    )
-
-    // Retrieve the resulting connected extensions only
-    const connected = filterConnectedExtensions(enableResults)
-
-    // Retrieve extensions that failed to connect
-    const withError = filterFailedExtensions(enableResults)
-
-    // Add connected extensions to local storage.
-    Array.from(connected.keys()).forEach((id) => addExtensionToLocal(id))
-
-    Array.from(withError.entries()).forEach(([id, state]) => {
-      handleExtensionError(id, state.error)
-    })
-
-    Array.from(connected.keys()).forEach((id) => {
-      setExtensionStatus(id, 'connected')
-      updateInitialisedExtensions(id)
-    })
 
     // Initial fetch of extension accounts to populate accounts & extensions state
     // ----------------------------------------------------------------------------
@@ -199,122 +160,69 @@ export const ExtensionAccountsProvider = ({
     }
   }
 
-  // connectExtensionAccounts
-  //
-  // Similar to the above but only connects to a single extension. This is invoked by the user by
-  // clicking on an extension. If activeAccount is not found here, it is simply ignored
+  // Connects to a single extension. If activeAccount is not found here, it is simply ignored
   const connectExtensionAccounts = async (id: string): Promise<boolean> => {
-    const extensionIds = Object.keys(extensionsStatus)
-    const exists = extensionIds.find((key) => key === id) || undefined
-
-    if (!exists) {
-      updateInitialisedExtensions(
-        `unknown_extension_${extensionsInitialisedRef.current.length + 1}`
-      )
-    } else {
-      try {
-        // Attempt to get extension `enable` property
-        const { enable } = window.injectedWeb3[id]
-
-        // Summons extension popup.
-        const extension: ExtensionInterface = await enable(dappName)
-
-        // Continue if `enable` succeeded, and if the current network is supported
-        if (extension !== undefined) {
-          // Handler for new accounts
-          const handleAccounts = (accounts: ExtensionAccount[]) => {
-            const {
-              newAccounts,
-              meta: { removedActiveAccount, accountsToRemove },
-            } = handleExtensionAccountsUpdate(
-              id,
-              extensionAccountsRef.current,
-              extension.signer,
-              accounts,
-              network,
-              ss58
-            )
-            // Set active account for network if not yet set
-            if (!activeAccount) {
-              const activeExtensionAccount = getActiveExtensionAccount(
-                network,
-                ss58,
-                newAccounts
-              )
-              if (
-                activeExtensionAccount?.address !== removedActiveAccount &&
-                removedActiveAccount !== null
-              ) {
-                connectActiveExtensionAccount(
-                  activeExtensionAccount,
-                  connectToAccount
-                )
-              }
-            }
-
-            // Update extension accounts state
-            updateExtensionAccounts({
-              add: newAccounts,
-              remove: accountsToRemove,
-            })
-
-            // Update initialised extensions
-            updateInitialisedExtensions(id)
-          }
-
-          // Call optional `onExtensionEnabled` callback
-          addExtensionToLocal(id)
-
-          maybeOnExtensionEnabled(id)
-          setExtensionStatus(id, 'connected')
-
-          // If account subscriptions are not supported, simply get the account(s) from the extension. Otherwise, subscribe to accounts
-          if (!extensionHasFeature(id, 'subscribeAccounts')) {
-            const accounts = await extension.accounts.get()
-            handleAccounts(accounts)
-          } else {
-            const unsub = extension.accounts.subscribe((accounts) => {
-              handleAccounts(accounts || [])
-            })
-            addToUnsubscribe(id, unsub)
-          }
-          return true
-        }
-      } catch (err) {
-        handleExtensionError(id, String(err))
+    if (extensionCanConnect(id)) {
+      const { connected } = await connectExtensions(dappName, [id])
+      if (connected.size === 0) {
+        return
       }
+      const { extension } = connected.get(id)
+
+      // Handler for new accounts
+      const handleAccounts = (accounts: ExtensionAccount[]) => {
+        const {
+          newAccounts,
+          meta: { removedActiveAccount, accountsToRemove },
+        } = handleExtensionAccountsUpdate(
+          id,
+          extensionAccountsRef.current,
+          extension.signer,
+          accounts,
+          network,
+          ss58
+        )
+        // Set active account for network if not yet set
+        if (!activeAccount) {
+          const activeExtensionAccount = getActiveExtensionAccount(
+            network,
+            ss58,
+            newAccounts
+          )
+          if (
+            activeExtensionAccount?.address !== removedActiveAccount &&
+            removedActiveAccount !== null
+          ) {
+            connectActiveExtensionAccount(
+              activeExtensionAccount,
+              connectToAccount
+            )
+          }
+        }
+
+        // Update extension accounts state
+        updateExtensionAccounts({
+          add: newAccounts,
+          remove: accountsToRemove,
+        })
+      }
+
+      // Call optional `onExtensionEnabled` callback
+      maybeOnExtensionEnabled(id)
+
+      // If account subscriptions are not supported, simply get the account(s) from the extension. Otherwise, subscribe to accounts
+      if (!extensionHasFeature(id, 'subscribeAccounts')) {
+        const accounts = await extension.accounts.get()
+        handleAccounts(accounts)
+      } else {
+        const unsub = extension.accounts.subscribe((accounts) => {
+          handleAccounts(accounts || [])
+        })
+        addToUnsubscribe(id, unsub)
+      }
+      return true
     }
     return false
-  }
-
-  // Handle errors when communicating with extensions
-  const handleExtensionError = (id: string, err: string) => {
-    // if not general error (maybe enabled but no accounts trust app)
-    if (err.startsWith('Error')) {
-      // remove extension from local `active_extensions`
-      removeExtensionFromLocal(id)
-
-      // extension not found (does not exist).
-      if (err.substring(0, 17) === 'NotInstalledError') {
-        removeExtensionStatus(id)
-      } else {
-        // declare extension as no imported accounts authenticated
-        setExtensionStatus(id, 'not_authenticated')
-      }
-    }
-    // mark extension as initialised
-    updateInitialisedExtensions(id)
-  }
-
-  // Update initialised extensions
-  const updateInitialisedExtensions = (id: string) => {
-    if (!extensionsInitialisedRef.current.includes(id)) {
-      setStateWithRef(
-        [...extensionsInitialisedRef.current].concat(id),
-        setExtensionsInitialised,
-        extensionsInitialisedRef
-      )
-    }
   }
 
   // Add an extension account to context state
@@ -380,7 +288,6 @@ export const ExtensionAccountsProvider = ({
       // Unsubscribe from all accounts and reset state
       unsubscribe()
       setStateWithRef([], setExtensionAccounts, extensionAccountsRef)
-      setStateWithRef([], setExtensionsInitialised, extensionsInitialisedRef)
       // If extensions have been fetched, get accounts if extensions exist and local extensions
       // exist (previously connected)
       if (Object.keys(extensionsStatus).length) {
@@ -434,6 +341,16 @@ export const ExtensionAccountsProvider = ({
       setExtensionAccountsSynced('synced')
     }
   }, [gettingExtensions, extensionsInitialised])
+
+  // Subscribes to observables and updates state
+  useEffect(() => {
+    const sub = initialisedExtensions$.subscribe((initialised) => {
+      setExtensionsInitialised(initialised)
+    })
+    return () => {
+      sub.unsubscribe()
+    }
+  }, [])
 
   return (
     <ExtensionAccountsContext.Provider
