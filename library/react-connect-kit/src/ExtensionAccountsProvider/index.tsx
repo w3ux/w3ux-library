@@ -369,7 +369,7 @@ export const ExtensionAccountsProvider = ({
     }
   }
 
-  // Unsubscrbe all account subscriptions
+  // Unsubscribe all account subscriptions
   const unsubscribe = () => {
     Object.values(unsubs.current).forEach((unsub) => {
       unsub()
