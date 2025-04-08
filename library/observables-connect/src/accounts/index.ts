@@ -109,13 +109,13 @@ export const getAccountsFromExtensions = async (
         const filtered = result.value
           // Reformat addresses with default ss58 prefix
           .map((account) => {
-            const adddress = formatAccountSs58(account.address, DefaultSS58)
-            if (!adddress) {
+            const address = formatAccountSs58(account.address, DefaultSS58)
+            if (!address) {
               return null
             }
             return {
               ...account,
-              adddress,
+              address,
             }
           })
           // Remove null entries resulting from invalid formatted addresses
