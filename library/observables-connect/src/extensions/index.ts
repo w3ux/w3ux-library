@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import extensions from '@w3ux/extension-assets'
-import { _extensionsStatus, _gettingExtensions } from './state'
+import { _extensionsStatus, _gettingExtensions } from './observables'
 
 // Gets extensions from injectedWeb3
 export const getExtensions = async () => {
