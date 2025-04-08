@@ -36,7 +36,7 @@ export const getExtensionsById = (ids: string[]) => {
 }
 
 // Formats the results of an extension's enable function
-const formatEnabledExtensions = (
+export const formatEnabledExtensions = (
   extensions: RawExtensions,
   results: PromiseSettledResult<ExtensionInterface>[]
 ): ExtensionEnableResults => {
@@ -62,7 +62,7 @@ const formatEnabledExtensions = (
 }
 
 // Calls enable for the provided extensions
-const doEnableExtensions = async (
+export const doEnableExtensions = async (
   extensions: RawExtensions,
   dappName: string
 ) => {

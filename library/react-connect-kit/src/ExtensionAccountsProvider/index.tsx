@@ -3,14 +3,18 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { createSafeContext, useEffectIgnoreInitial } from '@w3ux/hooks'
 import {
-  connectedExtensions,
-  enableExtensions,
-  extensionsWithError,
-  formatEnabledExtensions,
   getAccountsFromExtensions,
+  handleExtensionAccountsUpdate,
+} from '@w3ux/observables-connect/accounts/util'
+import {
+  filterConnectedExtensions,
+  filterFailedExtensions,
+} from '@w3ux/observables-connect/extensions/connect'
+import {
+  doEnableExtensions,
+  formatEnabledExtensions,
   getExtensionsById,
-  handleExtensionAccountsUdpdate,
-} from '@w3ux/observables-connect/accounts'
+} from '@w3ux/observables-connect/extensions/enable'
 import {
   addExtensionToLocal,
   removeExtensionFromLocal,
@@ -115,14 +119,14 @@ export const ExtensionAccountsProvider = ({
     // Attempt to connect to extensions via `enable` and format the results
     const enableResults = formatEnabledExtensions(
       rawExtensions,
-      await enableExtensions(rawExtensions, dappName)
+      await doEnableExtensions(rawExtensions, dappName)
     )
 
     // Retrieve the resulting connected extensions only
-    const connected = connectedExtensions(enableResults)
+    const connected = filterConnectedExtensions(enableResults)
 
     // Retrieve extensions that failed to connect
-    const withError = extensionsWithError(enableResults)
+    const withError = filterFailedExtensions(enableResults)
 
     // Add connected extensions to local storage.
     Array.from(connected.keys()).forEach((id) => addExtensionToLocal(id))
@@ -168,7 +172,7 @@ export const ExtensionAccountsProvider = ({
       const {
         newAccounts,
         meta: { accountsToRemove },
-      } = handleExtensionAccountsUdpdate(
+      } = handleExtensionAccountsUpdate(
         extensionId,
         extensionAccountsRef.current,
         signer,
@@ -226,7 +230,7 @@ export const ExtensionAccountsProvider = ({
             const {
               newAccounts,
               meta: { removedActiveAccount, accountsToRemove },
-            } = handleExtensionAccountsUdpdate(
+            } = handleExtensionAccountsUpdate(
               id,
               extensionAccountsRef.current,
               extension.signer,
