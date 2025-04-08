@@ -289,7 +289,7 @@ export const ExtensionAccountsProvider = ({
     return false
   }
 
-  // Handle errors when communiating with extensions
+  // Handle errors when communicating with extensions
   const handleExtensionError = (id: string, err: string) => {
     // if not general error (maybe enabled but no accounts trust app)
     if (err.startsWith('Error')) {
