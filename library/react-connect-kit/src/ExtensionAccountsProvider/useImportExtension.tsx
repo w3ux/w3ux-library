@@ -1,10 +1,9 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { ExtensionAccount } from '@w3ux/types'
+import type { ExtensionAccount, HandleImportExtension } from '@w3ux/types'
 import { formatAccountSs58, isValidAddress } from '@w3ux/utils'
 import { defaultHandleImportExtension } from './defaults'
-import type { HandleImportExtension } from './types'
 import { getActiveAccountLocal, getInExternalAccounts } from './utils'
 
 export const useImportExtension = () => {

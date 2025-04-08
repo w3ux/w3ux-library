@@ -1,12 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type {
-  ExtensionAccount,
-  ImportedAccount,
-  MaybeString,
-  Sync,
-} from '@w3ux/types'
+import type { ImportedAccount, MaybeString, Sync } from '@w3ux/types'
 import type { ReactNode } from 'react'
 
 export interface ExtensionAccountsContextInterface {
@@ -23,12 +18,4 @@ export interface ExtensionAccountsProviderProps {
   activeAccount?: MaybeString
   setActiveAccount?: (address: MaybeString) => void
   onExtensionEnabled?: (id: string) => void
-}
-
-export interface HandleImportExtension {
-  newAccounts: ExtensionAccount[]
-  meta: {
-    accountsToRemove: ExtensionAccount[]
-    removedActiveAccount: MaybeString
-  }
 }
