@@ -1,14 +1,15 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { ExtensionAccount, ExtensionInterface } from '@w3ux/types'
-import { formatAccountSs58, localStorageOrDefault } from '@w3ux/utils'
 import type {
+  ExtensionAccount,
   ExtensionEnableResult,
   ExtensionEnableResults,
+  ExtensionInterface,
   RawExtensionEnable,
   RawExtensions,
-} from '../types'
+} from '@w3ux/types'
+import { formatAccountSs58, localStorageOrDefault } from '@w3ux/utils'
 import { DEFAULT_SS58 } from './defaults'
 
 // A static class to manage the discovery and importing of extensions.

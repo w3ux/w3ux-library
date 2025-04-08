@@ -11,7 +11,7 @@
     "@w3ux/extension-assets": "^2.2.0"
   },
   "devDependencies": {
-    "@w3ux/types": "^2.1.0",
+    "@w3ux/types": "^2.1.1",
     "gulp": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-strip-comments": "^2.6.0",

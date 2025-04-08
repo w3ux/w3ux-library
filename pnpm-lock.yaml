@@ -204,8 +204,8 @@ importers:
         version: 7.8.2
     devDependencies:
       '@w3ux/types':
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.1.1
+        version: 2.1.1
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -250,8 +250,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.1.1
+        version: 2.1.1
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1219,6 +1219,9 @@ packages:
 
   '@w3ux/types@2.1.0':
     resolution: {integrity: sha512-08l72OVqKg+/ZcV/uczHCJxfBKFNn52/DHr0+Ksy2mZIQBFOUPr/zzv8SY22yW2wxUmfR7M1uljQ7qXKwXY3Tw==}
+
+  '@w3ux/types@2.1.1':
+    resolution: {integrity: sha512-AlgVwEh+ysYj8Y56Fzaaq9dzwRfBnfYviyKG+fzgmMj5MkkUAOyxa8LPnFLZmYoshsd6frKNMBto8m3JmgKwSA==}
 
   '@w3ux/utils@2.0.8':
     resolution: {integrity: sha512-/uRGXVe85n2UNdtwy7w62lMnq7tRe9HQWtzRNp1QRtntTZ9v85FFKOsq2QgnG1gAljE7yHbyDwOVLNqOC3amSg==}
@@ -4381,6 +4384,8 @@ snapshots:
       - react
 
   '@w3ux/types@2.1.0': {}
+
+  '@w3ux/types@2.1.1': {}
 
   '@w3ux/utils@2.0.8':
     dependencies:

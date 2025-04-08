@@ -42,3 +42,20 @@ export interface ExtensionConfig {
   >
   url: string
 }
+
+export type RawExtensionEnable = (name?: string) => Promise<ExtensionInterface>
+
+export type RawExtensions = Map<string, RawExtensionEnable>
+
+export type ExtensionEnableStatus =
+  | 'valid'
+  | 'extension_not_found'
+  | 'enable_invalid'
+
+export type ExtensionEnableResults = Map<string, ExtensionEnableResult>
+
+export interface ExtensionEnableResult {
+  extension?: ExtensionInterface
+  connected: boolean
+  error?: string
+}
