@@ -9,6 +9,7 @@ import {
   formatEnabledExtensions,
   getAccountsFromExtensions,
   getExtensionsById,
+  handleExtensionAccountsUdpdate,
 } from '@w3ux/observables-connect/accounts'
 import {
   addExtensionToLocal,
@@ -32,7 +33,6 @@ import type {
   ExtensionAccountsContextInterface,
   ExtensionAccountsProviderProps,
 } from './types'
-import { useImportExtension } from './useImportExtension'
 import {
   connectActiveExtensionAccount,
   getActiveAccountLocal,
@@ -51,8 +51,6 @@ export const ExtensionAccountsProvider = ({
   setActiveAccount,
   onExtensionEnabled,
 }: ExtensionAccountsProviderProps) => {
-  const { handleExtensionAccountsUdpdate } = useImportExtension()
-
   const {
     extensionsStatus,
     setExtensionStatus,
