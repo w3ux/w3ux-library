@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { localStorageOrDefault } from '@w3ux/utils'
-import { ActiveExtensionsKey } from '../accounts/consts'
+import { ActiveExtensionsKey } from '../consts'
 
 // Check if an extension exists in local storage
 export const isExtensionLocal = (id: string): boolean => {
