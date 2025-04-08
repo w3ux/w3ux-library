@@ -15,12 +15,12 @@ export const enableExtensions = async (ids: string[], dappName: string) => {
   const extensions = getExtensionsById(ids)
   return formatEnabledExtensions(
     extensions,
-    await doEnableExtensions(extensions, dappName)
+    await doEnable(extensions, dappName)
   )
 }
 
 // Gets extensions from injectedWeb3 by their ids
-export const getExtensionsById = (ids: string[]) => {
+const getExtensionsById = (ids: string[]) => {
   const extensions = new Map<string, RawExtensionEnable>()
   ids.forEach(async (id) => {
     if (isExtensionLocal(id)) {
@@ -36,7 +36,7 @@ export const getExtensionsById = (ids: string[]) => {
 }
 
 // Formats the results of an extension's enable function
-export const formatEnabledExtensions = (
+const formatEnabledExtensions = (
   extensions: RawExtensions,
   results: PromiseSettledResult<ExtensionInterface>[]
 ): ExtensionEnableResults => {
@@ -62,10 +62,7 @@ export const formatEnabledExtensions = (
 }
 
 // Calls enable for the provided extensions
-export const doEnableExtensions = async (
-  extensions: RawExtensions,
-  dappName: string
-) => {
+const doEnable = async (extensions: RawExtensions, dappName: string) => {
   try {
     return await Promise.allSettled(
       Array.from(extensions.values()).map((fn) => fn(dappName))

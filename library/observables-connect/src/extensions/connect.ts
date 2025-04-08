@@ -71,7 +71,7 @@ export const connectExtensions = async (
 }
 
 // Filter successfully connected extensions
-export const filterConnectedExtensions = (
+const filterConnectedExtensions = (
   extensions: ExtensionEnableResults
 ): ExtensionEnableResults =>
   new Map(
@@ -79,7 +79,7 @@ export const filterConnectedExtensions = (
   )
 
 // Filter extensions that failed to connect
-export const filterFailedExtensions = (
+const filterFailedExtensions = (
   extensions: ExtensionEnableResults
 ): ExtensionEnableResults =>
   new Map(
