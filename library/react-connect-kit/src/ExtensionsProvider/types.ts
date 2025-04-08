@@ -5,7 +5,7 @@ import type { ExtensionStatus } from '@w3ux/types'
 
 // Extensions context interface.
 export interface ExtensionsContextInterface {
-  checkingInjectedWeb3: boolean
+  gettingExtensions: boolean
   extensionsStatus: Record<string, ExtensionStatus>
   setExtensionStatus: (id: string, status: ExtensionStatus) => void
   removeExtensionStatus: (id: string) => void

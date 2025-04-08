@@ -15,9 +15,7 @@ import {
   gettingExtensions$,
 } from '@w3ux/observables-connect/extensions/observables'
 import type { ExtensionsStatus, ExtensionStatus } from '@w3ux/types'
-import { setStateWithRef } from '@w3ux/utils'
-import type { ReactNode } from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { type ReactNode, useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'
 import type { ExtensionsContextInterface } from './types'
 
@@ -25,21 +23,18 @@ export const [ExtensionsContext, useExtensions] =
   createSafeContext<ExtensionsContextInterface>()
 
 export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
-  // Store whether extensions are being checked
-  const [checkingInjectedWeb3, setCheckingInjectedWeb3] =
-    useState<boolean>(true)
-  const checkingInjectedWeb3Ref = useRef(checkingInjectedWeb3)
+  // Store whether extensions are being fetched
+  const [gettingExtensions, setGettingExtensions] = useState<boolean>(true)
 
   // Store discovered extensions along with their status
   const [extensionsStatus, setExtensionsStatus] = useState<ExtensionsStatus>({})
-  const extensionsStatusRef = useRef(extensionsStatus)
 
   // Setter for an extension status
   const setExtensionStatus = (id: string, status: ExtensionStatus) => {
     setStatus(id, status)
   }
 
-  // Removes an extension from the `extensionsStatus` state
+  // Removes an extension status
   const removeExtensionStatus = (id: string) => {
     removeStatus(id)
   }
@@ -51,25 +46,21 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   // Checks whether an extension can be connected to
   const extensionCanConnect = (id: string): boolean => canConnect(id)
 
-  // Checks whether an extension supports a feature.
+  // Checks whether an extension supports a feature
   const extensionHasFeature = (id: string, feature: string): boolean => {
     const features = extensions[id]?.features || []
     return features === '*' || features.includes(feature)
   }
 
-  // Fetches the extensions and sets the state
+  // Subscribes to observables and updates state
   useEffect(() => {
     getExtensions()
     const sub = combineLatest([
       gettingExtensions$,
       extensionsStatus$,
-    ]).subscribe(([checking, exts]) => {
-      setStateWithRef(
-        checking,
-        setCheckingInjectedWeb3,
-        checkingInjectedWeb3Ref
-      )
-      setStateWithRef(exts, setExtensionsStatus, extensionsStatusRef)
+    ]).subscribe(([getting, status]) => {
+      setGettingExtensions(getting)
+      setExtensionsStatus(status)
     })
     return () => {
       sub.unsubscribe()
@@ -79,8 +70,8 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   return (
     <ExtensionsContext.Provider
       value={{
-        extensionsStatus: extensionsStatusRef.current,
-        checkingInjectedWeb3,
+        extensionsStatus,
+        gettingExtensions,
         setExtensionStatus,
         removeExtensionStatus,
         extensionInstalled,

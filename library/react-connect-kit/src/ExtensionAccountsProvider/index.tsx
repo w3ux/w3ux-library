@@ -54,9 +54,9 @@ export const ExtensionAccountsProvider = ({
   const {
     extensionsStatus,
     setExtensionStatus,
-    removeExtensionStatus,
-    checkingInjectedWeb3,
+    gettingExtensions,
     extensionHasFeature,
+    removeExtensionStatus,
   } = useExtensions()
 
   // Store connected extension accounts
@@ -376,7 +376,7 @@ export const ExtensionAccountsProvider = ({
 
   const handleSyncExtensionAccounts = async () => {
     // Wait for injectedWeb3 check to finish before starting account import process
-    if (!checkingInjectedWeb3 && extensionAccountsSynced === 'unsynced') {
+    if (!gettingExtensions && extensionAccountsSynced === 'unsynced') {
       // Unsubscribe from all accounts and reset state
       unsubscribe()
       setStateWithRef([], setExtensionAccounts, extensionAccountsRef)
@@ -422,18 +422,18 @@ export const ExtensionAccountsProvider = ({
     handleSyncExtensionAccounts()
 
     return () => unsubscribe()
-  }, [extensionsStatus, checkingInjectedWeb3, extensionAccountsSynced])
+  }, [extensionsStatus, gettingExtensions, extensionAccountsSynced])
 
   // Once initialised extensions equal total extensions present in `injectedWeb3`, mark extensions
   // as fetched
   useEffectIgnoreInitial(() => {
     if (
-      !checkingInjectedWeb3 &&
+      !gettingExtensions &&
       extensionsInitialised.length === Object.keys(extensionsStatus).length
     ) {
       setExtensionAccountsSynced('synced')
     }
-  }, [checkingInjectedWeb3, extensionsInitialised])
+  }, [gettingExtensions, extensionsInitialised])
 
   return (
     <ExtensionAccountsContext.Provider
