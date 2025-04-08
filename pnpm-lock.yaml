@@ -199,13 +199,16 @@ importers:
       '@w3ux/extension-assets':
         specifier: ^2.2.0
         version: 2.2.0(react@19.1.0)
+      '@w3ux/utils':
+        specifier: ^2.0.8
+        version: 2.0.8
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
     devDependencies:
       '@w3ux/types':
-        specifier: ^2.1.1
-        version: 2.1.1
+        specifier: ^2.1.2
+        version: 2.1.2
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1222,6 +1225,9 @@ packages:
 
   '@w3ux/types@2.1.1':
     resolution: {integrity: sha512-AlgVwEh+ysYj8Y56Fzaaq9dzwRfBnfYviyKG+fzgmMj5MkkUAOyxa8LPnFLZmYoshsd6frKNMBto8m3JmgKwSA==}
+
+  '@w3ux/types@2.1.2':
+    resolution: {integrity: sha512-t9s/3dPs7Q8vJOQjkj9s0WxU+9Y/E6wMyCaZt3gZgIX9hbV9JFDCZnGJGiTX0UDCOkIOj2VbvTcJCnQM57OJrg==}
 
   '@w3ux/utils@2.0.8':
     resolution: {integrity: sha512-/uRGXVe85n2UNdtwy7w62lMnq7tRe9HQWtzRNp1QRtntTZ9v85FFKOsq2QgnG1gAljE7yHbyDwOVLNqOC3amSg==}
@@ -4386,6 +4392,8 @@ snapshots:
   '@w3ux/types@2.1.0': {}
 
   '@w3ux/types@2.1.1': {}
+
+  '@w3ux/types@2.1.2': {}
 
   '@w3ux/utils@2.0.8':
     dependencies:

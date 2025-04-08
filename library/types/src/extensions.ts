@@ -3,7 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import type { FunctionComponent, SVGProps } from 'react'
 import type { AccountAddedBy } from './accounts'
-import type { VoidFn } from './common'
+import type { MaybeString, VoidFn } from './common'
 
 export type ExtensionStatus = 'installed' | 'not_authenticated' | 'connected'
 
@@ -58,4 +58,12 @@ export interface ExtensionEnableResult {
   extension?: ExtensionInterface
   connected: boolean
   error?: string
+}
+
+export interface HandleImportExtension {
+  newAccounts: ExtensionAccount[]
+  meta: {
+    accountsToRemove: ExtensionAccount[]
+    removedActiveAccount: MaybeString
+  }
 }
