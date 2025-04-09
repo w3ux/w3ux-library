@@ -3,19 +3,15 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { createSafeContext } from '@w3ux/hooks'
 import {
-  _reconnectSync,
   accounts$,
-  addUnsub,
-  processExtensionAccounts,
+  connectExtension as doConnectExtension,
+  getReconnectSync,
   reconnectExtensions,
   reconnectSync$,
   resetAccounts,
   unsubAll,
 } from '@w3ux/observables-connect/accounts'
-import {
-  connectExtensions,
-  initialisedExtensions$,
-} from '@w3ux/observables-connect/extensions'
+import { initialisedExtensions$ } from '@w3ux/observables-connect/extensions'
 import type { ImportedAccount, Sync } from '@w3ux/types'
 import { formatAccountSs58 } from '@w3ux/utils'
 import { useEffect, useState } from 'react'
@@ -34,12 +30,7 @@ export const ExtensionAccountsProvider = ({
   ss58,
   dappName,
 }: ExtensionAccountsProviderProps) => {
-  const {
-    extensionsStatus,
-    gettingExtensions,
-    extensionHasFeature,
-    extensionCanConnect,
-  } = useExtensions()
+  const { gettingExtensions } = useExtensions()
 
   // Store connected extension accounts
   const [extensionAccounts, setExtensionAccounts] = useState<ImportedAccount[]>(
@@ -52,56 +43,21 @@ export const ExtensionAccountsProvider = ({
   // Store whether previously enabled extensions have been re-connected
   const [extensionsSynced, setExtensionsSynced] = useState<Sync>('unsynced')
 
-  // Connects to a single extension and processes its accounts
-  const connectExtension = async (id: string): Promise<boolean> => {
-    if (extensionCanConnect(id)) {
-      const { connected } = await connectExtensions(dappName, [id])
-      if (connected.size === 0) {
-        return
-      }
-      const { extension } = connected.get(id)
-
-      // If account subscriptions are not supported, simply get the account(s) from the extension,
-      // otherwise, subscribe to accounts
-      if (!extensionHasFeature(id, 'subscribeAccounts')) {
-        const accounts = await extension.accounts.get()
-        processExtensionAccounts(
-          {
-            source: id,
-            ss58,
-          },
-          extension.signer,
-          accounts
-        )
-      } else {
-        const unsub = extension.accounts.subscribe((accounts) => {
-          processExtensionAccounts(
-            {
-              source: id,
-              ss58,
-            },
-            extension.signer,
-            accounts
-          )
-        })
-        addUnsub(id, unsub)
-      }
-      return true
-    }
-    return false
-  }
-
-  const handleSyncExtensionAccounts = async () => {
-    if (!gettingExtensions && _reconnectSync.getValue() === 'unsynced') {
-      // Unsubscribe from all accounts and reset state
+  // Handle initial connection to previously enabled extensions
+  const handleInitialConnect = async () => {
+    if (!gettingExtensions && getReconnectSync() === 'unsynced') {
+      // Defensive: unsubscribe from all accounts and reset state
       unsubAll()
       resetAccounts()
-      // Bootstrap any previously connected to extensions
       await reconnectExtensions(dappName, ss58)
     }
   }
 
-  // Get extension accounts based on the provided ss58 prefix
+  // Connects to a single extension and processes its accounts
+  const connectExtension = async (id: string): Promise<boolean> =>
+    await doConnectExtension(dappName, ss58, id)
+
+  // Get extension accounts, formatted by a provided ss58 prefix
   const getExtensionAccounts = (ss58Prefix: number): ImportedAccount[] =>
     extensionAccounts
       .map((account) => {
@@ -114,14 +70,13 @@ export const ExtensionAccountsProvider = ({
           address: formattedAddress,
         }
       })
-      // Remove null entries resulting from invalid formatted addresses
       .filter((account) => account !== null)
 
   // Initialise extension accounts sync
   useEffect(() => {
-    handleSyncExtensionAccounts()
+    handleInitialConnect()
     return () => unsubAll()
-  }, [extensionsStatus, gettingExtensions])
+  }, [gettingExtensions])
 
   // Subscribes to observables and updates state
   useEffect(() => {
