@@ -60,7 +60,7 @@ export interface ExtensionEnableResult {
   error?: string
 }
 
-export interface HandleImportExtension {
+export interface ProcessExtensionAccountsResult {
   newAccounts: ExtensionAccount[]
   meta: {
     accountsToRemove: ExtensionAccount[]

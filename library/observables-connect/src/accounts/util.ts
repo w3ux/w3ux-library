@@ -3,11 +3,11 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import type {
   ExtensionAccount,
-  HandleImportExtension,
   ImportedAccount,
+  ProcessExtensionAccountsResult,
 } from '@w3ux/types'
 import { formatAccountSs58, isValidAddress } from '@w3ux/utils'
-import { DefaultHandleImportExtension } from '../consts'
+import { defaultProcessExtensionResult } from '../consts'
 import { getActiveAccountLocal, getLocalExternalAccounts } from './local'
 
 // Gets accounts to be imported and commits them to state
@@ -22,10 +22,10 @@ export const processExtensionAccounts = (
   currentAccounts: ExtensionAccount[],
   signer: unknown,
   accounts: ExtensionAccount[]
-): HandleImportExtension => {
+): ProcessExtensionAccountsResult => {
   const { source, ss58, network } = config
   if (!accounts.length) {
-    return DefaultHandleImportExtension
+    return defaultProcessExtensionResult
   }
 
   // Get valid accounts from extension

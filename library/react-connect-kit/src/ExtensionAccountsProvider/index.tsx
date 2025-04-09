@@ -4,7 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { createSafeContext, useEffectIgnoreInitial } from '@w3ux/hooks'
 import {
   getAccountsFromExtensions,
-  handleExtensionAccountsUpdate,
+  processExtensionAccounts,
 } from '@w3ux/observables-connect/accounts'
 import { connectExtensions } from '@w3ux/observables-connect/extensions'
 import { initialisedExtensions$ } from '@w3ux/observables-connect/extensions/observables'
@@ -98,7 +98,7 @@ export const ExtensionAccountsProvider = ({
     }
 
     // Get full list of imported accounts
-    const initialAccounts = await getAccountsFromExtensions(connected)
+    const initialAccounts = await getAccountsFromExtensions(connected, ss58)
 
     // Get the active account if found in initial accounts. Format initial account addresses to the
     // correct ss58 format before finding
@@ -126,13 +126,15 @@ export const ExtensionAccountsProvider = ({
       const {
         newAccounts,
         meta: { accountsToRemove },
-      } = handleExtensionAccountsUpdate(
-        extensionId,
+      } = processExtensionAccounts(
+        {
+          source: extensionId,
+          network,
+          ss58,
+        },
         extensionAccountsRef.current,
         signer,
-        accounts,
-        network,
-        ss58
+        accounts
       )
 
       // Update added and removed accounts
@@ -176,13 +178,15 @@ export const ExtensionAccountsProvider = ({
         const {
           newAccounts,
           meta: { removedActiveAccount, accountsToRemove },
-        } = handleExtensionAccountsUpdate(
-          extensionId,
+        } = processExtensionAccounts(
+          {
+            source: extensionId,
+            network,
+            ss58,
+          },
           extensionAccountsRef.current,
           signer,
-          accounts,
-          network,
-          ss58
+          accounts
         )
         // Set active account for network if not yet set
         if (!activeAccount) {
