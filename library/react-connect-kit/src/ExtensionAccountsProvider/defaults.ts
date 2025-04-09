@@ -5,8 +5,5 @@ import type { ProcessExtensionAccountsResult } from '@w3ux/types'
 
 export const defaultProcessExtensionResult: ProcessExtensionAccountsResult = {
   newAccounts: [],
-  meta: {
-    accountsToRemove: [],
-    removedActiveAccount: null,
-  },
+  removedAccounts: [],
 }

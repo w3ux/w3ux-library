@@ -207,8 +207,8 @@ importers:
         version: 7.8.2
     devDependencies:
       '@w3ux/types':
-        specifier: ^2.1.5
-        version: 2.1.5
+        specifier: ^2.1.6
+        version: 2.1.6
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -240,8 +240,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0(react@19.1.0)
       '@w3ux/observables-connect':
-        specifier: 0.9.24
-        version: 0.9.24(react@19.1.0)(rxjs@7.8.2)
+        specifier: 0.9.25
+        version: 0.9.25(react@19.1.0)(rxjs@7.8.2)
       '@w3ux/utils':
         specifier: ^2.0.8
         version: 2.0.8
@@ -253,8 +253,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.4
-        version: 2.1.4
+        specifier: ^2.1.6
+        version: 2.1.6
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1215,19 +1215,16 @@ packages:
     peerDependencies:
       react: ^19
 
-  '@w3ux/observables-connect@0.9.24':
-    resolution: {integrity: sha512-zK8XEkMWXG7AjSyKTPICCBE/Zu2nHISns0IX9DrLdMvSlgpsy1APDenPJUGchDRK6V6lL9R7C0VuUAnv3IGsdQ==}
+  '@w3ux/observables-connect@0.9.25':
+    resolution: {integrity: sha512-6lEfJWHzj24y1TAnrN8dq3iRI5NEpyWoWBbjgS4Vrm4k3F/aSAnlJg0aNM+qzAqtfnutev44ImznVzq9/AzAaQ==}
     peerDependencies:
       rxjs: ^7.8.2
 
   '@w3ux/types@2.1.2':
     resolution: {integrity: sha512-t9s/3dPs7Q8vJOQjkj9s0WxU+9Y/E6wMyCaZt3gZgIX9hbV9JFDCZnGJGiTX0UDCOkIOj2VbvTcJCnQM57OJrg==}
 
-  '@w3ux/types@2.1.4':
-    resolution: {integrity: sha512-mfTWaymPcpOU9q8NnmBKuCpL2stya63g5/4J1OeAarPdFGjjAq69tp9ZjUL1vuMs3ueS3IenMWvQzdcT77XR6Q==}
-
-  '@w3ux/types@2.1.5':
-    resolution: {integrity: sha512-Ei1oaa7XjvAvZzfowJp+y8OTNUBGftu4pp3+7iKFYSVi7sUn0KG0/i3uAUWE/JIg7ySR3PL1XJSnVH9POS688Q==}
+  '@w3ux/types@2.1.6':
+    resolution: {integrity: sha512-Z4fEZJjSKCjk9K5gdcylciJrGauWRJyO4oGgzq38Snucdndqye2b9ma1yKWb83vgnTHwOU62c+FQIF0UpYlVFA==}
 
   '@w3ux/utils@2.0.8':
     resolution: {integrity: sha512-/uRGXVe85n2UNdtwy7w62lMnq7tRe9HQWtzRNp1QRtntTZ9v85FFKOsq2QgnG1gAljE7yHbyDwOVLNqOC3amSg==}
@@ -4385,7 +4382,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@w3ux/observables-connect@0.9.24(react@19.1.0)(rxjs@7.8.2)':
+  '@w3ux/observables-connect@0.9.25(react@19.1.0)(rxjs@7.8.2)':
     dependencies:
       '@w3ux/extension-assets': 2.2.0(react@19.1.0)
       '@w3ux/utils': 2.0.9
@@ -4397,9 +4394,7 @@ snapshots:
 
   '@w3ux/types@2.1.2': {}
 
-  '@w3ux/types@2.1.4': {}
-
-  '@w3ux/types@2.1.5': {}
+  '@w3ux/types@2.1.6': {}
 
   '@w3ux/utils@2.0.8':
     dependencies:

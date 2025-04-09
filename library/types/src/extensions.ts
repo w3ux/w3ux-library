@@ -3,7 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import type { FunctionComponent, SVGProps } from 'react'
 import type { AccountAddedBy } from './accounts'
-import type { MaybeString, VoidFn } from './common'
+import type { VoidFn } from './common'
 
 export type ExtensionStatus = 'installed' | 'not_authenticated' | 'connected'
 
@@ -62,8 +62,5 @@ export interface ExtensionEnableResult {
 
 export interface ProcessExtensionAccountsResult {
   newAccounts: ExtensionAccount[]
-  meta: {
-    accountsToRemove: ExtensionAccount[]
-    removedActiveAccount: MaybeString
-  }
+  removedAccounts: ExtensionAccount[]
 }

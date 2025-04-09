@@ -8,7 +8,7 @@ import type {
 } from '@w3ux/types'
 import { formatAccountSs58, isValidAddress } from '@w3ux/utils'
 import { defaultProcessExtensionResult } from '../consts'
-import { getActiveAccountLocal, getLocalExternalAccounts } from './local'
+import { getLocalExternalAccounts } from './local'
 import { _accounts } from './observables'
 
 // Gets accounts to be imported and commits them to state
@@ -16,14 +16,13 @@ import { _accounts } from './observables'
 interface Config {
   source: string
   ss58: number
-  network: string
 }
 export const processExtensionAccounts = (
   config: Config,
   signer: unknown,
   newAccounts: ExtensionAccount[]
 ): ProcessExtensionAccountsResult => {
-  const { source, ss58, network } = config
+  const { source, ss58 } = config
   if (!newAccounts.length) {
     return defaultProcessExtensionResult
   }
@@ -31,22 +30,13 @@ export const processExtensionAccounts = (
   // Get valid accounts from extension
   newAccounts = formatExtensionAccounts(newAccounts, ss58)
 
-  // Remove accounts from local external accounts if present
-  const inExternal = getInExternalAccounts(newAccounts, network)
-
   // Find any accounts that have been removed from this extension
   const removedAccounts = _accounts
     .getValue()
     .filter((j) => j.source === source)
     .filter((j) => !newAccounts.find((i) => i.address === j.address))
 
-  // Check whether active account is present in forgotten accounts
-  const removedActiveAccount =
-    removedAccounts.find(
-      ({ address }) => address === getActiveAccountLocal(network, ss58)
-    )?.address || null
-
-  // Remove accounts that have already been added to accounts via another extension
+  // Remove accounts that have already been imported
   newAccounts = newAccounts.filter(
     ({ address }) =>
       !_accounts
@@ -70,10 +60,7 @@ export const processExtensionAccounts = (
 
   return {
     newAccounts,
-    meta: {
-      accountsToRemove: [...inExternal, ...removedAccounts],
-      removedActiveAccount,
-    },
+    removedAccounts: [...removedAccounts],
   }
 }
 

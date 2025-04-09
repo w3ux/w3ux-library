@@ -16,12 +16,7 @@ import {
   getActiveExtensionsLocal,
   initialisedExtensions$,
 } from '@w3ux/observables-connect/extensions'
-import type {
-  ExtensionAccount,
-  ImportedAccount,
-  ProcessExtensionAccountsResult,
-  Sync,
-} from '@w3ux/types'
+import type { ExtensionAccount, ImportedAccount, Sync } from '@w3ux/types'
 import { formatAccountSs58, localStorageOrDefault } from '@w3ux/utils'
 import { useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'
@@ -30,22 +25,14 @@ import type {
   ExtensionAccountsContextInterface,
   ExtensionAccountsProviderProps,
 } from './types'
-import {
-  connectActiveExtensionAccount,
-  getActiveAccountLocal,
-  getActiveExtensionAccount,
-} from './utils'
 
 export const [ExtensionAccountsContext, useExtensionAccounts] =
   createSafeContext<ExtensionAccountsContextInterface>()
 
 export const ExtensionAccountsProvider = ({
   children,
-  network,
   ss58,
   dappName,
-  activeAccount,
-  setActiveAccount,
   onExtensionEnabled,
 }: ExtensionAccountsProviderProps) => {
   const {
@@ -69,13 +56,6 @@ export const ExtensionAccountsProvider = ({
   const [extensionAccountsSynced, setExtensionAccountsSynced] =
     useState<Sync>('unsynced')
 
-  // Helper for setting active account. Ignores if not a valid function
-  const maybeSetActiveAccount = (address: string) => {
-    if (typeof setActiveAccount === 'function') {
-      setActiveAccount(address ?? null)
-    }
-  }
-
   // Helper for calling extension enabled callback. Ignores if not a valid function
   const maybeOnExtensionEnabled = (id: string) => {
     if (typeof onExtensionEnabled === 'function') {
@@ -83,14 +63,8 @@ export const ExtensionAccountsProvider = ({
     }
   }
 
-  const connectToAccount = (account: ImportedAccount | null) => {
-    maybeSetActiveAccount(account?.address ?? null)
-  }
-
   // Connects to extensions that already have been connected to and stored in localStorage. Loop
-  // through extensions and connect to accounts. If `activeAccount` exists locally, we wait until
-  // all extensions are looped before connecting to it; there is no guarantee it still exists - must
-  // explicitly find it
+  // through extensions and connect to accounts
   const connectActiveExtensions = async () => {
     const { connected } = await connectExtensions(
       dappName,
@@ -102,15 +76,6 @@ export const ExtensionAccountsProvider = ({
 
     // Get full list of imported accounts
     const initialAccounts = await getAccountsFromExtensions(connected, ss58)
-
-    // Get the active account if found in initial accounts. Format initial account addresses to the
-    // correct ss58 format before finding
-    const activeAccountInInitial = initialAccounts
-      .map((acc) => ({
-        ...acc,
-        address: formatAccountSs58(acc.address, ss58),
-      }))
-      .find(({ address }) => address === getActiveAccountLocal(network, ss58))
 
     // Perform initial account state update
     updateAccounts({ add: initialAccounts, remove: [] })
@@ -124,16 +89,14 @@ export const ExtensionAccountsProvider = ({
       accounts: ExtensionAccount[],
       signer: unknown
     ) => {
-      const result = processExtensionAccounts(
+      processExtensionAccounts(
         {
           source: extensionId,
-          network,
           ss58,
         },
         signer,
         accounts
       )
-      return result
     }
 
     // Try to subscribe to accounts for each connected extension
@@ -147,14 +110,9 @@ export const ExtensionAccountsProvider = ({
         addUnsub(id, unsub)
       }
     }
-
-    // Connect to active account if found in initial accounts
-    if (activeAccountInInitial) {
-      connectActiveExtensionAccount(activeAccountInInitial, connectToAccount)
-    }
   }
 
-  // Connects to a single extension. If activeAccount is not found here, it is simply ignored
+  // Connects to a single extension
   const connectExtensionAccounts = async (id: string): Promise<boolean> => {
     if (extensionCanConnect(id)) {
       const { connected } = await connectExtensions(dappName, [id])
@@ -169,16 +127,14 @@ export const ExtensionAccountsProvider = ({
         accounts: ExtensionAccount[],
         signer: unknown
       ) => {
-        const result = processExtensionAccounts(
+        processExtensionAccounts(
           {
             source: extensionId,
-            network,
             ss58,
           },
           signer,
           accounts
         )
-        return result
       }
 
       // Call optional `onExtensionEnabled` callback
@@ -187,39 +143,16 @@ export const ExtensionAccountsProvider = ({
       // If account subscriptions are not supported, simply get the account(s) from the extension. Otherwise, subscribe to accounts
       if (!extensionHasFeature(id, 'subscribeAccounts')) {
         const accounts = await extension.accounts.get()
-        const result = handleAccounts(id, accounts, extension.signer)
-        checkActiveAccount(result)
+        handleAccounts(id, accounts, extension.signer)
       } else {
         const unsub = extension.accounts.subscribe((accounts) => {
-          const result = handleAccounts(id, accounts || [], extension.signer)
-          checkActiveAccount(result)
+          handleAccounts(id, accounts || [], extension.signer)
         })
         addUnsub(id, unsub)
       }
       return true
     }
     return false
-  }
-
-  // Set active account if found in new accounts
-  const checkActiveAccount = ({
-    newAccounts,
-    meta: { removedActiveAccount },
-  }: ProcessExtensionAccountsResult) => {
-    // Set active account for network if not yet set
-    if (!activeAccount) {
-      const activeExtensionAccount = getActiveExtensionAccount(
-        network,
-        ss58,
-        newAccounts
-      )
-      if (
-        activeExtensionAccount?.address !== removedActiveAccount &&
-        removedActiveAccount !== null
-      ) {
-        connectActiveExtensionAccount(activeExtensionAccount, connectToAccount)
-      }
-    }
   }
 
   const handleSyncExtensionAccounts = async () => {

@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { ImportedAccount, MaybeString, Sync } from '@w3ux/types'
+import type { ImportedAccount, Sync } from '@w3ux/types'
 import type { ReactNode } from 'react'
 
 export interface ExtensionAccountsContextInterface {
@@ -12,10 +12,7 @@ export interface ExtensionAccountsContextInterface {
 
 export interface ExtensionAccountsProviderProps {
   children: ReactNode
-  network: string
   ss58: number
   dappName: string
-  activeAccount?: MaybeString
-  setActiveAccount?: (address: MaybeString) => void
   onExtensionEnabled?: (id: string) => void
 }
