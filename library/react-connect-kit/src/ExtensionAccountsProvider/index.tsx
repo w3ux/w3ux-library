@@ -97,10 +97,7 @@ export const ExtensionAccountsProvider = ({
       return
     }
 
-    // Initial fetch of extension accounts to populate accounts & extensions state
-    // ----------------------------------------------------------------------------
-
-    // Get full list of imported accounts.
+    // Get full list of imported accounts
     const initialAccounts = await getAccountsFromExtensions(connected)
 
     // Get the active account if found in initial accounts. Format initial account addresses to the
@@ -140,6 +137,7 @@ export const ExtensionAccountsProvider = ({
 
       // Update added and removed accounts
       updateExtensionAccounts({ add: newAccounts, remove: accountsToRemove })
+      return newAccounts
     }
 
     // Try to subscribe to accounts for each connected extension
@@ -170,14 +168,18 @@ export const ExtensionAccountsProvider = ({
       const { extension } = connected.get(id)
 
       // Handler for new accounts
-      const handleAccounts = (accounts: ExtensionAccount[]) => {
+      const handleAccounts = (
+        extensionId: string,
+        accounts: ExtensionAccount[],
+        signer: unknown
+      ) => {
         const {
           newAccounts,
           meta: { removedActiveAccount, accountsToRemove },
         } = handleExtensionAccountsUpdate(
-          id,
+          extensionId,
           extensionAccountsRef.current,
-          extension.signer,
+          signer,
           accounts,
           network,
           ss58
@@ -205,6 +207,7 @@ export const ExtensionAccountsProvider = ({
           add: newAccounts,
           remove: accountsToRemove,
         })
+        return newAccounts
       }
 
       // Call optional `onExtensionEnabled` callback
@@ -213,10 +216,10 @@ export const ExtensionAccountsProvider = ({
       // If account subscriptions are not supported, simply get the account(s) from the extension. Otherwise, subscribe to accounts
       if (!extensionHasFeature(id, 'subscribeAccounts')) {
         const accounts = await extension.accounts.get()
-        handleAccounts(accounts)
+        handleAccounts(id, accounts, extension.signer)
       } else {
         const unsub = extension.accounts.subscribe((accounts) => {
-          handleAccounts(accounts || [])
+          handleAccounts(id, accounts || [], extension.signer)
         })
         addToUnsubscribe(id, unsub)
       }
