@@ -36,13 +36,14 @@ const getExtensionsById = (ids: string[]) => {
 // Formats the results of an extension's enable function
 const formatEnabledExtensions = (
   extensions: RawExtensions,
-  results: PromiseSettledResult<ExtensionInterface>[]
+  enabledResults: PromiseSettledResult<ExtensionInterface>[]
 ): ExtensionEnableResults => {
   const extensionsState = new Map<string, ExtensionEnableResult>()
 
-  for (let i = 0; i < results.length; i++) {
-    const result = results[i]
+  for (let i = 0; i < enabledResults.length; i++) {
+    const result = enabledResults[i]
     const id = Array.from(extensions.keys())[i]
+    console.log('enable ', id, ' result: ', result)
 
     if (result.status === 'fulfilled') {
       extensionsState.set(id, {

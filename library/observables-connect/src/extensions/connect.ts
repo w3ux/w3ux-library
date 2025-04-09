@@ -3,19 +3,14 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import type { ExtensionEnableResults } from '@w3ux/types'
 import { enableExtensions } from './enable'
-import {
-  addExtensionToLocal,
-  getActiveExtensionsLocal,
-  removeExtensionFromLocal,
-} from './local'
+import { addExtensionToLocal, removeExtensionFromLocal } from './local'
 import { _extensionsStatus, _initialisedExtensions } from './observables'
 
 // Connects to previously connected extensions, or to a specific set of extensions
 export const connectExtensions = async (
   dappName: string,
-  ids?: string[]
+  extensionIds: string[]
 ): Promise<{ connected: ExtensionEnableResults }> => {
-  const extensionIds = ids || getActiveExtensionsLocal()
   if (!extensionIds.length) {
     return {
       connected: new Map(),

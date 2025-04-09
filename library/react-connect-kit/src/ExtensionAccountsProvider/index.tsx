@@ -6,7 +6,10 @@ import {
   getAccountsFromExtensions,
   processExtensionAccounts,
 } from '@w3ux/observables-connect/accounts'
-import { connectExtensions } from '@w3ux/observables-connect/extensions'
+import {
+  connectExtensions,
+  getActiveExtensionsLocal,
+} from '@w3ux/observables-connect/extensions'
 import { initialisedExtensions$ } from '@w3ux/observables-connect/extensions/observables'
 import type {
   ExtensionAccount,
@@ -92,7 +95,10 @@ export const ExtensionAccountsProvider = ({
   // all extensions are looped before connecting to it; there is no guarantee it still exists - must
   // explicitly find it
   const connectActiveExtensions = async () => {
-    const { connected } = await connectExtensions(dappName)
+    const { connected } = await connectExtensions(
+      dappName,
+      getActiveExtensionsLocal()
+    )
     if (connected.size === 0) {
       return
     }
