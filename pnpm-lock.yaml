@@ -240,8 +240,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0(react@19.1.0)
       '@w3ux/observables-connect':
-        specifier: 0.9.18
-        version: 0.9.18(react@19.1.0)(rxjs@7.8.2)
+        specifier: 0.9.19
+        version: 0.9.19(react@19.1.0)(rxjs@7.8.2)
       '@w3ux/utils':
         specifier: ^2.0.8
         version: 2.0.8
@@ -1215,8 +1215,8 @@ packages:
     peerDependencies:
       react: ^19
 
-  '@w3ux/observables-connect@0.9.18':
-    resolution: {integrity: sha512-xRe1pX7luWdAL0OsxixUyVNhv76exSQIXXhEfZBjWgbbx41idhJjGTulO0sy3Br5uprezmFXq7oKFrjU4ZIAZQ==}
+  '@w3ux/observables-connect@0.9.19':
+    resolution: {integrity: sha512-O0bACJpDeJdZofG+doyo58T5F7jPYee3D22N19imQ2fdnCYwCT4RVP89LK+cS6HjwZw4fomC35NQe63opRHEjA==}
     peerDependencies:
       rxjs: ^7.8.2
 
@@ -4385,7 +4385,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@w3ux/observables-connect@0.9.18(react@19.1.0)(rxjs@7.8.2)':
+  '@w3ux/observables-connect@0.9.19(react@19.1.0)(rxjs@7.8.2)':
     dependencies:
       '@w3ux/extension-assets': 2.2.0(react@19.1.0)
       '@w3ux/utils': 2.0.9

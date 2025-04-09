@@ -18,7 +18,7 @@ export const connectExtensions = async (
   }
 
   // Get extensions and enable them
-  const enableResults = await enableExtensions(extensionIds)
+  const enableResults = await enableExtensions(extensionIds, dappName)
 
   // Determine which extensions are connected and which have errors
   const [connected, withError] = [
