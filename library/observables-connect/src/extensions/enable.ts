@@ -5,45 +5,56 @@ import type {
   ExtensionEnableResult,
   ExtensionEnableResults,
   ExtensionInterface,
-  RawExtensionEnable,
-  RawExtensions,
 } from '@w3ux/types'
+import { withTimeoutThrow } from '@w3ux/utils'
 
 // Get extensions and enable them
-export const enableExtensions = async (ids: string[], dappName: string) => {
-  const extensions = getExtensionsById(ids)
-  console.log('getting extensions by id:', extensions)
+export const enableExtensions = async (ids: string[]) => {
+  const extensionIds = getExtensionsById(ids)
+  const enableResults = await doEnable(extensionIds)
 
-  return formatEnabledExtensions(
-    extensions,
-    await doEnable(extensions, dappName)
-  )
+  return formatEnabledExtensions(extensionIds, enableResults)
 }
 
 // Gets extensions from injectedWeb3 by their ids
 const getExtensionsById = (ids: string[]) => {
-  const extensions = new Map<string, RawExtensionEnable>()
+  const validIds: string[] = []
   ids.forEach(async (id) => {
     const enable = window.injectedWeb3?.[id]?.enable
-    console.log('enable fn: ', enable, typeof enable)
     if (enable !== undefined && typeof enable === 'function') {
-      extensions.set(id, enable)
+      validIds.push(id)
     }
   })
-  return extensions
+  return validIds
+}
+
+// Calls enable for the provided extensions
+const doEnable = async (
+  extensionIds: string[]
+): Promise<PromiseSettledResult<ExtensionInterface>[]> => {
+  const results: PromiseSettledResult<ExtensionInterface>[] = []
+  for (const id of extensionIds) {
+    // Give the extension up to 1 second to respond
+    const result = (await withTimeoutThrow(
+      1000,
+      settle(window.injectedWeb3[id].enable())
+    )) as PromiseSettledResult<ExtensionInterface>
+
+    results.push(result)
+  }
+  return results
 }
 
 // Formats the results of an extension's enable function
 const formatEnabledExtensions = (
-  extensions: RawExtensions,
+  extensionIds: string[],
   enabledResults: PromiseSettledResult<ExtensionInterface>[]
 ): ExtensionEnableResults => {
   const extensionsState = new Map<string, ExtensionEnableResult>()
 
   for (let i = 0; i < enabledResults.length; i++) {
     const result = enabledResults[i]
-    const id = Array.from(extensions.keys())[i]
-    console.log('enable ', id, ' result: ', result)
+    const id = extensionIds[i]
 
     if (result.status === 'fulfilled') {
       extensionsState.set(id, {
@@ -60,14 +71,10 @@ const formatEnabledExtensions = (
   return extensionsState
 }
 
-// Calls enable for the provided extensions
-const doEnable = async (extensions: RawExtensions, dappName: string) => {
-  try {
-    return await Promise.allSettled(
-      Array.from(extensions.values()).map((fn) => fn(dappName))
+// Helper function to settle a promise with either fulfilled or rejected result
+const settle = <T>(promise: Promise<T>): Promise<PromiseSettledResult<T>> =>
+  promise
+    .then(
+      (value): PromiseFulfilledResult<T> => ({ status: 'fulfilled', value })
     )
-  } catch (e) {
-    console.error("Error during 'enable' extensions call: ", e)
-    return []
-  }
-}
+    .catch((reason): PromiseRejectedResult => ({ status: 'rejected', reason }))

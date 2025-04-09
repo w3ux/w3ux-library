@@ -204,6 +204,28 @@ export const withTimeout = (
 }
 
 /**
+ * @name withTimeoutThrow
+ * @summary Timeout a promise after a specified number of milliseconds by throwing an error
+ */
+export const withTimeoutThrow = <T>(
+  ms: number,
+  promise: Promise<T>,
+  options?: {
+    onTimeout?: () => void
+  }
+) => {
+  const timeout = new Promise((reject) =>
+    setTimeout(async () => {
+      if (typeof options?.onTimeout === 'function') {
+        options.onTimeout()
+      }
+      reject('Function timeout')
+    }, ms)
+  )
+  return Promise.race([promise, timeout])
+}
+
+/**
  * @name appendOrEmpty
  * @summary Returns ` value` if a condition is truthy, or an empty string otherwise.
  */

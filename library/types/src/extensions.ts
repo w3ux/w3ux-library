@@ -21,7 +21,7 @@ export type ExtensionsStatus = Record<string, ExtensionStatus>
 
 export interface ExtensionInjected extends ExtensionConfig {
   id: string
-  enable: (n: string) => Promise<ExtensionInterface>
+  enable: (n?: string) => Promise<ExtensionInterface>
 }
 
 export interface ExtensionInterface {

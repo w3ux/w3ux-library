@@ -38,9 +38,9 @@ export const getExtensions = async () => {
     if (counter === maxChecks) {
       handleCompleted(false)
     } else {
-      // `injectedWeb3` is present
+      // `injectedWeb3` is present & at least 2 checks have passed
       const injectedWeb3 = window?.injectedWeb3 || null
-      if (injectedWeb3 !== null) {
+      if (injectedWeb3 !== null && counter > 2) {
         handleCompleted(true)
       }
     }

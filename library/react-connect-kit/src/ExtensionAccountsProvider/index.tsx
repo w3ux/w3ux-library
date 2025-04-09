@@ -168,13 +168,10 @@ export const ExtensionAccountsProvider = ({
   const connectExtensionAccounts = async (id: string): Promise<boolean> => {
     if (extensionCanConnect(id)) {
       const { connected } = await connectExtensions(dappName, [id])
-      console.log(connected)
       if (connected.size === 0) {
-        console.log('no extension connected')
         return
       }
       const { extension } = connected.get(id)
-      console.log('resulting extension: ', extension)
 
       // Handler for new accounts
       const handleAccounts = (
