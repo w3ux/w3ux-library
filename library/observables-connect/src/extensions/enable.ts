@@ -32,21 +32,17 @@ const getExtensionsById = (ids: string[]) => {
 const doEnable = async (
   extensionIds: string[],
   dappName: string
-): Promise<PromiseSettledResult<ExtensionInterface>[]> => {
-  const results: PromiseSettledResult<ExtensionInterface>[] = []
-  for (const id of extensionIds) {
-    // Give the extension up to 1 second to respond
-    const result = (await withTimeoutThrow(
-      1000,
-      settle(window.injectedWeb3[id].enable(dappName))
-    )) as PromiseSettledResult<ExtensionInterface>
+): Promise<PromiseSettledResult<ExtensionInterface>[]> =>
+  await Promise.allSettled(
+    Array.from(extensionIds).map(
+      (id) =>
+        withTimeoutThrow(
+          1000,
+          window.injectedWeb3[id].enable(dappName)
+        ) as Promise<ExtensionInterface | undefined>
+    )
+  )
 
-    results.push(result)
-  }
-  return results
-}
-
-// Formats the results of an extension's enable function
 const formatEnabledExtensions = (
   extensionIds: string[],
   enabledResults: PromiseSettledResult<ExtensionInterface>[]
@@ -71,11 +67,3 @@ const formatEnabledExtensions = (
   }
   return extensionsState
 }
-
-// Helper function to settle a promise with either fulfilled or rejected result
-const settle = <T>(promise: Promise<T>): Promise<PromiseSettledResult<T>> =>
-  promise
-    .then(
-      (value): PromiseFulfilledResult<T> => ({ status: 'fulfilled', value })
-    )
-    .catch((reason): PromiseRejectedResult => ({ status: 'rejected', reason }))

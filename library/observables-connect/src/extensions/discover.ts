@@ -29,18 +29,35 @@ export const getExtensions = async () => {
     _gettingExtensions.next(false)
   }
 
+  const interval = 200
+  const maxChecks = 10
+  const minVerifications = 2
+
   // Getter for the currently installed extensions
   let counter = 0
-  const interval = 300
-  const maxChecks = 10
+  let verifications = 0
   injectedWeb3Interval = setInterval(() => {
     counter++
     if (counter === maxChecks) {
       handleCompleted(false)
     } else {
-      // `injectedWeb3` is present & at least 2 checks have passed
-      const injectedWeb3 = window?.injectedWeb3 || null
-      if (injectedWeb3 !== null && counter > 2) {
+      const injected = window?.injectedWeb3
+
+      // Check if injected exists and all extensions have a valid enable function
+      const ready =
+        injected !== undefined &&
+        Object.entries(injected).every(
+          ([, ext]) => ext && typeof ext.enable === 'function'
+        )
+
+      // Increment verifications if the extensions are ready
+      if (ready) {
+        verifications++
+      } else {
+        verifications = 0
+      }
+
+      if (counter > 2 && verifications >= minVerifications) {
         handleCompleted(true)
       }
     }
