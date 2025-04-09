@@ -110,8 +110,6 @@ export const ExtensionAccountsProvider = ({
       .find(({ address }) => address === getActiveAccountLocal(network, ss58))
 
     // Perform initial account state update
-    // ----------------------------------
-
     updateExtensionAccounts({ add: initialAccounts, remove: [] })
 
     // Initiate account subscriptions for connected extensions
@@ -207,6 +205,7 @@ export const ExtensionAccountsProvider = ({
         }
 
         // Update extension accounts state
+        // TODO: Use account observables instead
         updateExtensionAccounts({
           add: newAccounts,
           remove: accountsToRemove,
