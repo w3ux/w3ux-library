@@ -16,7 +16,6 @@ export const connectExtensions = async (
       connected: new Map(),
     }
   }
-
   // Get extensions and enable them
   const enableResults = await enableExtensions(extensionIds, dappName)
 

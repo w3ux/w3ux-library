@@ -5,8 +5,9 @@ import type { ImportedAccount, Sync } from '@w3ux/types'
 import type { ReactNode } from 'react'
 
 export interface ExtensionAccountsContextInterface {
+  extensionsInitialised: string[]
   connectExtension: (id: string) => Promise<boolean>
-  extensionAccountsSynced: Sync
+  extensionsSynced: Sync
   getExtensionAccounts: (ss58: number) => ImportedAccount[]
 }
 
@@ -14,5 +15,4 @@ export interface ExtensionAccountsProviderProps {
   children: ReactNode
   ss58: number
   dappName: string
-  onExtensionEnabled?: (id: string) => void
 }
