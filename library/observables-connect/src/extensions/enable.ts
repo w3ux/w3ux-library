@@ -19,7 +19,7 @@ export const enableExtensions = async (ids: string[], dappName: string) => {
 // Gets extensions from injectedWeb3 by their ids
 const getExtensionsById = (ids: string[]) => {
   const validIds: string[] = []
-  ids.forEach(async (id) => {
+  ids.forEach((id) => {
     const enable = window.injectedWeb3?.[id]?.enable
     if (enable !== undefined && typeof enable === 'function') {
       validIds.push(id)
