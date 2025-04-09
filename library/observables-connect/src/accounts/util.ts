@@ -9,6 +9,7 @@ import type {
 import { formatAccountSs58, isValidAddress } from '@w3ux/utils'
 import { defaultProcessExtensionResult } from '../consts'
 import { getActiveAccountLocal, getLocalExternalAccounts } from './local'
+import { _accounts } from './observables'
 
 // Gets accounts to be imported and commits them to state
 
@@ -19,25 +20,25 @@ interface Config {
 }
 export const processExtensionAccounts = (
   config: Config,
-  currentAccounts: ExtensionAccount[],
   signer: unknown,
-  accounts: ExtensionAccount[]
+  newAccounts: ExtensionAccount[]
 ): ProcessExtensionAccountsResult => {
   const { source, ss58, network } = config
-  if (!accounts.length) {
+  if (!newAccounts.length) {
     return defaultProcessExtensionResult
   }
 
   // Get valid accounts from extension
-  accounts = formatExtensionAccounts(accounts, ss58)
+  newAccounts = formatExtensionAccounts(newAccounts, ss58)
 
   // Remove accounts from local external accounts if present
-  const inExternal = getInExternalAccounts(accounts, network)
+  const inExternal = getInExternalAccounts(newAccounts, network)
 
   // Find any accounts that have been removed from this extension
-  const removedAccounts = currentAccounts
+  const removedAccounts = _accounts
+    .getValue()
     .filter((j) => j.source === source)
-    .filter((j) => !accounts.find((i) => i.address === j.address))
+    .filter((j) => !newAccounts.find((i) => i.address === j.address))
 
   // Check whether active account is present in forgotten accounts
   const removedActiveAccount =
@@ -45,24 +46,30 @@ export const processExtensionAccounts = (
       ({ address }) => address === getActiveAccountLocal(network, ss58)
     )?.address || null
 
-  // Remove accounts that have already been added to `currentAccounts` via another extension
-  accounts = accounts.filter(
+  // Remove accounts that have already been added to accounts via another extension
+  newAccounts = newAccounts.filter(
     ({ address }) =>
-      !currentAccounts.find(
-        (j) => j.address === address && j.source !== 'external'
-      )
+      !_accounts
+        .getValue()
+        .find((j) => j.address === address && j.source !== 'external')
   )
 
   // Format accounts properties
-  accounts = accounts.map(({ address, name }) => ({
+  newAccounts = newAccounts.map(({ address, name }) => ({
     address,
     name,
     source,
     signer,
   }))
 
+  // Update observable state
+  updateAccounts({
+    add: newAccounts,
+    remove: removedAccounts,
+  })
+
   return {
-    newAccounts: accounts,
+    newAccounts,
     meta: {
       accountsToRemove: [...inExternal, ...removedAccounts],
       removedActiveAccount,
@@ -104,4 +111,18 @@ export const getInExternalAccounts = (
       (a) => (accounts || []).find((b) => b.address === a.address) !== undefined
     ) || []
   )
+}
+
+// Updates accounts observable based on removed and added accounts
+export const updateAccounts = ({
+  add,
+  remove,
+}: {
+  add: ExtensionAccount[]
+  remove: ExtensionAccount[]
+}) => {
+  const newAccounts = [..._accounts.getValue()]
+    .concat(add)
+    .filter((a) => remove.find((s) => s.address === a.address) === undefined)
+  _accounts.next(newAccounts)
 }

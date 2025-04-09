@@ -3,28 +3,28 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { createSafeContext, useEffectIgnoreInitial } from '@w3ux/hooks'
 import {
+  accounts$,
   addUnsub,
   getAccountsFromExtensions,
   processExtensionAccounts,
+  resetAccounts,
   unsubAll,
+  updateAccounts,
 } from '@w3ux/observables-connect/accounts'
 import {
   connectExtensions,
   getActiveExtensionsLocal,
+  initialisedExtensions$,
 } from '@w3ux/observables-connect/extensions'
-import { initialisedExtensions$ } from '@w3ux/observables-connect/extensions/observables'
 import type {
   ExtensionAccount,
   ImportedAccount,
   ProcessExtensionAccountsResult,
   Sync,
 } from '@w3ux/types'
-import {
-  formatAccountSs58,
-  localStorageOrDefault,
-  setStateWithRef,
-} from '@w3ux/utils'
-import { useEffect, useRef, useState } from 'react'
+import { formatAccountSs58, localStorageOrDefault } from '@w3ux/utils'
+import { useEffect, useState } from 'react'
+import { combineLatest } from 'rxjs'
 import { useExtensions } from '../ExtensionsProvider'
 import type {
   ExtensionAccountsContextInterface,
@@ -59,17 +59,15 @@ export const ExtensionAccountsProvider = ({
   const [extensionAccounts, setExtensionAccounts] = useState<ImportedAccount[]>(
     []
   )
-  const extensionAccountsRef = useRef(extensionAccounts)
+  // Stores initialised extensions
+  const [extensionsInitialised, setExtensionsInitialised] = useState<string[]>(
+    []
+  )
 
   // Store whether extension accounts have been synced
   // TODO: Use observable to update this state
   const [extensionAccountsSynced, setExtensionAccountsSynced] =
     useState<Sync>('unsynced')
-
-  // Stores initialised extensions
-  const [extensionsInitialised, setExtensionsInitialised] = useState<string[]>(
-    []
-  )
 
   // Helper for setting active account. Ignores if not a valid function
   const maybeSetActiveAccount = (address: string) => {
@@ -115,7 +113,7 @@ export const ExtensionAccountsProvider = ({
       .find(({ address }) => address === getActiveAccountLocal(network, ss58))
 
     // Perform initial account state update
-    updateExtensionAccounts({ add: initialAccounts, remove: [] })
+    updateAccounts({ add: initialAccounts, remove: [] })
 
     // Initiate account subscriptions for connected extensions
     // --------------------------------------------------------
@@ -132,19 +130,9 @@ export const ExtensionAccountsProvider = ({
           network,
           ss58,
         },
-        extensionAccountsRef.current,
         signer,
         accounts
       )
-
-      const {
-        newAccounts,
-        meta: { accountsToRemove },
-      } = result
-
-      // Update added and removed accounts
-      // TODO: Use account observables instead
-      updateExtensionAccounts({ add: newAccounts, remove: accountsToRemove })
       return result
     }
 
@@ -187,21 +175,9 @@ export const ExtensionAccountsProvider = ({
             network,
             ss58,
           },
-          extensionAccountsRef.current,
           signer,
           accounts
         )
-        const {
-          newAccounts,
-          meta: { accountsToRemove },
-        } = result
-
-        // Update extension accounts state
-        // TODO: Use account observables instead
-        updateExtensionAccounts({
-          add: newAccounts,
-          remove: accountsToRemove,
-        })
         return result
       }
 
@@ -246,37 +222,12 @@ export const ExtensionAccountsProvider = ({
     }
   }
 
-  // Add an extension account to context state
-  const updateExtensionAccounts = ({
-    add,
-    remove,
-  }: {
-    add: ExtensionAccount[]
-    remove: ExtensionAccount[]
-  }) => {
-    // Add new accounts and remove any removed accounts
-    const newAccounts = [...extensionAccountsRef.current]
-      .concat(add)
-      .filter((a) => remove.find((s) => s.address === a.address) === undefined)
-
-    if (remove.length) {
-      // Remove active account if it is being forgotten
-      if (
-        activeAccount &&
-        remove.find(({ address }) => address === activeAccount) !== undefined
-      ) {
-        maybeSetActiveAccount(null)
-      }
-    }
-    setStateWithRef(newAccounts, setExtensionAccounts, extensionAccountsRef)
-  }
-
   const handleSyncExtensionAccounts = async () => {
     // Wait for injectedWeb3 check to finish before starting account import process
     if (!gettingExtensions && extensionAccountsSynced === 'unsynced') {
       // Unsubscribe from all accounts and reset state
       unsubAll()
-      setStateWithRef([], setExtensionAccounts, extensionAccountsRef)
+      resetAccounts()
       // If extensions have been fetched, get accounts if extensions exist and local extensions
       // exist (previously connected)
       if (Object.keys(extensionsStatus).length) {
@@ -333,9 +284,12 @@ export const ExtensionAccountsProvider = ({
 
   // Subscribes to observables and updates state
   useEffect(() => {
-    const sub = initialisedExtensions$.subscribe((initialised) => {
-      setExtensionsInitialised(initialised)
-    })
+    const sub = combineLatest([initialisedExtensions$, accounts$]).subscribe(
+      ([initialised, accounts]) => {
+        setExtensionsInitialised(initialised)
+        setExtensionAccounts(accounts)
+      }
+    )
     return () => {
       sub.unsubscribe()
     }
