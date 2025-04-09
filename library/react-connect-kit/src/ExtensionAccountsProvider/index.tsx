@@ -16,8 +16,8 @@ import {
   getActiveExtensionsLocal,
   initialisedExtensions$,
 } from '@w3ux/observables-connect/extensions'
-import type { ExtensionAccount, ImportedAccount, Sync } from '@w3ux/types'
-import { formatAccountSs58, localStorageOrDefault } from '@w3ux/utils'
+import type { ImportedAccount, Sync } from '@w3ux/types'
+import { formatAccountSs58 } from '@w3ux/utils'
 import { useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'
 import { useExtensions } from '../ExtensionsProvider'
@@ -65,7 +65,7 @@ export const ExtensionAccountsProvider = ({
 
   // Connects to extensions that already have been connected to and stored in localStorage. Loop
   // through extensions and connect to accounts
-  const connectActiveExtensions = async () => {
+  const connectEnabledExtensions = async () => {
     const { connected } = await connectExtensions(
       dappName,
       getActiveExtensionsLocal()
@@ -73,38 +73,25 @@ export const ExtensionAccountsProvider = ({
     if (connected.size === 0) {
       return
     }
-
-    // Get full list of imported accounts
-    const initialAccounts = await getAccountsFromExtensions(connected, ss58)
-
     // Perform initial account state update
-    updateAccounts({ add: initialAccounts, remove: [] })
-
-    // Initiate account subscriptions for connected extensions
-    // --------------------------------------------------------
-
-    // Handler function for each extension accounts subscription
-    const handleAccounts = (
-      extensionId: string,
-      accounts: ExtensionAccount[],
-      signer: unknown
-    ) => {
-      processExtensionAccounts(
-        {
-          source: extensionId,
-          ss58,
-        },
-        signer,
-        accounts
-      )
-    }
+    updateAccounts({
+      add: await getAccountsFromExtensions(connected, ss58),
+      remove: [],
+    })
 
     // Try to subscribe to accounts for each connected extension
     for (const [id, { extension }] of Array.from(connected.entries())) {
       // If enabled, subscribe to accounts.
       if (extensionHasFeature(id, 'subscribeAccounts')) {
         const unsub = extension.accounts.subscribe((accounts) => {
-          handleAccounts(id, accounts || [], extension.signer)
+          processExtensionAccounts(
+            {
+              source: id,
+              ss58,
+            },
+            extension.signer,
+            accounts
+          )
         })
         // Store unsub
         addUnsub(id, unsub)
@@ -112,8 +99,8 @@ export const ExtensionAccountsProvider = ({
     }
   }
 
-  // Connects to a single extension
-  const connectExtensionAccounts = async (id: string): Promise<boolean> => {
+  // Connects to a single extension and processes its accounts
+  const connectExtension = async (id: string): Promise<boolean> => {
     if (extensionCanConnect(id)) {
       const { connected } = await connectExtensions(dappName, [id])
       if (connected.size === 0) {
@@ -121,32 +108,30 @@ export const ExtensionAccountsProvider = ({
       }
       const { extension } = connected.get(id)
 
-      // Handler for new accounts
-      const handleAccounts = (
-        extensionId: string,
-        accounts: ExtensionAccount[],
-        signer: unknown
-      ) => {
-        processExtensionAccounts(
-          {
-            source: extensionId,
-            ss58,
-          },
-          signer,
-          accounts
-        )
-      }
-
       // Call optional `onExtensionEnabled` callback
       maybeOnExtensionEnabled(id)
 
       // If account subscriptions are not supported, simply get the account(s) from the extension. Otherwise, subscribe to accounts
       if (!extensionHasFeature(id, 'subscribeAccounts')) {
         const accounts = await extension.accounts.get()
-        handleAccounts(id, accounts, extension.signer)
+        processExtensionAccounts(
+          {
+            source: id,
+            ss58,
+          },
+          extension.signer,
+          accounts
+        )
       } else {
         const unsub = extension.accounts.subscribe((accounts) => {
-          handleAccounts(id, accounts || [], extension.signer)
+          processExtensionAccounts(
+            {
+              source: id,
+              ss58,
+            },
+            extension.signer,
+            accounts
+          )
         })
         addUnsub(id, unsub)
       }
@@ -156,24 +141,14 @@ export const ExtensionAccountsProvider = ({
   }
 
   const handleSyncExtensionAccounts = async () => {
-    // Wait for injectedWeb3 check to finish before starting account import process
     if (!gettingExtensions && extensionAccountsSynced === 'unsynced') {
       // Unsubscribe from all accounts and reset state
       unsubAll()
       resetAccounts()
-      // If extensions have been fetched, get accounts if extensions exist and local extensions
-      // exist (previously connected)
+      // Bootstrap any previously connected to extensions
       if (Object.keys(extensionsStatus).length) {
-        // get active extensions
-        const localExtensions = localStorageOrDefault(
-          `active_extensions`,
-          [],
-          true
-        )
-        if (Object.keys(extensionsStatus).length && localExtensions.length) {
-          setExtensionAccountsSynced('syncing')
-          await connectActiveExtensions()
-        }
+        setExtensionAccountsSynced('syncing')
+        await connectEnabledExtensions()
       }
 
       // Syncing is complete. Also covers case where no extensions were found
@@ -197,10 +172,9 @@ export const ExtensionAccountsProvider = ({
       // Remove null entries resulting from invalid formatted addresses
       .filter((account) => account !== null)
 
-  // Re-sync extensions accounts on `unsynced`
+  // Initialise extension accounts sync
   useEffect(() => {
     handleSyncExtensionAccounts()
-
     return () => unsubAll()
   }, [extensionsStatus, gettingExtensions, extensionAccountsSynced])
 
@@ -231,7 +205,7 @@ export const ExtensionAccountsProvider = ({
   return (
     <ExtensionAccountsContext.Provider
       value={{
-        connectExtensionAccounts,
+        connectExtension,
         extensionAccountsSynced,
         getExtensionAccounts,
       }}

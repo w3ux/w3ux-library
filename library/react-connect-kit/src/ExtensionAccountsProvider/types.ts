@@ -5,7 +5,7 @@ import type { ImportedAccount, Sync } from '@w3ux/types'
 import type { ReactNode } from 'react'
 
 export interface ExtensionAccountsContextInterface {
-  connectExtensionAccounts: (id?: string) => Promise<boolean>
+  connectExtension: (id: string) => Promise<boolean>
   extensionAccountsSynced: Sync
   getExtensionAccounts: (ss58: number) => ImportedAccount[]
 }
