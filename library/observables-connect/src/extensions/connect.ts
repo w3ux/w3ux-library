@@ -2,16 +2,13 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import type { ExtensionEnableResults } from '@w3ux/types'
-import { enableExtensions } from 'extensions/enable'
+import { enableExtensions } from './enable'
 import {
   addExtensionToLocal,
   getActiveExtensionsLocal,
   removeExtensionFromLocal,
-} from 'extensions/local'
-import {
-  _extensionsStatus,
-  _initialisedExtensions,
-} from 'extensions/observables'
+} from './local'
+import { _extensionsStatus, _initialisedExtensions } from './observables'
 
 // Connects to previously connected extensions, or to a specific set of extensions
 export const connectExtensions = async (
@@ -56,7 +53,7 @@ export const connectExtensions = async (
   })
 
   // Record initialised extensions
-  const newInitialised = { ..._initialisedExtensions.getValue() }
+  const newInitialised = [..._initialisedExtensions.getValue()]
   extensionIds.forEach((id) => {
     if (!newInitialised.includes(id)) {
       newInitialised.push(id)
