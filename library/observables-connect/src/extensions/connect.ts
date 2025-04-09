@@ -24,12 +24,16 @@ export const connectExtensions = async (
 
   // Get extensions and enable them
   const enableResults = await enableExtensions(extensionIds, dappName)
+  console.log('enable results:', enableResults)
 
   // Determine which extensions are connected and which have errors
   const [connected, withError] = [
     filterConnectedExtensions(enableResults),
     filterFailedExtensions(enableResults),
   ]
+
+  console.log('connected:', connected)
+  console.log('with error:', withError)
 
   // Manage local storage depending on connection status
   Array.from(connected.keys()).forEach((id) => addExtensionToLocal(id))
@@ -59,6 +63,9 @@ export const connectExtensions = async (
       newInitialised.push(id)
     }
   })
+
+  console.log('new extension status:', newStatus)
+  console.log('new intialised:', newInitialised)
 
   // Commit updates to observables
   _extensionsStatus.next(newStatus)

@@ -8,11 +8,12 @@ import type {
   RawExtensionEnable,
   RawExtensions,
 } from '@w3ux/types'
-import { isExtensionLocal, removeExtensionFromLocal } from './local'
 
 // Get extensions and enable them
 export const enableExtensions = async (ids: string[], dappName: string) => {
   const extensions = getExtensionsById(ids)
+  console.log('getting extensions by id:', extensions)
+
   return formatEnabledExtensions(
     extensions,
     await doEnable(extensions, dappName)
@@ -23,13 +24,10 @@ export const enableExtensions = async (ids: string[], dappName: string) => {
 const getExtensionsById = (ids: string[]) => {
   const extensions = new Map<string, RawExtensionEnable>()
   ids.forEach(async (id) => {
-    if (isExtensionLocal(id)) {
-      const enable = window.injectedWeb3?.[id]?.enable
-      if (enable !== undefined && typeof enable === 'function') {
-        extensions.set(id, enable)
-      } else {
-        removeExtensionFromLocal(id)
-      }
+    const enable = window.injectedWeb3?.[id]?.enable
+    console.log('enable fn: ', enable, typeof enable)
+    if (enable !== undefined && typeof enable === 'function') {
+      extensions.set(id, enable)
     }
   })
   return extensions
