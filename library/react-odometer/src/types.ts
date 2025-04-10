@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { MutableRefObject } from 'react'
+import type { RefObject } from 'react'
 
 export interface Props {
   value: number | string
@@ -26,7 +26,7 @@ export type Digit =
   | '8'
   | '9'
 
-export type DigitRef = MutableRefObject<HTMLSpanElement>
+export type DigitRef = RefObject<HTMLSpanElement>
 
 export type Status = 'new' | 'inactive' | 'transition' | 'finished'
 

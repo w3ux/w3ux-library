@@ -124,14 +124,7 @@ export const generatePackageJson = async (
       name: packageName,
       version,
       license,
-      dependencies,
-    }
-
-    if (bundler === 'module') {
-      minimalPackageJson = {
-        ...minimalPackageJson,
-        type: 'module',
-      }
+      type: 'module',
     }
 
     if (bundler === 'gulp') {
@@ -163,7 +156,6 @@ export const generatePackageJson = async (
     if (dependencies) {
       minimalPackageJson['dependencies'] = dependencies
     }
-
     if (peerDependencies) {
       minimalPackageJson['peerDependencies'] = peerDependencies
     }

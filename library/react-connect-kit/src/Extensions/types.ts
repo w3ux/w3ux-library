@@ -3,7 +3,6 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import type { ExtensionStatus } from '@w3ux/types'
 
-// Extensions context interface.
 export interface ExtensionsContextInterface {
   gettingExtensions: boolean
   extensionsStatus: Record<string, ExtensionStatus>

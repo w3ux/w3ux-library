@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/react-connect-kit-source",
   "license": "GPL-3.0-only",
-  "version": "3.2.24",
+  "version": "3.2.25",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
@@ -10,12 +10,12 @@
   "dependencies": {
     "@w3ux/extension-assets": "^2.2.0",
     "@w3ux/hooks": "^2.1.0",
-    "@w3ux/observables-connect": "0.9.32",
-    "@w3ux/utils": "^2.0.9"
+    "@w3ux/observables-connect": "^0.9.34",
+    "@w3ux/utils": "^2.0.10"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
-    "@w3ux/types": "^2.1.9",
+    "@w3ux/types": "^2.1.10",
     "gulp": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-strip-comments": "^2.6.0",

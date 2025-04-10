@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/observables-connect",
   "license": "GPL-3.0-only",
-  "version": "0.9.32",
+  "version": "0.9.34",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "@w3ux/extension-assets": "^2.2.0",
-    "@w3ux/utils": "^2.0.9"
+    "@w3ux/utils": "^2.0.10"
   },
   "devDependencies": {
-    "@w3ux/types": "^2.1.9",
+    "@w3ux/types": "^2.1.10",
     "gulp": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-strip-comments": "^2.6.0",
