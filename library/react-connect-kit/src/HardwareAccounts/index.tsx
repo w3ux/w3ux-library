@@ -2,13 +2,18 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { createSafeContext } from '@w3ux/hooks'
+import {
+  getHardwareAccounts as getAllHardwareAccounts,
+  hardwareAccounts$,
+  setHardwareAccounts,
+} from '@w3ux/observables-connect'
+import { hardwareAccountsKey } from '@w3ux/observables-connect/consts'
+import { getHardwareAccountsLocal } from '@w3ux/observables-connect/local'
 import type { HardwareAccount, HardwareAccountSource } from '@w3ux/types'
 import { ellipsisFn } from '@w3ux/utils'
 import type { ReactNode } from 'react'
-import { useState } from 'react'
-import { hardwareAccountsKey } from '../consts'
+import { useEffect, useState } from 'react'
 import type { HardwareAccountsContextInterface } from './types'
-import { getLocalHardwareAccounts } from './utils'
 
 export const [HardwareAccountsContext, useHardwareAccounts] =
   createSafeContext<HardwareAccountsContextInterface>()
@@ -19,9 +24,9 @@ export const HardwareAccountsProvider = ({
   children: ReactNode
 }) => {
   // Store imported hardware accounts
-  const [hardwareAccounts, setHardwareAccounts] = useState<HardwareAccount[]>(
-    getLocalHardwareAccounts()
-  )
+  const [hardwareAccounts, setHardwareAccountsState] = useState<
+    HardwareAccount[]
+  >(getHardwareAccountsLocal())
 
   // Check if an account exists
   const hardwareAccountExists = (
@@ -29,7 +34,7 @@ export const HardwareAccountsProvider = ({
     network: string,
     address: string
   ) =>
-    !!hardwareAccounts.find(
+    !!getAllHardwareAccounts().find(
       (a) =>
         a.source === source && a.address === address && a.network === network
     )
@@ -42,12 +47,7 @@ export const HardwareAccountsProvider = ({
     index: number,
     callback?: () => void
   ) => {
-    const exists = !!hardwareAccounts.find(
-      (a) =>
-        a.source === source && a.address === address && a.network === network
-    )
-
-    if (!exists) {
+    if (!hardwareAccountExists(source, network, address)) {
       const newAccount: HardwareAccount = {
         address,
         network,
@@ -55,7 +55,9 @@ export const HardwareAccountsProvider = ({
         source,
         index,
       }
-      const newHardwareAccounts = [...hardwareAccounts].concat(newAccount)
+      const newHardwareAccounts = [...getAllHardwareAccounts()].concat(
+        newAccount
+      )
       localStorage.setItem(
         hardwareAccountsKey,
         JSON.stringify(newHardwareAccounts)
@@ -77,7 +79,7 @@ export const HardwareAccountsProvider = ({
     address: string,
     callback?: () => void
   ) => {
-    const newHardwareAccounts = [...hardwareAccounts].filter(
+    const newHardwareAccounts = [...getAllHardwareAccounts()].filter(
       (a) =>
         !(a.source === source && a.address === address && a.network === network)
     )
@@ -104,7 +106,7 @@ export const HardwareAccountsProvider = ({
     address: string,
     newName: string
   ) => {
-    const newHardwareAccounts = [...hardwareAccounts].map((a) =>
+    const newHardwareAccounts = [...getAllHardwareAccounts()].map((a) =>
       a.source === source && a.network === network && a.address === address
         ? {
             ...a,
@@ -136,6 +138,16 @@ export const HardwareAccountsProvider = ({
     network: string
   ) =>
     hardwareAccounts.filter((a) => a.source === source && a.network === network)
+
+  // Subscribes to observables and updates state
+  useEffect(() => {
+    const sub = hardwareAccounts$.subscribe((accounts) => {
+      setHardwareAccountsState(accounts)
+    })
+    return () => {
+      sub.unsubscribe()
+    }
+  }, [])
 
   return (
     <HardwareAccountsContext.Provider

@@ -10,3 +10,4 @@ export const defaultProcessExtensionResult: ProcessExtensionAccountsResult = {
 
 // Local storage active extensions key
 export const activeExtensionsKey = 'active_extensions'
+export const hardwareAccountsKey = 'hardware_accounts'
