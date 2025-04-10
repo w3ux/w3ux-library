@@ -11,7 +11,7 @@
     "@w3ux/extension-assets": "^2.2.0",
     "@w3ux/hooks": "^2.1.0",
     "@w3ux/observables-connect": "0.9.30",
-    "@w3ux/utils": "^2.0.8"
+    "@w3ux/utils": "^2.0.9"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",

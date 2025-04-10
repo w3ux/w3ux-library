@@ -133,8 +133,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.2
-        version: 2.1.2
+        specifier: ^2.1.6
+        version: 2.1.6
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -160,8 +160,8 @@ importers:
   library/hooks:
     dependencies:
       '@w3ux/utils':
-        specifier: ^2.0.8
-        version: 2.0.8
+        specifier: ^2.0.9
+        version: 2.0.9
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -170,8 +170,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.2
-        version: 2.1.2
+        specifier: ^2.1.6
+        version: 2.1.6
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -243,8 +243,8 @@ importers:
         specifier: 0.9.30
         version: 0.9.30(react@19.1.0)(rxjs@7.8.2)
       '@w3ux/utils':
-        specifier: ^2.0.8
-        version: 2.0.8
+        specifier: ^2.0.9
+        version: 2.0.9
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
@@ -316,8 +316,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       '@w3ux/utils':
-        specifier: ^2.0.8
-        version: 2.0.8
+        specifier: ^2.0.9
+        version: 2.0.9
       dedot:
         specifier: ^0.8.1
         version: 0.8.1
@@ -369,8 +369,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.2
-        version: 2.1.2
+        specifier: ^2.1.6
+        version: 2.1.6
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1220,14 +1220,8 @@ packages:
     peerDependencies:
       rxjs: ^7.8.2
 
-  '@w3ux/types@2.1.2':
-    resolution: {integrity: sha512-t9s/3dPs7Q8vJOQjkj9s0WxU+9Y/E6wMyCaZt3gZgIX9hbV9JFDCZnGJGiTX0UDCOkIOj2VbvTcJCnQM57OJrg==}
-
   '@w3ux/types@2.1.6':
     resolution: {integrity: sha512-Z4fEZJjSKCjk9K5gdcylciJrGauWRJyO4oGgzq38Snucdndqye2b9ma1yKWb83vgnTHwOU62c+FQIF0UpYlVFA==}
-
-  '@w3ux/utils@2.0.8':
-    resolution: {integrity: sha512-/uRGXVe85n2UNdtwy7w62lMnq7tRe9HQWtzRNp1QRtntTZ9v85FFKOsq2QgnG1gAljE7yHbyDwOVLNqOC3amSg==}
 
   '@w3ux/utils@2.0.9':
     resolution: {integrity: sha512-yTVthfOV5vnplh1bksgX3gim8CW00wvugY3z1dntuQaKixepEJPa2JIZW8ESW+IEC31bbmkixBJYk+1ZW0WMXw==}
@@ -4375,7 +4369,7 @@ snapshots:
 
   '@w3ux/hooks@2.1.0(react@19.1.0)':
     dependencies:
-      '@w3ux/utils': 2.0.8
+      '@w3ux/utils': 2.0.9
       date-fns: 4.1.0
       react: 19.1.0
     transitivePeerDependencies:
@@ -4392,16 +4386,7 @@ snapshots:
       - react
       - utf-8-validate
 
-  '@w3ux/types@2.1.2': {}
-
   '@w3ux/types@2.1.6': {}
-
-  '@w3ux/utils@2.0.8':
-    dependencies:
-      dedot: 0.8.1
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
 
   '@w3ux/utils@2.0.9':
     dependencies:
