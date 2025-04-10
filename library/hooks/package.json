@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
-    "@w3ux/types": "^2.1.6",
+    "@w3ux/types": "^2.1.9",
     "gulp": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-strip-comments": "^2.6.0",
