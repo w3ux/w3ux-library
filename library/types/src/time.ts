@@ -2,9 +2,9 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 export interface UseTimeleftProps {
-  // Dependencies to trigger re-calculation of timeleft
+  // Dependencies to trigger re-calculation of timeleft.
   depsTimeleft: unknown[]
-  // Dependencies to trigger re-render of timeleft, e.g. if language switching occurs
+  // Dependencies to trigger re-render of timeleft, e.g. if language switching occurs.
   depsFormat: unknown[]
 }
 

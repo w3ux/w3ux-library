@@ -253,8 +253,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.7
-        version: 2.1.7
+        specifier: ^2.1.6
+        version: 2.1.6
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1222,9 +1222,6 @@ packages:
 
   '@w3ux/types@2.1.6':
     resolution: {integrity: sha512-Z4fEZJjSKCjk9K5gdcylciJrGauWRJyO4oGgzq38Snucdndqye2b9ma1yKWb83vgnTHwOU62c+FQIF0UpYlVFA==}
-
-  '@w3ux/types@2.1.7':
-    resolution: {integrity: sha512-/03Fg+LrGuPR1Iqc7p1+ECPG8mfAB2E0Z5fxWeTi6Ben2AMLQ//ZwHtOyjH67QX4i67qpD/Ouetv/Lh0AfSxmg==}
 
   '@w3ux/utils@2.0.9':
     resolution: {integrity: sha512-yTVthfOV5vnplh1bksgX3gim8CW00wvugY3z1dntuQaKixepEJPa2JIZW8ESW+IEC31bbmkixBJYk+1ZW0WMXw==}
@@ -4390,8 +4387,6 @@ snapshots:
       - utf-8-validate
 
   '@w3ux/types@2.1.6': {}
-
-  '@w3ux/types@2.1.7': {}
 
   '@w3ux/utils@2.0.9':
     dependencies:

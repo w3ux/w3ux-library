@@ -2,49 +2,75 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { createSafeContext } from '@w3ux/hooks'
-import type { HardwareAccount } from '@w3ux/types'
-import type { ReactNode } from 'react'
-import { useState } from 'react'
-import type { LedgerAccountsContextInterface } from './types'
-import { getLocalLedgerAccounts } from './utils'
+import type { LedgerAccount } from '@w3ux/types'
+import { setStateWithRef } from '@w3ux/utils'
+import { useRef, useState } from 'react'
+import type {
+  LedgerAccountsContextInterface,
+  LedgerAccountsProviderProps,
+} from './types'
+import {
+  getLocalLedgerAccounts,
+  getLocalLedgerAddresses,
+  isLocalLedgerAccount,
+  renameLocalLedgerAddress,
+} from './utils'
 
 export const [LedgerAccountsContext, useLedgerAccounts] =
   createSafeContext<LedgerAccountsContextInterface>()
 
 export const LedgerAccountsProvider = ({
   children,
-}: {
-  children: ReactNode
-}) => {
-  // Store imported ledger accounts
-  const [ledgerAccounts, setLedgerAccounts] = useState<HardwareAccount[]>(
+}: LedgerAccountsProviderProps) => {
+  // Store the fetched ledger accounts.
+  const [ledgerAccounts, setLedgerAccountsState] = useState<LedgerAccount[]>(
     getLocalLedgerAccounts()
   )
+  const ledgerAccountsRef = useRef(ledgerAccounts)
 
-  // Check if a Ledger account is imported
+  // Check if a Ledger address exists in imported addresses.
   const ledgerAccountExists = (network: string, address: string) =>
-    !!ledgerAccounts.find((a) => a.address === address && a.network === network)
+    !!getLocalLedgerAccounts().find((account) =>
+      isLocalLedgerAccount(network, account, address)
+    )
 
-  // Adds a ledger account
+  // Adds a ledger address to the list of fetched addresses.
   const addLedgerAccount = (
     network: string,
     address: string,
     index: number,
     callback?: () => void
   ) => {
-    const exists = ledgerAccounts.find((a) => a.address === address)
+    let newLedgerAccounts = getLocalLedgerAccounts()
 
-    if (!exists) {
+    const ledgerAddress = getLocalLedgerAddresses().find((a) =>
+      isLocalLedgerAccount(network, a, address)
+    )
+
+    if (
+      ledgerAddress &&
+      !newLedgerAccounts.find((account) =>
+        isLocalLedgerAccount(network, account, address)
+      )
+    ) {
       const newAccount = {
         address,
         network,
-        name: `Ledger ${index + 1}`,
+        name: ledgerAddress.name,
         source: 'ledger',
         index,
       }
-      const newLedgerAccounts = [...ledgerAccounts].concat(newAccount)
+
+      // Update the full list of local ledger accounts with new entry.
+      newLedgerAccounts = [...newLedgerAccounts].concat(newAccount)
       localStorage.setItem('ledger_accounts', JSON.stringify(newLedgerAccounts))
-      setLedgerAccounts(newLedgerAccounts)
+
+      // Store only those accounts on the current network in state.
+      setStateWithRef(
+        newLedgerAccounts.filter((account) => account.network === network),
+        setLedgerAccountsState,
+        ledgerAccountsRef
+      )
 
       // Handle optional callback function.
       if (typeof callback === 'function') {
@@ -55,56 +81,83 @@ export const LedgerAccountsProvider = ({
     return null
   }
 
-  // Removes a Ledger account
+  // Removes a Ledger account from state and local storage.
   const removeLedgerAccount = (
     network: string,
     address: string,
     callback?: () => void
   ) => {
-    const newLedgerAccounts = [...ledgerAccounts].filter(
-      (a) => !(a.address === address && a.network === network)
-    )
-
+    // Remove th account from local storage records
+    const newLedgerAccounts = getLocalLedgerAccounts().filter((account) => {
+      if (account.address !== address) {
+        return true
+      }
+      if (account.network !== network) {
+        return true
+      }
+      return false
+    })
     if (!newLedgerAccounts.length) {
       localStorage.removeItem('ledger_accounts')
     } else {
       localStorage.setItem('ledger_accounts', JSON.stringify(newLedgerAccounts))
     }
 
-    setLedgerAccounts(newLedgerAccounts)
-    // Handle optional callback function
+    // Update state with the new list of accounts.
+    setStateWithRef(
+      newLedgerAccounts.filter((account) => account.network === network),
+      setLedgerAccountsState,
+      ledgerAccountsRef
+    )
+
+    // Handle optional callback function.
     if (typeof callback === 'function') {
       callback()
     }
   }
 
-  // Renames an imported ledger account
+  // Renames an imported ledger account.
   const renameLedgerAccount = (
     network: string,
     address: string,
     newName: string
   ) => {
-    const newLedgerAccounts = [...ledgerAccounts].map((a) =>
-      a.network === network && a.address === address
+    // Update the local storage records.
+    const newLedgerAccounts = getLocalLedgerAccounts().map((account) =>
+      isLocalLedgerAccount(network, account, address)
         ? {
-            ...a,
+            ...account,
             name: newName,
           }
-        : a
+        : account
     )
+    renameLocalLedgerAddress(address, newName, network)
     localStorage.setItem('ledger_accounts', JSON.stringify(newLedgerAccounts))
-    setLedgerAccounts(newLedgerAccounts)
+
+    // Update state with the new list of accounts.
+    setStateWithRef(
+      newLedgerAccounts.filter((account) => account.network === network),
+      setLedgerAccountsState,
+      ledgerAccountsRef
+    )
   }
 
-  // Gets an imported ledger account
-  const getLedgerAccount = (network: string, address: string) =>
-    ledgerAccounts.find(
-      (a) => a.network === network && a.address === address
-    ) || null
+  // Gets an imported address along with its Ledger metadata.
+  const getLedgerAccount = (network: string, address: string) => {
+    const localLedgerAccounts = getLocalLedgerAccounts()
+    if (!localLedgerAccounts) {
+      return null
+    }
+    return (
+      localLedgerAccounts.find((account) =>
+        isLocalLedgerAccount(network, account, address)
+      ) || null
+    )
+  }
 
-  // Gets all Ledger accounts for a network
+  // Gets Ledger accounts for a network.
   const getLedgerAccounts = (network: string) =>
-    ledgerAccounts.filter((a) => a.network === network)
+    ledgerAccountsRef.current.filter((a) => a.network === network)
 
   return (
     <LedgerAccountsContext.Provider
@@ -115,6 +168,7 @@ export const LedgerAccountsProvider = ({
         removeLedgerAccount,
         renameLedgerAccount,
         getLedgerAccounts,
+        ledgerAccounts: ledgerAccountsRef.current,
       }}
     >
       {children}

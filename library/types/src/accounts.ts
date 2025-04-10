@@ -9,8 +9,10 @@ export type AccountAddedBy = 'system' | 'user'
 
 export type ImportedAccount =
   | ExtensionAccount
-  | HardwareAccount
   | ExternalAccount
+  | LedgerAccount
+  | VaultAccount
+  | WCAccount
 
 export interface ExternalAccount {
   address: string
@@ -20,7 +22,23 @@ export interface ExternalAccount {
   addedBy: AccountAddedBy
 }
 
-export interface HardwareAccount {
+export interface LedgerAccount {
+  address: string
+  network: string
+  name: string
+  source: string
+  index: number
+}
+
+export interface VaultAccount {
+  address: string
+  network: string
+  name: string
+  source: string
+  index: number
+}
+
+export interface WCAccount {
   address: string
   network: string
   name: string

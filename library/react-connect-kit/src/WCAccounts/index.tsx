@@ -2,23 +2,28 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { createSafeContext } from '@w3ux/hooks'
-import type { HardwareAccount } from '@w3ux/types'
-import { ellipsisFn } from '@w3ux/utils'
-import type { ReactNode } from 'react'
-import { useState } from 'react'
-import type { WCAccountsContextInterface } from './types'
+import type { WCAccount } from '@w3ux/types'
+import { ellipsisFn, setStateWithRef } from '@w3ux/utils'
+import { useRef, useState } from 'react'
+import type {
+  WCAccountsContextInterface,
+  WCAccountsProviderProps,
+} from './types'
 import { getLocalWcAccounts, isLocalNetworkAddress } from './utils'
 
 export const [WCAccountsContext, useWcAccounts] =
   createSafeContext<WCAccountsContextInterface>()
 
-export const WCAccountsProvider = ({ children }: { children: ReactNode }) => {
-  const [wcAccounts, setWcAccounts] =
-    useState<HardwareAccount[]>(getLocalWcAccounts())
+export const WCAccountsProvider = ({ children }: WCAccountsProviderProps) => {
+  const [wcAccounts, setWcAccountsState] =
+    useState<WCAccount[]>(getLocalWcAccounts())
+  const wcAccountsRef = useRef(wcAccounts)
 
   // Check if a Wallet Connect address exists in imported addresses.
   const wcAccountExists = (network: string, address: string) =>
-    !!wcAccounts.find((a) => a.address === address && a.network === network)
+    !!wcAccountsRef.current.find((a) =>
+      isLocalNetworkAddress(network, a, address)
+    )
 
   // Adds a wallet connect account to state and local storage.
   const addWcAccount = (
@@ -27,7 +32,7 @@ export const WCAccountsProvider = ({ children }: { children: ReactNode }) => {
     index: number,
     callback?: () => void
   ) => {
-    let newAccounts = [...wcAccounts]
+    let newAccounts = [...wcAccountsRef.current]
 
     if (!newAccounts.find((a) => isLocalNetworkAddress(network, a, address))) {
       const account = {
@@ -43,11 +48,15 @@ export const WCAccountsProvider = ({ children }: { children: ReactNode }) => {
         'wallet_connect_accounts',
         JSON.stringify(newAccounts)
       )
-      setWcAccounts(newAccounts)
-      // Handle optional callback function
+
+      // Persist the new accounts to state.
+      setStateWithRef(newAccounts, setWcAccountsState, wcAccountsRef)
+
+      // Handle optional callback function.
       if (typeof callback === 'function') {
         callback()
       }
+
       return account
     }
     return null
@@ -58,7 +67,7 @@ export const WCAccountsProvider = ({ children }: { children: ReactNode }) => {
     address: string,
     callback?: () => void
   ) => {
-    let newAccounts = [...wcAccounts]
+    let newAccounts = [...wcAccountsRef.current]
 
     newAccounts = newAccounts.filter((a) => {
       if (a.address !== address) {
@@ -78,7 +87,7 @@ export const WCAccountsProvider = ({ children }: { children: ReactNode }) => {
         JSON.stringify(newAccounts)
       )
     }
-    setWcAccounts(newAccounts)
+    setStateWithRef(newAccounts, setWcAccountsState, wcAccountsRef)
 
     // Handle optional callback function.
     if (typeof callback === 'function') {
@@ -87,14 +96,16 @@ export const WCAccountsProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const getWcAccount = (network: string, address: string) =>
-    wcAccounts.find((a) => a.address === address && a.network === network)
+    wcAccountsRef.current.find((a) =>
+      isLocalNetworkAddress(network, a, address)
+    ) ?? null
 
   const renameWcAccount = (
     network: string,
     address: string,
     newName: string
   ) => {
-    const newAccounts = [...wcAccounts].map((a) =>
+    const newAccounts = wcAccountsRef.current.map((a) =>
       isLocalNetworkAddress(network, a, address)
         ? {
             ...a,
@@ -104,12 +115,12 @@ export const WCAccountsProvider = ({ children }: { children: ReactNode }) => {
     )
     localStorage.setItem('wallet_connect_accounts', JSON.stringify(newAccounts))
 
-    setWcAccounts(newAccounts)
+    setStateWithRef(newAccounts, setWcAccountsState, wcAccountsRef)
   }
 
   // Gets Wallet Connect accounts for a network.
   const getWcAccounts = (network: string) =>
-    wcAccounts.filter((a) => a.network === network)
+    wcAccountsRef.current.filter((a) => a.network === network)
 
   return (
     <WCAccountsContext.Provider
@@ -120,6 +131,7 @@ export const WCAccountsProvider = ({ children }: { children: ReactNode }) => {
         renameWcAccount,
         getWcAccount,
         getWcAccounts,
+        wcAccounts: wcAccountsRef.current,
       }}
     >
       {children}
