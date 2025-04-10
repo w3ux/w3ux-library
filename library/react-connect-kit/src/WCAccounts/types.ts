@@ -1,13 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { WCAccount } from '@w3ux/types'
-import type { ReactNode } from 'react'
-
-export interface WCAccountsProviderProps {
-  children: ReactNode
-  network: string
-}
+import type { HardwareAccount } from '@w3ux/types'
 
 export interface WCAccountsContextInterface {
   wcAccountExists: (network: string, address: string) => boolean
@@ -16,14 +10,13 @@ export interface WCAccountsContextInterface {
     address: string,
     index: number,
     callback?: () => void
-  ) => WCAccount | null
+  ) => HardwareAccount | null
   removeWcAccount: (
     network: string,
     address: string,
     callback?: () => void
   ) => void
   renameWcAccount: (network: string, address: string, newName: string) => void
-  getWcAccount: (network: string, address: string) => WCAccount | null
-  getWcAccounts: (network: string) => WCAccount[]
-  wcAccounts: WCAccount[]
+  getWcAccount: (network: string, address: string) => HardwareAccount | null
+  getWcAccounts: (network: string) => HardwareAccount[]
 }

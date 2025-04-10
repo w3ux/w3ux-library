@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { VaultAccount } from '@w3ux/types'
+import type { HardwareAccount } from '@w3ux/types'
 import { localStorageOrDefault } from '@w3ux/utils'
 
 // Gets imported Vault accounts from local storage.
@@ -10,7 +10,7 @@ export const getLocalVaultAccounts = (network?: string) => {
     'polkadot_vault_accounts',
     [],
     true
-  ) as VaultAccount[]
+  ) as HardwareAccount[]
 
   return network
     ? localAddresses.filter((a) => a.network === network)
