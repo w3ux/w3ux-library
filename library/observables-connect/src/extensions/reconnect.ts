@@ -1,18 +1,19 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { connectExtensions, getActiveExtensionsLocal } from '../extensions'
+import { initExtensions } from '.'
 import {
   addUnsub,
   getAccountsFromExtensions,
   processExtensionAccounts,
-  setReconnectSync,
   updateAccounts,
-} from './index'
+} from '../accounts/index'
+import { getActiveExtensionsLocal } from '../local'
+import { setReconnectSync } from '../util'
 
 export const reconnectExtensions = async (dappName: string, ss58: number) => {
   setReconnectSync('syncing')
-  const { connected } = await connectExtensions(
+  const { connected } = await initExtensions(
     dappName,
     getActiveExtensionsLocal()
   )

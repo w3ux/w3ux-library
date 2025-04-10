@@ -5,15 +5,13 @@ import extensions from '@w3ux/extension-assets'
 import { createSafeContext } from '@w3ux/hooks'
 import {
   canConnect,
-  getExtensions,
+  extensionsStatus$,
   getStatus,
+  gettingExtensions$,
   removeStatus,
   setStatus,
-} from '@w3ux/observables-connect/extensions'
-import {
-  extensionsStatus$,
-  gettingExtensions$,
-} from '@w3ux/observables-connect/extensions/observables'
+} from '@w3ux/observables-connect'
+import { getExtensions } from '@w3ux/observables-connect/extensions'
 import type { ExtensionsStatus, ExtensionStatus } from '@w3ux/types'
 import { type ReactNode, useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'

@@ -3,13 +3,11 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import type {
   ExtensionAccount,
-  ImportedAccount,
   ProcessExtensionAccountsResult,
 } from '@w3ux/types'
 import { formatAccountSs58, isValidAddress } from '@w3ux/utils'
 import { defaultProcessExtensionResult } from '../consts'
-import { getLocalExternalAccounts } from './local'
-import { _accounts } from './observables'
+import { _extensionAccounts } from '../observables'
 
 // Gets accounts to be imported and commits them to state
 
@@ -31,7 +29,7 @@ export const processExtensionAccounts = (
   newAccounts = formatExtensionAccounts(newAccounts, ss58)
 
   // Find any accounts that have been removed from this extension
-  const removedAccounts = _accounts
+  const removedAccounts = _extensionAccounts
     .getValue()
     .filter((j) => j.source === source)
     .filter((j) => !newAccounts.find((i) => i.address === j.address))
@@ -39,7 +37,7 @@ export const processExtensionAccounts = (
   // Remove accounts that have already been imported
   newAccounts = newAccounts.filter(
     ({ address }) =>
-      !_accounts
+      !_extensionAccounts
         .getValue()
         .find((j) => j.address === address && j.source !== 'external')
   )
@@ -87,19 +85,6 @@ export const formatExtensionAccounts = (
   return accounts
 }
 
-// Gets accounts that exist in local external accounts
-export const getInExternalAccounts = (
-  accounts: ImportedAccount[],
-  network: string
-) => {
-  const localExternalAccounts = getLocalExternalAccounts(network)
-  return (
-    localExternalAccounts.filter(
-      (a) => (accounts || []).find((b) => b.address === a.address) !== undefined
-    ) || []
-  )
-}
-
 // Updates accounts observable based on removed and added accounts
 export const updateAccounts = ({
   add,
@@ -108,8 +93,8 @@ export const updateAccounts = ({
   add: ExtensionAccount[]
   remove: ExtensionAccount[]
 }) => {
-  const newAccounts = [..._accounts.getValue()]
+  const newAccounts = [..._extensionAccounts.getValue()]
     .concat(add)
     .filter((a) => remove.find((s) => s.address === a.address) === undefined)
-  _accounts.next(newAccounts)
+  _extensionAccounts.next(newAccounts)
 }

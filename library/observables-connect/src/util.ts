@@ -1,8 +1,12 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { ExtensionStatus } from '@w3ux/types'
-import { _extensionsStatus } from './observables'
+import type { ExtensionStatus, Sync } from '@w3ux/types'
+import {
+  _extensionAccounts,
+  _extensionsStatus,
+  _reconnectSync,
+} from './observables'
 
 // Gets an extension status
 export const getStatus = (id: string): ExtensionStatus =>
@@ -24,3 +28,16 @@ export const removeStatus = (id: string) => {
 // Whether an extension can be connected
 export const canConnect = (id: string) =>
   ![undefined, 'connected'].includes(_extensionsStatus.getValue()[id])
+
+// Reset accounts
+export const resetAccounts = () => {
+  _extensionAccounts.next([])
+}
+
+// Get previously enabled extension reconnect sync status
+export const getReconnectSync = () => _reconnectSync.getValue()
+
+// Set previously enabled extension reconnect sync status
+export const setReconnectSync = (sync: Sync) => {
+  _reconnectSync.next(sync)
+}

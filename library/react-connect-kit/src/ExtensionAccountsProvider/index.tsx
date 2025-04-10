@@ -3,15 +3,17 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { createSafeContext } from '@w3ux/hooks'
 import {
-  accounts$,
-  connectExtension as doConnectExtension,
+  extensionAccounts$,
   getReconnectSync,
-  reconnectExtensions,
+  initialisedExtensions$,
   reconnectSync$,
   resetAccounts,
-  unsubAll,
-} from '@w3ux/observables-connect/accounts'
-import { initialisedExtensions$ } from '@w3ux/observables-connect/extensions'
+} from '@w3ux/observables-connect'
+import { unsubAll } from '@w3ux/observables-connect/accounts'
+import {
+  connectExtension as doConnectExtension,
+  reconnectExtensions,
+} from '@w3ux/observables-connect/extensions'
 import type { ImportedAccount, Sync } from '@w3ux/types'
 import { formatAccountSs58 } from '@w3ux/utils'
 import { useEffect, useState } from 'react'
@@ -82,7 +84,7 @@ export const ExtensionAccountsProvider = ({
   useEffect(() => {
     const sub = combineLatest([
       initialisedExtensions$,
-      accounts$,
+      extensionAccounts$,
       reconnectSync$,
     ]).subscribe(([initialised, accounts, sync]) => {
       setExtensionsInitialised(initialised)
