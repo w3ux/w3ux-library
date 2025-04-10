@@ -9,11 +9,15 @@ import {
 } from 'builders/util'
 import { exec } from 'child_process'
 import { PACKAGE_OUTPUT } from 'config'
+import type { Bundler } from 'types'
 import { promisify } from 'util'
 
 const execPromisify = promisify(exec)
 
-export const simpleBuild = async (packageName: string) => {
+export const simpleBuild = async (
+  packageName: string,
+  { bundler }: { bundler: Bundler }
+) => {
   const libDirectory = gePackageDirectory(packageName)
 
   // Validate package config
@@ -34,7 +38,7 @@ export const simpleBuild = async (packageName: string) => {
       !(await generatePackageJson(
         libDirectory,
         `${libDirectory}/${PACKAGE_OUTPUT}`,
-        'module'
+        bundler
       ))
     ) {
       throw `Failed to generate package.json file.`

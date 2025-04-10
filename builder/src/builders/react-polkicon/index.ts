@@ -1,5 +1,5 @@
 import { simpleBuild } from 'builders/common/simpleBuild'
 
 export const build = async () => {
-  await simpleBuild('react-polkicon')
+  await simpleBuild('react-polkicon', { bundler: 'gulp' })
 }
