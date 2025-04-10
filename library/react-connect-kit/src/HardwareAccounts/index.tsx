@@ -4,9 +4,9 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { createSafeContext } from '@w3ux/hooks'
 import type { HardwareAccount, HardwareAccountSource } from '@w3ux/types'
 import { ellipsisFn } from '@w3ux/utils'
-import { hardwareAccountsKey } from 'consts'
 import type { ReactNode } from 'react'
 import { useState } from 'react'
+import { hardwareAccountsKey } from '../consts'
 import type { HardwareAccountsContextInterface } from './types'
 import { getLocalHardwareAccounts } from './utils'
 
