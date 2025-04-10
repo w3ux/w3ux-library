@@ -3,7 +3,6 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { createSafeContext } from '@w3ux/hooks'
 import {
-  getHardwareAccounts as getAllHardwareAccounts,
   getHardwareAccountsLocal,
   hardwareAccounts$,
   hardwareAccountsKey,
@@ -34,7 +33,7 @@ export const HardwareAccountsProvider = ({
     network: string,
     address: string
   ) =>
-    !!getAllHardwareAccounts().find(
+    !!hardwareAccounts.find(
       (a) =>
         a.source === source && a.address === address && a.network === network
     )
@@ -55,9 +54,7 @@ export const HardwareAccountsProvider = ({
         source,
         index,
       }
-      const newHardwareAccounts = [...getAllHardwareAccounts()].concat(
-        newAccount
-      )
+      const newHardwareAccounts = [...hardwareAccounts].concat(newAccount)
       localStorage.setItem(
         hardwareAccountsKey,
         JSON.stringify(newHardwareAccounts)
@@ -79,7 +76,7 @@ export const HardwareAccountsProvider = ({
     address: string,
     callback?: () => void
   ) => {
-    const newHardwareAccounts = [...getAllHardwareAccounts()].filter(
+    const newHardwareAccounts = [...hardwareAccounts].filter(
       (a) =>
         !(a.source === source && a.address === address && a.network === network)
     )
@@ -106,7 +103,7 @@ export const HardwareAccountsProvider = ({
     address: string,
     newName: string
   ) => {
-    const newHardwareAccounts = [...getAllHardwareAccounts()].map((a) =>
+    const newHardwareAccounts = [...hardwareAccounts].map((a) =>
       a.source === source && a.network === network && a.address === address
         ? {
             ...a,

@@ -43,11 +43,12 @@ export const ExtensionAccountsProvider = ({
     []
   )
   // Store whether previously enabled extensions have been re-connected
-  const [extensionsSynced, setExtensionsSynced] = useState<Sync>('unsynced')
+  const [extensionsSynced, setExtensionsSynced] =
+    useState<Sync>(getReconnectSync())
 
   // Handle initial connection to previously enabled extensions
   const handleInitialConnect = async () => {
-    if (!gettingExtensions && getReconnectSync() === 'unsynced') {
+    if (!gettingExtensions && extensionsSynced === 'unsynced') {
       // Defensive: unsubscribe from all accounts and reset state
       unsubAll()
       resetAccounts()
