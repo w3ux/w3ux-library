@@ -1,13 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { VaultAccount } from '@w3ux/types'
-import type { ReactNode } from 'react'
-
-export interface VaultAccountsProviderProps {
-  children: ReactNode
-  network: string
-}
+import type { HardwareAccount } from '@w3ux/types'
 
 export interface VaultAccountsContextInterface {
   vaultAccountExists: (network: string, address: string) => boolean
@@ -16,7 +10,7 @@ export interface VaultAccountsContextInterface {
     address: string,
     index: number,
     callback?: () => void
-  ) => VaultAccount | null
+  ) => HardwareAccount | null
   removeVaultAccount: (
     network: string,
     address: string,
@@ -27,7 +21,6 @@ export interface VaultAccountsContextInterface {
     address: string,
     newName: string
   ) => void
-  getVaultAccount: (network: string, address: string) => VaultAccount | null
-  getVaultAccounts: (network: string) => VaultAccount[]
-  vaultAccounts: VaultAccount[]
+  getVaultAccount: (network: string, address: string) => HardwareAccount | null
+  getVaultAccounts: (network: string) => HardwareAccount[]
 }

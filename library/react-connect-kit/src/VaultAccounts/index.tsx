@@ -2,13 +2,11 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { createSafeContext } from '@w3ux/hooks'
-import type { VaultAccount } from '@w3ux/types'
-import { ellipsisFn, setStateWithRef } from '@w3ux/utils'
-import { useRef, useState } from 'react'
-import type {
-  VaultAccountsContextInterface,
-  VaultAccountsProviderProps,
-} from './types'
+import type { HardwareAccount } from '@w3ux/types'
+import { ellipsisFn } from '@w3ux/utils'
+import type { ReactNode } from 'react'
+import { useState } from 'react'
+import type { VaultAccountsContextInterface } from './types'
 import { getLocalVaultAccounts, isLocalNetworkAddress } from './utils'
 
 export const [VaultAccountsContext, useVaultAccounts] =
@@ -16,17 +14,16 @@ export const [VaultAccountsContext, useVaultAccounts] =
 
 export const VaultAccountsProvider = ({
   children,
-}: VaultAccountsProviderProps) => {
-  const [vaultAccounts, seVaultAccountsState] = useState<VaultAccount[]>(
+}: {
+  children: ReactNode
+}) => {
+  const [vaultAccounts, seVaultAccounts] = useState<HardwareAccount[]>(
     getLocalVaultAccounts()
   )
-  const vaultAccountsRef = useRef(vaultAccounts)
 
   // Check if a Vault address exists in imported addresses.
   const vaultAccountExists = (network: string, address: string) =>
-    !!getLocalVaultAccounts().find((a) =>
-      isLocalNetworkAddress(network, a, address)
-    )
+    !!vaultAccounts.find((a) => a.address === address && a.network === network)
 
   // Adds a vault account to state and local storage.
   const addVaultAccount = (
@@ -53,19 +50,12 @@ export const VaultAccountsProvider = ({
         'polkadot_vault_accounts',
         JSON.stringify(newVaultAccounts)
       )
-
-      // store only those accounts on the current network in state.
-      setStateWithRef(
-        newVaultAccounts.filter((a) => a.network === network),
-        seVaultAccountsState,
-        vaultAccountsRef
-      )
+      seVaultAccounts(newVaultAccounts)
 
       // Handle optional callback function.
       if (typeof callback === 'function') {
         callback()
       }
-
       return account
     }
     return null
@@ -96,11 +86,7 @@ export const VaultAccountsProvider = ({
         JSON.stringify(newVaultAccounts)
       )
     }
-    setStateWithRef(
-      newVaultAccounts.filter((a) => a.network === network),
-      seVaultAccountsState,
-      vaultAccountsRef
-    )
+    seVaultAccounts(newVaultAccounts)
 
     // Handle optional callback function.
     if (typeof callback === 'function') {
@@ -139,16 +125,12 @@ export const VaultAccountsProvider = ({
       'polkadot_vault_accounts',
       JSON.stringify(newVaultAccounts)
     )
-    setStateWithRef(
-      newVaultAccounts.filter((a) => a.network === network),
-      seVaultAccountsState,
-      vaultAccountsRef
-    )
+    seVaultAccounts(newVaultAccounts)
   }
 
   // Gets Vault accounts for a network.
   const getVaultAccounts = (network: string) =>
-    vaultAccountsRef.current.filter((a) => a.network === network)
+    vaultAccounts.filter((a) => a.network === network)
 
   return (
     <VaultAccountsContext.Provider
@@ -159,7 +141,6 @@ export const VaultAccountsProvider = ({
         renameVaultAccount,
         getVaultAccount,
         getVaultAccounts,
-        vaultAccounts: vaultAccountsRef.current,
       }}
     >
       {children}
