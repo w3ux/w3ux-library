@@ -4,29 +4,26 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from 'config'
 import fs from 'fs/promises'
 import { dirname, join } from 'path'
+import type { Bundler } from 'types'
 import { fileURLToPath } from 'url'
 
-// Gets workspace directory from the current directory.
-//--------------------------------------------------------------------------
+// Gets workspace directory from the current directory
 export const getWorkspaceDirectory = () =>
   join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 
-// Gets builder source directory, relative to  the builder's dist directory.
-//--------------------------------------------------------------------------
+// Gets builder source directory, relative to  the builder's dist directory
 export const getBuilderDirectory = () =>
   join(dirname(fileURLToPath(import.meta.url)), '..', 'src')
 
-// Gets library directory, relative to the current directory.
+// Gets library directory, relative to the current directory
 export const getLibraryDirectory = () =>
   join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'library')
 
-// Gets a package directory, relative to the current directory.
-//-------------------------------------------------------------
+// Gets a package directory, relative to the current directory
 export const gePackageDirectory = (path: string) =>
   join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'library', path)
 
-// Checks that all given files are present in all the provided directory.
-//-----------------------------------------------------------------------
+// Checks that all given files are present in all the provided directory
 export const checkFilesExistInPackages = async (
   dir: string,
   files: string[]
@@ -46,8 +43,7 @@ export const checkFilesExistInPackages = async (
   return valid
 }
 
-// Gets a package.json file in the given directory.
-//-------------------------------------------------
+// Gets a package.json file in the given directory
 export const getPackageJson = async (dir: string) => {
   try {
     const file = await fs.readFile(`${dir}/package.json`, 'utf-8')
@@ -58,8 +54,7 @@ export const getPackageJson = async (dir: string) => {
   }
 }
 
-// Remove package output directory if it exists.
-// ---------------------------------------------
+// Remove package output directory if it exists
 export const removePackageOutput = async (
   libDirectory: string,
   building: boolean
@@ -80,8 +75,7 @@ export const removePackageOutput = async (
   }
 }
 
-// Get a source template file for the directory.
-// ---------------------------------------------
+// Get a source template file for the directory
 export const getTemplate = async (name) => {
   const file = await fs.readFile(
     `${getBuilderDirectory()}/templates/${name}.md`,
@@ -90,12 +84,11 @@ export const getTemplate = async (name) => {
   return file.toString()
 }
 
-// Generate package package.json file from source package.json.
-// -----------------------------------------------------------
+// Generate package package.json file from source package.json
 export const generatePackageJson = async (
   inputDir: string,
   outputDir: string,
-  bundler: 'gulp' | 'tsup' | 'module' | null,
+  bundler: Bundler | null,
   additionalExports: Record<
     string,
     {
@@ -106,14 +99,24 @@ export const generatePackageJson = async (
 ): Promise<boolean> => {
   try {
     // Read the original package.json.
-    const packageJsonPath = join(inputDir, 'package.json')
-    const originalPackageJson = await fs.readFile(packageJsonPath, 'utf8')
-    const parsedPackageJson = JSON.parse(originalPackageJson)
+    const parsedPackageJson = JSON.parse(
+      await fs.readFile(join(inputDir, 'package.json'), 'utf8')
+    )
 
     // Extract only the specified fields.
     const { name, version, license, dependencies, peerDependencies } =
       parsedPackageJson
     const packageName = name.replace(/-source$/, '') // Remove '-source' suffix.
+
+    // Attempt to get exports
+    let exportsJson
+    try {
+      exportsJson = JSON.parse(
+        await fs.readFile(join(inputDir, 'exports.config.json'), 'utf8')
+      )
+    } catch (e) {
+      // Silenty fail getting exports
+    }
 
     // Construct the minimal package.json object
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -121,22 +124,13 @@ export const generatePackageJson = async (
       name: packageName,
       version,
       license,
-      dependencies,
-    }
-
-    if (bundler === 'module') {
-      minimalPackageJson = {
-        ...minimalPackageJson,
-        type: 'module',
-      }
+      type: 'module',
     }
 
     if (bundler === 'gulp') {
       minimalPackageJson = {
         ...minimalPackageJson,
-        main: 'cjs/index.js',
-        module: 'mjs/index.js',
-        exports: {
+        exports: exportsJson?.exports || {
           '.': {
             import: './mjs/index.js',
             require: './cjs/index.js',
@@ -149,9 +143,7 @@ export const generatePackageJson = async (
     if (bundler === 'tsup') {
       minimalPackageJson = {
         ...minimalPackageJson,
-        main: 'index.cjs',
-        module: 'index.js',
-        exports: {
+        exports: exportsJson?.exports || {
           '.': {
             import: './index.js',
             require: './index.cjs',
@@ -164,7 +156,6 @@ export const generatePackageJson = async (
     if (dependencies) {
       minimalPackageJson['dependencies'] = dependencies
     }
-
     if (peerDependencies) {
       minimalPackageJson['peerDependencies'] = peerDependencies
     }

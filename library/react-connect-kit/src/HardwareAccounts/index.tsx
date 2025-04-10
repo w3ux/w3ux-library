@@ -4,11 +4,11 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { createSafeContext } from '@w3ux/hooks'
 import {
   getHardwareAccounts as getAllHardwareAccounts,
+  getHardwareAccountsLocal,
   hardwareAccounts$,
+  hardwareAccountsKey,
   setHardwareAccounts,
 } from '@w3ux/observables-connect'
-import { hardwareAccountsKey } from '@w3ux/observables-connect/consts'
-import { getHardwareAccountsLocal } from '@w3ux/observables-connect/local'
 import type { HardwareAccount, HardwareAccountSource } from '@w3ux/types'
 import { ellipsisFn } from '@w3ux/utils'
 import type { ReactNode } from 'react'

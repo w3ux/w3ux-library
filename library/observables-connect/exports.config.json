@@ -1,0 +1,7 @@
+{
+  "exports": {
+    ".": "./index.js",
+    "./accounts": "./accounts/index.js",
+    "./extensions": "./extensions/index.js"
+  }
+}

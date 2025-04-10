@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { decodeAddress } from 'dedot/utils'
-import type { MutableRefObject, RefObject } from 'react'
+import type { RefObject } from 'react'
 import { rmCommas, rmDecimals } from './base'
 import type { AnyObject } from './types'
 
@@ -135,7 +135,7 @@ export const snakeToCamel = (str: string) =>
 export const setStateWithRef = <T>(
   value: T,
   setState: (_state: T) => void,
-  ref: MutableRefObject<T>
+  ref: RefObject<T>
 ): void => {
   setState(value)
   ref.current = value

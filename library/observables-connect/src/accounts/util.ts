@@ -7,7 +7,7 @@ import type {
 } from '@w3ux/types'
 import { formatAccountSs58, isValidAddress } from '@w3ux/utils'
 import { defaultProcessExtensionResult } from '../consts'
-import { _extensionAccounts } from '../observables'
+import { _extensionAccounts } from '../subjects'
 
 // Gets accounts to be imported and commits them to state
 

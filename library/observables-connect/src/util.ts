@@ -7,7 +7,7 @@ import {
   _extensionsStatus,
   _hardwareAccounts,
   _reconnectSync,
-} from './observables'
+} from './subjects'
 
 // Gets an extension status
 export const getStatus = (id: string): ExtensionStatus =>

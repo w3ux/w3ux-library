@@ -1,0 +1,8 @@
+{
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.cjs"
+    }
+  }
+}
