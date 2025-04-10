@@ -30,7 +30,7 @@ export const WCAccountsProvider = ({ children }: { children: ReactNode }) => {
     let newAccounts = [...wcAccounts]
 
     if (!newAccounts.find((a) => isLocalNetworkAddress(network, a, address))) {
-      const account = {
+      const account: HardwareAccount = {
         address,
         network,
         name: ellipsisFn(address),

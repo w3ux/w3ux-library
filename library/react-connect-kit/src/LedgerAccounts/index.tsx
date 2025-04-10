@@ -38,7 +38,7 @@ export const LedgerAccountsProvider = ({
     )
 
     if (!exists) {
-      const newAccount = {
+      const newAccount: HardwareAccount = {
         address,
         network,
         name: ellipsisFn(address),

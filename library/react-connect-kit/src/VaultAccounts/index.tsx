@@ -37,7 +37,7 @@ export const VaultAccountsProvider = ({
     if (
       !newVaultAccounts.find((a) => isLocalNetworkAddress(network, a, address))
     ) {
-      const account = {
+      const account: HardwareAccount = {
         address,
         network,
         name: ellipsisFn(address),
