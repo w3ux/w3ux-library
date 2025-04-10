@@ -207,8 +207,8 @@ importers:
         version: 7.8.2
     devDependencies:
       '@w3ux/types':
-        specifier: ^2.1.6
-        version: 2.1.6
+        specifier: ^2.1.9
+        version: 2.1.9
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -240,8 +240,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0(react@19.1.0)
       '@w3ux/observables-connect':
-        specifier: 0.9.31
-        version: 0.9.31(react@19.1.0)(rxjs@7.8.2)
+        specifier: 0.9.32-alpha.3
+        version: 0.9.32-alpha.3(react@19.1.0)(rxjs@7.8.2)
       '@w3ux/utils':
         specifier: ^2.0.9
         version: 2.0.9
@@ -253,8 +253,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.6
-        version: 2.1.6
+        specifier: ^2.1.9
+        version: 2.1.9
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1215,13 +1215,16 @@ packages:
     peerDependencies:
       react: ^19
 
-  '@w3ux/observables-connect@0.9.31':
-    resolution: {integrity: sha512-DtFUQ0GBcOViqj4YbbragdX7A+7BDEdT5GwscnuWFhz1MBM6Ngk1j/Z+Z46rsGJO6AdpnEz1Ycz5DLjOvN5lDg==}
+  '@w3ux/observables-connect@0.9.32-alpha.3':
+    resolution: {integrity: sha512-x/Mg6tsHUZMXk3nqqUXSHIaE53EheBPSI7VjVN4xZt8C+fvMYIV58AGaX9iiDTfh68VMa4xsaYdnnM7pkQyWsQ==}
     peerDependencies:
       rxjs: ^7.8.2
 
   '@w3ux/types@2.1.6':
     resolution: {integrity: sha512-Z4fEZJjSKCjk9K5gdcylciJrGauWRJyO4oGgzq38Snucdndqye2b9ma1yKWb83vgnTHwOU62c+FQIF0UpYlVFA==}
+
+  '@w3ux/types@2.1.9':
+    resolution: {integrity: sha512-knWn8d4fnBOZMFuCs0I0vzfW1js+amD0sXqfPxN/I7kN4bAXtFRCx9CZ93jkz5KuQJfgo3fGr70xingBY8y9Hw==}
 
   '@w3ux/utils@2.0.9':
     resolution: {integrity: sha512-yTVthfOV5vnplh1bksgX3gim8CW00wvugY3z1dntuQaKixepEJPa2JIZW8ESW+IEC31bbmkixBJYk+1ZW0WMXw==}
@@ -4376,7 +4379,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@w3ux/observables-connect@0.9.31(react@19.1.0)(rxjs@7.8.2)':
+  '@w3ux/observables-connect@0.9.32-alpha.3(react@19.1.0)(rxjs@7.8.2)':
     dependencies:
       '@w3ux/extension-assets': 2.2.0(react@19.1.0)
       '@w3ux/utils': 2.0.9
@@ -4387,6 +4390,8 @@ snapshots:
       - utf-8-validate
 
   '@w3ux/types@2.1.6': {}
+
+  '@w3ux/types@2.1.9': {}
 
   '@w3ux/utils@2.0.9':
     dependencies:

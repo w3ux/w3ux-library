@@ -1,10 +1,11 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { ExtensionStatus, Sync } from '@w3ux/types'
+import type { ExtensionStatus, HardwareAccount, Sync } from '@w3ux/types'
 import {
   _extensionAccounts,
   _extensionsStatus,
+  _hardwareAccounts,
   _reconnectSync,
 } from './observables'
 
@@ -40,4 +41,12 @@ export const getReconnectSync = () => _reconnectSync.getValue()
 // Set previously enabled extension reconnect sync status
 export const setReconnectSync = (sync: Sync) => {
   _reconnectSync.next(sync)
+}
+
+// Get hardware accounts
+export const getHardwareAccounts = () => _hardwareAccounts.getValue()
+
+// Set hardware accounts
+export const setHardwareAccounts = (accounts: HardwareAccount[]) => {
+  _hardwareAccounts.next(accounts)
 }
