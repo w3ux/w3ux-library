@@ -3,6 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { createSafeContext } from '@w3ux/hooks'
 import type { HardwareAccount } from '@w3ux/types'
+import { ellipsisFn } from '@w3ux/utils'
 import type { ReactNode } from 'react'
 import { useState } from 'react'
 import type { LedgerAccountsContextInterface } from './types'
@@ -32,13 +33,15 @@ export const LedgerAccountsProvider = ({
     index: number,
     callback?: () => void
   ) => {
-    const exists = ledgerAccounts.find((a) => a.address === address)
+    const exists = !!ledgerAccounts.find(
+      (a) => a.address === address && a.network === network
+    )
 
     if (!exists) {
       const newAccount = {
         address,
         network,
-        name: `Ledger ${index + 1}`,
+        name: ellipsisFn(address),
         source: 'ledger',
         index,
       }

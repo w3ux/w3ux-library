@@ -5,14 +5,12 @@ import type { HardwareAccount } from '@w3ux/types'
 import { localStorageOrDefault } from '@w3ux/utils'
 
 // Gets imported Ledger accounts from local storage
-export const getLocalLedgerAccounts = (network?: string): HardwareAccount[] => {
+export const getLocalLedgerAccounts = (): HardwareAccount[] => {
   const localAddresses = localStorageOrDefault(
     'ledger_accounts',
     [],
     true
   ) as HardwareAccount[]
 
-  return network
-    ? localAddresses.filter((a) => a.network === network)
-    : localAddresses
+  return localAddresses
 }
