@@ -1,7 +1,6 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import extensions from '@w3ux/extension-assets'
 import { createSafeContext } from '@w3ux/hooks'
 import {
   canConnect,
@@ -44,12 +43,6 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   // Checks whether an extension can be connected to
   const extensionCanConnect = (id: string): boolean => canConnect(id)
 
-  // Checks whether an extension supports a feature
-  const extensionHasFeature = (id: string, feature: string): boolean => {
-    const features = extensions[id]?.features || []
-    return features === '*' || features.includes(feature)
-  }
-
   // Subscribes to observables and updates state
   useEffect(() => {
     getExtensions()
@@ -74,7 +67,6 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
         removeExtensionStatus,
         extensionInstalled,
         extensionCanConnect,
-        extensionHasFeature,
       }}
     >
       {children}

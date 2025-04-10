@@ -11,5 +11,4 @@ export interface ExtensionsContextInterface {
   removeExtensionStatus: (id: string) => void
   extensionInstalled: (id: string) => boolean
   extensionCanConnect: (id: string) => boolean
-  extensionHasFeature: (id: string, feature: string) => boolean
 }
