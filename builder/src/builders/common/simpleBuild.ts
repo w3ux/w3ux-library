@@ -16,7 +16,7 @@ const execPromisify = promisify(exec)
 
 export const simpleBuild = async (
   packageName: string,
-  { bundler }: { bundler: Bundler }
+  { bundler }: { bundler: Bundler | null }
 ) => {
   const libDirectory = gePackageDirectory(packageName)
 
