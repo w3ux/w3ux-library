@@ -37,9 +37,7 @@ export const processExtensionAccounts = (
   // Remove accounts that have already been imported
   newAccounts = newAccounts.filter(
     ({ address }) =>
-      !_extensionAccounts
-        .getValue()
-        .find((j) => j.address === address && j.source !== 'external')
+      !_extensionAccounts.getValue().find((j) => j.address === address)
   )
 
   // Format accounts properties
