@@ -18,7 +18,7 @@ import type { ImportedAccount, Sync } from '@w3ux/types'
 import { formatAccountSs58 } from '@w3ux/utils'
 import { useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'
-import { useExtensions } from '../ExtensionsProvider'
+import { useExtensions } from '../Extensions'
 import type {
   ExtensionAccountsContextInterface,
   ExtensionAccountsProviderProps,
