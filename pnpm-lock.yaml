@@ -133,8 +133,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.1.6
+        version: 2.1.6
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -160,8 +160,8 @@ importers:
   library/hooks:
     dependencies:
       '@w3ux/utils':
-        specifier: ^2.0.8
-        version: 2.0.8
+        specifier: ^2.0.9
+        version: 2.0.9
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -170,8 +170,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.1.6
+        version: 2.1.6
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -199,13 +199,16 @@ importers:
       '@w3ux/extension-assets':
         specifier: ^2.2.0
         version: 2.2.0(react@19.1.0)
+      '@w3ux/utils':
+        specifier: ^2.0.9
+        version: 2.0.9
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
     devDependencies:
       '@w3ux/types':
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.1.6
+        version: 2.1.6
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -234,14 +237,14 @@ importers:
         specifier: ^2.2.0
         version: 2.2.0(react@19.1.0)
       '@w3ux/hooks':
-        specifier: ^2.0.4
-        version: 2.0.4(react@19.1.0)
+        specifier: ^2.1.0
+        version: 2.1.0(react@19.1.0)
       '@w3ux/observables-connect':
-        specifier: 0.9.1
-        version: 0.9.1(react@19.1.0)(rxjs@7.8.2)
+        specifier: 0.9.31
+        version: 0.9.31(react@19.1.0)(rxjs@7.8.2)
       '@w3ux/utils':
-        specifier: ^2.0.8
-        version: 2.0.8
+        specifier: ^2.0.9
+        version: 2.0.9
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
@@ -250,8 +253,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.1.6
+        version: 2.1.6
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -313,8 +316,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       '@w3ux/utils':
-        specifier: ^2.0.8
-        version: 2.0.8
+        specifier: ^2.0.9
+        version: 2.0.9
       dedot:
         specifier: ^0.8.1
         version: 0.8.1
@@ -366,8 +369,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.1.6
+        version: 2.1.6
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1207,21 +1210,21 @@ packages:
     peerDependencies:
       react: ^19
 
-  '@w3ux/hooks@2.0.4':
-    resolution: {integrity: sha512-BoQXXkWLNiQ+uVctKGqH/XImF7MGDVZL4vkZMmRNXFd6zY9sNd6khtz4x4tDQF1Bn9Y+OMN7SfmF5T+w1rLwHw==}
+  '@w3ux/hooks@2.1.0':
+    resolution: {integrity: sha512-ESrbb47LQ875118bIl+MwsL19uj7AH6+Rx4wDRVHr31vKeN+lLZKgsodwPJ2lKYsODUBq9sX4nxLdSXY1voGxw==}
     peerDependencies:
       react: ^19
 
-  '@w3ux/observables-connect@0.9.1':
-    resolution: {integrity: sha512-bzydxDziYLZEjDprEC0v3BvoueYftnG9qMbYQS9lLG1BozeRdH+RNWqCq9v4AHpEYnJflaw/CXvmngNWnyX3Zg==}
+  '@w3ux/observables-connect@0.9.31':
+    resolution: {integrity: sha512-DtFUQ0GBcOViqj4YbbragdX7A+7BDEdT5GwscnuWFhz1MBM6Ngk1j/Z+Z46rsGJO6AdpnEz1Ycz5DLjOvN5lDg==}
     peerDependencies:
       rxjs: ^7.8.2
 
-  '@w3ux/types@2.1.0':
-    resolution: {integrity: sha512-08l72OVqKg+/ZcV/uczHCJxfBKFNn52/DHr0+Ksy2mZIQBFOUPr/zzv8SY22yW2wxUmfR7M1uljQ7qXKwXY3Tw==}
+  '@w3ux/types@2.1.6':
+    resolution: {integrity: sha512-Z4fEZJjSKCjk9K5gdcylciJrGauWRJyO4oGgzq38Snucdndqye2b9ma1yKWb83vgnTHwOU62c+FQIF0UpYlVFA==}
 
-  '@w3ux/utils@2.0.8':
-    resolution: {integrity: sha512-/uRGXVe85n2UNdtwy7w62lMnq7tRe9HQWtzRNp1QRtntTZ9v85FFKOsq2QgnG1gAljE7yHbyDwOVLNqOC3amSg==}
+  '@w3ux/utils@2.0.9':
+    resolution: {integrity: sha512-yTVthfOV5vnplh1bksgX3gim8CW00wvugY3z1dntuQaKixepEJPa2JIZW8ESW+IEC31bbmkixBJYk+1ZW0WMXw==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -4364,25 +4367,28 @@ snapshots:
     dependencies:
       react: 19.1.0
 
-  '@w3ux/hooks@2.0.4(react@19.1.0)':
+  '@w3ux/hooks@2.1.0(react@19.1.0)':
     dependencies:
-      '@w3ux/utils': 2.0.8
+      '@w3ux/utils': 2.0.9
       date-fns: 4.1.0
       react: 19.1.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@w3ux/observables-connect@0.9.1(react@19.1.0)(rxjs@7.8.2)':
+  '@w3ux/observables-connect@0.9.31(react@19.1.0)(rxjs@7.8.2)':
     dependencies:
       '@w3ux/extension-assets': 2.2.0(react@19.1.0)
+      '@w3ux/utils': 2.0.9
       rxjs: 7.8.2
     transitivePeerDependencies:
+      - bufferutil
       - react
+      - utf-8-validate
 
-  '@w3ux/types@2.1.0': {}
+  '@w3ux/types@2.1.6': {}
 
-  '@w3ux/utils@2.0.8':
+  '@w3ux/utils@2.0.9':
     dependencies:
       dedot: 0.8.1
     transitivePeerDependencies:

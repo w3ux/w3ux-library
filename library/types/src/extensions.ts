@@ -21,7 +21,7 @@ export type ExtensionsStatus = Record<string, ExtensionStatus>
 
 export interface ExtensionInjected extends ExtensionConfig {
   id: string
-  enable: (n: string) => Promise<ExtensionInterface>
+  enable: (n?: string) => Promise<ExtensionInterface>
 }
 
 export interface ExtensionInterface {
@@ -41,4 +41,26 @@ export interface ExtensionConfig {
     SVGProps<SVGSVGElement> & { title?: string | undefined }
   >
   url: string
+}
+
+export type RawExtensionEnable = (name?: string) => Promise<ExtensionInterface>
+
+export type RawExtensions = Map<string, RawExtensionEnable>
+
+export type ExtensionEnableStatus =
+  | 'valid'
+  | 'extension_not_found'
+  | 'enable_invalid'
+
+export type ExtensionEnableResults = Map<string, ExtensionEnableResult>
+
+export interface ExtensionEnableResult {
+  extension?: ExtensionInterface
+  connected: boolean
+  error?: string
+}
+
+export interface ProcessExtensionAccountsResult {
+  newAccounts: ExtensionAccount[]
+  removedAccounts: ExtensionAccount[]
 }
