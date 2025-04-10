@@ -3,7 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import type { ExtensionEnableResults } from '@w3ux/types'
 import { addExtensionToLocal, removeExtensionFromLocal } from '../local'
-import { _extensionsStatus, _initialisedExtensions } from '../observables'
+import { _extensionsStatus, _initialisedExtensions } from '../subjects'
 import { enableExtensions } from './enable'
 
 // Connects to previously connected extensions, or to a specific set of extensions
