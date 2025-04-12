@@ -2,4 +2,4 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 export * from './Extensions'
-export * from './HardwareAccounts'
+export * from './Hardware'

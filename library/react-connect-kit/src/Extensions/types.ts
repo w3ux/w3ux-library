@@ -4,7 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import type { Account, ExtensionStatus, Sync } from '@w3ux/types'
 import type { ReactNode } from 'react'
 
-export interface ExtensionsContextInterface {
+export interface ExtensionsConnectContextInterface {
   gettingExtensions: boolean
   extensionsStatus: Record<string, ExtensionStatus>
   setExtensionStatus: (id: string, status: ExtensionStatus) => void
@@ -20,7 +20,7 @@ export interface ExtensionAccountsContextInterface {
   getExtensionAccounts: (ss58: number) => Account[]
 }
 
-export interface ExtensionAccountsProviderProps {
+export interface ExtensionsProviderProps {
   children: ReactNode
   ss58: number
   dappName: string

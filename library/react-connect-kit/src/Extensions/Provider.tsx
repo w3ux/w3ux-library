@@ -3,13 +3,13 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { ExtensionAccountsProvider } from './Accounts'
 import { ExtensionsConnectProvider } from './Connect'
-import type { ExtensionAccountsProviderProps } from './types'
+import type { ExtensionsProviderProps } from './types'
 
 export const ExtensionsProvider = ({
   ss58,
   dappName,
   children,
-}: ExtensionAccountsProviderProps) => (
+}: ExtensionsProviderProps) => (
   <ExtensionsConnectProvider>
     <ExtensionAccountsProvider ss58={ss58} dappName={dappName}>
       {children}

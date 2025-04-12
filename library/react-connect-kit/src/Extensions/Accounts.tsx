@@ -21,7 +21,7 @@ import { combineLatest } from 'rxjs'
 import { useExtensions } from './Connect'
 import type {
   ExtensionAccountsContextInterface,
-  ExtensionAccountsProviderProps,
+  ExtensionsProviderProps,
 } from './types'
 
 export const [ExtensionAccountsContext, useExtensionAccounts] =
@@ -31,7 +31,7 @@ export const ExtensionAccountsProvider = ({
   children,
   ss58,
   dappName,
-}: ExtensionAccountsProviderProps) => {
+}: ExtensionsProviderProps) => {
   const { gettingExtensions } = useExtensions()
 
   // Store connected extension accounts

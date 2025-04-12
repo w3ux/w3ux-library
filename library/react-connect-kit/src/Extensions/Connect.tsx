@@ -14,10 +14,10 @@ import { getExtensions } from '@w3ux/observables-connect/extensions'
 import type { ExtensionsStatus, ExtensionStatus } from '@w3ux/types'
 import { type ReactNode, useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'
-import type { ExtensionsContextInterface } from './types'
+import type { ExtensionsConnectContextInterface } from './types'
 
 export const [ExtensionsConnectContext, useExtensions] =
-  createSafeContext<ExtensionsContextInterface>()
+  createSafeContext<ExtensionsConnectContextInterface>()
 
 export const ExtensionsConnectProvider = ({
   children,
