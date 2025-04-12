@@ -14,7 +14,7 @@ import {
   connectExtension as doConnectExtension,
   reconnectExtensions,
 } from '@w3ux/observables-connect/extensions'
-import type { ImportedAccount, Sync } from '@w3ux/types'
+import type { Account, Sync } from '@w3ux/types'
 import { formatAccountSs58 } from '@w3ux/utils'
 import { useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'
@@ -35,9 +35,7 @@ export const ExtensionAccountsProvider = ({
   const { gettingExtensions } = useExtensions()
 
   // Store connected extension accounts
-  const [extensionAccounts, setExtensionAccounts] = useState<ImportedAccount[]>(
-    []
-  )
+  const [extensionAccounts, setExtensionAccounts] = useState<Account[]>([])
   // Stores initialised extensions
   const [extensionsInitialised, setExtensionsInitialised] = useState<string[]>(
     []
@@ -61,7 +59,7 @@ export const ExtensionAccountsProvider = ({
     await doConnectExtension(dappName, ss58, id)
 
   // Get extension accounts, formatted by a provided ss58 prefix
-  const getExtensionAccounts = (ss58Prefix: number): ImportedAccount[] =>
+  const getExtensionAccounts = (ss58Prefix: number) =>
     extensionAccounts
       .map((account) => {
         const formattedAddress = formatAccountSs58(account.address, ss58Prefix)

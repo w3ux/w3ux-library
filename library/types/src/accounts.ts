@@ -3,18 +3,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 export type HardwareAccountSource = 'ledger' | 'vault' | 'wallet_connect'
 
-export type AccountAddedBy = 'system' | 'user'
-
-export type ImportedAccount =
-  | ExtensionAccount
-  | ExternalAccount
-  | HardwareAccount
-
-export interface AccountCommon {
-  address: string
-  name: string
-  source: string
-}
+export type Account = ExtensionAccount | HardwareAccount
 
 export type ExtensionAccount = AccountCommon & {
   signer?: unknown
@@ -25,7 +14,8 @@ export type HardwareAccount = AccountCommon & {
   index: number
 }
 
-export type ExternalAccount = AccountCommon & {
-  network: string
-  addedBy: AccountAddedBy
+export interface AccountCommon {
+  address: string
+  name: string
+  source: string
 }

@@ -133,8 +133,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.12
-        version: 2.1.12
+        specifier: ^2.1.13
+        version: 2.1.13
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -170,8 +170,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.12
-        version: 2.1.12
+        specifier: ^2.1.13
+        version: 2.1.13
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -207,8 +207,8 @@ importers:
         version: 7.8.2
     devDependencies:
       '@w3ux/types':
-        specifier: ^2.1.12
-        version: 2.1.12
+        specifier: ^2.1.13
+        version: 2.1.13
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -240,8 +240,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0(react@19.1.0)
       '@w3ux/observables-connect':
-        specifier: ^0.9.36
-        version: 0.9.36(react@19.1.0)(rxjs@7.8.2)
+        specifier: ^0.9.37
+        version: 0.9.37(react@19.1.0)(rxjs@7.8.2)
       '@w3ux/utils':
         specifier: ^2.0.10
         version: 2.0.10
@@ -253,8 +253,8 @@ importers:
         specifier: ^19.0.12
         version: 19.0.12
       '@w3ux/types':
-        specifier: ^2.1.12
-        version: 2.1.12
+        specifier: ^2.1.13
+        version: 2.1.13
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1212,13 +1212,13 @@ packages:
     peerDependencies:
       react: ^19
 
-  '@w3ux/observables-connect@0.9.36':
-    resolution: {integrity: sha512-nid3HcQga9kuo12EDQznN3zJXf+aHZdTdIj0T09z8yKRG2HTotz5w7WV6ZgtEk61+9Cccp3kf/0oV172jUN/Kw==}
+  '@w3ux/observables-connect@0.9.37':
+    resolution: {integrity: sha512-zjaCpqAa0LAdAiBDCod66h0qdY2VfdiVPjDprLsx+SlVfSLfInKJz0A4vwqxl0sKfvB2gDRM1EZ0M2/pBo9JgQ==}
     peerDependencies:
       rxjs: ^7.8.2
 
-  '@w3ux/types@2.1.12':
-    resolution: {integrity: sha512-vCBMhQyXspqfDZ+4/ebH2mrEVwIq+B9Kcgd3G39q7aMshJBRI5RNMqvqi0KSsQJ5GRbs5cqxGwLvqfL6QOsigQ==}
+  '@w3ux/types@2.1.13':
+    resolution: {integrity: sha512-+b1wjIGRUn44tQ892er0W1NTmgu9DYjJoEbGJQ8WriZz+cQo+oT2q69P2qvofUhYdtPTroZiJcwEmoITHiL8Dg==}
 
   '@w3ux/utils@2.0.10':
     resolution: {integrity: sha512-utJhLwZyCTxQDxtlZIskPsM7FgckNllBT1Z/XGgAITt0UxqHhMW4mJr7TViV9s4GHCaFhBYwhUrb5PpoDgnZNw==}
@@ -4373,7 +4373,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@w3ux/observables-connect@0.9.36(react@19.1.0)(rxjs@7.8.2)':
+  '@w3ux/observables-connect@0.9.37(react@19.1.0)(rxjs@7.8.2)':
     dependencies:
       '@w3ux/extension-assets': 2.2.0(react@19.1.0)
       '@w3ux/utils': 2.0.10
@@ -4383,7 +4383,7 @@ snapshots:
       - react
       - utf-8-validate
 
-  '@w3ux/types@2.1.12': {}
+  '@w3ux/types@2.1.13': {}
 
   '@w3ux/utils@2.0.10':
     dependencies:
