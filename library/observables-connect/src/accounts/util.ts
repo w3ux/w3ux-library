@@ -6,7 +6,7 @@ import type {
   ProcessExtensionAccountsResult,
 } from '@w3ux/types'
 import { formatAccountSs58, isValidAddress } from '@w3ux/utils'
-import { defaultProcessExtensionResult } from '../consts'
+import { DefaultProcessExtensionResult } from '../consts'
 import { _extensionAccounts } from '../subjects'
 
 // Gets accounts to be imported and commits them to state
@@ -22,7 +22,7 @@ export const processExtensionAccounts = (
 ): ProcessExtensionAccountsResult => {
   const { source, ss58 } = config
   if (!newAccounts.length) {
-    return defaultProcessExtensionResult
+    return DefaultProcessExtensionResult
   }
 
   // Get valid accounts from extension

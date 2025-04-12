@@ -5,7 +5,7 @@ import { createSafeContext } from '@w3ux/hooks'
 import {
   getHardwareAccountsLocal,
   hardwareAccounts$,
-  hardwareAccountsKey,
+  HardwareAccountsKey,
   setHardwareAccounts,
 } from '@w3ux/observables-connect'
 import type { HardwareAccount, HardwareAccountSource } from '@w3ux/types'
@@ -56,7 +56,7 @@ export const HardwareAccountsProvider = ({
       }
       const newHardwareAccounts = [...hardwareAccounts].concat(newAccount)
       localStorage.setItem(
-        hardwareAccountsKey,
+        HardwareAccountsKey,
         JSON.stringify(newHardwareAccounts)
       )
       setHardwareAccounts(newHardwareAccounts)
@@ -82,10 +82,10 @@ export const HardwareAccountsProvider = ({
     )
 
     if (!newHardwareAccounts.length) {
-      localStorage.removeItem(hardwareAccountsKey)
+      localStorage.removeItem(HardwareAccountsKey)
     } else {
       localStorage.setItem(
-        hardwareAccountsKey,
+        HardwareAccountsKey,
         JSON.stringify(newHardwareAccounts)
       )
     }
@@ -112,7 +112,7 @@ export const HardwareAccountsProvider = ({
         : a
     )
     localStorage.setItem(
-      hardwareAccountsKey,
+      HardwareAccountsKey,
       JSON.stringify(newHardwareAccounts)
     )
     setHardwareAccounts(newHardwareAccounts)

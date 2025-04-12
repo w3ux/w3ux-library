@@ -2,20 +2,10 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import type { FunctionComponent, SVGProps } from 'react'
-import type { AccountAddedBy } from './accounts'
+import type { ExtensionAccount } from './accounts'
 import type { VoidFn } from './common'
 
 export type ExtensionStatus = 'installed' | 'not_authenticated' | 'connected'
-
-export interface ExtensionAccount extends ExtensionMetadata {
-  address: string
-  name: string
-  signer?: unknown
-}
-export interface ExtensionMetadata {
-  addedBy?: AccountAddedBy
-  source: string
-}
 
 export type ExtensionsStatus = Record<string, ExtensionStatus>
 
