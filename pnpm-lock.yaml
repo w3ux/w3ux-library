@@ -122,7 +122,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.0.12
+        version: 19.1.1
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -131,7 +131,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.0.12
+        version: 19.1.1
       '@w3ux/types':
         specifier: ^2.1.13
         version: 2.1.13
@@ -168,7 +168,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.0.12
+        version: 19.1.1
       '@w3ux/types':
         specifier: ^2.1.13
         version: 2.1.13
@@ -251,7 +251,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.0.12
+        version: 19.1.1
       '@w3ux/types':
         specifier: ^2.1.13
         version: 2.1.13
@@ -281,7 +281,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.0.12
+        version: 19.1.1
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -324,7 +324,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.0.12
+        version: 19.1.1
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -351,7 +351,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.0.12
+        version: 19.1.1
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -367,7 +367,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.0.12
+        version: 19.1.1
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -382,7 +382,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.0.12
+        version: 19.1.1
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -962,8 +962,8 @@ packages:
   '@types/node@22.13.15':
     resolution: {integrity: sha512-imAbQEEbVni6i6h6Bd5xkCRwLqFc8hihCsi2GbtDoAtUcAFQ6Zs4pFXTZUUbroTkXdImczWM9AI8eZUuybXE3w==}
 
-  '@types/react@19.0.12':
-    resolution: {integrity: sha512-V6Ar115dBDrjbtXSrS+/Oruobc+qVbbUxDFC1RSbRqLt5SYvxxyIDrSC85RWml54g+jfNeEMZhEj7wW07ONQhA==}
+  '@types/react@19.1.1':
+    resolution: {integrity: sha512-ePapxDL7qrgqSF67s0h9m412d9DbXyC1n59O2st+9rjuuamWsZuD2w55rqY12CbzsZ7uVXb5Nw0gEp9Z8MMutQ==}
 
   '@typescript-eslint/eslint-plugin@7.18.0':
     resolution: {integrity: sha512-94EQTWZ40mzBc42ATNIBimBEDltSJ9RQHCC8vc/PDbxi4k8dVwUAv4o98dk50M1zB+JGFxp43FP7f8+FP8R6Sw==}
@@ -4070,7 +4070,7 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
-  '@types/react@19.0.12':
+  '@types/react@19.1.1':
     dependencies:
       csstype: 3.1.3
 
