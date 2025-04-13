@@ -9,7 +9,7 @@
     "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting"
   },
   "dependencies": {
-    "dedot": "^0.8.1"
+    "dedot": "^0.9.1"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",

@@ -10,7 +10,7 @@
   "dependencies": {
     "@w3ux/crypto": "^1.0.2",
     "@w3ux/utils": "^2.0.10",
-    "dedot": "^0.8.1"
+    "dedot": "^0.9.1"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
