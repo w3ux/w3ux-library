@@ -6,6 +6,39 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 30
+    groups:
+      eslint:
+        patterns:
+          - 'eslint*'
+          - '@eslint/*'
+          - '@typescript-eslint/*'
+          - 'typescript-eslint'
+      prettier:
+        patterns:
+          - 'prettier*'
+      react:
+        patterns:
+          - 'react*'
+      types:
+        patterns:
+          - '@types/*'
+
+      ui:
+        patterns:
+          - '@fortawesome/*'
+      utils:
+        patterns:
+          - '@w3ux/*'
+          - 'date-fns'
+          - 'buffer'
+          - 'rxjs'
+      polkadot:
+        patterns:
+          - '@polkadot/*'
+          - 'dedot'
+          - '@dedot/*'
+    commit-message:
+      prefix: 'deps'
 
   - package-ecosystem: github-actions
     directory: '/'
