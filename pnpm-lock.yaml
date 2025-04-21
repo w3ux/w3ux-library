@@ -122,7 +122,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.1.1
+        version: 19.1.2
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -131,7 +131,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.1.1
+        version: 19.1.2
       '@w3ux/types':
         specifier: ^2.1.13
         version: 2.1.13
@@ -168,7 +168,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.1.1
+        version: 19.1.2
       '@w3ux/types':
         specifier: ^2.1.13
         version: 2.1.13
@@ -251,7 +251,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.1.1
+        version: 19.1.2
       '@w3ux/types':
         specifier: ^2.1.13
         version: 2.1.13
@@ -281,7 +281,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.1.1
+        version: 19.1.2
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -324,7 +324,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.1.1
+        version: 19.1.2
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -351,7 +351,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.1.1
+        version: 19.1.2
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -367,7 +367,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.1.1
+        version: 19.1.2
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -382,7 +382,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.1.1
+        version: 19.1.2
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1011,8 +1011,8 @@ packages:
   '@types/node@22.14.1':
     resolution: {integrity: sha512-u0HuPQwe/dHrItgHHpmw3N2fYCR6x4ivMNbPHRkBVP4CvN+kiRrKHWk3i8tXiO/joPwXLMYvF9TTF0eqgHIuOw==}
 
-  '@types/react@19.1.1':
-    resolution: {integrity: sha512-ePapxDL7qrgqSF67s0h9m412d9DbXyC1n59O2st+9rjuuamWsZuD2w55rqY12CbzsZ7uVXb5Nw0gEp9Z8MMutQ==}
+  '@types/react@19.1.2':
+    resolution: {integrity: sha512-oxLPMytKchWGbnQM9O7D67uPa9paTNxO7jVoNMXgkkErULBPhPARCfkKL9ytcIJJRGjbsVwW4ugJzyFFvm/Tiw==}
 
   '@typescript-eslint/eslint-plugin@8.29.1':
     resolution: {integrity: sha512-ba0rr4Wfvg23vERs3eB+P3lfj2E+2g3lhWcCVukUuhtcdUx5lSIFZlGFEBHKr+3zizDa/TvZTptdNHVZWAkSBg==}
@@ -4139,7 +4139,7 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/react@19.1.1':
+  '@types/react@19.1.2':
     dependencies:
       csstype: 3.1.3
 
