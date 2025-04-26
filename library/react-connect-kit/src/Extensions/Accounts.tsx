@@ -14,7 +14,7 @@ import {
   connectExtension as doConnectExtension,
   reconnectExtensions,
 } from '@w3ux/observables-connect/extensions'
-import type { Account, Sync } from '@w3ux/types'
+import type { Account, ExtensionAccount, Sync } from '@w3ux/types'
 import { formatAccountSs58 } from '@w3ux/utils'
 import { useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'
@@ -73,6 +73,14 @@ export const ExtensionAccountsProvider = ({
       })
       .filter((account) => account !== null)
 
+  // Get an imported extension account
+  const getExtensionAccount = (
+    address: string
+  ): ExtensionAccount | undefined => {
+    const account = extensionAccounts.find((item) => item.address === address)
+    return account ? { ...account, address } : undefined
+  }
+
   // Initialise extension accounts sync
   useEffect(() => {
     handleInitialConnect()
@@ -101,6 +109,7 @@ export const ExtensionAccountsProvider = ({
         extensionsInitialised,
         connectExtension,
         extensionsSynced,
+        getExtensionAccount,
         getExtensionAccounts,
       }}
     >
