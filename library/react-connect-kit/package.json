@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/react-connect-kit-source",
   "license": "GPL-3.0-only",
-  "version": "3.4.5",
+  "version": "3.4.6",
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
