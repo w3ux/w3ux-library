@@ -58,7 +58,13 @@
       "eslint-plugin-prefer-arrow-functions>eslint": "8.57.1",
       "@typescript-eslint/utils>typescript": "5.8.2",
       "@typescript-eslint/typescript-estree>typescript": "5.8.2"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "es5-ext",
+      "esbuild",
+      "unrs-resolver"
+    ]
   },
   "packageManager": "pnpm@10.7.0"
 }
