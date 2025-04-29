@@ -134,7 +134,7 @@ importers:
         version: 19.1.2
       '@w3ux/types':
         specifier: ^2.1.13
-        version: 2.1.13
+        version: 2.2.1
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -171,7 +171,7 @@ importers:
         version: 19.1.2
       '@w3ux/types':
         specifier: ^2.1.13
-        version: 2.1.13
+        version: 2.2.1
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -208,7 +208,7 @@ importers:
     devDependencies:
       '@w3ux/types':
         specifier: ^2.1.13
-        version: 2.1.13
+        version: 2.2.1
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1213,9 +1213,6 @@ packages:
     resolution: {integrity: sha512-cpf4X9GZqMvALprcmgnlfLrmhSQDmOYFrhhzSgPwL1Gx5Sfl0MfecBoiccoUp0CciFuxShBJAWaR5Rw5pXWy5g==}
     peerDependencies:
       rxjs: ^7.8.2
-
-  '@w3ux/types@2.1.13':
-    resolution: {integrity: sha512-+b1wjIGRUn44tQ892er0W1NTmgu9DYjJoEbGJQ8WriZz+cQo+oT2q69P2qvofUhYdtPTroZiJcwEmoITHiL8Dg==}
 
   '@w3ux/types@2.2.1':
     resolution: {integrity: sha512-4SmN8QAZSAKN5N9OVNyc4zMOrewvaXTLiw3HZg7X1EAD3xz0AftWr/iZwCAlC1PhprF4gQexIOly24qwIg+Kaw==}
@@ -4393,8 +4390,6 @@ snapshots:
       - bufferutil
       - react
       - utf-8-validate
-
-  '@w3ux/types@2.1.13': {}
 
   '@w3ux/types@2.2.1': {}
 
