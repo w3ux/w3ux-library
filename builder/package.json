@@ -1,8 +1,11 @@
 {
-  "name": "@w3ux/builder",
+  "name": "builder",
   "license": "GPL-3.0-only",
   "version": "0.1.1",
   "type": "module",
+  "bin": {
+    "builder": "dist/index.js"
+  },
   "scripts": {
     "build": "rm -fr dist && tsup",
     "build:directory": "node dist/index.js -t build:directory",
