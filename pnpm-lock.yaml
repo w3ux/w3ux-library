@@ -25,6 +25,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.3)
+      builder:
+        specifier: workspace:*
+        version: link:builder
       eslint:
         specifier: ^9.23.0
         version: 9.25.1
