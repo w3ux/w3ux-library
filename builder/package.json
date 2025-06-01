@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "rm -fr dist && tsup",
+    "prepare": "pnpm build",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
   "dependencies": {
