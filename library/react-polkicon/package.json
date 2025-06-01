@@ -11,7 +11,7 @@
   "dependencies": {
     "@w3ux/crypto": "^1.0.2",
     "@w3ux/utils": "^2.0.10",
-    "dedot": "^0.9.6"
+    "dedot": "^0.12.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
