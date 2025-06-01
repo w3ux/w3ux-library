@@ -6,7 +6,7 @@
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "compile": "gulp --silent",
-    "build": "builder -t build:react-connect-kit"
+    "build": "builder -t react-connect-kit"
   },
   "dependencies": {
     "@w3ux/extension-assets": "^2.2.0",

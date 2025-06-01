@@ -12,7 +12,7 @@
     "w3ux"
   ],
   "scripts": {
-    "build:directory": "builder -t build:directory",
+    "build:directory": "builder -t directory",
     "clear": "pnpm -r --if-present clear && rm -rf node_modules coverage",
     "lint": "eslint './**' --fix && npx prettier --write ."
   },

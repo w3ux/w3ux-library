@@ -6,7 +6,7 @@
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "compile": "gulp --silent",
-    "build": "builder -t build:react-polkicon"
+    "build": "builder -t react-polkicon"
   },
   "dependencies": {
     "@w3ux/crypto": "^1.0.2",

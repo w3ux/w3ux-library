@@ -2,71 +2,62 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
+import { simpleBuild } from 'builders/common/simpleBuild'
 import minimist from 'minimist'
-import * as crypto from './builders/crypto'
-import * as directory from './builders/directory'
-import * as extensionAssets from './builders/extension-assets'
-import * as factories from './builders/factories'
-import * as hooks from './builders/hooks'
-import * as observablesConnect from './builders/observables-connect'
-import * as reactConnectKit from './builders/react-connect-kit'
-import * as reactOdometer from './builders/react-odometer'
-import * as reactPolkicon from './builders/react-polkicon'
-import * as types from './builders/types'
-import * as utils from './builders/utils'
-import * as validatorAssets from './builders/validator-assets'
+import { build as buildDirectory } from './builders/directory'
+import { build as buildExtensionAssets } from './builders/extension-assets'
 
 const args = minimist(process.argv.slice(2))
 
 const { t: task } = args
 
 switch (task) {
-  case 'build:directory':
-    directory.build()
+  case 'crypto':
+    await simpleBuild('crypto', { bundler: 'tsup' })
     break
 
-  case 'build:extension-assets':
-    extensionAssets.build()
+  case 'directory':
+    await buildDirectory()
     break
 
-  case 'build:validator-assets':
-    validatorAssets.build()
+  case 'extension-assets':
+    buildExtensionAssets()
     break
 
-  case 'build:react-odometer':
-    reactOdometer.build()
+  case 'factories':
+    await simpleBuild('factories', { bundler: 'gulp' })
     break
 
-  case 'build:react-polkicon':
-    reactPolkicon.build()
+  case 'hooks':
+    await simpleBuild('hooks', { bundler: 'gulp' })
     break
 
-  case 'build:hooks':
-    hooks.build()
+  case 'observables-connect':
+    await simpleBuild('observables-connect', { bundler: 'gulp' })
     break
 
-  case 'build:factories':
-    factories.build()
+  case 'react-connect-kit':
+    await simpleBuild('react-connect-kit', { bundler: 'gulp' })
     break
 
-  case 'build:observables-connect':
-    observablesConnect.build()
+  case 'react-odometer':
+    await simpleBuild('react-odometer', { bundler: 'gulp' })
     break
 
-  case 'build:react-connect-kit':
-    reactConnectKit.build()
+  case 'react-polkicon':
+    await simpleBuild('react-polkicon', { bundler: 'gulp' })
     break
 
-  case 'build:types':
-    types.build()
+  case 'types':
+    await simpleBuild('types', { bundler: 'tsup' })
     break
 
-  case 'build:utils':
-    utils.build()
+  case 'utils':
+    await simpleBuild('utils', { bundler: 'tsup' })
     break
 
-  case 'build:crypto':
-    crypto.build()
+  case 'validator-assets':
+    await simpleBuild('validator-assets', { bundler: null })
     break
 
   default:

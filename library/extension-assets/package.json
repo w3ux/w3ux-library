@@ -6,7 +6,7 @@
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "compile": "tsup .build/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting",
-    "build": "builder -t build:extension-assets"
+    "build": "builder -t extension-assets"
   },
   "peerDependencies": {
     "react": "^19"

@@ -1,5 +1,0 @@
-import { simpleBuild } from 'builders/common/simpleBuild'
-
-export const build = async () => {
-  await simpleBuild('react-connect-kit', { bundler: 'gulp' })
-}

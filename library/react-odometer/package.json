@@ -6,7 +6,7 @@
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "compile": "gulp --silent",
-    "build": "builder -t build:react-odometer"
+    "build": "builder -t react-odometer"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",

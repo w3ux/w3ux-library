@@ -6,7 +6,7 @@
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "compile": "tsup src/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting",
-    "build": "builder -t build:validator-assets"
+    "build": "builder -t validator-assets"
   },
   "peerDependencies": {
     "react": "^19"

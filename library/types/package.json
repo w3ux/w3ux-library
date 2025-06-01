@@ -6,7 +6,7 @@
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "compile": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting",
-    "build": "builder -t build:types"
+    "build": "builder -t types"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
