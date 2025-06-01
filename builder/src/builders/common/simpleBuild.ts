@@ -28,7 +28,7 @@ export const simpleBuild = async (
 
     // Call respective build command and generate dist folder
     try {
-      await execPromisify(`cd ../library/${packageName} && pnpm build`)
+      await execPromisify(`pnpm compile`)
     } catch (e) {
       throw `Failed to generate dist. ${e}`
     }

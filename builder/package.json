@@ -1,22 +1,14 @@
 {
-  "name": "@w3ux/builder",
+  "name": "builder",
   "license": "GPL-3.0-only",
   "version": "0.1.1",
   "type": "module",
+  "bin": {
+    "builder": "dist/index.js"
+  },
   "scripts": {
     "build": "rm -fr dist && tsup",
-    "build:directory": "node dist/index.js -t build:directory",
-    "build:extension-assets": "node dist/index.js -t build:extension-assets",
-    "build:validator-assets": "node dist/index.js -t build:validator-assets",
-    "build:react-odometer": "node dist/index.js -t build:react-odometer",
-    "build:react-polkicon": "node dist/index.js -t build:react-polkicon",
-    "build:observables-connect": "node dist/index.js -t build:observables-connect",
-    "build:react-connect-kit": "node dist/index.js -t build:react-connect-kit",
-    "build:hooks": "node dist/index.js -t build:hooks",
-    "build:factories": "node dist/index.js -t build:factories",
-    "build:types": "node dist/index.js -t build:types",
-    "build:crypto": "node dist/index.js -t build:crypto",
-    "build:utils": "node dist/index.js -t build:utils",
+    "prepare": "pnpm build",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
   "dependencies": {

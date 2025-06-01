@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting"
+    "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting",
+    "compile": "builder -t crypto"
   },
   "dependencies": {
     "blakejs": "^1.2.1"
   },
   "devDependencies": {
     "@types/node": "^22.13.15",
+    "builder": "workspace:*",
     "tsup": "^8.4.0"
   }
 }

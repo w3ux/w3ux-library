@@ -12,15 +12,17 @@
     "w3ux"
   ],
   "scripts": {
-    "build:directory": "node builder/dist/index.js -t build:directory",
+    "build:directory": "builder -t directory",
     "clear": "pnpm -r --if-present clear && rm -rf node_modules coverage",
-    "lint": "eslint './**' --fix && npx prettier --write ."
+    "lint": "eslint './**' --fix && npx prettier --write .",
+    "build": "pnpm -r --if-present run build"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
     "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.29.1",
     "autoprefixer": "^10.4.21",
+    "builder": "workspace:*",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-import-resolver-typescript": "^4.3.1",

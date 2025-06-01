@@ -112,7 +112,7 @@ export const generatePackageJson = async (
     let exportsJson
     try {
       exportsJson = JSON.parse(
-        await fs.readFile(join(inputDir, 'exports.config.json'), 'utf8')
+        await fs.readFile(join(inputDir, 'pkg.config.json'), 'utf8')
       )
     } catch (e) {
       // Silenty fail getting exports
