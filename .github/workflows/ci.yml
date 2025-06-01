@@ -31,6 +31,4 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
       - run: pnpm lint
-      - run : pnpm build
-        working-directory: 'builder'
       - run: pnpm build
