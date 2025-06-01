@@ -14,7 +14,8 @@
   "scripts": {
     "build:directory": "builder -t directory",
     "clear": "pnpm -r --if-present clear && rm -rf node_modules coverage",
-    "lint": "eslint './**' --fix && npx prettier --write ."
+    "lint": "eslint './**' --fix && npx prettier --write .",
+    "build": "pnpm -r --if-present run build"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
