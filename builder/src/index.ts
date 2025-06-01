@@ -21,7 +21,7 @@ switch (task) {
     break
 
   case 'extension-assets':
-    buildExtensionAssets()
+    await buildExtensionAssets()
     break
 
   case 'factories':
