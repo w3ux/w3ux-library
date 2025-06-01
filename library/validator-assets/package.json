@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup src/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting"
+    "compile": "tsup src/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting",
+    "build": "builder -t build:validator-assets"
   },
   "peerDependencies": {
     "react": "^19"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
+    "builder": "workspace:*",
     "react": "^19.1.0",
     "tsup": "^8.4.0"
   }

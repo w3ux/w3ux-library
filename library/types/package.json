@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting"
+    "compile": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting",
+    "build": "builder -t build:types"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
+    "builder": "workspace:*",
     "react": "^19.1.0",
     "tsup": "^8.4.0"
   }

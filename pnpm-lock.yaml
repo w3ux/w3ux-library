@@ -114,6 +114,9 @@ importers:
       '@types/node':
         specifier: ^22.13.15
         version: 22.15.3
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       tsup:
         specifier: ^8.4.0
         version: 8.4.0(postcss@8.5.3)(typescript@5.8.2)(yaml@2.7.1)
@@ -123,6 +126,9 @@ importers:
       '@types/react':
         specifier: ^19.0.12
         version: 19.1.2
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -135,6 +141,9 @@ importers:
       '@w3ux/types':
         specifier: ^2.1.13
         version: 2.2.1
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -172,6 +181,9 @@ importers:
       '@w3ux/types':
         specifier: ^2.1.13
         version: 2.2.1
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -209,6 +221,9 @@ importers:
       '@w3ux/types':
         specifier: ^2.1.13
         version: 2.2.1
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -255,6 +270,9 @@ importers:
       '@w3ux/types':
         specifier: ^2.2.1
         version: 2.2.1
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -282,6 +300,9 @@ importers:
       '@types/react':
         specifier: ^19.0.12
         version: 19.1.2
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -325,6 +346,9 @@ importers:
       '@types/react':
         specifier: ^19.0.12
         version: 19.1.2
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       gulp:
         specifier: ^5.0.0
         version: 5.0.0
@@ -352,6 +376,9 @@ importers:
       '@types/react':
         specifier: ^19.0.12
         version: 19.1.2
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -368,6 +395,9 @@ importers:
       '@types/react':
         specifier: ^19.0.12
         version: 19.1.2
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -383,6 +413,9 @@ importers:
       '@types/react':
         specifier: ^19.0.12
         version: 19.1.2
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
       react:
         specifier: ^19.1.0
         version: 19.1.0

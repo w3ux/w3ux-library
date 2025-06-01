@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "gulp --silent"
+    "compile": "gulp --silent",
+    "build": "builder -t build:react-connect-kit"
   },
   "dependencies": {
     "@w3ux/extension-assets": "^2.2.0",
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@types/react": "^19.0.12",
     "@w3ux/types": "^2.2.1",
+    "builder": "workspace:*",
     "gulp": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-strip-comments": "^2.6.0",

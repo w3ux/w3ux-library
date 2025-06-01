@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "gulp --silent"
+    "compile": "gulp --silent",
+    "build": "builder -t build:react-odometer"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
+    "builder": "workspace:*",
     "gulp": "^5.0.0",
     "gulp-sass": "^6.0.1",
     "gulp-sourcemaps": "^3.0.0",

@@ -62,7 +62,7 @@ export const build = async () => {
 
     // Call tsup command to generate hybrid files and types in dist folder.
     try {
-      await execPromisify(`pnpm build`)
+      await execPromisify(`pnpm compile`)
     } catch (e) {
       throw `Failed to generate dist. ${e}`
     }
