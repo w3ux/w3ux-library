@@ -2,11 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { prebuild } from 'builders/common/prebuild'
-import {
-  gePackageDirectory,
-  generatePackageJson,
-  removePackageOutput,
-} from 'builders/util'
+import { generatePackageJson, removePackageOutput } from 'builders/util'
 import { exec } from 'child_process'
 import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from 'config'
 import fs from 'fs/promises'
@@ -19,7 +15,6 @@ const execPromisify = promisify(exec)
 
 export const build = async () => {
   const folder = 'extension-assets'
-  const libDirectory = gePackageDirectory(folder)
 
   try {
     // Prebuild integrity checks.
@@ -29,67 +24,45 @@ export const build = async () => {
 
     // Create temp output directory.
     try {
-      fs.mkdir(`${libDirectory}/${TEMP_BUILD_OUTPUT}`, { recursive: true })
+      fs.mkdir(`${TEMP_BUILD_OUTPUT}`, { recursive: true })
     } catch (e) {
       throw `Failed to make output directory.`
     }
 
     // Generate svg and tsx files from raw source files.
-    if (
-      !(await generateIcons(
-        `${libDirectory}/src/`,
-        `${libDirectory}/${TEMP_BUILD_OUTPUT}/`
-      ))
-    ) {
+    if (!(await generateIcons(`src/`, `${TEMP_BUILD_OUTPUT}/`))) {
       throw `Failed to generate icons.`
     }
 
     // Use raw info.json files to generate `index.js` file.
-    if (
-      !(await processIndexFile(
-        `${libDirectory}/src/`,
-        `${libDirectory}/${TEMP_BUILD_OUTPUT}/`
-      ))
-    ) {
+    if (!(await processIndexFile(`src/`, `${TEMP_BUILD_OUTPUT}/`))) {
       throw `Failed to generate index.js file.`
     }
 
     // Generate util.ts file.
-    await generateUtilFile(
-      `${libDirectory}/src/`,
-      `${libDirectory}/${TEMP_BUILD_OUTPUT}/`
-    )
+    await generateUtilFile(`src/`, `${TEMP_BUILD_OUTPUT}/`)
 
     // Call tsup command to generate hybrid files and types in dist folder.
     try {
-      await execPromisify(`pnpm compile`)
+      await execPromisify(
+        `tsup .build/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting`
+      )
     } catch (e) {
       throw `Failed to generate dist. ${e}`
     }
 
     // Copy svg files into the package output directory.
-    if (
-      !(await moveSvgFiles(
-        `${libDirectory}/${TEMP_BUILD_OUTPUT}`,
-        `${libDirectory}/${PACKAGE_OUTPUT}`
-      ))
-    ) {
+    if (!(await moveSvgFiles(`${TEMP_BUILD_OUTPUT}`, `${PACKAGE_OUTPUT}`))) {
       throw `Failed to move SVG files to output directory.`
     }
 
     // Generate package.json.
-    if (
-      !(await generatePackageJson(
-        libDirectory,
-        `${libDirectory}/${PACKAGE_OUTPUT}`,
-        null
-      ))
-    ) {
+    if (!(await generatePackageJson('.', `${PACKAGE_OUTPUT}`, null))) {
       throw `Failed to generate package.json file.`
     }
 
     // Remove tmp build directory if it exists.
-    if (!(await removePackageOutput(libDirectory, true))) {
+    if (!(await removePackageOutput('.', true))) {
       console.error(`❌ Failed to remove tmp build directory.`)
     }
 
@@ -99,11 +72,11 @@ export const build = async () => {
     console.error(`❌ Error occurred while building the package.`, err)
 
     // Remove package output directory if it exists.
-    if (!(await removePackageOutput(libDirectory, false))) {
+    if (!(await removePackageOutput('.', false))) {
       console.error(`❌ Failed to remove package output directory.`)
     }
     // Remove tmp build directory if it exists.
-    if (!(await removePackageOutput(libDirectory, true))) {
+    if (!(await removePackageOutput('.', true))) {
       console.error(`❌ Failed to remove tmp build directory.`)
     }
   }
