@@ -101,6 +101,9 @@ importers:
         specifier: ^2.8.0
         version: 2.8.0
     devDependencies:
+      '@types/minimist':
+        specifier: ^1.2.5
+        version: 1.2.5
       '@types/node':
         specifier: ^22.13.15
         version: 22.15.29
@@ -145,8 +148,8 @@ importers:
         specifier: ^19.0.12
         version: 19.1.6
       '@w3ux/types':
-        specifier: ^2.1.13
-        version: 2.2.1
+        specifier: ^2.2.3
+        version: 2.2.3
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -185,8 +188,8 @@ importers:
         specifier: ^19.0.12
         version: 19.1.6
       '@w3ux/types':
-        specifier: ^2.1.13
-        version: 2.2.1
+        specifier: ^2.2.3
+        version: 2.2.3
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -225,8 +228,8 @@ importers:
         version: 7.8.2
     devDependencies:
       '@w3ux/types':
-        specifier: ^2.1.13
-        version: 2.2.1
+        specifier: ^2.2.3
+        version: 2.2.3
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -274,8 +277,8 @@ importers:
         specifier: ^19.0.12
         version: 19.1.6
       '@w3ux/types':
-        specifier: ^2.2.1
-        version: 2.2.1
+        specifier: ^2.2.3
+        version: 2.2.3
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -1086,6 +1089,9 @@ packages:
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
+  '@types/minimist@1.2.5':
+    resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
+
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
@@ -1309,8 +1315,8 @@ packages:
     peerDependencies:
       rxjs: ^7.8.2
 
-  '@w3ux/types@2.2.1':
-    resolution: {integrity: sha512-4SmN8QAZSAKN5N9OVNyc4zMOrewvaXTLiw3HZg7X1EAD3xz0AftWr/iZwCAlC1PhprF4gQexIOly24qwIg+Kaw==}
+  '@w3ux/types@2.2.3':
+    resolution: {integrity: sha512-6i2qfTDZX+nQxMRQujskM5DWcr8ANRLRmxZhDXjkUvRQ8rwbWxd8l/pS0GPhGmQOdP6Dx3tx3oY44FeN0V0Pug==}
 
   '@w3ux/utils@2.0.10':
     resolution: {integrity: sha512-utJhLwZyCTxQDxtlZIskPsM7FgckNllBT1Z/XGgAITt0UxqHhMW4mJr7TViV9s4GHCaFhBYwhUrb5PpoDgnZNw==}
@@ -4359,6 +4365,8 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
+  '@types/minimist@1.2.5': {}
+
   '@types/ms@2.1.0':
     optional: true
 
@@ -4619,7 +4627,7 @@ snapshots:
       - react
       - utf-8-validate
 
-  '@w3ux/types@2.2.1': {}
+  '@w3ux/types@2.2.3': {}
 
   '@w3ux/utils@2.0.10':
     dependencies:

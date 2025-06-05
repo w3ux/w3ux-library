@@ -13,7 +13,7 @@
     "@w3ux/utils": "^2.0.10"
   },
   "devDependencies": {
-    "@w3ux/types": "^2.1.13",
+    "@w3ux/types": "^2.2.3",
     "builder": "workspace:*",
     "gulp": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",

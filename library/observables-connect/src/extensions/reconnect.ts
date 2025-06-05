@@ -26,14 +26,14 @@ export const reconnectExtensions = async (dappName: string, ss58: number) => {
 
     // If available, subscribe to accounts for each connected extension
     for (const [id, { extension }] of Array.from(connected.entries())) {
-      if (typeof extension.accounts.subscribe === 'function') {
-        const unsub = extension.accounts.subscribe((accounts) => {
+      if (typeof extension!.accounts.subscribe === 'function') {
+        const unsub = extension!.accounts.subscribe((accounts) => {
           processExtensionAccounts(
             {
               source: id,
               ss58,
             },
-            extension.signer,
+            extension!.signer,
             accounts
           )
         })

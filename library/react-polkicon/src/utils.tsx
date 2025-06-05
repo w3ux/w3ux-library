@@ -126,8 +126,10 @@ export const getCircleCoordinates = (): Coordinate[] => {
  * In effect, this function acts like a weighted random selector. Each scheme has a chance of being
  * picked based on its `freq` relative to the total frequency across all schemes.
  */
-const findScheme = (d: number): Scheme =>
-  Object.values(SCHEMA).find((scheme) => (d -= scheme.freq) < 0)
+const findScheme = (d: number): Scheme => {
+  const schemes = Object.values(SCHEMA)
+  return schemes.find((scheme) => (d -= scheme.freq) < 0) ?? schemes[0]
+}
 
 /**
  * Converts an address string into a unique identifier by first encoding and decoding the address

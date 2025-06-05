@@ -235,6 +235,14 @@ export const removeVarFromUrlHash = (key: string) => {
  */
 export const sortWithNull =
   (ascending: boolean) => (a: unknown, b: unknown) => {
+    // if both items are undefined, treat them as equal
+    if (typeof a === 'undefined' && typeof b === 'undefined') {
+      return 0
+    }
+    // if either item is undefined, sort it last
+    if (typeof a === 'undefined' || typeof b === 'undefined') {
+      return typeof a === 'undefined' ? 1 : -1
+    }
     // equal items sort equally
     if (a === b) {
       return 0

@@ -12,7 +12,7 @@ export const getAccountsFromExtensions = async (
   try {
     const results = await Promise.allSettled(
       Array.from(extensions.values()).map(({ extension }) =>
-        extension.accounts.get()
+        extension!.accounts.get()
       )
     )
 
@@ -21,7 +21,7 @@ export const getAccountsFromExtensions = async (
     for (let i = 0; i < results.length; i++) {
       const result = results[i]
       const source = extensionEntries[i][0]
-      const signer = extensionEntries[i][1].extension.signer
+      const signer = extensionEntries[i][1].extension!.signer
 
       if (result.status === 'fulfilled' && signer) {
         const { value } = result
