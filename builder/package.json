@@ -14,7 +14,7 @@
   "dependencies": {
     "minimist": "^1.2.8",
     "prettier": "^3.5.3",
-    "yaml": "^2.7.1"
+    "yaml": "^2.8.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.15",
