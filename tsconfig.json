@@ -1,9 +1,8 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "rootDir": ".",
-    "declaration": true,
-    "declarationMap": false,
     "noEmitOnError": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,

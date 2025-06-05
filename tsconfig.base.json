@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "sourceMap": false,
+    "declaration": true,
+    "declarationMap": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+  },
+  "exclude": [
+    "**/node_modules",
+    "**/dist",
+    "vite.config.js"
+  ]
+}

@@ -19,21 +19,19 @@ export const simpleBuild = async (
   { bundler }: { bundler: Bundler | null }
 ) => {
   const libDirectory = gePackageDirectory(packageName)
-
   // Validate package config
   try {
     if (!(await prebuild(packageName))) {
       throw `Prebuild failed.`
     }
-
     // Call respective build command and generate dist folder
     try {
-      await execPromisify(`pnpm compile`)
+      await execPromisify(`pnpm build`)
     } catch (e) {
       throw `Failed to generate dist. ${e}`
     }
 
-    // Generate package.json
+    // erate package.json
     if (
       !(await generatePackageJson(
         libDirectory,
