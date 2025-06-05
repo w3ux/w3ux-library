@@ -1,4 +1,4 @@
-name: Dependabot Automerge
+name: Automerge
 on: pull_request
 
 permissions:
@@ -6,7 +6,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  dependabot:
+  automerge:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     steps:
