@@ -92,7 +92,7 @@ export const camelize = (str: string) => {
   }
 
   const w = toWords(str)?.map((a) => a.toLowerCase())
-  return simpleCamelCase(w)
+  return simpleCamelCase(w || [])
 }
 
 /**
@@ -161,7 +161,7 @@ export const rmCommas = (val: string): string => val.replace(/,/g, '')
  * @name rmDecimals
  * @summary Removes the decimal point and decimals from a string.
  */
-export const rmDecimals = (str) => str.split('.')[0]
+export const rmDecimals = (str: string) => str.split('.')[0]
 
 /**
  * @name shuffle

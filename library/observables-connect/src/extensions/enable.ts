@@ -38,8 +38,8 @@ const doEnable = async (
       (id) =>
         withTimeoutThrow(
           1000,
-          window.injectedWeb3[id].enable(dappName)
-        ) as Promise<ExtensionInterface | undefined>
+          window.injectedWeb3![id].enable(dappName)
+        ) as Promise<ExtensionInterface>
     )
   )
 
@@ -60,6 +60,7 @@ const formatEnabledExtensions = (
       })
     } else if (result.status === 'rejected') {
       extensionsState.set(id, {
+        extension: null,
         connected: false,
         error: result.reason,
       })

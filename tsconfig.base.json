@@ -11,7 +11,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": false
+    "strict": true
   },
   "exclude": ["**/node_modules", "**/dist", "vite.config.js"]
 }

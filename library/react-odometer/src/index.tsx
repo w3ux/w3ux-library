@@ -1,6 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
+import type { RefObject } from 'react'
 import { createRef, useEffect, useRef, useState } from 'react'
 import './index.css'
 import type { Digit, DigitRef, Direction, Props, Status } from './types'
@@ -48,7 +49,9 @@ export const Odometer = ({
   const [digitRefs, setDigitRefs] = useState<DigitRef[]>([])
 
   // Store refs of each `all` digit.
-  const [allDigitRefs, setAllDigitRefs] = useState<Record<string, DigitRef>>({})
+  const [allDigitRefs, setAllDigitRefs] = useState<
+    Record<string, RefObject<HTMLSpanElement | null>>
+  >({})
 
   // Keep track of active transitions.
   const activeTransitionCounter = useRef<number>(0)
@@ -59,7 +62,10 @@ export const Odometer = ({
 
   // Phase 0: populate `allDigitRefs`.
   useEffect(() => {
-    const all: Record<string, DigitRef> = Object.fromEntries(
+    const all: Record<
+      string,
+      RefObject<HTMLSpanElement | null>
+    > = Object.fromEntries(
       Object.values(allDigits).map((v) => [`d_${v}`, createRef()])
     )
 
@@ -105,7 +111,7 @@ export const Odometer = ({
     }
   }, [status, digitRefs])
 
-  const odometerCurrent: Element = odometerRef?.current
+  const odometerCurrent: HTMLSpanElement | null = odometerRef.current
   let lineHeight = odometerCurrent
     ? window.getComputedStyle(odometerCurrent).lineHeight
     : 'inherit'

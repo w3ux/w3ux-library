@@ -45,7 +45,7 @@ export type ExtensionEnableStatus =
 export type ExtensionEnableResults = Map<string, ExtensionEnableResult>
 
 export interface ExtensionEnableResult {
-  extension?: ExtensionInterface
+  extension: ExtensionInterface | null
   connected: boolean
   error?: string
 }
