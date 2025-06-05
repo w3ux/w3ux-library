@@ -14,7 +14,6 @@ import {
 
 export const prebuild = async (folder: string): Promise<boolean> => {
   const libDirectory = gePackageDirectory(folder)
-
   // Check if required files exist.
   const filesExist = await checkFilesExistInPackages(
     libDirectory,

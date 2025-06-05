@@ -7,14 +7,14 @@ import { _extensionsStatus, _gettingExtensions } from '../subjects'
 // Gets extensions from injectedWeb3
 export const getExtensions = async () => {
   _gettingExtensions.next(true)
-  let injectedWeb3Interval: ReturnType<typeof setInterval> = null
+  let injectedWeb3Interval: ReturnType<typeof setInterval> | null = null
 
   // Format installed extensions
   const formatInstalled = () =>
     Object.keys(extensions).reduce(
       (acc, key) => {
         acc[key] =
-          window?.injectedWeb3[key] !== undefined ? 'installed' : acc[key]
+          window?.injectedWeb3?.[key] !== undefined ? 'installed' : acc[key]
         return acc
       },
       { ..._extensionsStatus.getValue() }

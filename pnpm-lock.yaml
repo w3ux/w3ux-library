@@ -115,7 +115,7 @@ importers:
         version: 1.2.1
     devDependencies:
       '@types/node':
-        specifier: ^22.13.15
+        specifier: ^22.15.29
         version: 22.15.29
       builder:
         specifier: workspace:*
@@ -349,6 +349,9 @@ importers:
         specifier: ^0.9.6
         version: 0.9.6
     devDependencies:
+      '@types/node':
+        specifier: ^22.15.29
+        version: 22.15.29
       '@types/react':
         specifier: ^19.0.12
         version: 19.1.6

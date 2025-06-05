@@ -23,7 +23,7 @@ export const getAccountsFromExtensions = async (
       const source = extensionEntries[i][0]
       const signer = extensionEntries[i][1].extension.signer
 
-      if (result.status === 'fulfilled') {
+      if (result.status === 'fulfilled' && signer) {
         const { value } = result
 
         // This is duplicating what `handleExtensionAccountsUpdate` is doing to accounts: --

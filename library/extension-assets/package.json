@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "builder -t extension-assets"
+    "build": "pnpm compile",
+    "compile": "builder -t extension-assets"
   },
   "peerDependencies": {
     "react": "^19"

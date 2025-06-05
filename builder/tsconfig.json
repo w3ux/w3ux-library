@@ -1,14 +1,9 @@
 {
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": "src",
     "rootDir": ".",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "sourceMap": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": false,
+    "outDir": "dist"
   },
   "include": ["src"],
 }

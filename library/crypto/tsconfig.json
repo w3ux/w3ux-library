@@ -1,19 +1,9 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
     "rootDir": ".",
-    "declarationDir": ".",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "es2020",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "sourceMap": false,
-    "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
+    "outDir": "dist"
   },
   "include": ["./**/*"],
 }
