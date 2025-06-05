@@ -1,10 +1,13 @@
 {
-  "library/react-connect-kit": "1.10.0",
-  "library/react-polkicon": "2.1.0",
-  "library/utils": "1.2.0",
-  "library/hooks": "1.4.0",
-  "library/factories": "1.0.0",
-  "library/crypto": "1.0.0",
-  "library/extension-assets": "1.0.0",
-  "library/types": "1.0.0"
+  "library/react-connect-kit": "3.4.6",
+  "library/react-polkicon": "3.1.2",
+  "library/utils": "2.0.10",
+  "library/hooks": "2.1.0",
+  "library/factories": "2.0.2",
+  "library/crypto": "1.0.2",
+  "library/extension-assets": "2.1.0",
+  "library/types": "2.2.1",
+  "library/observables-connect": "0.9.40",
+  "library/react-odometer": "2.0.1",
+  "library/validator-assets": "1.0.0"
 }
