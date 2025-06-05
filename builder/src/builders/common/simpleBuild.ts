@@ -31,7 +31,6 @@ export const simpleBuild = async (
       throw `Failed to generate dist. ${e}`
     }
 
-    // erate package.json
     if (
       !(await generatePackageJson(
         libDirectory,
