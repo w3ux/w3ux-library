@@ -11,6 +11,8 @@ const args = minimist(process.argv.slice(2))
 
 const { t: task } = args
 
+console.log('buldng task:', task)
+
 switch (task) {
   case 'crypto':
     await simpleBuild('crypto', { bundler: 'tsup' })
@@ -63,3 +65,5 @@ switch (task) {
   default:
     console.log('❌ No task provided.')
 }
+
+process.exit(0)

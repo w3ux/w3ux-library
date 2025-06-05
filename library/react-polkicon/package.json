@@ -14,6 +14,7 @@
     "dedot": "^0.9.6"
   },
   "devDependencies": {
+    "@types/node": "^22.15.29",
     "@types/react": "^19.0.12",
     "builder": "workspace:*",
     "gulp": "^5.0.0",
