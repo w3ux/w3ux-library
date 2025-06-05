@@ -6,8 +6,8 @@
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "test": "vitest run",
-    "compile": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting",
-    "build": "builder -t utils"
+    "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting",
+    "compile": "builder -t utils"
   },
   "dependencies": {
     "dedot": "^0.9.6"

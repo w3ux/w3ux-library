@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "compile": "gulp --silent",
-    "build": "builder -t react-polkicon"
+    "build": "gulp --silent",
+    "compile": "builder -t react-polkicon"
   },
   "dependencies": {
     "@w3ux/crypto": "^1.0.2",

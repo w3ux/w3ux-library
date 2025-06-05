@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "compile": "tsup src/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting",
-    "build": "builder -t validator-assets"
+    "build": "tsup src/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting",
+    "compile": "builder -t validator-assets"
   },
   "peerDependencies": {
     "react": "^19"

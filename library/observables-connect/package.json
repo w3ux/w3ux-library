@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "compile": "gulp --silent",
-    "build": "builder -t observables-connect"
+    "build": "gulp --silent",
+    "compile": "builder -t observables-connect"
   },
   "dependencies": {
     "@w3ux/extension-assets": "^2.2.0",
