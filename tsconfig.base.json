@@ -4,18 +4,14 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx",
     "sourceMap": false,
     "declaration": true,
     "declarationMap": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    // TODO: use strict mode
-    "strict": false,
+    "strict": false
   },
-  "exclude": [
-    "**/node_modules",
-    "**/dist",
-    "vite.config.js"
-  ]
+  "exclude": ["**/node_modules", "**/dist", "vite.config.js"]
 }
