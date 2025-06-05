@@ -7,7 +7,7 @@ import { _extensionsStatus, _gettingExtensions } from '../subjects'
 // Gets extensions from injectedWeb3
 export const getExtensions = async () => {
   _gettingExtensions.next(true)
-  let injectedWeb3Interval: ReturnType<typeof setInterval> = 0
+  let injectedWeb3Interval: ReturnType<typeof setInterval> | null = null
 
   // Format installed extensions
   const formatInstalled = () =>

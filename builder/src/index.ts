@@ -64,4 +64,4 @@ switch (task) {
     console.log('❌ No task provided.')
 }
 
-process.exit(0)
+process.exit(1)
