@@ -10,7 +10,7 @@
     "compile": "builder -t utils"
   },
   "dependencies": {
-    "dedot": "^0.9.6"
+    "dedot": "^0.12.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
