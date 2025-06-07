@@ -6,6 +6,7 @@ import { simpleBuild } from 'builders/common/simpleBuild'
 import minimist from 'minimist'
 import { build as buildDirectory } from './builders/directory'
 import { build as buildExtensionAssets } from './builders/extension-assets'
+import { build as buildPackageReadmes } from './builders/package-readme'
 
 const args = minimist(process.argv.slice(2))
 
@@ -22,6 +23,10 @@ switch (task) {
 
   case 'extension-assets':
     await buildExtensionAssets()
+    break
+
+  case 'package-readmes':
+    await buildPackageReadmes()
     break
 
   case 'factories':
