@@ -9,6 +9,7 @@ import {
 } from 'builders/util'
 import { exec } from 'child_process'
 import { PACKAGE_OUTPUT } from 'consts'
+import { promises as fs } from 'fs'
 import type { Bundler } from 'types'
 import { promisify } from 'util'
 
@@ -39,6 +40,16 @@ export const simpleBuild = async (
       ))
     ) {
       throw `Failed to generate package.json file.`
+    }
+
+    // Copy README.md to dist
+    try {
+      await fs.copyFile(
+        `${libDirectory}/README.md`,
+        `${libDirectory}/${PACKAGE_OUTPUT}/README.md`
+      )
+    } catch (e) {
+      console.error(`❌ Failed to copy README.md to dist:`, e)
     }
     console.log(`✅ Package successfully built.`)
   } catch (err) {

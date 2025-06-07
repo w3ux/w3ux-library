@@ -61,6 +61,13 @@ export const build = async () => {
       throw `Failed to generate package.json file.`
     }
 
+    // Copy README.md to dist
+    try {
+      await fs.copyFile('README.md', `${PACKAGE_OUTPUT}/README.md`)
+    } catch (e) {
+      console.error(`❌ Failed to copy README.md to dist:`, e)
+    }
+
     // Remove tmp build directory if it exists.
     if (!(await removePackageOutput('.', true))) {
       console.error(`❌ Failed to remove tmp build directory.`)
