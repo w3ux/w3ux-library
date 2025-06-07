@@ -260,10 +260,7 @@ const generateUtilFile = async (
 
     export interface ExtensionListItem {
       title: string;
-      website: {
-        url: string;
-        text: string;
-      },
+      website: string,
       category: string;
       features: string[] | string;
       otherEcosystems?: string[];

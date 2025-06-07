@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/hooks-source",
   "description": "A collection of general purpose React hooks",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
-    "@w3ux/types": "^2.2.3",
+    "@w3ux/types": "^2.3.0",
     "builder": "workspace:*",
     "gulp": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
@@ -42,7 +42,7 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@w3ux/utils": "^2.0.10",
+    "@w3ux/utils": "^2.1.0",
     "date-fns": "^4.1.0"
   }
 }

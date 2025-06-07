@@ -1,9 +1,3 @@
 {
-  "bundler": null,
-  "exports": {
-    ".": {
-      "import": "./index.js",
-      "require": "./index.cjs"
-    }
-  }
+  "bundler": null
 }

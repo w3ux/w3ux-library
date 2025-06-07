@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/extension-assets-source",
   "description": "A list of popular Web3 wallet extensions with metadata and icons",
-  "version": "2.2.1",
+  "version": "2.2.5",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
