@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from 'config'
+import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from 'consts'
 import fs from 'fs/promises'
 import { dirname, join } from 'path'
 import type { Bundler } from 'types'

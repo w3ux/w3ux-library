@@ -4,7 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { prebuild } from 'builders/common/prebuild'
 import { generatePackageJson, removePackageOutput } from 'builders/util'
 import { exec } from 'child_process'
-import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from 'config'
+import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from 'consts'
 import fs from 'fs/promises'
 import { extname, join } from 'path'
 import { format } from 'prettier'
@@ -100,7 +100,8 @@ const generateIcons = async (
         try {
           await fs.access(iconPath)
           await generateSvgAssets(iconPath, subDir, destDir)
-        } catch (err) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (err: any) {
           // If 'icon.svg' doesn't exist in the subdirectory, ignore it
           if (err.code !== 'ENOENT') {
             throw err
@@ -161,7 +162,8 @@ const processIndexFile = async (
 ): Promise<boolean> => {
   try {
     const folders = await fs.readdir(directoryPath)
-    const indexData = {}
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const indexData: any = {}
 
     for (const folder of folders) {
       try {

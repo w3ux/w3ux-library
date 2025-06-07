@@ -4,7 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import {
   PACKAGE_SOURCE_REQUIRED_FILES,
   PACKAGE_SOURCE_REQUIRED_PROPERTIES,
-} from 'config'
+} from 'consts'
 import {
   checkFilesExistInPackages,
   gePackageDirectory,
