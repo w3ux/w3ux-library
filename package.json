@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "build:directory": "builder -t directory",
+    "build:readmes": "builder -t package-readmes",
     "clear": "pnpm -r --if-present clear && rm -rf node_modules coverage",
     "lint": "eslint './**' --fix && npx prettier --write .",
     "build": "pnpm -r --if-present run build",
