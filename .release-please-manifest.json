@@ -1,8 +1,8 @@
 {
-  "library/react-connect-kit": "3.5.3",
+  "library/react-connect-kit": "3.5.4",
   "library/react-polkicon": "3.2.1",
   "library/utils": "2.1.0",
-  "library/hooks": "2.2.1",
+  "library/hooks": "2.2.2",
   "library/factories": "2.1.1",
   "library/crypto": "1.1.0",
   "library/extension-assets": "2.2.5",

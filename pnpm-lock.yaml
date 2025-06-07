@@ -258,8 +258,8 @@ importers:
   library/react-connect-kit:
     dependencies:
       '@w3ux/hooks':
-        specifier: ^2.2.1
-        version: 2.2.1(react@19.1.0)
+        specifier: ^2.2.2
+        version: 2.2.2(react@19.1.0)
       '@w3ux/observables-connect':
         specifier: ^0.9.44
         version: 0.9.44(react@19.1.0)(rxjs@7.8.2)
@@ -1235,8 +1235,8 @@ packages:
     peerDependencies:
       react: ^19
 
-  '@w3ux/hooks@2.2.1':
-    resolution: {integrity: sha512-wFkCObwN22TznmiRPKH0K1duI1iaYdVzntkT1vakuRb+eN7Jr0AnA7KGxrGknl7wXJxwkrusIsyFOR8QScV+dQ==}
+  '@w3ux/hooks@2.2.2':
+    resolution: {integrity: sha512-EY3swPXTZgHTn98cmnbZaLyBWK///z/UP68OllKWP5p4A0KTMxqQIvDVxEWW2lyoqk/tZo4P7mbysMS0VA8aTg==}
     peerDependencies:
       react: ^19
 
@@ -4368,7 +4368,7 @@ snapshots:
     dependencies:
       react: 19.1.0
 
-  '@w3ux/hooks@2.2.1(react@19.1.0)':
+  '@w3ux/hooks@2.2.2(react@19.1.0)':
     dependencies:
       '@w3ux/utils': 2.1.0
       date-fns: 4.1.0
