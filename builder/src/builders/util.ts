@@ -108,14 +108,19 @@ export const generatePackageJson = async (
       parsedPackageJson
     const packageName = name.replace(/-source$/, '') // Remove '-source' suffix.
 
-    // Attempt to get exports
+    // Attempt to get exports and bundler info
     let exportsJson
+    let configBundler = bundler // Use the passed bundler as fallback
     try {
       exportsJson = JSON.parse(
         await fs.readFile(join(inputDir, 'pkg.config.json'), 'utf8')
       )
+      // If bundler info is available in config, use it (unless explicitly overridden)
+      if ('bundler' in exportsJson && bundler === null) {
+        configBundler = exportsJson.bundler
+      }
     } catch (e) {
-      // Silenty fail getting exports
+      // Silently fail getting exports
     }
 
     // Construct the minimal package.json object
@@ -127,7 +132,7 @@ export const generatePackageJson = async (
       type: 'module',
     }
 
-    if (bundler === 'gulp') {
+    if (configBundler === 'gulp') {
       minimalPackageJson = {
         ...minimalPackageJson,
         exports: exportsJson?.exports || {
@@ -138,9 +143,7 @@ export const generatePackageJson = async (
           ...additionalExports,
         },
       }
-    }
-
-    if (bundler === 'tsup') {
+    } else if (configBundler === 'tsup') {
       minimalPackageJson = {
         ...minimalPackageJson,
         exports: exportsJson?.exports || {
@@ -150,6 +153,11 @@ export const generatePackageJson = async (
           },
           ...additionalExports,
         },
+      }
+    } else {
+      // For custom bundlers, null, or any other case, include exports if provided
+      if (exportsJson?.exports) {
+        minimalPackageJson.exports = exportsJson.exports
       }
     }
 

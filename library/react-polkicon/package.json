@@ -1,9 +1,28 @@
 {
   "name": "@w3ux/react-polkicon-source",
   "description": "A light-weight and customisable Polkadot Icon",
-  "license": "GPL-3.0-only",
   "version": "3.1.2",
+  "license": "GPL-3.0-only",
   "type": "module",
+  "keywords": [
+    "w3ux",
+    "polkadot",
+    "web3",
+    "react",
+    "icon",
+    "identicon",
+    "avatar",
+    "typescript"
+  ],
+  "homepage": "https://github.com/w3ux/w3ux-library#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w3ux/w3ux-library.git",
+    "directory": "library/react-polkicon"
+  },
+  "bugs": {
+    "url": "https://github.com/w3ux/w3ux-library/issues"
+  },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "build": "gulp --silent",

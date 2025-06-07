@@ -1,5 +1,5 @@
 {
-  "bundler": "tsup",
+  "bundler": "custom",
   "exports": {
     ".": {
       "import": "./index.js",
