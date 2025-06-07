@@ -5,9 +5,9 @@
   "library/hooks": "2.2.0",
   "library/factories": "2.1.0",
   "library/crypto": "1.1.0",
-  "library/extension-assets": "2.2.0",
+  "library/extension-assets": "2.2.1",
   "library/types": "2.3.0",
-  "library/observables-connect": "0.9.40",
+  "library/observables-connect": "0.9.41",
   "library/react-odometer": "2.1.0",
   "library/validator-assets": "1.1.0"
 }
