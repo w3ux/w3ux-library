@@ -1,5 +1,6 @@
 {
   "name": "@w3ux/crypto-source",
+  "description": "Cryptographic utilities for Dapps",
   "license": "GPL-3.0-only",
   "version": "1.0.2",
   "type": "module",

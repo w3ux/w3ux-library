@@ -1,5 +1,6 @@
 {
   "name": "@w3ux/validator-assets-source",
+  "description": "A list of Polkadot validator operators with metadata and icons",
   "license": "GPL-3.0-only",
   "version": "1.0.0",
   "type": "module",

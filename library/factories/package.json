@@ -1,5 +1,6 @@
 {
   "name": "@w3ux/factories-source",
+  "description": "A collection of general purpose TypeScript factories",
   "license": "GPL-3.0-only",
   "version": "2.0.2",
   "type": "module",

@@ -1,5 +1,6 @@
 {
   "name": "@w3ux/hooks-source",
+  "description": "A collection of general purpose React hooks",
   "license": "GPL-3.0-only",
   "version": "2.1.0",
   "type": "module",

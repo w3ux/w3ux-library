@@ -1,5 +1,6 @@
 {
   "name": "@w3ux/observables-connect",
+  "description": "Observables for extensions and accounts discovery",
   "license": "GPL-3.0-only",
   "version": "0.9.40",
   "type": "module",

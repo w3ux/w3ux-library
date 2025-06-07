@@ -1,5 +1,6 @@
 {
   "name": "@w3ux/types-source",
+  "description": "Common types used throughout the w3ux library",
   "license": "GPL-3.0-only",
   "version": "2.2.3",
   "type": "module",
