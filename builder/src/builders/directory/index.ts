@@ -4,6 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 import {
   gePackageDirectory,
   getLibraryDirectory,
+  getPackageJson,
   getTemplate,
   getWorkspaceDirectory,
 } from 'builders/util'
@@ -18,8 +19,8 @@ export const build = async () => {
 
     for (const pkg of packages) {
       data += formatDirectoryHeaders(pkg)
-      const { directory } = await getSourceIndexYml(pkg)
-      data += formatDirectoryEntry(directory)
+      const description = await getPackageDescription(pkg)
+      data += formatDirectoryEntry(description)
     }
 
     await fs.writeFile(`${getWorkspaceDirectory()}/README.md`, data)
@@ -51,6 +52,32 @@ export const formatDirectoryHeaders = (pkg: string) =>
 export const formatNpmPackageName = (name: string) =>
   `@${PACKAGE_SCOPE}/${name.replace(/-source$/, '')}`
 
+// Get package description from packageInfo.yml or fallback to package.json
+export const getPackageDescription = async (name: string): Promise<string> => {
+  try {
+    // Try to get description from packageInfo.yml first
+    const packageInfo = await getSourceIndexYml(name)
+    if (packageInfo.directory && packageInfo.directory[0]?.description) {
+      return packageInfo.directory[0].description
+    }
+  } catch (e) {
+    // packageInfo.yml might not exist or be malformed
+  }
+
+  try {
+    // Fallback to package.json description
+    const packageJson = await getPackageJson(gePackageDirectory(name))
+    if (packageJson.description) {
+      return packageJson.description
+    }
+  } catch (e) {
+    // package.json might not exist or be malformed
+  }
+
+  // Final fallback
+  return `Package: ${name}`
+}
+
 // Get the source index.yml file for a package
 export const getSourceIndexYml = async (name: string) =>
   parse(
@@ -58,10 +85,5 @@ export const getSourceIndexYml = async (name: string) =>
   )
 
 // Format the package content data in the README file
-export const formatDirectoryEntry = (
-  directory: { name: string; description: string }[]
-) =>
-  directory.reduce(
-    (str: string, { description }) => str + '\n' + description + '\n',
-    ''
-  )
+export const formatDirectoryEntry = (description: string) =>
+  '\n' + description + '\n'

@@ -1,8 +1,29 @@
 {
   "name": "@w3ux/extension-assets-source",
-  "license": "GPL-3.0-only",
+  "description": "A list of popular Web3 wallet extensions with metadata and icons",
   "version": "2.1.0",
+  "license": "GPL-3.0-only",
   "type": "module",
+  "keywords": [
+    "w3ux",
+    "polkadot",
+    "web3",
+    "extensions",
+    "wallets",
+    "assets",
+    "icons",
+    "react",
+    "typescript"
+  ],
+  "homepage": "https://w3ux.org/library/extension-assets",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w3ux/w3ux-library.git",
+    "directory": "library/extension-assets"
+  },
+  "bugs": {
+    "url": "https://github.com/w3ux/w3ux-library/issues"
+  },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "build": "pnpm compile",

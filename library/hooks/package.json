@@ -1,8 +1,26 @@
 {
   "name": "@w3ux/hooks-source",
-  "license": "GPL-3.0-only",
+  "description": "A collection of general purpose React hooks",
   "version": "2.1.0",
+  "license": "GPL-3.0-only",
   "type": "module",
+  "keywords": [
+    "w3ux",
+    "polkadot",
+    "web3",
+    "react",
+    "hooks",
+    "typescript"
+  ],
+  "homepage": "https://w3ux.org/library/hooks/overview",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w3ux/w3ux-library.git",
+    "directory": "library/hooks"
+  },
+  "bugs": {
+    "url": "https://github.com/w3ux/w3ux-library/issues"
+  },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "build": "gulp --silent",

@@ -1,4 +1,5 @@
 {
+  "bundler": "gulp",
   "exports": {
     ".": "./index.js",
     "./accounts": "./accounts/index.js",

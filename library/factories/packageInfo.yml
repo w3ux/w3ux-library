@@ -1,8 +1,3 @@
 directory:
   - name: Factories
-    description: A collection of general purpose TypeScript factories.
-
-npm:
-  title: Factories
-  contents:
-    - item: A collection of general purpose TypeScript factories.
+    description: A collection of general purpose TypeScript factories

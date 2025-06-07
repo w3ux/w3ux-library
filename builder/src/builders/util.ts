@@ -68,7 +68,7 @@ export const removePackageOutput = async (
     )
     return true
   } catch (err) {
-    if (err.code !== 'ENOENT') {
+    if ((err as NodeJS.ErrnoException)?.code !== 'ENOENT') {
       return false
     }
     return true
@@ -76,7 +76,7 @@ export const removePackageOutput = async (
 }
 
 // Get a source template file for the directory
-export const getTemplate = async (name) => {
+export const getTemplate = async (name: string) => {
   const file = await fs.readFile(
     `${getBuilderDirectory()}/templates/${name}.md`,
     'utf-8'
@@ -104,18 +104,23 @@ export const generatePackageJson = async (
     )
 
     // Extract only the specified fields.
-    const { name, version, license, dependencies, peerDependencies } =
+    const { name, version, license, dependencies, peerDependencies, description, keywords, homepage, repository, bugs } =
       parsedPackageJson
     const packageName = name.replace(/-source$/, '') // Remove '-source' suffix.
 
-    // Attempt to get exports
-    let exportsJson
+    // Attempt to get exports and bundler info
+    let pkgConfig
+    let configBundler = bundler // Use the passed bundler as fallback
     try {
-      exportsJson = JSON.parse(
+      pkgConfig = JSON.parse(
         await fs.readFile(join(inputDir, 'pkg.config.json'), 'utf8')
       )
+      // If bundler info is available in config, use it (unless explicitly overridden)
+      if ('bundler' in pkgConfig && bundler === null) {
+        configBundler = pkgConfig.bundler
+      }
     } catch (e) {
-      // Silenty fail getting exports
+      // Silently fail getting exports
     }
 
     // Construct the minimal package.json object
@@ -127,10 +132,27 @@ export const generatePackageJson = async (
       type: 'module',
     }
 
-    if (bundler === 'gulp') {
+    // Add optional metadata fields if they exist
+    if (description) {
+      minimalPackageJson.description = description
+    }
+    if (keywords) {
+      minimalPackageJson.keywords = keywords
+    }
+    if (homepage) {
+      minimalPackageJson.homepage = homepage
+    }
+    if (repository) {
+      minimalPackageJson.repository = repository
+    }
+    if (bugs) {
+      minimalPackageJson.bugs = bugs
+    }
+
+    if (configBundler === 'gulp') {
       minimalPackageJson = {
         ...minimalPackageJson,
-        exports: exportsJson?.exports || {
+        exports: pkgConfig?.exports || {
           '.': {
             import: './mjs/index.js',
             require: './cjs/index.js',
@@ -138,18 +160,21 @@ export const generatePackageJson = async (
           ...additionalExports,
         },
       }
-    }
-
-    if (bundler === 'tsup') {
+    } else if (configBundler === 'tsup') {
       minimalPackageJson = {
         ...minimalPackageJson,
-        exports: exportsJson?.exports || {
+        exports: pkgConfig?.exports || {
           '.': {
             import: './index.js',
             require: './index.cjs',
           },
           ...additionalExports,
         },
+      }
+    } else {
+      // For custom bundlers, null, or any other case, include exports if provided
+      if (pkgConfig?.exports) {
+        minimalPackageJson.exports = pkgConfig.exports
       }
     }
 

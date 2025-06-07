@@ -1,8 +1,28 @@
 {
   "name": "@w3ux/react-connect-kit-source",
-  "license": "GPL-3.0-only",
+  "description": "Providers and hooks for connecting to web3 wallets and interacting with accounts",
   "version": "3.4.9",
+  "license": "GPL-3.0-only",
   "type": "module",
+  "keywords": [
+    "w3ux",
+    "polkadot",
+    "web3",
+    "react",
+    "hooks",
+    "wallet",
+    "connect",
+    "typescript"
+  ],
+  "homepage": "https://w3ux.org/library/react-connect-kit/overview",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w3ux/w3ux-library.git",
+    "directory": "library/react-connect-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/w3ux/w3ux-library/issues"
+  },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "build": "gulp --silent",

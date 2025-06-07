@@ -1,8 +1,26 @@
 {
   "name": "@w3ux/types-source",
-  "license": "GPL-3.0-only",
+  "description": "Common types used throughout the w3ux library",
   "version": "2.2.3",
+  "license": "GPL-3.0-only",
   "type": "module",
+  "keywords": [
+    "w3ux",
+    "polkadot",
+    "web3",
+    "typescript",
+    "types",
+    "definitions"
+  ],
+  "homepage": "https://w3ux.org/library/types",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w3ux/w3ux-library.git",
+    "directory": "library/types"
+  },
+  "bugs": {
+    "url": "https://github.com/w3ux/w3ux-library/issues"
+  },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting",

@@ -1,4 +1,5 @@
 {
+  "bundler": "gulp",
   "exports": {
     ".": {
       "import": "./mjs/index.js",

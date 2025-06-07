@@ -1,8 +1,26 @@
 {
   "name": "@w3ux/factories-source",
-  "license": "GPL-3.0-only",
+  "description": "A collection of general purpose TypeScript factories",
   "version": "2.0.2",
+  "license": "GPL-3.0-only",
   "type": "module",
+  "keywords": [
+    "w3ux",
+    "polkadot",
+    "web3",
+    "factories",
+    "typescript",
+    "patterns"
+  ],
+  "homepage": "https://w3ux.org/library/factories/overview",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w3ux/w3ux-library.git",
+    "directory": "library/factories"
+  },
+  "bugs": {
+    "url": "https://github.com/w3ux/w3ux-library/issues"
+  },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "build": "gulp --silent",
