@@ -7,19 +7,22 @@ import {
   getPackageJson,
   getTemplate,
 } from 'builders/util'
-import { PACKAGE_SCOPE } from 'config'
+import { PACKAGE_SCOPE, URLS } from 'consts'
 import fs from 'fs/promises'
+import type { PackageData, PackageInfoYml, PackageJson } from 'types'
 import { parse } from 'yaml'
 
 export const build = async () => {
   try {
     const packages = await getPackages()
-    
+
     for (const pkg of packages) {
       await generatePackageReadme(pkg)
     }
 
-    console.log(`✅ Generated README files for ${packages.length} packages successfully.`)
+    console.log(
+      `✅ Generated README files for ${packages.length} packages successfully.`
+    )
   } catch (err) {
     console.error(`❌ Error occurred while building package READMEs.`, err)
   }
@@ -35,26 +38,29 @@ export const getPackages = async () => {
 export const generatePackageReadme = async (pkg: string) => {
   try {
     const readmePath = `${gePackageDirectory(pkg)}/README.md`
-    
+
     // Check if README already exists and skip if it has custom content
     try {
       const existingReadme = await fs.readFile(readmePath, 'utf-8')
-      if (existingReadme && !existingReadme.includes('Part of the [w3ux library]')) {
+      if (
+        existingReadme &&
+        !existingReadme.includes('Part of the [w3ux library]')
+      ) {
         console.log(`⏭️ Skipping ${pkg} - custom README exists`)
         return
       }
     } catch (e) {
       // README doesn't exist, continue with generation
     }
-    
+
     const template = await getTemplate('package-readme')
     const packageData = await getPackageData(pkg)
-    
-    let readmeContent = template
+
+    const readmeContent = template
       .replace(/\{\{PACKAGE_NAME\}\}/g, packageData.displayName)
       .replace(/\{\{DESCRIPTION\}\}/g, packageData.description)
       .replace(/\{\{NPM_PACKAGE_NAME\}\}/g, packageData.npmPackageName)
-      .replace(/\{\{HOMEPAGE_URL\}\}/g, packageData.homepage || 'https://w3ux.org')
+      .replace(/\{\{HOMEPAGE_URL\}\}/g, packageData.homepage || URLS.HOMEPAGE)
       .replace(/\{\{USAGE_SECTION\}\}/g, packageData.usageSection)
       .replace(/\{\{KEYWORDS\}\}/g, packageData.keywords)
       .replace(/\{\{REPOSITORY_URL\}\}/g, packageData.repositoryUrl)
@@ -63,7 +69,7 @@ export const generatePackageReadme = async (pkg: string) => {
       .replace(/\{\{LICENSE\}\}/g, packageData.license)
 
     await fs.writeFile(readmePath, readmeContent)
-    
+
     console.log(`✅ Generated README for ${packageData.npmPackageName}`)
   } catch (err) {
     console.error(`❌ Error generating README for ${pkg}:`, err)
@@ -71,9 +77,9 @@ export const generatePackageReadme = async (pkg: string) => {
 }
 
 // Get comprehensive package data
-export const getPackageData = async (name: string) => {
-  let packageInfo: any = {}
-  let packageJson: any = {}
+export const getPackageData = async (name: string): Promise<PackageData> => {
+  let packageInfo: PackageInfoYml = {}
+  let packageJson: PackageJson = {}
 
   // Try to get data from packageInfo.yml
   try {
@@ -90,31 +96,35 @@ export const getPackageData = async (name: string) => {
   }
 
   const npmPackageName = formatNpmPackageName(name)
-  const displayName = packageInfo.directory?.[0]?.name || 
-                     packageJson.name?.replace(/-source$/, '').replace('@w3ux/', '') || 
-                     name
+  const displayName =
+    packageInfo.directory?.[0]?.name ||
+    packageJson.name?.replace(/-source$/, '').replace('@w3ux/', '') ||
+    name
 
-  const description = packageInfo.directory?.[0]?.description || 
-                     packageJson.description || 
-                     `Package: ${name}`
+  const description =
+    packageInfo.directory?.[0]?.description ||
+    packageJson.description ||
+    `Package: ${name}`
 
-  const keywords = packageJson.keywords ? 
-                  packageJson.keywords.map((k: string) => `\`${k}\``).join(', ') : 
-                  'No keywords available'
+  const keywords =
+    packageJson.keywords && Array.isArray(packageJson.keywords)
+      ? packageJson.keywords.map((k: string) => `\`${k}\``).join(', ')
+      : 'No keywords available'
 
   const license = packageJson.license || 'GPL-3.0-only'
 
-  const homepage = packageJson.homepage || `https://w3ux.org/library/${name}`
-  
-  const repositoryUrl = packageJson.repository?.url?.replace('git+', '').replace('.git', '') || 
-                       `https://github.com/w3ux/w3ux-library/tree/main/library/${name}`
-  
-  const npmUrl = `https://www.npmjs.com/package/${npmPackageName}`
-  
-  const bugsUrl = packageJson.bugs?.url || 'https://github.com/w3ux/w3ux-library/issues'
+  const homepage = packageJson.homepage || `${URLS.HOMEPAGE}/library/${name}`
+
+  const repositoryUrl =
+    packageJson.repository?.url?.replace('git+', '').replace('.git', '') ||
+    `${URLS.REPOSITORY}/tree/main/library/${name}`
+
+  const npmUrl = `${URLS.NPM_BASE}/${npmPackageName}`
+
+  const bugsUrl = packageJson.bugs?.url || URLS.ISSUES
 
   // Generate a basic usage section based on package type
-  const usageSection = generateUsageSection(name, npmPackageName, packageJson)
+  const usageSection = generateUsageSection(name, npmPackageName)
 
   return {
     displayName,
@@ -126,12 +136,15 @@ export const getPackageData = async (name: string) => {
     repositoryUrl,
     npmUrl,
     bugsUrl,
-    usageSection
+    usageSection,
   }
 }
 
 // Generate usage section based on package type
-export const generateUsageSection = (name: string, npmPackageName: string, packageJson: any): string => {
+export const generateUsageSection = (
+  name: string,
+  npmPackageName: string
+): string => {
   // Basic import example for all packages
   let usage = `\`\`\`typescript
 import { /* your imports */ } from '${npmPackageName}'
@@ -209,7 +222,9 @@ import { /* specific observable */ } from '${npmPackageName}'
 }
 
 // Get the source index.yml file for a package
-export const getSourceIndexYml = async (name: string) =>
+export const getSourceIndexYml = async (
+  name: string
+): Promise<PackageInfoYml> =>
   parse(
     await fs.readFile(`${gePackageDirectory(name)}/packageInfo.yml`, 'utf-8')
   )

@@ -104,8 +104,18 @@ export const generatePackageJson = async (
     )
 
     // Extract only the specified fields.
-    const { name, version, license, dependencies, peerDependencies, description, keywords, homepage, repository, bugs } =
-      parsedPackageJson
+    const {
+      name,
+      version,
+      license,
+      dependencies,
+      peerDependencies,
+      description,
+      keywords,
+      homepage,
+      repository,
+      bugs,
+    } = parsedPackageJson
     const packageName = name.replace(/-source$/, '') // Remove '-source' suffix.
 
     // Attempt to get exports and bundler info
