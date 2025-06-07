@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/utils-source",
   "description": "A collection of reusable utilities for manipulating data",
-  "version": "2.0.10",
+  "version": "2.1.0",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
