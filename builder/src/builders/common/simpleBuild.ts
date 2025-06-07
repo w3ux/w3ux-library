@@ -8,7 +8,7 @@ import {
   removePackageOutput,
 } from 'builders/util'
 import { exec } from 'child_process'
-import { PACKAGE_OUTPUT } from 'config'
+import { PACKAGE_OUTPUT } from 'consts'
 import type { Bundler } from 'types'
 import { promisify } from 'util'
 

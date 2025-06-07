@@ -8,7 +8,7 @@ import {
   getTemplate,
   getWorkspaceDirectory,
 } from 'builders/util'
-import { PACKAGE_SCOPE } from 'config'
+import { PACKAGE_SCOPE } from 'consts'
 import fs from 'fs/promises'
 import { parse } from 'yaml'
 

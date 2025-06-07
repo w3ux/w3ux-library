@@ -15,3 +15,11 @@ export const PACKAGE_SOURCE_REQUIRED_FILES = ['packageInfo.yml', 'package.json']
 
 // Required dist package.json properties
 export const PACKAGE_SOURCE_REQUIRED_PROPERTIES = ['license', 'version']
+
+// URL constants for README generation
+export const URLS = {
+  HOMEPAGE: 'https://w3ux.org',
+  REPOSITORY: 'https://github.com/w3ux/w3ux-library',
+  ISSUES: 'https://github.com/w3ux/w3ux-library/issues',
+  NPM_BASE: 'https://www.npmjs.com/package',
+} as const
