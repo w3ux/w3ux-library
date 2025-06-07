@@ -68,7 +68,7 @@ export const removePackageOutput = async (
     )
     return true
   } catch (err) {
-    if (err.code !== 'ENOENT') {
+    if ((err as NodeJS.ErrnoException)?.code !== 'ENOENT') {
       return false
     }
     return true
@@ -76,7 +76,7 @@ export const removePackageOutput = async (
 }
 
 // Get a source template file for the directory
-export const getTemplate = async (name) => {
+export const getTemplate = async (name: string) => {
   const file = await fs.readFile(
     `${getBuilderDirectory()}/templates/${name}.md`,
     'utf-8'
@@ -109,15 +109,15 @@ export const generatePackageJson = async (
     const packageName = name.replace(/-source$/, '') // Remove '-source' suffix.
 
     // Attempt to get exports and bundler info
-    let exportsJson
+    let pkgConfig
     let configBundler = bundler // Use the passed bundler as fallback
     try {
-      exportsJson = JSON.parse(
+      pkgConfig = JSON.parse(
         await fs.readFile(join(inputDir, 'pkg.config.json'), 'utf8')
       )
       // If bundler info is available in config, use it (unless explicitly overridden)
-      if ('bundler' in exportsJson && bundler === null) {
-        configBundler = exportsJson.bundler
+      if ('bundler' in pkgConfig && bundler === null) {
+        configBundler = pkgConfig.bundler
       }
     } catch (e) {
       // Silently fail getting exports
@@ -135,7 +135,7 @@ export const generatePackageJson = async (
     if (configBundler === 'gulp') {
       minimalPackageJson = {
         ...minimalPackageJson,
-        exports: exportsJson?.exports || {
+        exports: pkgConfig?.exports || {
           '.': {
             import: './mjs/index.js',
             require: './cjs/index.js',
@@ -146,7 +146,7 @@ export const generatePackageJson = async (
     } else if (configBundler === 'tsup') {
       minimalPackageJson = {
         ...minimalPackageJson,
-        exports: exportsJson?.exports || {
+        exports: pkgConfig?.exports || {
           '.': {
             import: './index.js',
             require: './index.cjs',
@@ -156,8 +156,8 @@ export const generatePackageJson = async (
       }
     } else {
       // For custom bundlers, null, or any other case, include exports if provided
-      if (exportsJson?.exports) {
-        minimalPackageJson.exports = exportsJson.exports
+      if (pkgConfig?.exports) {
+        minimalPackageJson.exports = pkgConfig.exports
       }
     }
 
