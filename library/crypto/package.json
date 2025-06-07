@@ -12,7 +12,7 @@
     "cryptography",
     "typescript"
   ],
-  "homepage": "https://github.com/w3ux/w3ux-library#readme",
+  "homepage": "https://w3ux.org/library/crypto",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/w3ux/w3ux-library.git",
