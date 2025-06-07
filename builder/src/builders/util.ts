@@ -104,7 +104,7 @@ export const generatePackageJson = async (
     )
 
     // Extract only the specified fields.
-    const { name, version, license, dependencies, peerDependencies } =
+    const { name, version, license, dependencies, peerDependencies, description, keywords, homepage, repository, bugs } =
       parsedPackageJson
     const packageName = name.replace(/-source$/, '') // Remove '-source' suffix.
 
@@ -130,6 +130,23 @@ export const generatePackageJson = async (
       version,
       license,
       type: 'module',
+    }
+
+    // Add optional metadata fields if they exist
+    if (description) {
+      minimalPackageJson.description = description
+    }
+    if (keywords) {
+      minimalPackageJson.keywords = keywords
+    }
+    if (homepage) {
+      minimalPackageJson.homepage = homepage
+    }
+    if (repository) {
+      minimalPackageJson.repository = repository
+    }
+    if (bugs) {
+      minimalPackageJson.bugs = bugs
     }
 
     if (configBundler === 'gulp') {
