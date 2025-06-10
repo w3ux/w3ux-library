@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/react-polkicon-source",
   "description": "A light-weight and customisable Polkadot Icon",
-  "version": "3.2.2",
+  "version": "3.2.6",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
@@ -25,7 +25,7 @@
   },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "gulp --silent",
+    "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting",
     "compile": "builder -t react-polkicon"
   },
   "dependencies": {
@@ -37,12 +37,9 @@
     "@types/node": "^22.15.29",
     "@types/react": "^19.0.12",
     "builder": "workspace:*",
-    "gulp": "^5.0.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-strip-comments": "^2.6.0",
-    "gulp-typescript": "6.0.0-alpha.1",
     "merge-stream": "^2.0.0",
     "react": "^19.1.0",
+    "tsup": "^8.4.0",
     "typescript": "^5.8.2"
   }
 }

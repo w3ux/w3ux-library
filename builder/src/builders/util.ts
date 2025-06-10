@@ -194,6 +194,12 @@ export const generatePackageJson = async (
     if (peerDependencies) {
       minimalPackageJson['peerDependencies'] = peerDependencies
     }
+    if (pkgConfig?.peerDependencies) {
+      minimalPackageJson['peerDependencies'] = {
+        ...minimalPackageJson['peerDependencies'],
+        ...pkgConfig.peerDependencies,
+      }
+    }
 
     // Write the minimal package.json to the output directory.
     const outputPath = join(outputDir, 'package.json')
