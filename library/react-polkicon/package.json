@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/react-polkicon-source",
   "description": "A light-weight and customisable Polkadot Icon",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [

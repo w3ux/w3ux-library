@@ -3,9 +3,13 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { isValidAddress } from '@w3ux/utils'
 import { useEffect, useState } from 'react'
-import { CircleRadius, PolkiconCenter, PolkiconSize } from './consts'
+import { CircleRadius, PolkiconCenter, PolkiconSize } from './consts.js'
 import type { Circle, Coordinate, PolkiconProps } from './types'
-import { generateCssTransform, getCircleCoordinates, getColors } from './utils'
+import {
+  generateCssTransform,
+  getCircleCoordinates,
+  getColors,
+} from './utils.js'
 
 export const Polkicon = ({
   address,
