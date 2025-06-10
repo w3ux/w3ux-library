@@ -11,13 +11,13 @@ import {
   getColors,
 } from './utils.js'
 
-export const Polkicon = ({
+export const Polkicon: React.FC<PolkiconProps> = ({
   address,
   background,
   inactive,
   transform: propTransform,
   fontSize,
-}: PolkiconProps) => {
+}) => {
   // The colors of the Polkicon and inner circles.
   const [colors, setColors] = useState<string[]>([])
 
