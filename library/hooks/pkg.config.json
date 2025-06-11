@@ -1,13 +1,16 @@
 {
-  "bundler": "gulp",
+  "bundler": "tsup",
   "exports": {
     ".": {
-      "import": "./mjs/index.js",
-      "require": "./cjs/index.js"
+      "import": "./index.js",
+      "require": "./index.cjs"
     },
     "./util": {
-      "import": "./mjs/util.js",
-      "require": "./cjs/util.js"
+      "import": "./util.js",
+      "require": "./util.cjs"
     }
+  },
+  "peerDependencies": {
+    "react": "^19.1.0"
   }
 }

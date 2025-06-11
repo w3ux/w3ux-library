@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/types-source",
   "description": "Common types used throughout the w3ux library",
-  "version": "2.3.0",
+  "version": "2.4.1",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
@@ -23,7 +23,7 @@
   },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting",
+    "build": "tsup",
     "compile": "builder -t types"
   },
   "devDependencies": {

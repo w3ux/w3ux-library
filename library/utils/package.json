@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/utils-source",
   "description": "A collection of reusable utilities for manipulating data",
-  "version": "2.1.0",
+  "version": "2.2.1",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
@@ -24,11 +24,11 @@
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "test": "vitest run",
-    "build": "tsup src/**/* --format esm,cjs --target es2022 --dts --no-splitting",
+    "build": "tsup",
     "compile": "builder -t utils"
   },
   "dependencies": {
-    "dedot": "^0.13.0"
+    "dedot": "^0.13.1"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",

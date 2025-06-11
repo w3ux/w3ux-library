@@ -30,7 +30,7 @@
     "compile": "builder -t extension-assets"
   },
   "peerDependencies": {
-    "react": "^19"
+    "react": "^19.1.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",

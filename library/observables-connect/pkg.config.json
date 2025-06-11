@@ -1,8 +1,20 @@
 {
-  "bundler": "gulp",
+  "bundler": "tsup",
   "exports": {
-    ".": "./index.js",
-    "./accounts": "./accounts/index.js",
-    "./extensions": "./extensions/index.js"
+     ".": {
+      "import": "./index.js",
+      "require": "./index.cjs"
+    },
+    "./extensions": {
+      "import": "./extensions/index.js",
+      "require": "./extensions/index.cjs"
+    },
+     "./accounts": {
+      "import": "./accounts/index.js",
+      "require": "./accounts/index.cjs"
+    }
+  },
+   "peerDependencies": {
+    "rxjs": "^7.8.2"
   }
 }

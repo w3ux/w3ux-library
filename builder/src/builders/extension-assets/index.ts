@@ -57,7 +57,7 @@ export const build = async () => {
     }
 
     // Generate package.json.
-    if (!(await generatePackageJson('.', `${PACKAGE_OUTPUT}`, null))) {
+    if (!(await generatePackageJson('.', `${PACKAGE_OUTPUT}`))) {
       throw `Failed to generate package.json file.`
     }
 

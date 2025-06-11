@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/react-connect-kit-source",
   "description": "Providers and hooks for connecting to web3 wallets and interacting with accounts",
-  "version": "3.5.4",
+  "version": "3.6.5",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
@@ -25,27 +25,20 @@
   },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "gulp --silent",
+    "build": "tsup",
     "compile": "builder -t react-connect-kit"
   },
   "dependencies": {
-    "@w3ux/hooks": "^2.2.2",
-    "@w3ux/observables-connect": "^0.9.44",
-    "@w3ux/utils": "^2.1.0"
+    "@w3ux/hooks": "^2.3.4",
+    "@w3ux/observables-connect": "^0.10.2",
+    "@w3ux/utils": "^2.2.1"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
-    "@w3ux/types": "^2.3.0",
+    "@w3ux/types": "^2.4.1",
     "builder": "workspace:*",
-    "gulp": "^5.0.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-strip-comments": "^2.6.0",
-    "gulp-typescript": "6.0.0-alpha.1",
-    "merge-stream": "^2.0.0",
     "react": "^19.1.0",
-    "typescript": "^5.8.2"
-  },
-  "peerDependencies": {
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "tsup": "^8.4.0"
   }
 }

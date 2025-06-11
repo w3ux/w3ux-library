@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/validator-assets-source",
   "description": "A list of Polkadot validator operators with metadata and icons",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
@@ -25,11 +25,8 @@
   },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup src/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting",
+    "build": "tsup",
     "compile": "builder -t validator-assets"
-  },
-  "peerDependencies": {
-    "react": "^19"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
