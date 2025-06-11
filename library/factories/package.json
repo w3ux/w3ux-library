@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/factories-source",
   "description": "A collection of general purpose TypeScript factories",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
-    "@w3ux/types": "^2.4.0",
+    "@w3ux/types": "^2.4.1",
     "builder": "workspace:*",
     "react": "^19.1.0",
     "tsup": "^8.4.0"
