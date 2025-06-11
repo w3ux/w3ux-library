@@ -29,8 +29,8 @@
     "compile": "builder -t react-polkicon"
   },
   "dependencies": {
-    "@w3ux/crypto": "^1.1.0",
-    "@w3ux/utils": "^2.1.0",
+    "@w3ux/crypto": "^1.2.0",
+    "@w3ux/utils": "^2.2.0",
     "dedot": "^0.13.0"
   },
   "devDependencies": {
@@ -38,7 +38,6 @@
     "@types/react": "^19.0.12",
     "builder": "workspace:*",
     "react": "^19.1.0",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.2"
+    "tsup": "^8.4.0"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/types-source",
   "description": "Common types used throughout the w3ux library",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
