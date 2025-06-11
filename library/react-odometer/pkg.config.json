@@ -4,6 +4,10 @@
     ".": {
       "import": "./index.js",
       "require": "./index.cjs"
+    },
+    "./index.css": {
+      "import": "./index.css",
+      "require": "./index.css"
     }
   },
   "peerDependencies": {

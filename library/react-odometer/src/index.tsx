@@ -92,7 +92,9 @@ export const Odometer = ({
         setStatus('new')
         setPrevDigits(digits)
       }
-      setDigitRefs(Array(newDigits.length).fill(createRef()))
+      setDigitRefs(
+        Array.from({ length: newDigits.length }, () => createRef() as DigitRef)
+      )
     }
   }, [value])
 
