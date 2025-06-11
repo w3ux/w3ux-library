@@ -1,7 +1,7 @@
 {
   "name": "@w3ux/observables-connect",
   "description": "Observables for extensions and accounts discovery",
-  "version": "0.9.44",
+  "version": "0.10.2",
   "license": "GPL-3.0-only",
   "type": "module",
   "keywords": [
@@ -30,14 +30,12 @@
   },
   "dependencies": {
     "@w3ux/extension-assets": "^2.2.5",
-    "@w3ux/utils": "^2.1.0"
+    "@w3ux/utils": "^2.2.1"
   },
   "devDependencies": {
-    "@w3ux/types": "^2.3.0",
+    "@w3ux/types": "^2.4.1",
     "builder": "workspace:*",
-    "react": "^19.1.0",
     "rxjs": "^7.8.2",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.2"
+    "tsup": "^8.4.0"
   }
 }
