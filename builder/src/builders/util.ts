@@ -4,7 +4,6 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from 'consts'
 import fs from 'fs/promises'
 import { dirname, join } from 'path'
-import type { Bundler } from 'types'
 import { fileURLToPath } from 'url'
 
 // Gets workspace directory from the current directory
@@ -87,15 +86,7 @@ export const getTemplate = async (name: string) => {
 // Generate package package.json file from source package.json
 export const generatePackageJson = async (
   inputDir: string,
-  outputDir: string,
-  bundler: Bundler | null,
-  additionalExports: Record<
-    string,
-    {
-      import: string
-      require: string
-    }
-  > = {}
+  outputDir: string
 ): Promise<boolean> => {
   try {
     // Read the original package.json.
@@ -120,22 +111,17 @@ export const generatePackageJson = async (
 
     // Attempt to get exports and bundler info
     let pkgConfig
-    let configBundler = bundler // Use the passed bundler as fallback
     try {
       pkgConfig = JSON.parse(
         await fs.readFile(join(inputDir, 'pkg.config.json'), 'utf8')
       )
-      // If bundler info is available in config, use it (unless explicitly overridden)
-      if ('bundler' in pkgConfig && bundler === null) {
-        configBundler = pkgConfig.bundler
-      }
     } catch (e) {
       // Silently fail getting exports
     }
 
     // Construct the minimal package.json object
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let minimalPackageJson: any = {
+    const minimalPackageJson: any = {
       name: packageName,
       version,
       license,
@@ -159,33 +145,9 @@ export const generatePackageJson = async (
       minimalPackageJson.bugs = bugs
     }
 
-    if (configBundler === 'gulp') {
-      minimalPackageJson = {
-        ...minimalPackageJson,
-        exports: pkgConfig?.exports || {
-          '.': {
-            import: './mjs/index.js',
-            require: './cjs/index.js',
-          },
-          ...additionalExports,
-        },
-      }
-    } else if (configBundler === 'tsup') {
-      minimalPackageJson = {
-        ...minimalPackageJson,
-        exports: pkgConfig?.exports || {
-          '.': {
-            import: './index.js',
-            require: './index.cjs',
-          },
-          ...additionalExports,
-        },
-      }
-    } else {
-      // For custom bundlers, null, or any other case, include exports if provided
-      if (pkgConfig?.exports) {
-        minimalPackageJson.exports = pkgConfig.exports
-      }
+    // Include package exports if provided
+    if (pkgConfig?.exports) {
+      minimalPackageJson.exports = pkgConfig.exports
     }
 
     if (dependencies) {
@@ -194,6 +156,7 @@ export const generatePackageJson = async (
     if (peerDependencies) {
       minimalPackageJson['peerDependencies'] = peerDependencies
     }
+
     if (pkgConfig?.peerDependencies) {
       minimalPackageJson['peerDependencies'] = {
         ...minimalPackageJson['peerDependencies'],

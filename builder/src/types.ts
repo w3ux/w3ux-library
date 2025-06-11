@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-export type Bundler = 'gulp' | 'tsup' | 'module'
+export type Bundler = 'tsup' | 'module'
 
 // TypeScript interfaces for package data structures
 export interface PackageInfoYml {

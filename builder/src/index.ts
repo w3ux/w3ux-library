@@ -14,7 +14,7 @@ const { t: task } = args
 
 switch (task) {
   case 'crypto':
-    await simpleBuild('crypto', { bundler: 'tsup' })
+    await simpleBuild('crypto')
     break
 
   case 'directory':
@@ -30,39 +30,39 @@ switch (task) {
     break
 
   case 'factories':
-    await simpleBuild('factories', { bundler: 'gulp' })
+    await simpleBuild('factories')
     break
 
   case 'hooks':
-    await simpleBuild('hooks', { bundler: 'gulp' })
+    await simpleBuild('hooks')
     break
 
   case 'observables-connect':
-    await simpleBuild('observables-connect', { bundler: 'gulp' })
+    await simpleBuild('observables-connect')
     break
 
   case 'react-connect-kit':
-    await simpleBuild('react-connect-kit', { bundler: 'gulp' })
+    await simpleBuild('react-connect-kit')
     break
 
   case 'react-odometer':
-    await simpleBuild('react-odometer', { bundler: 'gulp' })
+    await simpleBuild('react-odometer')
     break
 
   case 'react-polkicon':
-    await simpleBuild('react-polkicon', { bundler: 'gulp' })
+    await simpleBuild('react-polkicon')
     break
 
   case 'types':
-    await simpleBuild('types', { bundler: 'tsup' })
+    await simpleBuild('types')
     break
 
   case 'utils':
-    await simpleBuild('utils', { bundler: 'tsup' })
+    await simpleBuild('utils')
     break
 
   case 'validator-assets':
-    await simpleBuild('validator-assets', { bundler: null })
+    await simpleBuild('validator-assets')
     break
 
   default:
