@@ -4,12 +4,13 @@ SPDX-License-Identifier: GPL-3.0-only */
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ['src/index.ts', 'src/extensions/index.ts', 'src/accounts/index.ts'],
+  entry: ['src/index.tsx'],
   target: 'esnext',
   splitting: false,
   sourcemap: false,
   clean: true,
   dts: true,
   format: ['esm', 'cjs'],
-  external: ['rxjs']
+  external: ['react', 'react-dom', 'rxjs']
 })
+
