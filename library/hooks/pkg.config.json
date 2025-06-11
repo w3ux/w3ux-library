@@ -1,13 +1,18 @@
 {
   "bundler": "gulp",
   "exports": {
+    "exports": {
     ".": {
-      "import": "./mjs/index.js",
-      "require": "./cjs/index.js"
-    },
-    "./util": {
-      "import": "./mjs/util.js",
-      "require": "./cjs/util.js"
+      "import": "./index.js",
+      "require": "./index.cjs"
     }
+  },
+    "./util": {
+      "import": "./util.js",
+      "require": "./util.cjs"
+    }
+  },
+  "peerDependencies": {
+    "react": "^19"
   }
 }

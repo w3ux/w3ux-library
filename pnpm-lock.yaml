@@ -181,24 +181,12 @@ importers:
       builder:
         specifier: workspace:*
         version: link:../../builder
-      gulp:
-        specifier: ^5.0.0
-        version: 5.0.0
-      gulp-sourcemaps:
-        specifier: ^3.0.0
-        version: 3.0.0
-      gulp-strip-comments:
-        specifier: ^2.6.0
-        version: 2.6.0
-      gulp-typescript:
-        specifier: 6.0.0-alpha.1
-        version: 6.0.0-alpha.1(typescript@5.8.2)
-      merge-stream:
-        specifier: ^2.0.0
-        version: 2.0.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
+      tsup:
+        specifier: ^8.4.0
+        version: 8.5.0(postcss@8.5.4)(typescript@5.8.2)(yaml@2.8.0)
       typescript:
         specifier: ^5.8.2
         version: 5.8.2
