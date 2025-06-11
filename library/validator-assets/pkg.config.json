@@ -5,5 +5,8 @@
       "import": "./index.js",
       "require": "./index.cjs"
     }
+  },
+  "peerDependencies": {
+    "react": "^19.1.0"
   }
 }
