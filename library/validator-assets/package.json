@@ -25,7 +25,7 @@
   },
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup src/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting",
+    "build": "tsup",
     "compile": "builder -t validator-assets"
   },
   "peerDependencies": {
