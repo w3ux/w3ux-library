@@ -2,8 +2,11 @@
   "bundler": "gulp",
   "exports": {
     ".": {
-      "import": "./mjs/index.js",
-      "require": "./cjs/index.js"
+      "import": "./index.js",
+      "require": "./index.cjs"
     }
+  },
+  "peerDependencies": {
+    "react": "^19"
   }
 }

@@ -37,7 +37,6 @@
     "@types/node": "^22.15.29",
     "@types/react": "^19.0.12",
     "builder": "workspace:*",
-    "merge-stream": "^2.0.0",
     "react": "^19.1.0",
     "tsup": "^8.4.0",
     "typescript": "^5.8.2"
