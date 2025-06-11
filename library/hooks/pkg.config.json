@@ -1,12 +1,10 @@
 {
   "bundler": "tsup",
   "exports": {
-    "exports": {
     ".": {
       "import": "./index.js",
       "require": "./index.cjs"
-    }
-  },
+    },
     "./util": {
       "import": "./util.js",
       "require": "./util.cjs"
