@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/w3ux/w3ux-library/compare/crypto-source-v1.1.0...crypto-source-v1.2.0) (2025-06-12)
+
+
+### Features
+
+* **refactor:** Unify `tsup` configs, `gulp` -&gt; `tsup` ([#288](https://github.com/w3ux/w3ux-library/issues/288)) ([6c86e31](https://github.com/w3ux/w3ux-library/commit/6c86e31f5ae47dac0fd5bf20583674e189b38966))
+
 ## [1.1.0](https://github.com/w3ux/w3ux-library/compare/crypto-source-v1.0.2...crypto-source-v1.1.0) (2025-06-07)
 
 
