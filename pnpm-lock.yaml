@@ -24,7 +24,7 @@ importers:
         version: 8.34.0(eslint@9.29.0)(typescript@5.8.2)
       autoprefixer:
         specifier: ^10.4.21
-        version: 10.4.21(postcss@8.5.5)
+        version: 10.4.21(postcss@8.5.6)
       builder:
         specifier: workspace:*
         version: link:builder
@@ -66,7 +66,7 @@ importers:
         version: 1.2.8
       postcss:
         specifier: ^8.5.3
-        version: 8.5.5
+        version: 8.5.6
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
@@ -109,7 +109,7 @@ importers:
         version: 22.15.30
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
   library/crypto:
     dependencies:
@@ -125,7 +125,7 @@ importers:
         version: link:../../builder
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
   library/extension-assets:
     devDependencies:
@@ -140,7 +140,7 @@ importers:
         version: 19.1.0
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
   library/factories:
     devDependencies:
@@ -158,7 +158,7 @@ importers:
         version: 19.1.0
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
   library/hooks:
     dependencies:
@@ -183,7 +183,7 @@ importers:
         version: 19.1.0
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
   library/observables-connect:
     dependencies:
@@ -205,7 +205,7 @@ importers:
         version: 7.8.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
   library/react-connect-kit:
     dependencies:
@@ -236,7 +236,7 @@ importers:
         version: 7.8.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
   library/react-odometer:
     devDependencies:
@@ -254,7 +254,7 @@ importers:
         version: 1.89.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
   library/react-polkicon:
     dependencies:
@@ -282,7 +282,7 @@ importers:
         version: 19.1.0
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
   library/types:
     devDependencies:
@@ -297,7 +297,7 @@ importers:
         version: 19.1.0
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
   library/utils:
     dependencies:
@@ -316,7 +316,7 @@ importers:
         version: 19.1.0
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
       vitest:
         specifier: ^3.1.1
         version: 3.2.3(@types/debug@4.1.12)(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0)
@@ -334,7 +334,7 @@ importers:
         version: 19.1.0
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
 
 packages:
 
@@ -2317,8 +2317,8 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.5:
-    resolution: {integrity: sha512-d/jtm+rdNT8tpXuHY5MMtcbJFBkhXE6593XVR9UoGCH8jSFGci7jGvMGH5RYd5PBJW+00NZQt6gf7CbagJCrhg==}
+  postcss@8.5.6:
+    resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -3815,14 +3815,14 @@ snapshots:
 
   async-function@1.0.0: {}
 
-  autoprefixer@10.4.21(postcss@8.5.5):
+  autoprefixer@10.4.21(postcss@8.5.6):
     dependencies:
       browserslist: 4.24.4
       caniuse-lite: 1.0.30001707
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.5.5
+      postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -4923,16 +4923,16 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-load-config@6.0.1(postcss@8.5.5)(yaml@2.8.0):
+  postcss-load-config@6.0.1(postcss@8.5.6)(yaml@2.8.0):
     dependencies:
       lilconfig: 3.1.3
     optionalDependencies:
-      postcss: 8.5.5
+      postcss: 8.5.6
       yaml: 2.8.0
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.5.5:
+  postcss@8.5.6:
     dependencies:
       nanoid: 3.3.11
       picocolors: 1.1.1
@@ -5336,7 +5336,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.0(postcss@8.5.5)(typescript@5.8.2)(yaml@2.8.0):
+  tsup@8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.25.5)
       cac: 6.7.14
@@ -5347,7 +5347,7 @@ snapshots:
       fix-dts-default-cjs-exports: 1.0.1
       joycon: 3.1.1
       picocolors: 1.1.1
-      postcss-load-config: 6.0.1(postcss@8.5.5)(yaml@2.8.0)
+      postcss-load-config: 6.0.1(postcss@8.5.6)(yaml@2.8.0)
       resolve-from: 5.0.0
       rollup: 4.41.1
       source-map: 0.8.0-beta.0
@@ -5356,7 +5356,7 @@ snapshots:
       tinyglobby: 0.2.14
       tree-kill: 1.2.2
     optionalDependencies:
-      postcss: 8.5.5
+      postcss: 8.5.6
       typescript: 5.8.2
     transitivePeerDependencies:
       - jiti
@@ -5485,7 +5485,7 @@ snapshots:
       esbuild: 0.25.5
       fdir: 6.4.5(picomatch@4.0.2)
       picomatch: 4.0.2
-      postcss: 8.5.5
+      postcss: 8.5.6
       rollup: 4.42.0
       tinyglobby: 0.2.14
     optionalDependencies:
