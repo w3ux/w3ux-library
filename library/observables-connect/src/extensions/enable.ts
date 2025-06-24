@@ -6,7 +6,6 @@ import type {
   ExtensionEnableResults,
   ExtensionInterface,
 } from '@w3ux/types'
-import { withTimeoutThrow } from '@w3ux/utils'
 
 // Get extensions and enable them
 export const enableExtensions = async (ids: string[], dappName: string) => {
@@ -34,12 +33,8 @@ const doEnable = async (
   dappName: string
 ): Promise<PromiseSettledResult<ExtensionInterface>[]> =>
   await Promise.allSettled(
-    Array.from(extensionIds).map(
-      (id) =>
-        withTimeoutThrow(
-          1000,
-          window.injectedWeb3![id].enable(dappName)
-        ) as Promise<ExtensionInterface>
+    Array.from(extensionIds).map((id) =>
+      window.injectedWeb3![id].enable(dappName)
     )
   )
 
