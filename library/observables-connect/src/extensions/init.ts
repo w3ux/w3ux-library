@@ -35,9 +35,10 @@ export const initExtensions = async (
     newStatus[id] = 'connected'
   })
   Array.from(withError.entries()).forEach(([id, { error }]) => {
-    if (error?.startsWith('Error')) {
+    const errStr = String(error || '')
+    if (errStr.startsWith('Error')) {
       // Extension not found - remove from state
-      if (error.substring(0, 17) === 'NotInstalledError') {
+      if (errStr.substring(0, 17) === 'NotInstalledError') {
         delete newStatus[id]
       } else {
         // Assume extension not authenticated

@@ -1,5 +1,5 @@
 {
-  "library/react-connect-kit": "3.5.4",
+  "library/react-connect-kit": "3.6.6",
   "library/react-polkicon": "3.2.2",
   "library/utils": "2.1.0",
   "library/hooks": "2.2.2",
@@ -7,7 +7,7 @@
   "library/crypto": "1.1.0",
   "library/extension-assets": "2.2.5",
   "library/types": "2.3.0",
-  "library/observables-connect": "0.9.44",
+  "library/observables-connect": "0.10.3",
   "library/react-odometer": "2.1.0",
   "library/validator-assets": "1.1.1"
 }

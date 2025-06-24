@@ -1,7 +1,11 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { ExtensionAccount, ExtensionEnableResults } from '@w3ux/types'
+import type {
+  ExtensionAccount,
+  ExtensionEnableResults,
+  ExtensionInterface,
+} from '@w3ux/types'
 import { formatExtensionAccounts } from './util'
 
 // Connects to provided extensions and gets all accounts
@@ -10,18 +14,24 @@ export const getAccountsFromExtensions = async (
   ss58: number
 ): Promise<ExtensionAccount[]> => {
   try {
-    const results = await Promise.allSettled(
-      Array.from(extensions.values()).map(({ extension }) =>
-        extension!.accounts.get()
+    const extensionEntries = Array.from(extensions.entries())
+      .filter(([, { extension }]) => extension !== null)
+      .map(
+        ([source, { extension }]) =>
+          [source, extension] as [string, ExtensionInterface]
       )
+
+    const activeExtensions = extensionEntries.map(([, extension]) => extension)
+
+    const results = await Promise.allSettled(
+      activeExtensions.map((extension) => extension.accounts.get())
     )
 
     const allAccounts: ExtensionAccount[] = []
-    const extensionEntries = Array.from(extensions.entries())
     for (let i = 0; i < results.length; i++) {
       const result = results[i]
       const source = extensionEntries[i][0]
-      const signer = extensionEntries[i][1].extension!.signer
+      const signer = extensionEntries[i][1].signer
 
       if (result.status === 'fulfilled' && signer) {
         const { value } = result
