@@ -104,7 +104,7 @@ export const ValidatorCommunity: ValidatorEntry[] = [
   {
     name: 'ChainSafe Systems',
     icon: 'Chainsafe',
-    bio: 'ChainSafe Systems is a leading blockchain research and development firm specializing in infrastructure development. Our validator nodes run on high-performance dedicated hardware with 24/7 monitoring, focusing on reliability, security, and network decentralization. As core developers of multiple blockchain protocols, we bring deep technical expertise to our validation services.',
+    bio: 'ChainSafe Systems is a leading blockchain research and development firm specializing in infrastructure development. Our validator nodes run on high-performance dedicated hardware with 24/7 monitoring, focusing on reliability, security, and network decentralization.',
     email: 'staking@chainsafe.io',
     x: '@ChainSafeth',
     website: 'https://chainsafe.io/',
