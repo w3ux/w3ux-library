@@ -61,4 +61,4 @@ const Chainsafe = () => (
     </g>
   </svg>
 );
-export default Chainsafe;
+export default Chainsafe
