@@ -250,12 +250,25 @@ export const appendOr = (
  */
 export const formatAccountSs58 = (
   address: string,
-  ss58Prefix: number
+  ss58: number
 ): string | null => {
   try {
-    return encodeAddress(address, ss58Prefix)
+    return encodeAddress(address, ss58)
   } catch (e) {
     return null
+  }
+}
+
+/**
+ * @name tryFormatSs58
+ * @summary Formats an address with the supplied ss58 prefix, or returns the original address if
+ * invalid.
+ */
+export const tryFormatSs58 = (address: string, ss58: number): string => {
+  try {
+    return encodeAddress(address, ss58)
+  } catch (e) {
+    return address
   }
 }
 
