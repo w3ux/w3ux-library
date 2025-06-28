@@ -10,5 +10,5 @@ export default defineConfig({
   clean: true,
   dts: true,
   format: ['esm', 'cjs'],
-  external: ['rxjs']
+  external: ['rxjs'],
 })

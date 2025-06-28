@@ -6,7 +6,7 @@
       "require": "./index.cjs"
     }
   },
-   "peerDependencies": {
+  "peerDependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   }
