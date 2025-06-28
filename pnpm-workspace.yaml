@@ -1,6 +1,7 @@
 packages:
   - builder
   - library/*
+  - sandbox
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - es5-ext

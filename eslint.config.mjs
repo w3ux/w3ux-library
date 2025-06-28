@@ -34,6 +34,7 @@ export default [
       '**/CHANGELOG.md',
       '**/.licenserc.json',
       '**/tsup.config.ts',
+      'sandbox/**',
     ],
   },
   pluginJs.configs.recommended,

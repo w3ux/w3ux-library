@@ -10,6 +10,5 @@ export default defineConfig({
   clean: true,
   dts: true,
   format: ['esm', 'cjs'],
-  external: ['react', 'react-dom']
+  external: ['react', 'react-dom'],
 })
-

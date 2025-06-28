@@ -1,7 +1,7 @@
 {
   "bundler": "tsup",
   "exports": {
-     ".": {
+    ".": {
       "import": "./index.js",
       "require": "./index.cjs"
     },
@@ -9,12 +9,12 @@
       "import": "./extensions/index.js",
       "require": "./extensions/index.cjs"
     },
-     "./accounts": {
+    "./accounts": {
       "import": "./accounts/index.js",
       "require": "./accounts/index.cjs"
     }
   },
-   "peerDependencies": {
+  "peerDependencies": {
     "rxjs": "^7.8.2"
   }
 }
