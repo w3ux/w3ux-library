@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Path mappings for w3ux library source files */
+    "baseUrl": ".",
+    "paths": {
+      "@w3ux/crypto": ["../library/crypto/src"],
+      "@w3ux/extension-assets": ["../library/extension-assets/src"],
+      "@w3ux/factories": ["../library/factories/src"],
+      "@w3ux/hooks": ["../library/hooks/src"],
+      "@w3ux/observables-connect": ["../library/observables-connect/src"],
+      "@w3ux/react-connect-kit": ["../library/react-connect-kit/src"],
+      "@w3ux/react-odometer": ["../library/react-odometer/src"],
+      "@w3ux/react-polkicon": ["../library/react-polkicon/src"],
+      "@w3ux/types": ["../library/types/src"],
+      "@w3ux/utils": ["../library/utils/src"],
+      "@w3ux/validator-assets": ["../library/validator-assets/src"]
+    },
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+}
