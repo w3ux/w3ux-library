@@ -28,7 +28,7 @@
     "compile": "builder -t utils"
   },
   "dependencies": {
-    "dedot": "^0.13.1"
+    "dedot": "^0.14.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.12",
