@@ -879,6 +879,7 @@ export const ValidatorCommunity: ValidatorEntry[] = [
     icon: 'Saxemberg',
     bio: 'We offer validation and collation services to our nominators on Polkadot ecosystem. Active on-chain governance participants.',
     email: 'hello@saxemberg.com',
+    x: '@saxemberg',
     website: 'https://saxemberg.com',
     validators: {
       polkadot: [
@@ -891,8 +892,6 @@ export const ValidatorCommunity: ValidatorEntry[] = [
         'Cu2z7dVVdzFyDVTjUPm7feV9RFQ8QiG3yLGsVEj5NohFXk7',
         'Dfg9gbTwG6aghwLYTfYoV4dXyhCRBLbRyFwENADHmg4zfDF',
         'GL7MYnpQr7jgJqK8wSRUQuob1TvTY7uRJP6LUNeUyvMUhQR',
-        'GAGaWf9wiFGidsQdcLfHRrndVsfTRx9SKfMNJFekk7ue2zL',
-        'EAZLkHboA6P5ZnKASbKB2EdnSzRFHr2FrbxRRtyWyrHhVQ3',
       ],
     },
   },
