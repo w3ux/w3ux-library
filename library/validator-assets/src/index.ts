@@ -766,6 +766,29 @@ export const ValidatorCommunity: ValidatorEntry[] = [
     },
   },
   {
+    name: 'ValidOrange',
+    icon: 'ValidOrange',
+    bio: 'We are a US-based validator operator with nodes worldwide. With extensive experience in providing reliable infrastructure services, we continually monitor our servers and improve our processes to ensure stable, consistent service.',
+    email: 'info@validorange.net',
+    x: '@ValidOrangeDOT',
+    website: 'https://www.validorange.net',
+    validators: {
+      polkadot: [
+        '13rG5oK2qskxP27mjUEyn1YbrmzpCV6fbBVcnBUd8Y7sQX6Z',
+        '12WRpiUFDZ1GjksnpmBL3EzT2jz2TZ7QHhUTqoubhYPQ7PAZ'
+      ],
+      kusama: [
+        'J47U9wGuwzccFPoz8bnMTKJt7WGpPp8ZNgvtXFDL9PHwpCt',
+        'DiSdjgV1fEu2i5wzxerBuuAWpypUQjAbt8WgLYWMZT4PGHj',
+        'EV6LtNrgjcPRYEoCnjbpVjzgLmkc77sttwoQycHsDFzBBnN',
+        'D35frFH9mo7dV6vKroMEXi3Xpi8B6bwPzsQ6uqfGFJfrcru',
+        'GszzgW1Z5nszEzWnDWtHSQrNPPZaf3L8o2HHayciCDohX46',
+        'Fd4YQQPy6w6F6pf5phhkUWq27qCDy3QscFsoC8zARLyBYca',
+        'F5gM8QxL5gNTLF8r7hEdz2jwZKaQmbXNtVcFC9ZJPtg98ot'
+      ],
+    },
+  },
+  {
     name: 'WOJDOT ʕ •ᴥ•ʔ',
     icon: 'Wojdot',
     bio: 'Independent Polkadot Validator. We run our service on bare metal machines via a cloud service with the ability to spin up validator nodes in different regions within a matter of minutes.',
