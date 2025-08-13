@@ -4,8 +4,8 @@ SPDX-License-Identifier: GPL-3.0-only */
 import type { ProcessExtensionAccountsResult } from '@w3ux/types'
 
 export const DefaultProcessExtensionResult: ProcessExtensionAccountsResult = {
-  newAccounts: [],
-  removedAccounts: [],
+	newAccounts: [],
+	removedAccounts: [],
 }
 
 // Local storage active extensions key

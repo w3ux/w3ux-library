@@ -1,74 +1,44 @@
 {
-  "name": "w3ux-library-source",
-  "version": "1.0.0",
-  "license": "GPL-3.0-only",
-  "description": "w3ux library source code",
-  "homepage": "https://github.com/w3ux/w3ux-library",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/w3ux/w3ux-library.git"
-  },
-  "keywords": [
-    "w3ux"
-  ],
-  "scripts": {
-    "build:directory": "builder -t directory",
-    "build:readmes": "builder -t package-readmes",
-    "clear": "pnpm -r --if-present clear && rm -rf node_modules coverage",
-    "lint": "eslint './**' --fix && npx prettier --write .",
-    "build": "pnpm -r --if-present run build",
-    "compile": "pnpm -r --if-present run compile"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.23.0",
-    "@typescript-eslint/eslint-plugin": "^8.29.1",
-    "@typescript-eslint/parser": "^8.29.1",
-    "autoprefixer": "^10.4.21",
-    "builder": "workspace:*",
-    "eslint": "^9.23.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-import-resolver-typescript": "^4.3.1",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-prefer-arrow": "^1.2.3",
-    "eslint-plugin-prefer-arrow-functions": "^3.6.2",
-    "eslint-plugin-prettier": "^5.2.5",
-    "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-unused-imports": "^4.1.4",
-    "globals": "^16.0.0",
-    "minimist": "^1.2.8",
-    "postcss": "^8.5.3",
-    "prettier": "^3.5.3",
-    "prettier-plugin-organize-imports": "^4.1.0",
-    "tsc": "^2.0.4",
-    "tslib": "^2.8.1",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.29.0",
-    "yaml": "^2.8.0"
-  },
-  "prettier": {
-    "arrowParens": "always",
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true,
-    "endOfLine": "auto",
-    "plugins": [
-      "prettier-plugin-organize-imports"
-    ]
-  },
-  "pnpm": {
-    "overrides": {
-      "eslint-plugin-prefer-arrow-functions>eslint": "8.57.1",
-      "@typescript-eslint/utils>typescript": "5.8.2",
-      "@typescript-eslint/typescript-estree>typescript": "5.8.2"
-    },
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "es5-ext",
-      "esbuild",
-      "unrs-resolver"
-    ]
-  },
-  "packageManager": "pnpm@10.7.0"
+	"name": "w3ux-library-source",
+	"version": "1.0.0",
+	"license": "GPL-3.0-only",
+	"description": "w3ux library source code",
+	"homepage": "https://github.com/w3ux/w3ux-library",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/w3ux/w3ux-library.git"
+	},
+	"keywords": [
+		"w3ux"
+	],
+	"scripts": {
+		"build:directory": "builder -t directory",
+		"build:readmes": "builder -t package-readmes",
+		"clear": "pnpm -r --if-present clear && rm -rf node_modules coverage",
+		"check": "pnpm -r --if-present run check",
+		"lint": "pnpm -r --if-present run lint",
+		"build": "pnpm -r --if-present run build",
+		"compile": "pnpm -r --if-present run compile"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.1.4",
+		"autoprefixer": "^10.4.21",
+		"builder": "workspace:*",
+		"globals": "^16.0.0",
+		"minimist": "^1.2.8",
+		"postcss": "^8.5.3",
+		"tsc": "^2.0.4",
+		"tslib": "^2.8.1",
+		"typescript": "^5.8.2",
+		"yaml": "^2.8.0"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"@parcel/watcher",
+			"es5-ext",
+			"esbuild",
+			"unrs-resolver"
+		]
+	},
+	"packageManager": "pnpm@10.7.0"
 }

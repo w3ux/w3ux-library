@@ -6,13 +6,13 @@ import { ExtensionsConnectProvider } from './Connect'
 import type { ExtensionsProviderProps } from './types'
 
 export const ExtensionsProvider = ({
-  ss58,
-  dappName,
-  children,
+	ss58,
+	dappName,
+	children,
 }: ExtensionsProviderProps) => (
-  <ExtensionsConnectProvider>
-    <ExtensionAccountsProvider ss58={ss58} dappName={dappName}>
-      {children}
-    </ExtensionAccountsProvider>
-  </ExtensionsConnectProvider>
+	<ExtensionsConnectProvider>
+		<ExtensionAccountsProvider ss58={ss58} dappName={dappName}>
+			{children}
+		</ExtensionAccountsProvider>
+	</ExtensionsConnectProvider>
 )

@@ -1,9 +1,9 @@
 {
-  "bundler": "tsup",
-  "exports": {
-    ".": {
-      "import": "./index.js",
-      "require": "./index.cjs"
-    }
-  }
+	"bundler": "tsup",
+	"exports": {
+		".": {
+			"import": "./index.js",
+			"require": "./index.cjs"
+		}
+	}
 }

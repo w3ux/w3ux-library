@@ -1,7 +1,7 @@
 {
-  "id": "polkagate",
-  "title": "PolkaGate",
-  "website": "polkagate.xyz",
-  "category": "web-extension",
-  "features": "*"
+	"id": "polkagate",
+	"title": "PolkaGate",
+	"website": "polkagate.xyz",
+	"category": "web-extension",
+	"features": "*"
 }

@@ -2,10 +2,10 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import type {
-  ExtensionAccount,
-  ExtensionsStatus,
-  HardwareAccount,
-  Sync,
+	ExtensionAccount,
+	ExtensionsStatus,
+	HardwareAccount,
+	Sync,
 } from '@w3ux/types'
 import { BehaviorSubject } from 'rxjs'
 import { getHardwareAccountsLocal } from './local'
@@ -18,5 +18,5 @@ export const _initialisedExtensions = new BehaviorSubject<string[]>([])
 export const _reconnectSync = new BehaviorSubject<Sync>('unsynced')
 export const _extensionAccounts = new BehaviorSubject<ExtensionAccount[]>([])
 export const _hardwareAccounts = new BehaviorSubject<HardwareAccount[]>(
-  getHardwareAccountsLocal()
+	getHardwareAccountsLocal(),
 )

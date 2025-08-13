@@ -1,14 +1,14 @@
 {
-  "bundler": "tsup",
-  "exports": {
-    ".": {
-      "import": "./index.js",
-      "require": "./index.cjs"
-    }
-  },
-  "peerDependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "rxjs": "^7.8.2"
-  }
+	"bundler": "tsup",
+	"exports": {
+		".": {
+			"import": "./index.js",
+			"require": "./index.cjs"
+		}
+	},
+	"peerDependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"rxjs": "^7.8.2"
+	}
 }

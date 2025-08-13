@@ -2,12 +2,12 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import {
-  _extensionAccounts,
-  _extensionsStatus,
-  _gettingExtensions,
-  _hardwareAccounts,
-  _initialisedExtensions,
-  _reconnectSync,
+	_extensionAccounts,
+	_extensionsStatus,
+	_gettingExtensions,
+	_hardwareAccounts,
+	_initialisedExtensions,
+	_reconnectSync,
 } from './subjects'
 
 // Discovered extensions along with their status

@@ -1,13 +1,13 @@
 {
-  "id": "ledger",
-  "title": "Ledger",
-  "website": "ledger.com",
-  "category": "hardware",
-  "features": [],
-  "additionalAssets": [
-    {
-      "input": "icon-square.svg",
-      "outputFilename": "LedgerSquare"
-    }
-  ]
+	"id": "ledger",
+	"title": "Ledger",
+	"website": "ledger.com",
+	"category": "hardware",
+	"features": [],
+	"additionalAssets": [
+		{
+			"input": "icon-square.svg",
+			"outputFilename": "LedgerSquare"
+		}
+	]
 }

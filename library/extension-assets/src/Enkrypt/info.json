@@ -1,8 +1,8 @@
 {
-  "id": "enkrypt",
-  "title": "Enkrypt",
-  "website": "enkrypt.com",
-  "category": "web-extension",
-  "features": "*",
-  "otherEcosystems": ["ethereum"]
+	"id": "enkrypt",
+	"title": "Enkrypt",
+	"website": "enkrypt.com",
+	"category": "web-extension",
+	"features": "*",
+	"otherEcosystems": ["ethereum"]
 }

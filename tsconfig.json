@@ -1,18 +1,12 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "rootDir": ".",
-    "noEmitOnError": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-  },
-  "include": [
-    "library/**/*", "builder/**/*", "./eslint.config.mjs"
-  ],
-  "exclude": [
-    "**/*/node_modules",
-    "**/*/dist",
-    "vite.config.js",
-  ],
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"rootDir": ".",
+		"noEmitOnError": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true
+	},
+	"include": ["library/**/*", "builder/**/*"],
+	"exclude": ["**/*/node_modules", "**/*/dist", "vite.config.js"]
 }
