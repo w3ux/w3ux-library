@@ -1,7 +1,7 @@
 {
-  "id": "subwallet-js",
-  "title": "SubWallet",
-  "website": "subwallet.app",
-  "category": "web-extension",
-  "features": "*"
+	"id": "subwallet-js",
+	"title": "SubWallet",
+	"website": "subwallet.app",
+	"category": "web-extension",
+	"features": "*"
 }

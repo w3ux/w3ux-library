@@ -1,35 +1,37 @@
 {
-  "name": "@w3ux/types-source",
-  "description": "Common types used throughout the w3ux library",
-  "version": "2.4.1",
-  "license": "GPL-3.0-only",
-  "type": "module",
-  "keywords": [
-    "w3ux",
-    "polkadot",
-    "web3",
-    "typescript",
-    "types",
-    "definitions"
-  ],
-  "homepage": "https://w3ux.org/library/types",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/w3ux/w3ux-library.git",
-    "directory": "library/types"
-  },
-  "bugs": {
-    "url": "https://github.com/w3ux/w3ux-library/issues"
-  },
-  "scripts": {
-    "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup",
-    "compile": "builder -t types"
-  },
-  "devDependencies": {
-    "@types/react": "^19.0.12",
-    "builder": "workspace:*",
-    "react": "^19.1.0",
-    "tsup": "^8.4.0"
-  }
+	"name": "@w3ux/types-source",
+	"description": "Common types used throughout the w3ux library",
+	"version": "2.4.1",
+	"license": "GPL-3.0-only",
+	"type": "module",
+	"keywords": [
+		"w3ux",
+		"polkadot",
+		"web3",
+		"typescript",
+		"types",
+		"definitions"
+	],
+	"homepage": "https://w3ux.org/library/types",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/w3ux/w3ux-library.git",
+		"directory": "library/types"
+	},
+	"bugs": {
+		"url": "https://github.com/w3ux/w3ux-library/issues"
+	},
+	"scripts": {
+		"clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
+		"check": "biome check .",
+		"lint": "biome check --write .",
+		"build": "tsup",
+		"compile": "builder -t types"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.12",
+		"builder": "workspace:*",
+		"react": "^19.1.0",
+		"tsup": "^8.4.0"
+	}
 }

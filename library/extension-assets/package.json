@@ -1,41 +1,43 @@
 {
-  "name": "@w3ux/extension-assets-source",
-  "description": "A list of popular Web3 wallet extensions with metadata and icons",
-  "version": "2.2.5",
-  "license": "GPL-3.0-only",
-  "type": "module",
-  "keywords": [
-    "w3ux",
-    "polkadot",
-    "web3",
-    "extensions",
-    "wallets",
-    "assets",
-    "icons",
-    "react",
-    "typescript"
-  ],
-  "homepage": "https://w3ux.org/library/extension-assets",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/w3ux/w3ux-library.git",
-    "directory": "library/extension-assets"
-  },
-  "bugs": {
-    "url": "https://github.com/w3ux/w3ux-library/issues"
-  },
-  "scripts": {
-    "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "pnpm compile",
-    "compile": "builder -t extension-assets"
-  },
-  "peerDependencies": {
-    "react": "^19.1.0"
-  },
-  "devDependencies": {
-    "@types/react": "^19.0.12",
-    "builder": "workspace:*",
-    "react": "^19.1.0",
-    "tsup": "^8.4.0"
-  }
+	"name": "@w3ux/extension-assets-source",
+	"description": "A list of popular Web3 wallet extensions with metadata and icons",
+	"version": "2.2.5",
+	"license": "GPL-3.0-only",
+	"type": "module",
+	"keywords": [
+		"w3ux",
+		"polkadot",
+		"web3",
+		"extensions",
+		"wallets",
+		"assets",
+		"icons",
+		"react",
+		"typescript"
+	],
+	"homepage": "https://w3ux.org/library/extension-assets",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/w3ux/w3ux-library.git",
+		"directory": "library/extension-assets"
+	},
+	"bugs": {
+		"url": "https://github.com/w3ux/w3ux-library/issues"
+	},
+	"scripts": {
+		"clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
+		"check": "biome check .",
+		"lint": "biome check --write .",
+		"build": "pnpm compile",
+		"compile": "builder -t extension-assets"
+	},
+	"peerDependencies": {
+		"react": "^19.1.0"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.12",
+		"builder": "workspace:*",
+		"react": "^19.1.0",
+		"tsup": "^8.4.0"
+	}
 }

@@ -1,17 +1,17 @@
 {
-  "bundler": "tsup",
-  "exports": {
-    ".": {
-      "import": "./index.js",
-      "require": "./index.cjs"
-    },
-    "./index.css": {
-      "import": "./index.css",
-      "require": "./index.css"
-    }
-  },
-  "peerDependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-  }
+	"bundler": "tsup",
+	"exports": {
+		".": {
+			"import": "./index.js",
+			"require": "./index.cjs"
+		},
+		"./index.css": {
+			"import": "./index.css",
+			"require": "./index.css"
+		}
+	},
+	"peerDependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	}
 }

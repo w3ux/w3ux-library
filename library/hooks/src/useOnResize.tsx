@@ -5,8 +5,8 @@ import type { RefObject } from 'react'
 import { useEffect, useRef } from 'react'
 
 interface UseOnResizeOptions {
-  outerElement?: RefObject<HTMLElement | null>
-  throttle?: number
+	outerElement?: RefObject<HTMLElement | null>
+	throttle?: number
 }
 
 /**
@@ -20,35 +20,35 @@ interface UseOnResizeOptions {
  *               Default is 100 milliseconds.
  */
 export const useOnResize = (
-  callback: () => void,
-  options: UseOnResizeOptions = {}
+	callback: () => void,
+	options: UseOnResizeOptions = {},
 ) => {
-  const { outerElement, throttle: throttleDuration = 100 } = options
-  const lastExecutedRef = useRef<number>(0)
+	const { outerElement, throttle: throttleDuration = 100 } = options
+	const lastExecutedRef = useRef<number>(0)
 
-  // Throttled resize handler to limit the frequency of callback execution.
-  const handleResize = () => {
-    const now = Date.now()
+	// Throttled resize handler to limit the frequency of callback execution.
+	const handleResize = () => {
+		const now = Date.now()
 
-    // Check if the callback can be executed based on the throttle duration.
-    if (now - lastExecutedRef.current < throttleDuration) {
-      return
-    }
+		// Check if the callback can be executed based on the throttle duration.
+		if (now - lastExecutedRef.current < throttleDuration) {
+			return
+		}
 
-    lastExecutedRef.current = now
-    callback()
-  }
+		lastExecutedRef.current = now
+		callback()
+	}
 
-  useEffect(() => {
-    // Determine the target for the resize event listener.
-    const target = outerElement?.current || window
+	useEffect(() => {
+		// Determine the target for the resize event listener.
+		const target = outerElement?.current || window
 
-    // Add the resize event listener when the component mounts.
-    target.addEventListener('resize', handleResize)
+		// Add the resize event listener when the component mounts.
+		target.addEventListener('resize', handleResize)
 
-    // Clean up the event listener when the component unmounts.
-    return () => {
-      target.removeEventListener('resize', handleResize)
-    }
-  }, [throttleDuration, callback])
+		// Clean up the event listener when the component unmounts.
+		return () => {
+			target.removeEventListener('resize', handleResize)
+		}
+	}, [throttleDuration, callback])
 }

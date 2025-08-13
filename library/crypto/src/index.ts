@@ -11,17 +11,17 @@ import { blake2b } from 'blakejs'
  * @returns The BLAKE2b hash output as a Uint8Array.
  */
 export const blake2AsU8a = (
-  data: Uint8Array | string | Buffer,
-  bitLength = 256
+	data: Uint8Array | string | Buffer,
+	bitLength = 256,
 ): Uint8Array => {
-  // Convert input to Uint8Array if it's a string
-  const input = typeof data === 'string' ? new TextEncoder().encode(data) : data
+	// Convert input to Uint8Array if it's a string
+	const input = typeof data === 'string' ? new TextEncoder().encode(data) : data
 
-  // Calculate byte length from bit length (256 bits => 32 bytes)
-  const byteLength = bitLength / 8
+	// Calculate byte length from bit length (256 bits => 32 bytes)
+	const byteLength = bitLength / 8
 
-  // Generate the hash using blake2b with the specified output length
-  const hash = blake2b(input, undefined, byteLength)
+	// Generate the hash using blake2b with the specified output length
+	const hash = blake2b(input, undefined, byteLength)
 
-  return new Uint8Array(hash)
+	return new Uint8Array(hash)
 }

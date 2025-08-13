@@ -6,12 +6,12 @@ export const unsubs: Record<string, () => void> = {}
 
 // Add an extension id to unsub state
 export const addUnsub = (id: string, unsub: () => void) => {
-  unsubs[id] = unsub
+	unsubs[id] = unsub
 }
 
 // Unsubscribe to all unsubs
 export const unsubAll = () => {
-  Object.values(unsubs).forEach((unsub) => {
-    unsub()
-  })
+	Object.values(unsubs).forEach((unsub) => {
+		unsub()
+	})
 }

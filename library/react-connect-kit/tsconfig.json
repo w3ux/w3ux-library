@@ -1,10 +1,10 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "moduleResolution": "bundler",
-    "baseUrl": "src",
-    "rootDir": ".",
-    "outDir": "dist"
-  },
-  "include": ["src/**/*"],
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"moduleResolution": "bundler",
+		"baseUrl": "src",
+		"rootDir": ".",
+		"outDir": "dist"
+	},
+	"include": ["src/**/*"]
 }

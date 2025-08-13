@@ -1,7 +1,7 @@
 {
-  "id": "nova-wallet",
-  "title": "Nova Wallet",
-  "website": "novawallet.io",
-  "category": "mobile",
-  "features": "*"
+	"id": "nova-wallet",
+	"title": "Nova Wallet",
+	"website": "novawallet.io",
+	"category": "mobile",
+	"features": "*"
 }

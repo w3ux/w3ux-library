@@ -1,39 +1,41 @@
 {
-  "name": "@w3ux/react-odometer-source",
-  "description": "An odometer effect used for number and balance transitions",
-  "version": "2.2.6",
-  "license": "GPL-3.0-only",
-  "type": "module",
-  "keywords": [
-    "w3ux",
-    "polkadot",
-    "web3",
-    "react",
-    "odometer",
-    "animation",
-    "transitions",
-    "typescript"
-  ],
-  "homepage": "https://w3ux.org/library/react-odometer",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/w3ux/w3ux-library.git",
-    "directory": "library/react-odometer"
-  },
-  "bugs": {
-    "url": "https://github.com/w3ux/w3ux-library/issues"
-  },
-  "scripts": {
-    "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup",
-    "sass": "sass src/index.css dist/index.css",
-    "compile": "builder -t react-odometer && pnpm run sass"
-  },
-  "devDependencies": {
-    "@types/react": "^19.0.12",
-    "builder": "workspace:*",
-    "react": "^19.1.0",
-    "sass": "^1.89.2",
-    "tsup": "^8.4.0"
-  }
+	"name": "@w3ux/react-odometer-source",
+	"description": "An odometer effect used for number and balance transitions",
+	"version": "2.2.6",
+	"license": "GPL-3.0-only",
+	"type": "module",
+	"keywords": [
+		"w3ux",
+		"polkadot",
+		"web3",
+		"react",
+		"odometer",
+		"animation",
+		"transitions",
+		"typescript"
+	],
+	"homepage": "https://w3ux.org/library/react-odometer",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/w3ux/w3ux-library.git",
+		"directory": "library/react-odometer"
+	},
+	"bugs": {
+		"url": "https://github.com/w3ux/w3ux-library/issues"
+	},
+	"scripts": {
+		"clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
+		"build": "tsup",
+		"check": "biome check .",
+		"lint": "biome check --write .",
+		"sass": "sass src/index.css dist/index.css",
+		"compile": "builder -t react-odometer && pnpm run sass"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.12",
+		"builder": "workspace:*",
+		"react": "^19.1.0",
+		"sass": "^1.89.2",
+		"tsup": "^8.4.0"
+	}
 }

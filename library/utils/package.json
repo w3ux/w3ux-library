@@ -1,40 +1,42 @@
 {
-  "name": "@w3ux/utils-source",
-  "description": "A collection of reusable utilities for manipulating data",
-  "version": "2.2.3",
-  "license": "GPL-3.0-only",
-  "type": "module",
-  "keywords": [
-    "w3ux",
-    "polkadot",
-    "web3",
-    "utilities",
-    "typescript",
-    "data-manipulation"
-  ],
-  "homepage": "https://w3ux.org/library/utils",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/w3ux/w3ux-library.git",
-    "directory": "library/utils"
-  },
-  "bugs": {
-    "url": "https://github.com/w3ux/w3ux-library/issues"
-  },
-  "scripts": {
-    "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "test": "vitest run",
-    "build": "tsup",
-    "compile": "builder -t utils"
-  },
-  "dependencies": {
-    "dedot": "^0.14.0"
-  },
-  "devDependencies": {
-    "@types/react": "^19.0.12",
-    "builder": "workspace:*",
-    "react": "^19.1.0",
-    "tsup": "^8.4.0",
-    "vitest": "^3.1.1"
-  }
+	"name": "@w3ux/utils-source",
+	"description": "A collection of reusable utilities for manipulating data",
+	"version": "2.2.3",
+	"license": "GPL-3.0-only",
+	"type": "module",
+	"keywords": [
+		"w3ux",
+		"polkadot",
+		"web3",
+		"utilities",
+		"typescript",
+		"data-manipulation"
+	],
+	"homepage": "https://w3ux.org/library/utils",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/w3ux/w3ux-library.git",
+		"directory": "library/utils"
+	},
+	"bugs": {
+		"url": "https://github.com/w3ux/w3ux-library/issues"
+	},
+	"scripts": {
+		"clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
+		"check": "biome check .",
+		"lint": "biome check --write .",
+		"test": "vitest run",
+		"build": "tsup",
+		"compile": "builder -t utils"
+	},
+	"dependencies": {
+		"dedot": "^0.14.0"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.12",
+		"builder": "workspace:*",
+		"react": "^19.1.0",
+		"tsup": "^8.4.0",
+		"vitest": "^3.1.1"
+	}
 }

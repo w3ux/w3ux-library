@@ -1,37 +1,39 @@
 {
-  "name": "@w3ux/crypto-source",
-  "description": "Cryptographic utilities for Dapps",
-  "version": "1.2.1",
-  "license": "GPL-3.0-only",
-  "type": "module",
-  "keywords": [
-    "w3ux",
-    "polkadot",
-    "web3",
-    "crypto",
-    "cryptography",
-    "typescript"
-  ],
-  "homepage": "https://w3ux.org/library/crypto",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/w3ux/w3ux-library.git",
-    "directory": "library/crypto"
-  },
-  "bugs": {
-    "url": "https://github.com/w3ux/w3ux-library/issues"
-  },
-  "scripts": {
-    "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
-    "build": "tsup",
-    "compile": "builder -t crypto"
-  },
-  "dependencies": {
-    "blakejs": "^1.2.1"
-  },
-  "devDependencies": {
-    "@types/node": "^22.15.29",
-    "builder": "workspace:*",
-    "tsup": "^8.4.0"
-  }
+	"name": "@w3ux/crypto-source",
+	"description": "Cryptographic utilities for Dapps",
+	"version": "1.2.1",
+	"license": "GPL-3.0-only",
+	"type": "module",
+	"keywords": [
+		"w3ux",
+		"polkadot",
+		"web3",
+		"crypto",
+		"cryptography",
+		"typescript"
+	],
+	"homepage": "https://w3ux.org/library/crypto",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/w3ux/w3ux-library.git",
+		"directory": "library/crypto"
+	},
+	"bugs": {
+		"url": "https://github.com/w3ux/w3ux-library/issues"
+	},
+	"scripts": {
+		"clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
+		"check": "biome check .",
+		"lint": "biome check --write .",
+		"build": "tsup",
+		"compile": "builder -t crypto"
+	},
+	"dependencies": {
+		"blakejs": "^1.2.1"
+	},
+	"devDependencies": {
+		"@types/node": "^22.15.29",
+		"builder": "workspace:*",
+		"tsup": "^8.4.0"
+	}
 }

@@ -6,16 +6,16 @@ export type HardwareAccountSource = 'ledger' | 'vault' | 'wallet_connect'
 export type Account = ExtensionAccount | HardwareAccount
 
 export type ExtensionAccount = AccountCommon & {
-  signer?: unknown
+	signer?: unknown
 }
 
 export type HardwareAccount = AccountCommon & {
-  network: string
-  index: number
+	network: string
+	index: number
 }
 
 export interface AccountCommon {
-  address: string
-  name: string
-  source: string
+	address: string
+	name: string
+	source: string
 }
