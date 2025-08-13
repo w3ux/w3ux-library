@@ -420,7 +420,7 @@ export const makeCancelable = (promise: Promise<AnyObject>) => {
  * @summary A placeholder function to signal a deliberate unimplementation.
  * Consumes an arbitrary number of props.
  */
-export const unimplemented = () => {
+export const unimplemented = (_props?: unknown) => {
 	/* unimplemented */
 }
 
