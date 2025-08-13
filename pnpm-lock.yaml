@@ -37,7 +37,7 @@ importers:
         version: 5.8.2
       yaml:
         specifier: ^2.8.0
-        version: 2.8.0
+        version: 2.8.1
 
   builder:
     dependencies:
@@ -49,7 +49,7 @@ importers:
         version: 3.6.2
       yaml:
         specifier: ^2.8.0
-        version: 2.8.0
+        version: 2.8.1
     devDependencies:
       '@types/minimist':
         specifier: ^1.2.5
@@ -59,7 +59,7 @@ importers:
         version: 22.15.30
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
   library/crypto:
     dependencies:
@@ -75,7 +75,7 @@ importers:
         version: link:../../builder
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
   library/extension-assets:
     devDependencies:
@@ -90,7 +90,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
   library/factories:
     devDependencies:
@@ -108,7 +108,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
   library/hooks:
     dependencies:
@@ -133,7 +133,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
   library/observables-connect:
     dependencies:
@@ -155,7 +155,7 @@ importers:
         version: 7.8.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
   library/react-connect-kit:
     dependencies:
@@ -186,7 +186,7 @@ importers:
         version: 7.8.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
   library/react-odometer:
     devDependencies:
@@ -204,7 +204,7 @@ importers:
         version: 1.89.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
   library/react-polkicon:
     dependencies:
@@ -232,7 +232,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
   library/types:
     devDependencies:
@@ -247,7 +247,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
   library/utils:
     dependencies:
@@ -266,10 +266,10 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
       vitest:
         specifier: ^3.1.1
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0)
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.1)
 
   library/validator-assets:
     devDependencies:
@@ -284,7 +284,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
 
 packages:
 
@@ -1816,8 +1816,8 @@ packages:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
     engines: {node: '>=10'}
 
-  yaml@2.8.0:
-    resolution: {integrity: sha512-4lLa/EcQCB0cJkyts+FpIRx5G/llPxfP6VQU5KByHEhLxY3IJCH0f0Hy1MHI8sClTvsIb8qwRJ6R/ZdlDJ/leQ==}
+  yaml@2.8.1:
+    resolution: {integrity: sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==}
     engines: {node: '>= 14.6'}
     hasBin: true
 
@@ -2495,13 +2495,13 @@ snapshots:
       chai: 5.2.0
       tinyrainbow: 2.0.0
 
-  '@vitest/mocker@3.2.4(vite@7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0))':
+  '@vitest/mocker@3.2.4(vite@7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.1))':
     dependencies:
       '@vitest/spy': 3.2.4
       estree-walker: 3.0.3
       magic-string: 0.30.17
     optionalDependencies:
-      vite: 7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0)
+      vite: 7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.1)
 
   '@vitest/pretty-format@3.2.4':
     dependencies:
@@ -2960,12 +2960,12 @@ snapshots:
       mlly: 1.7.4
       pathe: 2.0.3
 
-  postcss-load-config@6.0.1(postcss@8.5.6)(yaml@2.8.0):
+  postcss-load-config@6.0.1(postcss@8.5.6)(yaml@2.8.1):
     dependencies:
       lilconfig: 3.1.3
     optionalDependencies:
       postcss: 8.5.6
-      yaml: 2.8.0
+      yaml: 2.8.1
 
   postcss-value-parser@4.2.0: {}
 
@@ -3167,7 +3167,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.0):
+  tsup@8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.25.5)
       cac: 6.7.14
@@ -3178,7 +3178,7 @@ snapshots:
       fix-dts-default-cjs-exports: 1.0.1
       joycon: 3.1.1
       picocolors: 1.1.1
-      postcss-load-config: 6.0.1(postcss@8.5.6)(yaml@2.8.0)
+      postcss-load-config: 6.0.1(postcss@8.5.6)(yaml@2.8.1)
       resolve-from: 5.0.0
       rollup: 4.41.1
       source-map: 0.8.0-beta.0
@@ -3210,13 +3210,13 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  vite-node@3.2.4(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0):
+  vite-node@3.2.4(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.1):
     dependencies:
       cac: 6.7.14
       debug: 4.4.1
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0)
+      vite: 7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.1)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -3231,7 +3231,7 @@ snapshots:
       - tsx
       - yaml
 
-  vite@7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0):
+  vite@7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.1):
     dependencies:
       esbuild: 0.25.5
       fdir: 6.4.6(picomatch@4.0.2)
@@ -3243,13 +3243,13 @@ snapshots:
       '@types/node': 22.15.30
       fsevents: 2.3.3
       sass: 1.89.2
-      yaml: 2.8.0
+      yaml: 2.8.1
 
-  vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0):
+  vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.1):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
-      '@vitest/mocker': 3.2.4(vite@7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0))
+      '@vitest/mocker': 3.2.4(vite@7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.1))
       '@vitest/pretty-format': 3.2.4
       '@vitest/runner': 3.2.4
       '@vitest/snapshot': 3.2.4
@@ -3267,8 +3267,8 @@ snapshots:
       tinyglobby: 0.2.14
       tinypool: 1.1.1
       tinyrainbow: 2.0.0
-      vite: 7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0)
-      vite-node: 3.2.4(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0)
+      vite: 7.0.0(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.1)
+      vite-node: 3.2.4(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/debug': 4.1.12
@@ -3322,7 +3322,7 @@ snapshots:
 
   y18n@5.0.8: {}
 
-  yaml@2.8.0: {}
+  yaml@2.8.1: {}
 
   yargs-parser@21.1.1: {}
 
