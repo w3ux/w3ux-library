@@ -34,7 +34,7 @@ importers:
         version: 2.8.1
       typescript:
         specifier: ^5.8.2
-        version: 5.8.2
+        version: 5.9.2
       yaml:
         specifier: ^2.8.0
         version: 2.8.1
@@ -59,7 +59,7 @@ importers:
         version: 22.15.30
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
   library/crypto:
     dependencies:
@@ -75,7 +75,7 @@ importers:
         version: link:../../builder
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
   library/extension-assets:
     devDependencies:
@@ -90,7 +90,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
   library/factories:
     devDependencies:
@@ -108,7 +108,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
   library/hooks:
     dependencies:
@@ -133,7 +133,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
   library/observables-connect:
     dependencies:
@@ -155,7 +155,7 @@ importers:
         version: 7.8.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
   library/react-connect-kit:
     dependencies:
@@ -186,7 +186,7 @@ importers:
         version: 7.8.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
   library/react-odometer:
     devDependencies:
@@ -204,7 +204,7 @@ importers:
         version: 1.90.0
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
   library/react-polkicon:
     dependencies:
@@ -232,7 +232,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
   library/types:
     devDependencies:
@@ -247,7 +247,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
   library/utils:
     dependencies:
@@ -266,7 +266,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
       vitest:
         specifier: ^3.1.1
         version: 3.2.4(@types/debug@4.1.12)(@types/node@22.15.30)(sass@1.90.0)(yaml@2.8.1)
@@ -284,7 +284,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
 
 packages:
 
@@ -1678,8 +1678,8 @@ packages:
       typescript:
         optional: true
 
-  typescript@5.8.2:
-    resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
+  typescript@5.9.2:
+    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3167,7 +3167,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.0(postcss@8.5.6)(typescript@5.8.2)(yaml@2.8.1):
+  tsup@8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.25.5)
       cac: 6.7.14
@@ -3188,14 +3188,14 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.5.6
-      typescript: 5.8.2
+      typescript: 5.9.2
     transitivePeerDependencies:
       - jiti
       - supports-color
       - tsx
       - yaml
 
-  typescript@5.8.2: {}
+  typescript@5.9.2: {}
 
   ufo@1.6.1: {}
 
