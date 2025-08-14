@@ -36,7 +36,7 @@
 		"dedot": "^0.15.0"
 	},
 	"devDependencies": {
-		"@types/node": "^22.15.29",
+		"@types/node": "^24.2.1",
 		"@types/react": "^19.0.12",
 		"builder": "workspace:*",
 		"react": "^19.1.0",
