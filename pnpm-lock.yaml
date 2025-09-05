@@ -142,7 +142,7 @@ importers:
         version: 3.2.0
       '@w3ux/extension-assets':
         specifier: ^2.2.5
-        version: 2.2.5(react@19.1.1)
+        version: 2.3.1(react@19.1.1)
       '@w3ux/utils':
         specifier: ^2.2.1
         version: 2.2.3
@@ -1050,10 +1050,10 @@ packages:
   '@w3ux/crypto@1.2.1':
     resolution: {integrity: sha512-mnwC6ULIGN1sgrxs2asnLbAbtMMBs0MCXaYNaO0kJg67YGIr8lAWimhiiJ63nIAajyH0+08dntAGC0TyCplyvA==}
 
-  '@w3ux/extension-assets@2.2.5':
-    resolution: {integrity: sha512-sPocfDrAZWfmF8pnZIC6Chu07Nk/g5TCk+USMUEKTxD139SHaIxAaxtp2SQCaYHLsLmr8aqptgxIGdZpQvwj8A==}
+  '@w3ux/extension-assets@2.3.1':
+    resolution: {integrity: sha512-GLS8WH/n4rQDCzzJiKdx1KjoylwNZmG4UmQszuXDNBTPPfqkzPBcONGxEnH0Tg1jml9snlS5o1vMgoHmDehdeg==}
     peerDependencies:
-      react: ^19
+      react: ^19.1.0
 
   '@w3ux/hooks@2.3.4':
     resolution: {integrity: sha512-6FwM9flFWBnOhWXZbdvpjdFNLxJUqWCoiv079ZA+mdZGG0wD7ACf1PmWt+zFq28i+QuYbceFETZRIr9Erbcl8g==}
@@ -2550,7 +2550,7 @@ snapshots:
     dependencies:
       blakejs: 1.2.1
 
-  '@w3ux/extension-assets@2.2.5(react@19.1.1)':
+  '@w3ux/extension-assets@2.3.1(react@19.1.1)':
     dependencies:
       react: 19.1.1
 
@@ -2566,7 +2566,7 @@ snapshots:
   '@w3ux/observables-connect@0.11.3(react@19.1.1)(rxjs@7.8.2)':
     dependencies:
       '@mimirdev/apps-inject': 3.2.0
-      '@w3ux/extension-assets': 2.2.5(react@19.1.1)
+      '@w3ux/extension-assets': 2.3.1(react@19.1.1)
       '@w3ux/utils': 2.2.3
       rxjs: 7.8.2
     transitivePeerDependencies:
