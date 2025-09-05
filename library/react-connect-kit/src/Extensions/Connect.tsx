@@ -53,7 +53,7 @@ export const ExtensionsConnectProvider = ({
 	// Init extensions discovery
 	const discoverExtensions = async () => {
 		// Handle Mimir iframe injection
-		injectMimir()
+		await injectMimir()
 		// Fetch extensions from `injectedWeb3`
 		getExtensions()
 	}

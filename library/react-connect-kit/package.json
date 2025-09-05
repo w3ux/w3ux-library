@@ -1,7 +1,7 @@
 {
 	"name": "@w3ux/react-connect-kit-source",
 	"description": "Providers and hooks for connecting to web3 wallets and interacting with accounts",
-	"version": "3.7.0",
+	"version": "3.7.1",
 	"license": "GPL-3.0-only",
 	"type": "module",
 	"keywords": [
