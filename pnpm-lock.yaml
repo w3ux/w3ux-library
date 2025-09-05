@@ -9,7 +9,7 @@ importers:
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.1.4
+        specifier: ^2.2.2
         version: 2.2.2
       autoprefixer:
         specifier: ^10.4.21
@@ -137,6 +137,9 @@ importers:
 
   library/observables-connect:
     dependencies:
+      '@mimirdev/apps-inject':
+        specifier: ^3.2.0
+        version: 3.2.0
       '@w3ux/extension-assets':
         specifier: ^2.2.5
         version: 2.2.5(react@19.1.1)
@@ -163,8 +166,8 @@ importers:
         specifier: ^2.3.4
         version: 2.3.4(react@19.1.1)
       '@w3ux/observables-connect':
-        specifier: ^0.10.7
-        version: 0.10.7(react@19.1.1)(rxjs@7.8.2)
+        specifier: ^0.10.8
+        version: 0.10.8(react@19.1.1)(rxjs@7.8.2)
       '@w3ux/utils':
         specifier: ^2.2.1
         version: 2.2.3
@@ -627,6 +630,12 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
+  '@mimirdev/apps-inject@3.2.0':
+    resolution: {integrity: sha512-yKWFaZsUgxaPIU/xM8OFvWRsNld6x8iCeqbQbt/LyUsikLGlkrHOZl29MwMfSQiYAWrYNqwhFpCU07sS2DTOLQ==}
+
+  '@mimirdev/apps-sdk@3.1.0':
+    resolution: {integrity: sha512-EevWZhaaP9gKcIJeEbokAugx5X0sd8jRae1CX1Uzg5KsVxODjeLLaAE1D90Lj6//JE1NPaEq3QKi9PliSMLVNg==}
+
   '@noble/hashes@1.8.0':
     resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
     engines: {node: ^14.21.3 || >=16}
@@ -1051,8 +1060,8 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
-  '@w3ux/observables-connect@0.10.7':
-    resolution: {integrity: sha512-2MsK/Ap1K+Qi+pfnHdTnneNo3R3n+Nm8iZwBIH/PVINIGTmRrych5qLzizK9dfUHfwYrq6jrF1JO7op3GNweyw==}
+  '@w3ux/observables-connect@0.10.8':
+    resolution: {integrity: sha512-Yn0IUvppljK4kuz5MGkxL/lasPSgj6t/ZKojsMf/z04xWyobGWgmAWPt3T9wx2exkIkQw0T9g1cF88Grw7GXvQ==}
     peerDependencies:
       rxjs: ^7.8.2
 
@@ -2179,6 +2188,14 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@mimirdev/apps-inject@3.2.0':
+    dependencies:
+      '@mimirdev/apps-sdk': 3.1.0
+
+  '@mimirdev/apps-sdk@3.1.0':
+    dependencies:
+      eventemitter3: 5.0.1
+
   '@noble/hashes@1.8.0': {}
 
   '@parcel/watcher-android-arm64@2.5.1':
@@ -2546,8 +2563,9 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@w3ux/observables-connect@0.10.7(react@19.1.1)(rxjs@7.8.2)':
+  '@w3ux/observables-connect@0.10.8(react@19.1.1)(rxjs@7.8.2)':
     dependencies:
+      '@mimirdev/apps-inject': 3.2.0
       '@w3ux/extension-assets': 2.2.5(react@19.1.1)
       '@w3ux/utils': 2.2.3
       rxjs: 7.8.2

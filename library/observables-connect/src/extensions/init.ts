@@ -26,8 +26,12 @@ export const initExtensions = async (
 	]
 
 	// Manage local storage depending on connection status
-	Array.from(connected.keys()).forEach((id) => addExtensionToLocal(id))
-	Array.from(withError.keys()).forEach((id) => removeExtensionFromLocal(id))
+	Array.from(connected.keys()).forEach((id) => {
+		addExtensionToLocal(id)
+	})
+	Array.from(withError.keys()).forEach((id) => {
+		removeExtensionFromLocal(id)
+	})
 
 	// Handle new extension statuses
 	const newStatus = { ..._extensionsStatus.getValue() }
