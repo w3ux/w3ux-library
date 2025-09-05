@@ -21,7 +21,7 @@
 		"compile": "pnpm -r --if-present run compile"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.1.4",
+		"@biomejs/biome": "^2.2.2",
 		"autoprefixer": "^10.4.21",
 		"builder": "workspace:*",
 		"globals": "^16.0.0",

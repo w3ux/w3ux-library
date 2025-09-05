@@ -9,7 +9,7 @@ importers:
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.1.4
+        specifier: ^2.2.2
         version: 2.2.2
       autoprefixer:
         specifier: ^10.4.21
