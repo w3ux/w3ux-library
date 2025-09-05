@@ -51,15 +51,16 @@ export const setHardwareAccounts = (accounts: HardwareAccount[]) => {
 	_hardwareAccounts.next(accounts)
 }
 
-// Checks whether app is open in an iframe
-export const isInIframe = (): boolean => window.self !== window.top
+// Checks whether app is open in a mimir iframe
+export const isMimir = (id: string): boolean =>
+	window.self !== window.top && id === 'mimir'
 
 // Check if an injected web3 entry has a valid enable function
 export const hasValidEnable = (id: string): boolean => {
 	try {
-		const enable = isInIframe()
-			? window.parent.injectedWeb3![id].enable
-			: window.injectedWeb3![id].enable
+		const enable = isMimir(id)
+			? window.injectedWeb3![id].enable
+			: window.parent.injectedWeb3![id].enable
 
 		return enable !== undefined && typeof enable === 'function'
 	} catch {
@@ -69,10 +70,10 @@ export const hasValidEnable = (id: string): boolean => {
 
 // Enable an injected web3 entry
 export const enableInjectedWeb3Entry = (id: string, dappName: string) => {
-	if (isInIframe()) {
-		const result = window.parent.injectedWeb3![id].enable(dappName)
+	if (isMimir(id)) {
+		const result = window.injectedWeb3![id].enable(dappName)
 		return result
 	}
-	const result = window.injectedWeb3![id].enable(dappName)
+	const result = window.parent.injectedWeb3![id].enable(dappName)
 	return result
 }
