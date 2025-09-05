@@ -7,7 +7,6 @@ import { _extensionsStatus, _gettingExtensions } from '../subjects'
 // Gets extensions from injectedWeb3
 export const getExtensions = async () => {
 	_gettingExtensions.next(true)
-	// biome-ignore lint/style/useConst: <>
 	let injectedWeb3Interval: ReturnType<typeof setInterval> | undefined
 
 	// Format installed extensions
