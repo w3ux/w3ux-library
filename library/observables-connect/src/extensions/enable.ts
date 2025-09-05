@@ -6,6 +6,7 @@ import type {
 	ExtensionEnableResults,
 	ExtensionInterface,
 } from '@w3ux/types'
+import { enableInjectedWeb3Entry, hasValidEnable } from '../util'
 
 // Get extensions and enable them
 export const enableExtensions = async (ids: string[], dappName: string) => {
@@ -19,8 +20,7 @@ export const enableExtensions = async (ids: string[], dappName: string) => {
 const getExtensionsById = (ids: string[]) => {
 	const validIds: string[] = []
 	ids.forEach((id) => {
-		const enable = window.injectedWeb3?.[id]?.enable
-		if (enable !== undefined && typeof enable === 'function') {
+		if (hasValidEnable(id)) {
 			validIds.push(id)
 		}
 	})
@@ -33,9 +33,7 @@ const doEnable = async (
 	dappName: string,
 ): Promise<PromiseSettledResult<ExtensionInterface>[]> =>
 	await Promise.allSettled(
-		Array.from(extensionIds).map((id) =>
-			window.injectedWeb3![id].enable(dappName),
-		),
+		Array.from(extensionIds).map((id) => enableInjectedWeb3Entry(id, dappName)),
 	)
 
 const formatEnabledExtensions = (
