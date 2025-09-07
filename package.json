@@ -18,10 +18,12 @@
 		"check": "pnpm -r --if-present run check",
 		"lint": "pnpm -r --if-present run lint",
 		"build": "pnpm -r --if-present run build",
-		"compile": "pnpm -r --if-present run compile"
+		"compile": "pnpm -r --if-present run compile",
+		"license:headers": "npx @kt3k/license-checker -q"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.2.2",
+		"@kt3k/license-checker": "^3.2.2",
 		"autoprefixer": "^10.4.21",
 		"builder": "workspace:*",
 		"globals": "^16.0.0",
