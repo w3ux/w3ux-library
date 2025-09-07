@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.2.2
-        version: 2.2.2
+        version: 2.2.3
       '@kt3k/license-checker':
         specifier: ^3.2.2
         version: 3.2.2
