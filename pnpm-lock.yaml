@@ -37,7 +37,7 @@ importers:
         version: 2.8.1
       typescript:
         specifier: ^5.8.2
-        version: 5.9.2
+        version: 5.9.3
       yaml:
         specifier: ^2.8.0
         version: 2.8.1
@@ -62,7 +62,7 @@ importers:
         version: 22.15.30
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
   library/crypto:
     dependencies:
@@ -78,7 +78,7 @@ importers:
         version: link:../../builder
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
   library/extension-assets:
     devDependencies:
@@ -93,7 +93,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
   library/factories:
     devDependencies:
@@ -111,7 +111,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
   library/hooks:
     dependencies:
@@ -136,7 +136,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
   library/observables-connect:
     dependencies:
@@ -161,7 +161,7 @@ importers:
         version: 7.8.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
   library/react-connect-kit:
     dependencies:
@@ -192,7 +192,7 @@ importers:
         version: 7.8.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
   library/react-odometer:
     devDependencies:
@@ -210,7 +210,7 @@ importers:
         version: 1.93.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
   library/react-polkicon:
     dependencies:
@@ -222,7 +222,7 @@ importers:
         version: 2.2.3
       dedot:
         specifier: ^0.18.0
-        version: 0.18.0(typescript@5.9.2)
+        version: 0.18.0(typescript@5.9.3)
     devDependencies:
       '@types/node':
         specifier: ^22.15.29
@@ -238,7 +238,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
   library/types:
     devDependencies:
@@ -253,13 +253,13 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
   library/utils:
     dependencies:
       dedot:
         specifier: ^0.18.0
-        version: 0.18.0(typescript@5.9.2)
+        version: 0.18.0(typescript@5.9.3)
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
@@ -272,7 +272,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
       vitest:
         specifier: ^3.1.1
         version: 3.2.4(@types/debug@4.1.12)(@types/node@22.15.30)(sass@1.93.2)(yaml@2.8.1)
@@ -290,7 +290,7 @@ importers:
         version: 19.1.1
       tsup:
         specifier: ^8.4.0
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1)
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
 
 packages:
 
@@ -1741,8 +1741,8 @@ packages:
       typescript:
         optional: true
 
-  typescript@5.9.2:
-    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1982,11 +1982,11 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@dedot/cli@0.18.0(typescript@5.9.2)':
+  '@dedot/cli@0.18.0(typescript@5.9.3)':
     dependencies:
       '@dedot/api': 0.18.0
       '@dedot/codecs': 0.18.0
-      '@dedot/codegen': 0.18.0(typescript@5.9.2)
+      '@dedot/codegen': 0.18.0(typescript@5.9.3)
       '@polkadot-api/wasm-executor': 0.1.2
       '@polkadot/types-support': 16.4.8
       ora: 8.2.0
@@ -2023,11 +2023,11 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@dedot/codegen@0.18.0(typescript@5.9.2)':
+  '@dedot/codegen@0.18.0(typescript@5.9.3)':
     dependencies:
       '@dedot/api': 0.18.0
       '@dedot/codecs': 0.18.0
-      '@dedot/contracts': 0.18.0(typescript@5.9.2)
+      '@dedot/contracts': 0.18.0(typescript@5.9.3)
       '@dedot/providers': 0.18.0
       '@dedot/runtime-specs': 0.18.0
       '@dedot/shape': 0.18.0
@@ -2052,13 +2052,13 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@dedot/contracts@0.18.0(typescript@5.9.2)':
+  '@dedot/contracts@0.18.0(typescript@5.9.3)':
     dependencies:
       '@dedot/api': 0.18.0
       '@dedot/codecs': 0.18.0
       '@dedot/types': 0.18.0
       '@dedot/utils': 0.18.0
-      viem: 2.37.9(typescript@5.9.2)
+      viem: 2.37.9(typescript@5.9.3)
     transitivePeerDependencies:
       - bufferutil
       - typescript
@@ -2683,9 +2683,9 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  abitype@1.1.0(typescript@5.9.2):
+  abitype@1.1.0(typescript@5.9.3):
     optionalDependencies:
-      typescript: 5.9.2
+      typescript: 5.9.3
 
   acorn@8.15.0: {}
 
@@ -2816,12 +2816,12 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  dedot@0.18.0(typescript@5.9.2):
+  dedot@0.18.0(typescript@5.9.3):
     dependencies:
       '@dedot/api': 0.18.0
-      '@dedot/cli': 0.18.0(typescript@5.9.2)
+      '@dedot/cli': 0.18.0(typescript@5.9.3)
       '@dedot/codecs': 0.18.0
-      '@dedot/contracts': 0.18.0(typescript@5.9.2)
+      '@dedot/contracts': 0.18.0(typescript@5.9.3)
       '@dedot/merkleized-metadata': 0.18.0
       '@dedot/providers': 0.18.0
       '@dedot/runtime-specs': 0.18.0
@@ -3060,7 +3060,7 @@ snapshots:
       string-width: 7.2.0
       strip-ansi: 7.1.2
 
-  ox@0.9.6(typescript@5.9.2):
+  ox@0.9.6(typescript@5.9.3):
     dependencies:
       '@adraffy/ens-normalize': 1.11.1
       '@noble/ciphers': 1.3.0
@@ -3068,10 +3068,10 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.1.0(typescript@5.9.2)
+      abitype: 1.1.0(typescript@5.9.3)
       eventemitter3: 5.0.1
     optionalDependencies:
-      typescript: 5.9.2
+      typescript: 5.9.3
     transitivePeerDependencies:
       - zod
 
@@ -3317,7 +3317,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.0(postcss@8.5.6)(typescript@5.9.2)(yaml@2.8.1):
+  tsup@8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.25.5)
       cac: 6.7.14
@@ -3338,14 +3338,14 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.5.6
-      typescript: 5.9.2
+      typescript: 5.9.3
     transitivePeerDependencies:
       - jiti
       - supports-color
       - tsx
       - yaml
 
-  typescript@5.9.2: {}
+  typescript@5.9.3: {}
 
   ufo@1.6.1: {}
 
@@ -3362,18 +3362,18 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  viem@2.37.9(typescript@5.9.2):
+  viem@2.37.9(typescript@5.9.3):
     dependencies:
       '@noble/curves': 1.9.1
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.1.0(typescript@5.9.2)
+      abitype: 1.1.0(typescript@5.9.3)
       isows: 1.0.7(ws@8.18.3)
-      ox: 0.9.6(typescript@5.9.2)
+      ox: 0.9.6(typescript@5.9.3)
       ws: 8.18.3
     optionalDependencies:
-      typescript: 5.9.2
+      typescript: 5.9.3
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
