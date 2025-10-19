@@ -35,18 +35,14 @@ export const getAccountsFromExtensions = async (
 
 			if (result.status === 'fulfilled' && signer) {
 				const { value } = result
-
-				// This is duplicating what `handleExtensionAccountsUpdate` is doing to accounts: --
-				const accounts = formatExtensionAccounts(value, ss58)
-					.filter(
-						({ address }) => !allAccounts.find((a) => address === a.address),
-					)
-					.map(({ address, name }) => ({
+				const accounts = formatExtensionAccounts(value, ss58).map(
+					({ address, name }) => ({
 						address,
 						name,
 						source,
 						signer,
-					}))
+					}),
+				)
 				allAccounts.push(...accounts)
 			}
 		}

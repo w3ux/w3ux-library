@@ -37,7 +37,9 @@ export const processExtensionAccounts = (
 	// Remove accounts that have already been imported
 	newAccounts = newAccounts.filter(
 		({ address }) =>
-			!_extensionAccounts.getValue().find((j) => j.address === address),
+			!_extensionAccounts
+				.getValue()
+				.find((j) => j.address === address && j.source === source),
 	)
 
 	// Format accounts properties
@@ -93,6 +95,10 @@ export const updateAccounts = ({
 }) => {
 	const newAccounts = [..._extensionAccounts.getValue()]
 		.concat(add)
-		.filter((a) => remove.find((s) => s.address === a.address) === undefined)
+		.filter(
+			(a) =>
+				remove.find((s) => s.address === a.address && s.source === a.source) ===
+				undefined,
+		)
 	_extensionAccounts.next(newAccounts)
 }

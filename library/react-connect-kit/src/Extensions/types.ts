@@ -22,7 +22,10 @@ export interface ExtensionAccountsContextInterface {
 	extensionsInitialised: string[]
 	connectExtension: (id: string) => Promise<boolean>
 	extensionsSynced: Sync
-	getExtensionAccount: (address: string) => ExtensionAccount | undefined
+	getExtensionAccount: (
+		address: string,
+		source: string,
+	) => ExtensionAccount | undefined
 	getExtensionAccounts: (ss58: number) => Account[]
 }
 
