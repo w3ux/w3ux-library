@@ -77,10 +77,12 @@ export const ExtensionAccountsProvider = ({
 	// Get an imported extension account
 	const getExtensionAccount = (
 		address: string,
+		source: string,
 	): ExtensionAccount | undefined => {
 		const account = extensionAccounts.find(
 			(item) =>
-				formatAccountSs58(item.address, 0) === formatAccountSs58(address, 0),
+				formatAccountSs58(item.address, 0) === formatAccountSs58(address, 0) &&
+				item.source === source,
 		)
 		return account ? { ...account, address } : undefined
 	}
