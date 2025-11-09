@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { blake2AsU8a } from '@w3ux/crypto'
-import { encodeAddress } from 'dedot/utils'
+import { decodeAddress } from 'dedot/utils'
 import { PolkiconCenter, SCHEMA } from './consts'
 import type { Coordinate, Scheme } from './types'
 
@@ -146,11 +146,11 @@ const findScheme = (d: number): Scheme => {
  * consistent `Uint8Array` ID derived from the address.
  */
 const addressToId = (address: string): Uint8Array => {
-	// Generate a zero hash from a 32-byte zeroed array.
-	const zeroHash = blake2AsU8a(new Uint8Array(32))
+	// Generate a zero hash from a 32-byte zeroed array using 512-bit blake2 hash.
+	const zeroHash = blake2AsU8a(new Uint8Array(32), 512)
 
-	// Get the encoded and decoded representation of the address, then hash it.
-	const pubKeyHash = blake2AsU8a(encodeAddress(address))
+	// Get the decoded representation of the address, then hash it with 512-bit blake2.
+	const pubKeyHash = blake2AsU8a(decodeAddress(address), 512)
 
 	// Adjust each byte in the hash relative to zeroHash and return as a Uint8Array.
 	return pubKeyHash.map((x, i) => (x + 256 - zeroHash[i]) % 256)
