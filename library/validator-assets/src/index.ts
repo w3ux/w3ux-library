@@ -76,6 +76,19 @@ export const ValidatorCommunity: ValidatorEntry[] = [
 		},
 	},
 	{
+		name: 'Bladenodes',
+		icon: 'Bladenodes',
+		bio: 'Validating since April 2020, I bring almost six years of hands‑on operational experience as an independent bare‑metal validator operator in the Polkadot and Kusama ecosystems. I provide secure, non‑custodial staking through dedicated bare‑metal servers in geographically diverse, professionally managed data centers, with 24/7 monitoring, rigorous security practices, and a strong focus on decentralization, reliability, and minimal downtime risk. I maintain a clean slashing record and consistently high availability, and I’m passionate about the Polkadot community, actively supporting on‑chain governance. My goal is to offer transparent, reliable staking that nominators can trust for the long term. Join me on this decentralized journey.',
+		email: 'info@bladenodes.com',
+		validators: {
+			polkadot: [
+				'13J6LkvsEtdZpvRwUMVNbag26md9ycmGe5PM8UnEokhL6Tgk',
+				'1qNhYLFbBi1tFyvYfSRRBP3Ce5cjS1xKMTMVNr8gJZvNTXM',
+			],
+			kusama: ['CpYNXnYC1mPPRSXMHvm9EUuhEqHjvj6kCN4kshqMdEpPYSF'],
+		},
+	},
+	{
 		name: 'bLd Nodes | ChadStakeKing',
 		icon: 'bLdNodes',
 		bio: 'Independant validator, professionnal Web3 Devops engineer, bLd Nodes is focusing on providing small scale validators and collators with low commission. Proud co-founder of the DOT Validator Alliance',
