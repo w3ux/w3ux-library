@@ -169,8 +169,8 @@ importers:
         specifier: ^2.4.0
         version: 2.4.0(react@19.2.1)(typescript@5.9.3)
       '@w3ux/observables-connect':
-        specifier: ^1.0.0
-        version: 1.0.0(react@19.2.1)(rxjs@7.8.2)(typescript@5.9.3)
+        specifier: ^1.0.1
+        version: 1.0.1(react@19.2.1)(rxjs@7.8.2)(typescript@5.9.3)
       '@w3ux/utils':
         specifier: ^2.3.0
         version: 2.3.0(typescript@5.9.3)
@@ -1173,8 +1173,8 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
-  '@w3ux/observables-connect@1.0.0':
-    resolution: {integrity: sha512-teSKNcpGhgtEYr8NX5HR2qDuu2WJGI2oVLw/yWO4FiTe+/AHJXFJgys6omjV3Rx48by3xhVYyYnX1g3OgH6xLw==}
+  '@w3ux/observables-connect@1.0.1':
+    resolution: {integrity: sha512-5QlHR4WTPs5lAkxo/VJ/ep+d6HkWxWATIn3sJPa8eMTATuRdFi1X8GqwaaPf0O5Nw8NWVHraNxAGhm8PHQld/w==}
     peerDependencies:
       rxjs: ^7.8.2
 
@@ -2648,7 +2648,7 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@w3ux/observables-connect@1.0.0(react@19.2.1)(rxjs@7.8.2)(typescript@5.9.3)':
+  '@w3ux/observables-connect@1.0.1(react@19.2.1)(rxjs@7.8.2)(typescript@5.9.3)':
     dependencies:
       '@mimirdev/apps-inject': 3.2.0
       '@w3ux/extension-assets': 2.3.1(react@19.2.1)
