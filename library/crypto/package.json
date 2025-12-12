@@ -32,7 +32,7 @@
 		"blakejs": "^1.2.1"
 	},
 	"devDependencies": {
-		"@types/node": "^24.7.2",
+		"@types/node": "^25.0.1",
 		"builder": "workspace:*",
 		"tsup": "^8.4.0"
 	}
