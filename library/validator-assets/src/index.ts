@@ -369,7 +369,7 @@ export const ValidatorCommunity: ValidatorEntry[] = [
 		validators: {
 			polkadot: [
 				'16ce9zrmiuAtdi9qv1tuiQ1RC1xR6y6NgnBcRtMoQeAobqpZ',
-				'12WUg5s5hxBh9GZVVpqyZvbBravHhJSc548K9k1E2mjWPBbb'
+				'12WUg5s5hxBh9GZVVpqyZvbBravHhJSc548K9k1E2mjWPBbb',
 			],
 			kusama: [
 				'HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx',
@@ -377,7 +377,7 @@ export const ValidatorCommunity: ValidatorEntry[] = [
 				'JKhBBSWkr8BJKh5eFBtRux4hsDq4sAxvvmMU426qUA9aqEQ',
 				'H2LjzjkgpyUiNeazaBxVNjTujzUEgCJKGJ5VykHsj3JD5rx',
 				'F5212cNTxkoLQV9k3v74hLvdu76GebcxXDEhUR7gR9xMaDn',
-				'HTxMhXZtbmYy2DfHM4FyRVonuhrJtVK9rUVxnhWnJyG8Mhh'
+				'HTxMhXZtbmYy2DfHM4FyRVonuhrJtVK9rUVxnhWnJyG8Mhh',
 			],
 		},
 	},
