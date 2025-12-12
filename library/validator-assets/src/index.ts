@@ -330,18 +330,6 @@ export const ValidatorCommunity: ValidatorEntry[] = [
 		},
 	},
 	{
-		name: 'METASPAN',
-		icon: 'Metaspan',
-		bio: 'End-to-end blockchain solutions, building on Polkadot and Kusama.',
-		email: 'hello@metaspan.com',
-		x: '@metaspan_io',
-		website: 'https://metaspan.com/',
-		validators: {
-			polkadot: ['16ce9zrmiuAtdi9qv1tuiQ1RC1xR6y6NgnBcRtMoQeAobqpZ'],
-			kusama: ['HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx'],
-		},
-	},
-	{
 		name: 'G-dot Tech',
 		icon: 'Gdot',
 		bio: 'G-dot Tech is providing professional staking services on well-maintained bare metal machines with locations across Europe. Our goal is to contribute to the decentralization of Polkadot and Kusama by staying independent with a small share among the active validators. Feel free to reach out any time if you have questions.',
@@ -368,6 +356,28 @@ export const ValidatorCommunity: ValidatorEntry[] = [
 				'EiMA69PZWju1jmisAU3ubN4wJQgBexnFXZpWb7aMtftP5rV',
 				'J6HHWeSmt5PjoDCRzVvB5oJnQMMvCM5iNBd5W42S8L3BbVK',
 				'EffRLTpaDPBa6G6UUhXCVdn2SNyeMxPJttucrtppEjnHkST',
+			],
+		},
+	},
+	{
+		name: 'INTERWEB',
+		icon: 'Interweb',
+		bio: 'End-to-end blockchain solutions, building on Polkadot and Kusama.',
+		email: 'hello@interweb-it.com',
+		x: '@interweb_it',
+		website: 'https://interweb-it.com/',
+		validators: {
+			polkadot: [
+				'16ce9zrmiuAtdi9qv1tuiQ1RC1xR6y6NgnBcRtMoQeAobqpZ',
+				'12WUg5s5hxBh9GZVVpqyZvbBravHhJSc548K9k1E2mjWPBbb'
+			],
+			kusama: [
+				'HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx',
+				'FAR296Aqh9i8W5bi7BS7a8Bkhbw5LX5xCXP22c1Jvc2tM5v',
+				'JKhBBSWkr8BJKh5eFBtRux4hsDq4sAxvvmMU426qUA9aqEQ',
+				'H2LjzjkgpyUiNeazaBxVNjTujzUEgCJKGJ5VykHsj3JD5rx',
+				'F5212cNTxkoLQV9k3v74hLvdu76GebcxXDEhUR7gR9xMaDn',
+				'HTxMhXZtbmYy2DfHM4FyRVonuhrJtVK9rUVxnhWnJyG8Mhh'
 			],
 		},
 	},
