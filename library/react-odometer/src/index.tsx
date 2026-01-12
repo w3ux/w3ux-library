@@ -53,6 +53,12 @@ export const Odometer = ({
 		Record<string, RefObject<HTMLSpanElement | null>>
 	>({})
 
+	// Store calculated widths for each digit.
+	const [digitWidths, setDigitWidths] = useState<Record<string, number>>({})
+
+	// Track if widths have been measured.
+	const [widthsMeasured, setWidthsMeasured] = useState<boolean>(false)
+
 	// Keep track of active transitions.
 	const activeTransitionCounter = useRef<number>(0)
 
@@ -72,9 +78,33 @@ export const Odometer = ({
 		setAllDigitRefs(all)
 	}, [])
 
+	// Phase 0.5: measure digit widths after refs are populated.
+	useEffect(() => {
+		if (Object.keys(allDigitRefs).length > 0 && !widthsMeasured) {
+			// Wait for next frame to ensure refs are attached
+			requestAnimationFrame(() => {
+				const widths: Record<string, number> = {}
+				let allMeasured = true
+
+				for (const [key, ref] of Object.entries(allDigitRefs)) {
+					if (ref.current) {
+						widths[key] = ref.current.offsetWidth
+					} else {
+						allMeasured = false
+					}
+				}
+
+				if (allMeasured) {
+					setDigitWidths(widths)
+					setWidthsMeasured(true)
+				}
+			})
+		}
+	}, [allDigitRefs, widthsMeasured])
+
 	// Phase 1: new digits and refs are added to the odometer.
 	useEffect(() => {
-		if (Object.keys(allDigitRefs)) {
+		if (Object.keys(allDigitRefs).length > 0 && widthsMeasured) {
 			value =
 				String(value) === '0' ? Number(value).toFixed(zeroDecimals) : value
 
@@ -123,6 +153,29 @@ export const Odometer = ({
 
 	// Track whether decimal point has been found.
 	let foundDecimal = false
+
+	// Don't render odometer until widths are measured
+	if (!widthsMeasured) {
+		return (
+			<>
+				{allDigits.map((d, i) => (
+					<span
+						key={`odometer_template_digit_${i}`}
+						ref={allDigitRefs[`d_${d}`]}
+						style={{
+							opacity: 0,
+							position: 'fixed',
+							top: '-999%',
+							left: '-999%',
+							userSelect: 'none',
+						}}
+					>
+						{d === 'dot' ? '.' : d === 'comma' ? ',' : d}
+					</span>
+				))}
+			</>
+		)
+	}
 
 	return (
 		<>
@@ -225,7 +278,7 @@ export const Odometer = ({
 									lineHeight,
 									paddingRight:
 										status === 'transition'
-											? `${allDigitRefs[`d_${d}`]?.current?.offsetWidth}px`
+											? `${digitWidths[`d_${d}`]}px`
 											: '0',
 								}}
 							>
@@ -236,9 +289,7 @@ export const Odometer = ({
 											top: 0,
 											height: lineHeight,
 											lineHeight,
-											width: `${
-												allDigitRefs[`d_${d}`]?.current?.offsetWidth
-											}px`,
+											width: `${digitWidths[`d_${d}`]}px`,
 										}}
 									>
 										{d === 'dot' ? '.' : d === 'comma' ? ',' : d}
