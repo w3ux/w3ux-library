@@ -1,7 +1,7 @@
 {
 	"name": "@w3ux/react-odometer-source",
 	"description": "An odometer effect used for number and balance transitions",
-	"version": "2.2.6",
+	"version": "2.3.15",
 	"license": "GPL-3.0-only",
 	"type": "module",
 	"keywords": [

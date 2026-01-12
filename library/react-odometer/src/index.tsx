@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import type { RefObject } from 'react'
-import { createRef, useEffect, useRef, useState } from 'react'
+import { createRef, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './index.css'
 import type { Digit, DigitRef, Direction, Props, Status } from './types'
 
@@ -39,7 +39,7 @@ export const Odometer = ({
 	// Store the status of the odometer (transitioning or stable).
 	const [status, setStatus] = useState<Status>('inactive')
 
-	// Store whether component has iniiialized.
+	// Store whether component has initialized.
 	const [initialized, setInitialized] = useState<boolean>(false)
 
 	// Store ref of the odometer.
@@ -73,7 +73,7 @@ export const Odometer = ({
 	}, [])
 
 	// Phase 1: new digits and refs are added to the odometer.
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (Object.keys(allDigitRefs)) {
 			value =
 				String(value) === '0' ? Number(value).toFixed(zeroDecimals) : value
@@ -99,7 +99,7 @@ export const Odometer = ({
 	}, [value])
 
 	// Phase 2: set up digit transition.
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (status === 'new' && !digitRefs.find((d) => d.current === null)) {
 			setStatus('transition')
 			activeTransitionCounter.current++
@@ -133,6 +133,7 @@ export const Odometer = ({
 					style={{
 						opacity: 0,
 						position: 'fixed',
+						display: 'inline-block',
 						top: '-999%',
 						left: '-999%',
 						userSelect: 'none',
@@ -214,6 +215,9 @@ export const Odometer = ({
 							)
 						}
 
+						const offsetWidth =
+							allDigitRefs[`d_${d}`]?.current?.getBoundingClientRect().width
+
 						return (
 							<span
 								key={`digit_${i}`}
@@ -224,9 +228,7 @@ export const Odometer = ({
 									height: lineHeight,
 									lineHeight,
 									paddingRight:
-										status === 'transition'
-											? `${allDigitRefs[`d_${d}`]?.current?.offsetWidth}px`
-											: '0',
+										status === 'transition' ? `${offsetWidth}px` : undefined,
 								}}
 							>
 								{status === 'inactive' && (
@@ -236,9 +238,7 @@ export const Odometer = ({
 											top: 0,
 											height: lineHeight,
 											lineHeight,
-											width: `${
-												allDigitRefs[`d_${d}`]?.current?.offsetWidth
-											}px`,
+											width: offsetWidth ? `${offsetWidth}px` : undefined,
 										}}
 									>
 										{d === 'dot' ? '.' : d === 'comma' ? ',' : d}
