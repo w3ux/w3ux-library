@@ -58,8 +58,8 @@ importers:
         specifier: ^1.2.5
         version: 1.2.5
       '@types/node':
-        specifier: ^24.10.3
-        version: 24.10.3
+        specifier: ^25.0.10
+        version: 25.0.10
       tsup:
         specifier: ^8.4.0
         version: 8.5.1(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.2)
@@ -71,8 +71,8 @@ importers:
         version: 1.2.1
     devDependencies:
       '@types/node':
-        specifier: ^24.10.3
-        version: 24.10.3
+        specifier: ^25.0.10
+        version: 25.0.10
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -84,7 +84,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.2.7
+        version: 19.2.9
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -99,7 +99,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.2.7
+        version: 19.2.9
       '@w3ux/types':
         specifier: ^2.4.1
         version: 2.4.1
@@ -124,7 +124,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.2.7
+        version: 19.2.9
       '@w3ux/types':
         specifier: ^2.4.1
         version: 2.4.1
@@ -177,7 +177,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.2.7
+        version: 19.2.9
       '@w3ux/types':
         specifier: ^2.4.1
         version: 2.4.1
@@ -198,7 +198,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.2.7
+        version: 19.2.9
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -225,11 +225,11 @@ importers:
         version: 1.0.2(typescript@5.9.3)
     devDependencies:
       '@types/node':
-        specifier: ^24.10.3
-        version: 24.10.3
+        specifier: ^25.0.10
+        version: 25.0.10
       '@types/react':
         specifier: ^19.0.12
-        version: 19.2.7
+        version: 19.2.9
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -244,7 +244,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.2.7
+        version: 19.2.9
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -263,7 +263,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.2.7
+        version: 19.2.9
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -275,13 +275,13 @@ importers:
         version: 8.5.1(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.2)
       vitest:
         specifier: ^4.0.15
-        version: 4.0.18(@types/node@24.10.3)(sass@1.97.3)(yaml@2.8.2)
+        version: 4.0.18(@types/node@25.0.10)(sass@1.97.3)(yaml@2.8.2)
 
   library/validator-assets:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
-        version: 19.2.7
+        version: 19.2.9
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -1140,11 +1140,11 @@ packages:
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
-  '@types/node@24.10.3':
-    resolution: {integrity: sha512-gqkrWUsS8hcm0r44yn7/xZeV1ERva/nLgrLxFRUGb7aoNMIJfZJ3AC261zDQuOAKC7MiXai1WCpYc48jAHoShQ==}
+  '@types/node@25.0.10':
+    resolution: {integrity: sha512-zWW5KPngR/yvakJgGOmZ5vTBemDoSqF3AcV/LrO5u5wTWyEAVVh+IT39G4gtyAkh3CtTZs8aX/yRM82OfzHJRg==}
 
-  '@types/react@19.2.7':
-    resolution: {integrity: sha512-MWtvHrGZLFttgeEj28VXHxpmwYbor/ATPYbBfSFZEIRK0ecCFLl2Qo55z52Hss+UV9CRN7trSeq1zbgx7YDWWg==}
+  '@types/react@19.2.9':
+    resolution: {integrity: sha512-Lpo8kgb/igvMIPeNV2rsYKTgaORYdO1XGVZ4Qz3akwOj0ySGYMPlQWa8BaLn0G63D1aSaAQ5ldR06wCpChQCjA==}
 
   '@vitest/expect@4.0.18':
     resolution: {integrity: sha512-8sCWUyckXXYvx4opfzVY03EOiYVxyNrHS5QxX3DAIi5dpJAAkyJezHCP77VMX4HKA2LDT/Jpfo8i2r5BE3GnQQ==}
@@ -2564,7 +2564,7 @@ snapshots:
 
   '@types/bn.js@5.2.0':
     dependencies:
-      '@types/node': 24.10.3
+      '@types/node': 25.0.10
 
   '@types/chai@5.2.3':
     dependencies:
@@ -2577,11 +2577,11 @@ snapshots:
 
   '@types/minimist@1.2.5': {}
 
-  '@types/node@24.10.3':
+  '@types/node@25.0.10':
     dependencies:
       undici-types: 7.16.0
 
-  '@types/react@19.2.7':
+  '@types/react@19.2.9':
     dependencies:
       csstype: 3.2.3
 
@@ -2594,13 +2594,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.0.3
 
-  '@vitest/mocker@4.0.18(vite@7.3.1(@types/node@24.10.3)(sass@1.97.3)(yaml@2.8.2))':
+  '@vitest/mocker@4.0.18(vite@7.3.1(@types/node@25.0.10)(sass@1.97.3)(yaml@2.8.2))':
     dependencies:
       '@vitest/spy': 4.0.18
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 7.3.1(@types/node@24.10.3)(sass@1.97.3)(yaml@2.8.2)
+      vite: 7.3.1(@types/node@25.0.10)(sass@1.97.3)(yaml@2.8.2)
 
   '@vitest/pretty-format@4.0.18':
     dependencies:
@@ -3318,7 +3318,7 @@ snapshots:
       - utf-8-validate
       - zod
 
-  vite@7.3.1(@types/node@24.10.3)(sass@1.97.3)(yaml@2.8.2):
+  vite@7.3.1(@types/node@25.0.10)(sass@1.97.3)(yaml@2.8.2):
     dependencies:
       esbuild: 0.27.2
       fdir: 6.5.0(picomatch@4.0.3)
@@ -3327,15 +3327,15 @@ snapshots:
       rollup: 4.56.0
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 24.10.3
+      '@types/node': 25.0.10
       fsevents: 2.3.3
       sass: 1.97.3
       yaml: 2.8.2
 
-  vitest@4.0.18(@types/node@24.10.3)(sass@1.97.3)(yaml@2.8.2):
+  vitest@4.0.18(@types/node@25.0.10)(sass@1.97.3)(yaml@2.8.2):
     dependencies:
       '@vitest/expect': 4.0.18
-      '@vitest/mocker': 4.0.18(vite@7.3.1(@types/node@24.10.3)(sass@1.97.3)(yaml@2.8.2))
+      '@vitest/mocker': 4.0.18(vite@7.3.1(@types/node@25.0.10)(sass@1.97.3)(yaml@2.8.2))
       '@vitest/pretty-format': 4.0.18
       '@vitest/runner': 4.0.18
       '@vitest/snapshot': 4.0.18
@@ -3352,10 +3352,10 @@ snapshots:
       tinyexec: 1.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vite: 7.3.1(@types/node@24.10.3)(sass@1.97.3)(yaml@2.8.2)
+      vite: 7.3.1(@types/node@25.0.10)(sass@1.97.3)(yaml@2.8.2)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 24.10.3
+      '@types/node': 25.0.10
     transitivePeerDependencies:
       - jiti
       - less
