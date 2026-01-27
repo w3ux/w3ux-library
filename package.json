@@ -26,7 +26,7 @@
 		"@kt3k/license-checker": "^3.2.2",
 		"autoprefixer": "^10.4.21",
 		"builder": "workspace:*",
-		"globals": "^16.0.0",
+		"globals": "^17.2.0",
 		"minimist": "^1.2.8",
 		"postcss": "^8.5.3",
 		"tsc": "^2.0.4",
