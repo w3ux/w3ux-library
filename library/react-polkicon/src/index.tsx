@@ -52,7 +52,7 @@ export const Polkicon: React.FC<PolkiconProps> = ({
 		const cols =
 			isValidAddress(address) && !inactive
 				? getColors(address)
-				: Array.from({ length }, () => 'var(--background-invert)')
+				: Array.from({ length }, () => 'var(--bg-invert)')
 
 		setCoords(circleXy)
 		setColors(cols)
@@ -79,7 +79,7 @@ export const Polkicon: React.FC<PolkiconProps> = ({
 					height="100%"
 				>
 					<title>Polkicon</title>
-					{[renderOuterCircle(background || 'var(--background-default)')]
+					{[renderOuterCircle(background || 'var(--bg-body)')]
 						.concat(
 							coords.map(([cx, cy], index) => ({
 								cx,
