@@ -1,13 +1,15 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-export type ValidatorSupportedChains = 'polkadot' | 'kusama'
+export type ValidatorSupportedNetwork = 'polkadot' | 'kusama'
 
 export const validatorListSupported = (key: string): boolean => {
-	return ValidatorSupportedChainsList.includes(key as ValidatorSupportedChains)
+	return ValidatorSupportedNetworkList.includes(
+		key as ValidatorSupportedNetwork,
+	)
 }
 
-export const ValidatorSupportedChainsList: ValidatorSupportedChains[] = [
+export const ValidatorSupportedNetworkList: ValidatorSupportedNetwork[] = [
 	'polkadot',
 	'kusama',
 ]
@@ -20,7 +22,7 @@ export interface ValidatorEntry {
 	x?: string
 	website?: string
 	// NOTE: must have at least one active validator on at least one network.
-	validators: Partial<Record<ValidatorSupportedChains, string[]>>
+	validators: Partial<Record<ValidatorSupportedNetwork, string[]>>
 }
 
 export const ValidatorCommunity: ValidatorEntry[] = [
