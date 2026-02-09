@@ -21,8 +21,8 @@ importers:
         specifier: workspace:*
         version: link:builder
       globals:
-        specifier: ^16.0.0
-        version: 16.5.0
+        specifier: ^17.3.0
+        version: 17.3.0
       minimist:
         specifier: ^1.2.8
         version: 1.2.8
@@ -1427,8 +1427,8 @@ packages:
     deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
-  globals@16.5.0:
-    resolution: {integrity: sha512-c/c15i26VrJ4IRt5Z89DnIzCGDn9EcebibhAOjw5ibqEHsE1wLUgkPn9RDmNcUKyU87GeaL633nyJ+pplFR2ZQ==}
+  globals@17.3.0:
+    resolution: {integrity: sha512-yMqGUQVVCkD4tqjOJf3TnrvaaHDMYp4VlUSObbkIiuCPe/ofdMBFIAcBbCSRFWOnos6qRiTVStDwqPLUclaxIw==}
     engines: {node: '>=18'}
 
   handlebars@4.7.8:
@@ -2914,7 +2914,7 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  globals@16.5.0: {}
+  globals@17.3.0: {}
 
   handlebars@4.7.8:
     dependencies:
