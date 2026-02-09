@@ -1,7 +1,7 @@
 {
 	"name": "@w3ux/react-connect-kit-source",
 	"description": "Providers and hooks for connecting to web3 wallets and interacting with accounts",
-	"version": "3.9.1",
+	"version": "3.9.2",
 	"license": "GPL-3.0-only",
 	"type": "module",
 	"keywords": [
@@ -31,9 +31,9 @@
 		"compile": "builder -t react-connect-kit"
 	},
 	"dependencies": {
-		"@w3ux/hooks": "^2.4.0",
-		"@w3ux/observables-connect": "^1.0.1",
-		"@w3ux/utils": "^2.3.0"
+		"@w3ux/hooks": "^2.4.1",
+		"@w3ux/observables-connect": "^1.0.2",
+		"@w3ux/utils": "^2.3.2"
 	},
 	"devDependencies": {
 		"@types/react": "^19.0.12",
