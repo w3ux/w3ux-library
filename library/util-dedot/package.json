@@ -1,22 +1,22 @@
 {
-	"name": "@w3ux/hooks-source",
-	"description": "A collection of general purpose React hooks",
-	"version": "2.4.2",
+	"name": "@w3ux/util-dedot-source",
+	"description": "A collection of reusable utilities for manipulating data",
+	"version": "1.0.0",
 	"license": "GPL-3.0-only",
 	"type": "module",
 	"keywords": [
 		"w3ux",
 		"polkadot",
 		"web3",
-		"react",
-		"hooks",
-		"typescript"
+		"utilities",
+		"typescript",
+		"data-manipulation"
 	],
-	"homepage": "https://w3ux.org/library/hooks/overview",
+	"homepage": "https://w3ux.org",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/w3ux/w3ux-library.git",
-		"directory": "library/hooks"
+		"directory": "library/util-dedot"
 	},
 	"bugs": {
 		"url": "https://github.com/w3ux/w3ux-library/issues"
@@ -25,18 +25,15 @@
 		"clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
 		"check": "biome check .",
 		"lint": "biome check --write .",
+		"test": "vitest run",
 		"build": "tsup",
-		"compile": "builder -t hooks"
+		"compile": "builder -t util-dedot"
 	},
 	"devDependencies": {
-		"@types/react": "^19.0.12",
-		"@w3ux/types": "^2.4.1",
 		"builder": "workspace:*",
-		"react": "^19.1.0",
 		"tsup": "^8.4.0"
 	},
-	"dependencies": {
-		"@w3ux/utils": "^3.1.0",
-		"date-fns": "^4.1.0"
+	"peerDependencies": {
+		"dedot": "^1"
 	}
 }

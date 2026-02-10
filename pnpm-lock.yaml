@@ -116,8 +116,8 @@ importers:
   library/hooks:
     dependencies:
       '@w3ux/utils':
-        specifier: ^2.3.2
-        version: 2.3.2(typescript@5.9.3)
+        specifier: ^3.1.0
+        version: 3.1.0
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -146,9 +146,15 @@ importers:
       '@w3ux/extension-assets':
         specifier: ^2.2.5
         version: 2.3.1(react@19.2.4)
+      '@w3ux/util-dedot':
+        specifier: ^1.0.0
+        version: 1.0.0(dedot@1.0.4(typescript@5.9.3))
       '@w3ux/utils':
-        specifier: ^2.3.2
-        version: 2.3.2(typescript@5.9.3)
+        specifier: ^3.1.0
+        version: 3.1.0
+      dedot:
+        specifier: ^1
+        version: 1.0.4(typescript@5.9.3)
     devDependencies:
       '@w3ux/types':
         specifier: ^2.4.1
@@ -166,14 +172,20 @@ importers:
   library/react-connect-kit:
     dependencies:
       '@w3ux/hooks':
-        specifier: ^2.4.1
-        version: 2.4.1(react@19.2.4)(typescript@5.9.3)
+        specifier: ^2.4.2
+        version: 2.4.2(react@19.2.4)
       '@w3ux/observables-connect':
-        specifier: ^1.0.2
-        version: 1.0.2(react@19.2.4)(rxjs@7.8.2)(typescript@5.9.3)
+        specifier: ^1.0.3
+        version: 1.0.3(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)
+      '@w3ux/util-dedot':
+        specifier: ^1.0.0
+        version: 1.0.0(dedot@1.0.4(typescript@5.9.3))
       '@w3ux/utils':
-        specifier: ^2.3.2
-        version: 2.3.2(typescript@5.9.3)
+        specifier: ^3.1.0
+        version: 3.1.0
+      dedot:
+        specifier: ^1
+        version: 1.0.4(typescript@5.9.3)
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
@@ -217,9 +229,9 @@ importers:
       '@w3ux/crypto':
         specifier: ^1.2.1
         version: 1.2.1
-      '@w3ux/utils':
-        specifier: ^3.0.0
-        version: 3.0.0(dedot@1.0.4(typescript@5.9.3))
+      '@w3ux/util-dedot':
+        specifier: ^1.0.0
+        version: 1.0.0(dedot@1.0.4(typescript@5.9.3))
       dedot:
         specifier: ^1
         version: 1.0.4(typescript@5.9.3)
@@ -255,11 +267,20 @@ importers:
         specifier: ^8.4.0
         version: 8.5.1(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.2)
 
-  library/utils:
+  library/util-dedot:
     dependencies:
       dedot:
         specifier: ^1
         version: 1.0.4(typescript@5.9.3)
+    devDependencies:
+      builder:
+        specifier: workspace:*
+        version: link:../../builder
+      tsup:
+        specifier: ^8.4.0
+        version: 8.5.1(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.2)
+
+  library/utils:
     devDependencies:
       '@types/react':
         specifier: ^19.0.12
@@ -1179,26 +1200,27 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
-  '@w3ux/hooks@2.4.1':
-    resolution: {integrity: sha512-Ljr+W1tE2yqa/yZARZ/3dhVyPcGjMH1AwggbE7EGJAeqK5UtXyUgOHHaSZXk6b/B5Bm9UWdMaUhAjJ30lYqC9w==}
+  '@w3ux/hooks@2.4.2':
+    resolution: {integrity: sha512-W7apyVXnBOY20jJAFgJ/W+eGHzCDx1f9XHxh9KXWNRPERflvmT06eoxPMfYdaO7Ai7B0LclI7EY9HXvopvb6Hw==}
     peerDependencies:
       react: ^19.1.0
 
-  '@w3ux/observables-connect@1.0.2':
-    resolution: {integrity: sha512-oAtnGZ4RZ0LlmGIDk4BrUBxht52e72LBTLbTuW2UPSnFWrhBB1UpeKAqCMyIh/GAuM3eQ0hidrJTQO0lPC/YGQ==}
+  '@w3ux/observables-connect@1.0.3':
+    resolution: {integrity: sha512-UIazRVKgRT20GwYhpBoik6nVFJjBzEu6bhzhBNKQwrZmEVq/GtCcemUi9qXWZGdfoTdMq5XpUNR697KUb4x+Qg==}
     peerDependencies:
+      dedot: ^1
       rxjs: ^7.8.2
 
   '@w3ux/types@2.4.1':
     resolution: {integrity: sha512-vqKVJ9NH71fPcaOVM3xuRLJeasOOPDvVdsRvghaDF/e9Zq4OOrMRF7a9KqtwtGX17utzo9Y2GjIcJpNbSjAuzA==}
 
-  '@w3ux/utils@2.3.2':
-    resolution: {integrity: sha512-KyWRHsr2vd+u5DZRSUKkfvqy0/EQTtRAUmzUjqRXcSrsIRh/XGAghyPtgig4YvSieemoXgNZ2MOCveiw/cBZtg==}
-
-  '@w3ux/utils@3.0.0':
-    resolution: {integrity: sha512-gdiSaHpq5Er652Jdt+ct2s4kwdXiSDeFYQn7BTi7rVtYJIZ8kqqPyyTGhjG8YnnpOaQR/iYXIX4YY6A/+A7Q8Q==}
+  '@w3ux/util-dedot@1.0.0':
+    resolution: {integrity: sha512-/SEoja+VKoWZzGBU0qln89kgeidBc/9KXGMH1LWAdQhc73IMTN2eKQJ9NPK72W1GrxfH0bJM0zgKWZPjYL3+qA==}
     peerDependencies:
       dedot: ^1
+
+  '@w3ux/utils@3.1.0':
+    resolution: {integrity: sha512-Jhw5UtJ9JpsFyQ5KDdYSUrcyNWudndWWN75gf9gDsvqPeyXC8tYO6LgLtTbnM0B1z2EjF2HFCQIeg3zV2ralyQ==}
 
   abitype@1.2.3:
     resolution: {integrity: sha512-Ofer5QUnuUdTFsBRwARMoWKOH1ND5ehwYhJ3OJ/BQO+StkwQjHw0XyVh4vDttzHB7QOFhPHa/o413PJ82gU/Tg==}
@@ -2642,44 +2664,30 @@ snapshots:
     dependencies:
       react: 19.2.4
 
-  '@w3ux/hooks@2.4.1(react@19.2.4)(typescript@5.9.3)':
+  '@w3ux/hooks@2.4.2(react@19.2.4)':
     dependencies:
-      '@w3ux/utils': 2.3.2(typescript@5.9.3)
+      '@w3ux/utils': 3.1.0
       date-fns: 4.1.0
       react: 19.2.4
-    transitivePeerDependencies:
-      - bufferutil
-      - typescript
-      - utf-8-validate
-      - zod
 
-  '@w3ux/observables-connect@1.0.2(react@19.2.4)(rxjs@7.8.2)(typescript@5.9.3)':
+  '@w3ux/observables-connect@1.0.3(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)':
     dependencies:
       '@mimirdev/apps-inject': 3.2.0
       '@w3ux/extension-assets': 2.3.1(react@19.2.4)
-      '@w3ux/utils': 2.3.2(typescript@5.9.3)
+      '@w3ux/util-dedot': 1.0.0(dedot@1.0.4(typescript@5.9.3))
+      '@w3ux/utils': 3.1.0
+      dedot: 1.0.4(typescript@5.9.3)
       rxjs: 7.8.2
     transitivePeerDependencies:
-      - bufferutil
       - react
-      - typescript
-      - utf-8-validate
-      - zod
 
   '@w3ux/types@2.4.1': {}
 
-  '@w3ux/utils@2.3.2(typescript@5.9.3)':
+  '@w3ux/util-dedot@1.0.0(dedot@1.0.4(typescript@5.9.3))':
     dependencies:
       dedot: 1.0.4(typescript@5.9.3)
-    transitivePeerDependencies:
-      - bufferutil
-      - typescript
-      - utf-8-validate
-      - zod
 
-  '@w3ux/utils@3.0.0(dedot@1.0.4(typescript@5.9.3))':
-    dependencies:
-      dedot: 1.0.4(typescript@5.9.3)
+  '@w3ux/utils@3.1.0': {}
 
   abitype@1.2.3(typescript@5.9.3):
     optionalDependencies:

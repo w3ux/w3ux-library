@@ -1,7 +1,7 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { isValidAddress } from '@w3ux/utils'
+import { isValidAddress } from '@w3ux/util-dedot'
 import { useEffect, useState } from 'react'
 import { CircleRadius, PolkiconCenter, PolkiconSize } from './consts.js'
 import type { Circle, Coordinate, PolkiconProps } from './types'

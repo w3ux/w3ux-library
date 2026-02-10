@@ -15,7 +15,7 @@ import {
 	reconnectExtensions,
 } from '@w3ux/observables-connect/extensions'
 import type { Account, ExtensionAccount, Sync } from '@w3ux/types'
-import { formatAccountSs58 } from '@w3ux/utils'
+import { formatAccountSs58 } from '@w3ux/util-dedot'
 import { useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'
 import { useExtensions } from './Connect'

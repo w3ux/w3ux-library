@@ -13,58 +13,62 @@ const args = minimist(process.argv.slice(2))
 const { t: task } = args
 
 switch (task) {
-  case 'crypto':
-    await simpleBuild('crypto')
-    break
+	case 'crypto':
+		await simpleBuild('crypto')
+		break
 
-  case 'directory':
-    await buildDirectory()
-    break
+	case 'directory':
+		await buildDirectory()
+		break
 
-  case 'extension-assets':
-    await buildExtensionAssets()
-    break
+	case 'extension-assets':
+		await buildExtensionAssets()
+		break
 
-  case 'package-readmes':
-    await buildPackageReadmes()
-    break
+	case 'package-readmes':
+		await buildPackageReadmes()
+		break
 
-  case 'factories':
-    await simpleBuild('factories')
-    break
+	case 'factories':
+		await simpleBuild('factories')
+		break
 
-  case 'hooks':
-    await simpleBuild('hooks')
-    break
+	case 'hooks':
+		await simpleBuild('hooks')
+		break
 
-  case 'observables-connect':
-    await simpleBuild('observables-connect')
-    break
+	case 'observables-connect':
+		await simpleBuild('observables-connect')
+		break
 
-  case 'react-connect-kit':
-    await simpleBuild('react-connect-kit')
-    break
+	case 'react-connect-kit':
+		await simpleBuild('react-connect-kit')
+		break
 
-  case 'react-odometer':
-    await simpleBuild('react-odometer')
-    break
+	case 'react-odometer':
+		await simpleBuild('react-odometer')
+		break
 
-  case 'react-polkicon':
-    await simpleBuild('react-polkicon')
-    break
+	case 'react-polkicon':
+		await simpleBuild('react-polkicon')
+		break
 
-  case 'types':
-    await simpleBuild('types')
-    break
+	case 'types':
+		await simpleBuild('types')
+		break
 
-  case 'utils':
-    await simpleBuild('utils')
-    break
+	case 'util-dedot':
+		await simpleBuild('util-dedot')
+		break
 
-  case 'validator-assets':
-    await simpleBuild('validator-assets')
-    break
+	case 'utils':
+		await simpleBuild('utils')
+		break
 
-  default:
-    console.log('❌ No task provided.')
+	case 'validator-assets':
+		await simpleBuild('validator-assets')
+		break
+
+	default:
+		console.log('❌ No task provided.')
 }
