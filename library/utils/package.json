@@ -1,7 +1,7 @@
 {
 	"name": "@w3ux/utils-source",
 	"description": "A collection of reusable utilities for manipulating data",
-	"version": "2.3.2",
+	"version": "3.0.0",
 	"license": "GPL-3.0-only",
 	"type": "module",
 	"keywords": [
@@ -29,14 +29,14 @@
 		"build": "tsup",
 		"compile": "builder -t utils"
 	},
-	"dependencies": {
-		"dedot": "1.0.4"
-	},
 	"devDependencies": {
 		"@types/react": "^19.0.12",
 		"builder": "workspace:*",
 		"react": "^19.1.0",
 		"tsup": "^8.4.0",
 		"vitest": "^4.0.15"
+	},
+	"peerDependencies": {
+		"dedot": "^1"
 	}
 }
