@@ -1,8 +1,6 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { encodeAddress } from 'dedot/utils'
-
 /**
  * Ensures a number has at least the specified number of decimal places, retaining commas in the output if they are present in the input.
  *
@@ -243,34 +241,6 @@ export const appendOr = (
 	value: string,
 	fallback: string,
 ) => (condition ? ` ${value}` : ` ${fallback}`)
-
-/**
- * @name formatAccountSs58
- * @summary Formats an address with the supplied ss58 prefix, or returns null if invalid.
- */
-export const formatAccountSs58 = (
-	address: string,
-	ss58: number,
-): string | null => {
-	try {
-		return encodeAddress(address, ss58)
-	} catch {
-		return null
-	}
-}
-
-/**
- * @name tryFormatSs58
- * @summary Formats an address with the supplied ss58 prefix, or returns the original address if
- * invalid.
- */
-export const tryFormatSs58 = (address: string, ss58: number): string => {
-	try {
-		return encodeAddress(address, ss58)
-	} catch {
-		return address
-	}
-}
 
 /**
  * @name removeHexPrefix

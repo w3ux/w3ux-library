@@ -1,7 +1,6 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { decodeAddress } from 'dedot/utils'
 import type { RefObject } from 'react'
 import { rmCommas, rmDecimals } from './base'
 import type { AnyObject } from './types'
@@ -161,19 +160,6 @@ export const localStorageOrDefault = <T>(
 		return JSON.parse(val) as T
 	}
 	return val
-}
-
-/**
- * @name isValidAddress
- * @summary Return whether an address is valid Substrate address.
- */
-export const isValidAddress = (address: string): boolean => {
-	try {
-		decodeAddress(address)
-		return true
-	} catch {
-		return false
-	}
 }
 
 /**

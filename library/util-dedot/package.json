@@ -1,7 +1,7 @@
 {
-	"name": "@w3ux/utils-source",
+	"name": "@w3ux/util-dedot-source",
 	"description": "A collection of reusable utilities for manipulating data",
-	"version": "3.0.0",
+	"version": "1.0.0",
 	"license": "GPL-3.0-only",
 	"type": "module",
 	"keywords": [
@@ -12,11 +12,11 @@
 		"typescript",
 		"data-manipulation"
 	],
-	"homepage": "https://w3ux.org/library/utils",
+	"homepage": "https://w3ux.org",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/w3ux/w3ux-library.git",
-		"directory": "library/utils"
+		"directory": "library/util-dedot"
 	},
 	"bugs": {
 		"url": "https://github.com/w3ux/w3ux-library/issues"
@@ -27,13 +27,13 @@
 		"lint": "biome check --write .",
 		"test": "vitest run",
 		"build": "tsup",
-		"compile": "builder -t utils"
+		"compile": "builder -t util-dedot"
 	},
 	"devDependencies": {
-		"@types/react": "^19.0.12",
 		"builder": "workspace:*",
-		"react": "^19.1.0",
-		"tsup": "^8.4.0",
-		"vitest": "^4.0.15"
+		"tsup": "^8.4.0"
+	},
+	"peerDependencies": {
+		"dedot": "^1"
 	}
 }
