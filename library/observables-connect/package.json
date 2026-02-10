@@ -1,7 +1,7 @@
 {
 	"name": "@w3ux/observables-connect",
 	"description": "Observables for extensions and accounts discovery",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"license": "GPL-3.0-only",
 	"type": "module",
 	"keywords": [
@@ -33,12 +33,16 @@
 	"dependencies": {
 		"@mimirdev/apps-inject": "^3.2.0",
 		"@w3ux/extension-assets": "^2.2.5",
-		"@w3ux/utils": "^2.3.2"
+		"@w3ux/util-dedot": "^1.0.0",
+		"@w3ux/utils": "^3.1.0"
 	},
 	"devDependencies": {
 		"@w3ux/types": "^2.4.1",
 		"builder": "workspace:*",
 		"rxjs": "^7.8.2",
 		"tsup": "^8.4.0"
+	},
+	"peerDependencies": {
+		"dedot": "^1"
 	}
 }

@@ -5,7 +5,7 @@ import type {
 	ExtensionAccount,
 	ProcessExtensionAccountsResult,
 } from '@w3ux/types'
-import { formatAccountSs58, isValidAddress } from '@w3ux/utils'
+import { formatAccountSs58, isValidAddress } from '@w3ux/util-dedot'
 import { DefaultProcessExtensionResult } from '../consts'
 import { _extensionAccounts } from '../subjects'
 
