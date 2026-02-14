@@ -10,6 +10,7 @@ export interface Props {
 	spaceBefore?: string | number
 	spaceAfter?: string | number
 	zeroDecimals?: number
+	stripTrailingZeroes?: boolean
 }
 
 export type Digit =

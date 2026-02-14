@@ -13,6 +13,7 @@ export const Odometer = ({
 	wholeColor = 'var(--text-primary)',
 	decimalColor = 'var(--text-secondary)',
 	zeroDecimals = 0,
+	stripTrailingZeroes = true,
 }: Props) => {
 	// Store all possible digits.
 	const [allDigits] = useState<Digit[]>([
@@ -75,11 +76,17 @@ export const Odometer = ({
 	// Phase 1: new digits and refs are added to the odometer.
 	useLayoutEffect(() => {
 		if (Object.keys(allDigitRefs)) {
-			value =
-				String(value) === '0' ? Number(value).toFixed(zeroDecimals) : value
+			let valueStr =
+				String(value) === '0'
+					? Number(value).toFixed(zeroDecimals)
+					: String(value)
 
-			const newDigits = value
-				.toString()
+			// Remove trailing zeroes from decimal part (string-based to preserve precision)
+			if (stripTrailingZeroes && valueStr.includes('.')) {
+				valueStr = valueStr.replace(/\.?0+$/, '')
+			}
+
+			const newDigits = valueStr
 				.split('')
 				.map((v) => (v === '.' ? 'dot' : v))
 				.map((v) => (v === ',' ? 'comma' : v)) as Digit[]
