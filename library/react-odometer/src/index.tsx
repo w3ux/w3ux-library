@@ -13,7 +13,7 @@ export const Odometer = ({
 	wholeColor = 'var(--text-primary)',
 	decimalColor = 'var(--text-secondary)',
 	zeroDecimals = 0,
-	stripTrailingZeroes = true,
+	stripTrailingZeroes = false,
 }: Props) => {
 	// Store all possible digits.
 	const [allDigits] = useState<Digit[]>([
@@ -76,13 +76,37 @@ export const Odometer = ({
 	// Phase 1: new digits and refs are added to the odometer.
 	useLayoutEffect(() => {
 		if (Object.keys(allDigitRefs)) {
-			let valueStr =
-				String(value) === '0'
-					? Number(value).toFixed(zeroDecimals)
-					: String(value)
+			let valueStr = String(value)
 
-			// Remove trailing zeroes from decimal part (string-based to preserve precision)
-			if (stripTrailingZeroes && valueStr.includes('.')) {
+			// If zeroDecimals is set, format to that many decimal places (string-based for large numbers)
+			if (zeroDecimals > 0) {
+				const [whole, decimal = ''] = valueStr.split('.')
+
+				if (decimal.length < zeroDecimals) {
+					// Pad with zeros if fewer than zeroDecimals
+					valueStr = `${whole}.${decimal.padEnd(zeroDecimals, '0')}`
+				} else if (decimal.length > zeroDecimals) {
+					// Check if digits after zeroDecimals position are all zeros
+					const afterZeroDecimals = decimal.slice(zeroDecimals)
+					if (/^0+$/.test(afterZeroDecimals)) {
+						// All zeros, truncate to zeroDecimals
+						valueStr = `${whole}.${decimal.slice(0, zeroDecimals)}`
+					} else {
+						// Has non-zero digits, keep full decimal
+						valueStr = `${whole}.${decimal}`
+					}
+				} else {
+					// Exactly zeroDecimals digits, keep as is
+					valueStr = `${whole}.${decimal}`
+				}
+			} else if (String(value) === '0') {
+				// For zero values with no decimal requirement
+				valueStr = '0'
+			}
+
+			// Remove trailing zeroes from decimal part (string-based to preserve precision), but only if
+			// zeroDecimals is 0 (not explicitly set)
+			if (stripTrailingZeroes && zeroDecimals === 0 && valueStr.includes('.')) {
 				valueStr = valueStr.replace(/\.?0+$/, '')
 			}
 
