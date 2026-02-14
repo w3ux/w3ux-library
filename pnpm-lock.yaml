@@ -101,8 +101,8 @@ importers:
         specifier: ^19.0.12
         version: 19.2.9
       '@w3ux/types':
-        specifier: ^2.4.1
-        version: 2.4.1
+        specifier: ^2.4.2
+        version: 2.4.2
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -126,8 +126,8 @@ importers:
         specifier: ^19.0.12
         version: 19.2.9
       '@w3ux/types':
-        specifier: ^2.4.1
-        version: 2.4.1
+        specifier: ^2.4.2
+        version: 2.4.2
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -157,8 +157,8 @@ importers:
         version: 1.0.4(typescript@5.9.3)
     devDependencies:
       '@w3ux/types':
-        specifier: ^2.4.1
-        version: 2.4.1
+        specifier: ^2.4.2
+        version: 2.4.2
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -172,11 +172,11 @@ importers:
   library/react-connect-kit:
     dependencies:
       '@w3ux/hooks':
-        specifier: ^2.4.2
-        version: 2.4.2(react@19.2.4)
+        specifier: ^2.4.3
+        version: 2.4.3(react@19.2.4)
       '@w3ux/observables-connect':
-        specifier: ^1.0.3
-        version: 1.0.3(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)
+        specifier: ^1.0.5
+        version: 1.0.5(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)
       '@w3ux/util-dedot':
         specifier: ^1.0.0
         version: 1.0.0(dedot@1.0.4(typescript@5.9.3))
@@ -191,8 +191,8 @@ importers:
         specifier: ^19.0.12
         version: 19.2.9
       '@w3ux/types':
-        specifier: ^2.4.1
-        version: 2.4.1
+        specifier: ^2.4.2
+        version: 2.4.2
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -1200,19 +1200,19 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
-  '@w3ux/hooks@2.4.2':
-    resolution: {integrity: sha512-W7apyVXnBOY20jJAFgJ/W+eGHzCDx1f9XHxh9KXWNRPERflvmT06eoxPMfYdaO7Ai7B0LclI7EY9HXvopvb6Hw==}
+  '@w3ux/hooks@2.4.3':
+    resolution: {integrity: sha512-m4GtTibjFJcoX3zgxnwWVBGRVQpWq71iiYNVIJGEcK0Rm+yCxNHTPirH2gdUpoZsjtuhSdc8lvsQ7v7e63xxqw==}
     peerDependencies:
       react: ^19.1.0
 
-  '@w3ux/observables-connect@1.0.3':
-    resolution: {integrity: sha512-UIazRVKgRT20GwYhpBoik6nVFJjBzEu6bhzhBNKQwrZmEVq/GtCcemUi9qXWZGdfoTdMq5XpUNR697KUb4x+Qg==}
+  '@w3ux/observables-connect@1.0.5':
+    resolution: {integrity: sha512-mFaSR7eGGed6TaisiaDcbVsumvIASoHOgB2IOEJ1W2lBoXJv/l1hCXZ6q3kpe1e+DirYwjso8u4SK9N6eRhR0Q==}
     peerDependencies:
       dedot: ^1
       rxjs: ^7.8.2
 
-  '@w3ux/types@2.4.1':
-    resolution: {integrity: sha512-vqKVJ9NH71fPcaOVM3xuRLJeasOOPDvVdsRvghaDF/e9Zq4OOrMRF7a9KqtwtGX17utzo9Y2GjIcJpNbSjAuzA==}
+  '@w3ux/types@2.4.2':
+    resolution: {integrity: sha512-nZnDmx3kMHeDWqq5gX5zS5WvVG7KqDhoOJ1pyBmJi4dMhcuDv7IntuyKQOsob7o7kBWsSc9VSOQ/kEyKKAtCJA==}
 
   '@w3ux/util-dedot@1.0.0':
     resolution: {integrity: sha512-/SEoja+VKoWZzGBU0qln89kgeidBc/9KXGMH1LWAdQhc73IMTN2eKQJ9NPK72W1GrxfH0bJM0zgKWZPjYL3+qA==}
@@ -2664,13 +2664,13 @@ snapshots:
     dependencies:
       react: 19.2.4
 
-  '@w3ux/hooks@2.4.2(react@19.2.4)':
+  '@w3ux/hooks@2.4.3(react@19.2.4)':
     dependencies:
       '@w3ux/utils': 3.1.0
       date-fns: 4.1.0
       react: 19.2.4
 
-  '@w3ux/observables-connect@1.0.3(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)':
+  '@w3ux/observables-connect@1.0.5(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)':
     dependencies:
       '@mimirdev/apps-inject': 3.2.0
       '@w3ux/extension-assets': 2.3.1(react@19.2.4)
@@ -2681,7 +2681,7 @@ snapshots:
     transitivePeerDependencies:
       - react
 
-  '@w3ux/types@2.4.1': {}
+  '@w3ux/types@2.4.2': {}
 
   '@w3ux/util-dedot@1.0.0(dedot@1.0.4(typescript@5.9.3))':
     dependencies:

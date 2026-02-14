@@ -32,13 +32,64 @@ export const removeExtensionFromLocal = (id: string): void => {
 	)
 }
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+	typeof value === 'object' && value !== null
+
+const asHardwareAccount = (value: unknown): HardwareAccount | null => {
+	if (!isRecord(value)) {
+		return null
+	}
+
+	const { address, name, source, network, index, group } = value
+
+	if (
+		typeof address !== 'string' ||
+		typeof name !== 'string' ||
+		typeof source !== 'string' ||
+		typeof network !== 'string' ||
+		typeof index !== 'number' ||
+		!Number.isFinite(index)
+	) {
+		return null
+	}
+
+	// NOTE: Feb 14, 2026 - `group` is a recently added property, so we allow it to be optional for
+	// backward compatibility for the time being
+	if (group === undefined) {
+		return {
+			...value,
+			address,
+			name,
+			source,
+			network,
+			index,
+			group: 1,
+		} as HardwareAccount
+	}
+
+	if (typeof group !== 'number' || !Number.isFinite(group)) {
+		return null
+	}
+
+	return {
+		...value,
+		address,
+		name,
+		source,
+		network,
+		index,
+		group,
+	} as HardwareAccount
+}
+
 // Gets imported hardware accounts from local storage
 export const getHardwareAccountsLocal = (): HardwareAccount[] => {
-	const accounts = localStorageOrDefault(
-		HardwareAccountsKey,
-		[],
-		true,
-	) as HardwareAccount[]
+	const stored = localStorageOrDefault(HardwareAccountsKey, [], true)
+	if (!Array.isArray(stored)) {
+		return []
+	}
 
-	return accounts
+	return stored
+		.map((account) => asHardwareAccount(account))
+		.filter((account): account is HardwareAccount => account !== null)
 }

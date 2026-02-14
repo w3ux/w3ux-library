@@ -11,6 +11,7 @@ export type ExtensionAccount = AccountCommon & {
 
 export type HardwareAccount = AccountCommon & {
 	network: string
+	group: number
 	index: number
 }
 

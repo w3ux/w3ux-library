@@ -1,7 +1,7 @@
 {
 	"name": "@w3ux/hooks-source",
 	"description": "A collection of general purpose React hooks",
-	"version": "2.4.2",
+	"version": "2.4.3",
 	"license": "GPL-3.0-only",
 	"type": "module",
 	"keywords": [
@@ -30,7 +30,7 @@
 	},
 	"devDependencies": {
 		"@types/react": "^19.0.12",
-		"@w3ux/types": "^2.4.1",
+		"@w3ux/types": "^2.4.2",
 		"builder": "workspace:*",
 		"react": "^19.1.0",
 		"tsup": "^8.4.0"

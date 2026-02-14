@@ -42,6 +42,7 @@ export const HardwareAccountsProvider = ({
 	const addHardwareAccount = (
 		source: HardwareAccountSource,
 		network: string,
+		group: number,
 		address: string,
 		index: number,
 		callback?: () => void,
@@ -50,6 +51,7 @@ export const HardwareAccountsProvider = ({
 			const newAccount: HardwareAccount = {
 				address,
 				network,
+				group,
 				name: ellipsisFn(address),
 				source,
 				index,

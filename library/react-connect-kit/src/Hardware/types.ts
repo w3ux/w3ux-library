@@ -12,6 +12,7 @@ export interface HardwareAccountsContextInterface {
 	addHardwareAccount: (
 		source: HardwareAccountSource,
 		network: string,
+		group: number,
 		address: string,
 		index: number,
 		callback?: () => void,
