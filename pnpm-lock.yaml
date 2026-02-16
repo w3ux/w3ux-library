@@ -116,8 +116,8 @@ importers:
   library/hooks:
     dependencies:
       '@w3ux/utils':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: 3.1.1
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -150,8 +150,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(dedot@1.0.4(typescript@5.9.3))
       '@w3ux/utils':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: 3.1.1
       dedot:
         specifier: ^1
         version: 1.0.4(typescript@5.9.3)
@@ -172,17 +172,17 @@ importers:
   library/react-connect-kit:
     dependencies:
       '@w3ux/hooks':
-        specifier: ^2.4.3
-        version: 2.4.3(react@19.2.4)
+        specifier: ^2.4.4
+        version: 2.4.4(react@19.2.4)
       '@w3ux/observables-connect':
-        specifier: ^1.0.5
-        version: 1.0.5(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)
+        specifier: ^1.0.6
+        version: 1.0.6(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)
       '@w3ux/util-dedot':
         specifier: ^1.0.0
         version: 1.0.0(dedot@1.0.4(typescript@5.9.3))
       '@w3ux/utils':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: 3.1.1
       dedot:
         specifier: ^1
         version: 1.0.4(typescript@5.9.3)
@@ -1200,13 +1200,13 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
-  '@w3ux/hooks@2.4.3':
-    resolution: {integrity: sha512-m4GtTibjFJcoX3zgxnwWVBGRVQpWq71iiYNVIJGEcK0Rm+yCxNHTPirH2gdUpoZsjtuhSdc8lvsQ7v7e63xxqw==}
+  '@w3ux/hooks@2.4.4':
+    resolution: {integrity: sha512-EGzbTMcuRluDXNqdPyCS/aTDmL0YjBaAGt5iWn7fkxgsUYObOjirCrO9OnIUv2Zvr4fr5TFrBbTOMZOVfnJlzw==}
     peerDependencies:
       react: ^19.1.0
 
-  '@w3ux/observables-connect@1.0.5':
-    resolution: {integrity: sha512-mFaSR7eGGed6TaisiaDcbVsumvIASoHOgB2IOEJ1W2lBoXJv/l1hCXZ6q3kpe1e+DirYwjso8u4SK9N6eRhR0Q==}
+  '@w3ux/observables-connect@1.0.6':
+    resolution: {integrity: sha512-Xsww2CDwywo40qVW5xzlJLmaoI3/u9kfyDs3DDSyP5sVIS7aBizJsG/ExYEiLXHSUFOenh6m76BkgQ7jfRqtHQ==}
     peerDependencies:
       dedot: ^1
       rxjs: ^7.8.2
@@ -1219,8 +1219,8 @@ packages:
     peerDependencies:
       dedot: ^1
 
-  '@w3ux/utils@3.1.0':
-    resolution: {integrity: sha512-Jhw5UtJ9JpsFyQ5KDdYSUrcyNWudndWWN75gf9gDsvqPeyXC8tYO6LgLtTbnM0B1z2EjF2HFCQIeg3zV2ralyQ==}
+  '@w3ux/utils@3.1.1':
+    resolution: {integrity: sha512-pw+vJVvx+yh1qGpUSSwghFfpof0Zor2MtfNtDUAQ61Age+TaeSD/f0Opjx2maMPOIIq1pLongjzaWqW3vOK/XQ==}
 
   abitype@1.2.3:
     resolution: {integrity: sha512-Ofer5QUnuUdTFsBRwARMoWKOH1ND5ehwYhJ3OJ/BQO+StkwQjHw0XyVh4vDttzHB7QOFhPHa/o413PJ82gU/Tg==}
@@ -2664,18 +2664,18 @@ snapshots:
     dependencies:
       react: 19.2.4
 
-  '@w3ux/hooks@2.4.3(react@19.2.4)':
+  '@w3ux/hooks@2.4.4(react@19.2.4)':
     dependencies:
-      '@w3ux/utils': 3.1.0
+      '@w3ux/utils': 3.1.1
       date-fns: 4.1.0
       react: 19.2.4
 
-  '@w3ux/observables-connect@1.0.5(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)':
+  '@w3ux/observables-connect@1.0.6(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)':
     dependencies:
       '@mimirdev/apps-inject': 3.2.0
       '@w3ux/extension-assets': 2.3.1(react@19.2.4)
       '@w3ux/util-dedot': 1.0.0(dedot@1.0.4(typescript@5.9.3))
-      '@w3ux/utils': 3.1.0
+      '@w3ux/utils': 3.1.1
       dedot: 1.0.4(typescript@5.9.3)
       rxjs: 7.8.2
     transitivePeerDependencies:
@@ -2687,7 +2687,7 @@ snapshots:
     dependencies:
       dedot: 1.0.4(typescript@5.9.3)
 
-  '@w3ux/utils@3.1.0': {}
+  '@w3ux/utils@3.1.1': {}
 
   abitype@1.2.3(typescript@5.9.3):
     optionalDependencies:
