@@ -35,7 +35,7 @@
 		"@w3ux/util-dedot": "^1.0.0"
 	},
 	"devDependencies": {
-		"@types/node": "^24.10.3",
+		"@types/node": "^25.3.2",
 		"@types/react": "^19.0.12",
 		"builder": "workspace:*",
 		"react": "^19.1.0",
