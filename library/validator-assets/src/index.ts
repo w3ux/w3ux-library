@@ -929,4 +929,17 @@ export const ValidatorCommunity: ValidatorEntry[] = [
 			],
 		},
 	},
+	{
+  name: 'Tech-DC.fr',
+  icon: 'TechDC',
+  bio: 'Bare metal Polkadot validator in France, run by a 15-year datacenter infrastructure veteran. Tier-3/4 facilities, hyperscaler platforms, SOC/ISO certified environments. Dedicated hardware, no VMs, no shortcuts.',
+  email: 'hello@tech-dc.fr',
+  x: '@Madrafrec',
+  website: 'https://tech-dc.fr',
+  validators: {
+    polkadot: [
+      '16Pb7ykJ1X1gB8HtsH7JqX5E6brjMqAqxhWEHRByGwhuv9nu',
+    ],
+  },
+},
 ]
