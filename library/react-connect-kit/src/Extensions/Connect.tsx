@@ -10,10 +10,7 @@ import {
 	removeStatus,
 	setStatus,
 } from '@w3ux/observables-connect'
-import {
-	getExtensions,
-	injectMimir,
-} from '@w3ux/observables-connect/extensions'
+import { getExtensions } from '@w3ux/observables-connect/extensions'
 import type { ExtensionStatus, ExtensionsStatus } from '@w3ux/types'
 import { type ReactNode, useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'
@@ -52,8 +49,6 @@ export const ExtensionsConnectProvider = ({
 
 	// Init extensions discovery
 	const discoverExtensions = async () => {
-		// Handle Mimir iframe injection
-		await injectMimir()
 		// Fetch extensions from `injectedWeb3`
 		getExtensions()
 	}
