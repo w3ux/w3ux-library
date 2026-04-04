@@ -1,93 +1,93 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { prebuild } from "builders/common/prebuild";
-import { generatePackageJson, removePackageOutput } from "builders/util";
-import { exec } from "child_process";
-import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from "consts";
-import fs from "fs/promises";
-import { extname, join } from "path";
-import { format } from "prettier";
-import { promisify } from "util";
-import type { AdditionalAsset } from "./types";
+import { exec } from 'child_process'
+import fs from 'fs/promises'
+import { extname, join } from 'path'
+import { format } from 'prettier'
+import { promisify } from 'util'
+import { PACKAGE_OUTPUT, TEMP_BUILD_OUTPUT } from '../../consts'
+import { prebuild } from '../common/prebuild'
+import { generatePackageJson, removePackageOutput } from '../util'
+import type { AdditionalAsset } from './types'
 
-const execPromisify = promisify(exec);
+const execPromisify = promisify(exec)
 
 export const build = async () => {
-	const folder = "extension-assets";
+	const folder = 'extension-assets'
 
 	try {
 		// Prebuild integrity checks.
 		if (!(await prebuild(folder))) {
-			throw `Prebuild failed.`;
+			throw `Prebuild failed.`
 		}
 
 		// Create temp output directory.
 		try {
-			fs.mkdir(`${TEMP_BUILD_OUTPUT}`, { recursive: true });
+			fs.mkdir(`${TEMP_BUILD_OUTPUT}`, { recursive: true })
 		} catch (e) {
-			throw `Failed to make output directory.`;
+			throw `Failed to make output directory.`
 		}
 
 		// Generate svg and tsx files from raw source files.
 		if (!(await generateIcons(`src/`, `${TEMP_BUILD_OUTPUT}/`))) {
-			throw `Failed to generate icons.`;
+			throw `Failed to generate icons.`
 		}
 
 		// Use raw info.json files to generate `index.js` file.
 		if (!(await processIndexFile(`src/`, `${TEMP_BUILD_OUTPUT}/`))) {
-			throw `Failed to generate index.js file.`;
+			throw `Failed to generate index.js file.`
 		}
 
 		// Generate util.ts file.
-		await generateUtilFile(`src/`, `${TEMP_BUILD_OUTPUT}/`);
+		await generateUtilFile(`src/`, `${TEMP_BUILD_OUTPUT}/`)
 
 		// Call tsup command to generate hybrid files and types in dist folder.
 		try {
 			await execPromisify(
 				`tsup .build/**/*{.ts,.tsx} --format esm,cjs --target es2022 --dts --no-splitting`,
-			);
+			)
 		} catch (e) {
-			throw `Failed to generate dist. ${e}`;
+			throw `Failed to generate dist. ${e}`
 		}
 
 		// Copy svg files into the package output directory.
 		if (!(await moveSvgFiles(`${TEMP_BUILD_OUTPUT}`, `${PACKAGE_OUTPUT}`))) {
-			throw `Failed to move SVG files to output directory.`;
+			throw `Failed to move SVG files to output directory.`
 		}
 
 		// Generate package.json.
-		if (!(await generatePackageJson(".", `${PACKAGE_OUTPUT}`))) {
-			throw `Failed to generate package.json file.`;
+		if (!(await generatePackageJson('.', `${PACKAGE_OUTPUT}`))) {
+			throw `Failed to generate package.json file.`
 		}
 
 		// Copy README.md to dist
 		try {
-			await fs.copyFile("README.md", `${PACKAGE_OUTPUT}/README.md`);
+			await fs.copyFile('README.md', `${PACKAGE_OUTPUT}/README.md`)
 		} catch (e) {
-			console.error(`❌ Failed to copy README.md to dist:`, e);
+			console.error(`❌ Failed to copy README.md to dist:`, e)
 		}
 
 		// Remove tmp build directory if it exists.
-		if (!(await removePackageOutput(".", true))) {
-			console.error(`❌ Failed to remove tmp build directory.`);
+		if (!(await removePackageOutput('.', true))) {
+			console.error(`❌ Failed to remove tmp build directory.`)
 		}
 
-		console.log(`✅ Package successfully built.`);
+		console.log(`✅ Package successfully built.`)
 	} catch (err) {
 		// Handle on error.
-		console.error(`❌ Error occurred while building the package.`, err);
+		console.error(`❌ Error occurred while building the package.`, err)
 
 		// Remove package output directory if it exists.
-		if (!(await removePackageOutput(".", false))) {
-			console.error(`❌ Failed to remove package output directory.`);
+		if (!(await removePackageOutput('.', false))) {
+			console.error(`❌ Failed to remove package output directory.`)
 		}
 		// Remove tmp build directory if it exists.
-		if (!(await removePackageOutput(".", true))) {
-			console.error(`❌ Failed to remove tmp build directory.`);
+		if (!(await removePackageOutput('.', true))) {
+			console.error(`❌ Failed to remove tmp build directory.`)
 		}
 	}
-};
+}
 
 // Copy SVG icons from a source directory to the package directory.
 const generateIcons = async (
@@ -95,59 +95,59 @@ const generateIcons = async (
 	destDir: string,
 ): Promise<boolean> => {
 	try {
-		const subDirs = await fs.readdir(sourceDir);
+		const subDirs = await fs.readdir(sourceDir)
 
 		for (const subDir of subDirs) {
-			const subDirPath = join(sourceDir, subDir);
-			const stats = await fs.stat(subDirPath);
+			const subDirPath = join(sourceDir, subDir)
+			const stats = await fs.stat(subDirPath)
 
 			if (stats.isDirectory()) {
-				const iconPath = join(subDirPath, "icon.svg");
+				const iconPath = join(subDirPath, 'icon.svg')
 
 				try {
-					await fs.access(iconPath);
-					await generateSvgAssets(iconPath, subDir, destDir);
+					await fs.access(iconPath)
+					await generateSvgAssets(iconPath, subDir, destDir)
 					// biome-ignore lint/suspicious/noExplicitAny: <>
 				} catch (err: any) {
 					// If 'icon.svg' doesn't exist in the subdirectory, ignore it
-					if (err.code !== "ENOENT") {
-						throw err;
+					if (err.code !== 'ENOENT') {
+						throw err
 					}
 				}
 			}
 		}
 
-		return true;
+		return true
 	} catch (err) {
-		console.error("❌  Error copying icons:", err);
-		return false;
+		console.error('❌  Error copying icons:', err)
+		return false
 	}
-};
+}
 // Create a React component from an SVG file.
 const createReactComponentFromSvg = async (
 	svgFilePath: string,
 	outputPath: string,
 	componentName: string,
 ) => {
-	const svgContent = await fs.readFile(svgFilePath, "utf8");
-	const reactComponent = generateReactComponent(svgContent, componentName);
+	const svgContent = await fs.readFile(svgFilePath, 'utf8')
+	const reactComponent = generateReactComponent(svgContent, componentName)
 
 	await fs.writeFile(
 		outputPath,
-		await format(reactComponent, { parser: "typescript" }),
-	);
-};
+		await format(reactComponent, { parser: 'typescript' }),
+	)
+}
 
 // Generates React component markup for an SVG file.
 const generateReactComponent = (svgContent: string, componentName: string) => {
 	// Replace html attributes with JSX attributes.
-	svgContent = svgContent.replace(/fill-rule/g, "fillRule");
-	svgContent = svgContent.replace(/stroke-width/g, "strokeWidth");
-	svgContent = svgContent.replace(/stop-color/g, "stopColor");
-	svgContent = svgContent.replace(/stop-opacity/g, "stopOpacity");
-	svgContent = svgContent.replace(/stroke-linejoin/g, "strokeLinejoin");
-	svgContent = svgContent.replace(/stroke-linecap/g, "strokeLinecap");
-	svgContent = svgContent.replace(/clip-path/g, "clipPath");
+	svgContent = svgContent.replace(/fill-rule/g, 'fillRule')
+	svgContent = svgContent.replace(/stroke-width/g, 'strokeWidth')
+	svgContent = svgContent.replace(/stop-color/g, 'stopColor')
+	svgContent = svgContent.replace(/stop-opacity/g, 'stopOpacity')
+	svgContent = svgContent.replace(/stroke-linejoin/g, 'strokeLinejoin')
+	svgContent = svgContent.replace(/stroke-linecap/g, 'strokeLinecap')
+	svgContent = svgContent.replace(/clip-path/g, 'clipPath')
 
 	return `
 import type { JSX } from "react";
@@ -159,8 +159,8 @@ export const ${componentName} = (): JSX.Element => {
 }
 
 export default ${componentName};
-`;
-};
+`
+}
 
 // Generate index file from `info.json` source files.
 const processIndexFile = async (
@@ -168,52 +168,52 @@ const processIndexFile = async (
 	outputPath: string,
 ): Promise<boolean> => {
 	try {
-		const folders = await fs.readdir(directoryPath);
+		const folders = await fs.readdir(directoryPath)
 		// biome-ignore lint/suspicious/noExplicitAny: <>
-		const indexData: any = {};
+		const indexData: any = {}
 
 		for (const folder of folders) {
 			try {
-				const stats = await fs.stat(`${directoryPath}/${folder}`);
-				const isDirectory = stats.isDirectory();
+				const stats = await fs.stat(`${directoryPath}/${folder}`)
+				const isDirectory = stats.isDirectory()
 
 				if (isDirectory) {
-					const folderPath = join(directoryPath, folder);
-					const infoPath = join(folderPath, "info.json");
+					const folderPath = join(directoryPath, folder)
+					const infoPath = join(folderPath, 'info.json')
 
-					const infoContent = await fs.readFile(infoPath, "utf8");
-					const info = JSON.parse(infoContent);
+					const infoContent = await fs.readFile(infoPath, 'utf8')
+					const info = JSON.parse(infoContent)
 
 					// Get metadata and apply the remaining properties to index data.
-					const { id, ...rest } = info;
+					const { id, ...rest } = info
 
 					if (rest.additionalAssets) {
 						await writeAdditionalAssets(
 							rest.additionalAssets || [],
 							folderPath,
 							outputPath,
-						);
+						)
 					}
-					indexData[id] = rest;
+					indexData[id] = rest
 				}
 			} catch (error) {
 				console.error(
 					`❌ Error reading or parsing info.json for folder '${folder}':`,
 					error,
-				);
-				return false;
+				)
+				return false
 			}
 		}
 
-		const indexFileContent = `export const extensions = ${JSON.stringify(indexData, null, 4)};\n\nexport default extensions;`;
-		await fs.writeFile(join(outputPath, "index.ts"), indexFileContent);
+		const indexFileContent = `export const extensions = ${JSON.stringify(indexData, null, 4)};\n\nexport default extensions;`
+		await fs.writeFile(join(outputPath, 'index.ts'), indexFileContent)
 
-		return true;
+		return true
 	} catch (error) {
-		console.error("❌ Error generating index.ts file:", error);
-		return false;
+		console.error('❌ Error generating index.ts file:', error)
+		return false
 	}
-};
+}
 
 // Generate util file.
 const generateUtilFile = async (
@@ -221,38 +221,38 @@ const generateUtilFile = async (
 	outputPath: string,
 ): Promise<boolean> => {
 	try {
-		const filePath = `${outputPath}/util.ts`;
-		const imports = [];
-		const records = [];
+		const filePath = `${outputPath}/util.ts`
+		const imports = []
+		const records = []
 
 		// Get subdirectories to determine icon files.
-		const subDirs = await fs.readdir(sourceDir);
+		const subDirs = await fs.readdir(sourceDir)
 
 		for (const subDir of subDirs) {
-			const stats = await fs.stat(`${sourceDir}/${subDir}`);
-			const isDirectory = stats.isDirectory();
+			const stats = await fs.stat(`${sourceDir}/${subDir}`)
+			const isDirectory = stats.isDirectory()
 
 			if (isDirectory) {
 				// Format import of icon.
-				imports.push(`import { ${subDir} } from "./${subDir}";`);
+				imports.push(`import { ${subDir} } from "./${subDir}";`)
 
 				// Get `id` and format record.
 				const infoContent = await fs.readFile(
 					`${sourceDir}/${subDir}/info.json`,
-					"utf8",
-				);
-				const { id } = JSON.parse(infoContent);
-				records.push(`"${id}": ${subDir}`);
+					'utf8',
+				)
+				const { id } = JSON.parse(infoContent)
+				records.push(`"${id}": ${subDir}`)
 			}
 		}
 
 		// Open the file for writing.
-		await fs.writeFile(filePath, "");
-		const writer = await fs.open(filePath, "w");
+		await fs.writeFile(filePath, '')
+		const writer = await fs.open(filePath, 'w')
 
-		await writer.write(`import { CSSProperties, FC } from "react";\n`);
+		await writer.write(`import { CSSProperties, FC } from "react";\n`)
 		for (const line of imports) {
-			await writer.write(line + "\n");
+			await writer.write(line + '\n')
 		}
 
 		await writer.write(`
@@ -275,32 +275,32 @@ const generateUtilFile = async (
       className?: string;
     }>;
 
-    export const ExtensionIcons: Record<string, ExtensionIcon> = {\n`);
+    export const ExtensionIcons: Record<string, ExtensionIcon> = {\n`)
 
 		for (const line of records) {
-			await writer.write(line + ",\n");
+			await writer.write(line + ',\n')
 		}
-		await writer.write("};");
+		await writer.write('};')
 
 		await writer.write(`
     // Helper: extension icon getter.
     export const getExtensionIcon = (id: string): ExtensionIcon | null =>    
       ExtensionIcons[id] || null;
-  `);
+  `)
 
-		await writer.close();
+		await writer.close()
 
 		// Format the file.
-		const data = await fs.readFile(filePath, "utf8");
-		const formattedCode = await format(data, { parser: "typescript" });
-		await fs.writeFile(filePath, formattedCode, "utf8");
+		const data = await fs.readFile(filePath, 'utf8')
+		const formattedCode = await format(data, { parser: 'typescript' })
+		await fs.writeFile(filePath, formattedCode, 'utf8')
 
-		return true;
+		return true
 	} catch (error) {
-		console.error("❌ Error generating util.ts file:", error);
-		return false;
+		console.error('❌ Error generating util.ts file:', error)
+		return false
 	}
-};
+}
 
 // Write additonal assets to package output.
 const writeAdditionalAssets = async (
@@ -311,18 +311,18 @@ const writeAdditionalAssets = async (
 	try {
 		// Process each additional asset.
 		for (const asset of additionalAssets) {
-			const { input, outputFilename } = asset;
-			const inputFile = join(inputDir, input);
+			const { input, outputFilename } = asset
+			const inputFile = join(inputDir, input)
 
-			await generateSvgAssets(inputFile, outputFilename, outputDir);
+			await generateSvgAssets(inputFile, outputFilename, outputDir)
 		}
 
-		return true;
+		return true
 	} catch (error) {
-		console.error("❌ Error copying additional assets:", error);
-		return false;
+		console.error('❌ Error copying additional assets:', error)
+		return false
 	}
-};
+}
 
 // Generate icons from SVG inputs.
 const generateSvgAssets = async (
@@ -330,15 +330,15 @@ const generateSvgAssets = async (
 	outputFilename: string,
 	outputDir: string,
 ) => {
-	const destFileSvg = join(outputDir, `${outputFilename}.svg`);
-	const destFileTsx = join(outputDir, `${outputFilename}.tsx`);
+	const destFileSvg = join(outputDir, `${outputFilename}.svg`)
+	const destFileTsx = join(outputDir, `${outputFilename}.tsx`)
 
 	// Copy SVG file.
-	await fs.copyFile(inputFile, destFileSvg);
+	await fs.copyFile(inputFile, destFileSvg)
 
 	// Generate React component from SVG file.
-	await createReactComponentFromSvg(inputFile, destFileTsx, outputFilename);
-};
+	await createReactComponentFromSvg(inputFile, destFileTsx, outputFilename)
+}
 
 // Move svg files from one directory to another directory.
 export const moveSvgFiles = async (
@@ -347,25 +347,25 @@ export const moveSvgFiles = async (
 ) => {
 	try {
 		// Read the contents of the source directory
-		const files = await fs.readdir(sourceDir);
+		const files = await fs.readdir(sourceDir)
 
 		// Filter out only SVG files
 		const svgFiles = files.filter(
-			(file) => extname(file).toLowerCase() === ".svg",
-		);
+			(file) => extname(file).toLowerCase() === '.svg',
+		)
 		// Move each SVG file to the destination directory
 		await Promise.all(
 			svgFiles.map(async (file) => {
-				const sourceFilePath = join(sourceDir, file);
-				const destinationFilePath = join(destinationDir, file);
+				const sourceFilePath = join(sourceDir, file)
+				const destinationFilePath = join(destinationDir, file)
 				// Move the file
-				await fs.rename(sourceFilePath, destinationFilePath);
+				await fs.rename(sourceFilePath, destinationFilePath)
 			}),
-		);
+		)
 
-		return true;
+		return true
 	} catch (err) {
-		console.error("❌ Error moving svg Files to output directory:", err);
-		return false;
+		console.error('❌ Error moving svg Files to output directory:', err)
+		return false
 	}
-};
+}
