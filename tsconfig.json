@@ -1,7 +1,6 @@
 {
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
-		"baseUrl": ".",
 		"rootDir": ".",
 		"noEmitOnError": true,
 		"skipLibCheck": true,

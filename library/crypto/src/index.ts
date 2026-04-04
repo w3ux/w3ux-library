@@ -6,12 +6,12 @@ import { blake2b } from 'blakejs'
 /**
  * Creates a BLAKE2b hash of the input data and returns it as a Uint8Array.
  *
- * @param data - The input data to hash, as a string, Uint8Array, or Buffer.
+ * @param data - The input data to hash, as a string or Uint8Array.
  * @param bitLength - The bit length of the hash output (default 256).
  * @returns The BLAKE2b hash output as a Uint8Array.
  */
 export const blake2AsU8a = (
-	data: Uint8Array | string | Buffer,
+	data: Uint8Array | string,
 	bitLength = 256,
 ): Uint8Array => {
 	// Convert input to Uint8Array if it's a string
