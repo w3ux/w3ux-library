@@ -31,7 +31,7 @@
 	},
 	"dependencies": {
 		"html5-qrcode": "^2.3.8",
-		"qrcode-generator": "1.5.0",
+		"qrcode-generator": "2.0.4",
 		"styled-components": "^6.3.12",
 		"xxhash-wasm": "^1.0.2"
 	},
