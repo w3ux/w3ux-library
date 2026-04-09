@@ -37,6 +37,10 @@ switch (task) {
 		await simpleBuild('hooks')
 		break
 
+	case 'ledger-connect':
+		await simpleBuild('ledger-connect')
+		break
+
 	case 'observables-connect':
 		await simpleBuild('observables-connect')
 		break
@@ -67,6 +71,10 @@ switch (task) {
 
 	case 'validator-assets':
 		await simpleBuild('validator-assets')
+		break
+
+	case 'vault-connect':
+		await simpleBuild('vault-connect')
 		break
 
 	default:

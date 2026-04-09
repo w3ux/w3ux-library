@@ -1,0 +1,51 @@
+{
+	"name": "@w3ux/ledger-connect-source",
+	"description": "Ledger hardware wallet adaptor for @w3ux/react-connect-kit",
+	"version": "1.0.0",
+	"license": "GPL-3.0-only",
+	"type": "module",
+	"keywords": [
+		"w3ux",
+		"polkadot",
+		"ledger",
+		"hardware",
+		"web3",
+		"react",
+		"typescript"
+	],
+	"homepage": "https://w3ux.org/library/ledger-connect/overview",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/w3ux/w3ux-library.git",
+		"directory": "library/ledger-connect"
+	},
+	"bugs": {
+		"url": "https://github.com/w3ux/w3ux-library/issues"
+	},
+	"scripts": {
+		"clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
+		"check": "biome check .",
+		"lint": "biome check --write .",
+		"build": "tsup",
+		"compile": "builder -t ledger-connect"
+	},
+	"dependencies": {
+		"@ledgerhq/hw-transport-webhid": "^6.34.0",
+		"@w3ux/hooks": "^2.4.4",
+		"@w3ux/utils": "^3.1.1",
+		"@zondax/ledger-substrate": "^2.1.2",
+		"buffer": "^6.0.3"
+	},
+	"devDependencies": {
+		"@fortawesome/free-brands-svg-icons": "^7.2.0",
+		"@fortawesome/free-solid-svg-icons": "^7.2.0",
+		"@types/react": "^19.0.12",
+		"@w3ux/types": "^2.4.2",
+		"builder": "workspace:*",
+		"react": "^19.1.0",
+		"tsup": "^8.4.0"
+	},
+	"peerDependencies": {
+		"@w3ux/react-connect-kit": "^4.0.4"
+	}
+}

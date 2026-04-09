@@ -1,0 +1,3 @@
+directory:
+  - name: Vault Connect
+    description: Polkadot Vault (QR-based) wallet adaptor for @w3ux/react-connect-kit

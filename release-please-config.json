@@ -1,16 +1,18 @@
 {
-  "last-release-sha": "c5f552b302fd33c11afc86d153dcfe64f3e4444e",
-  "include-component-in-tag": true,
-  "packages": {
-    "library/extension-assets": {},
-    "library/factories": {},
-    "library/hooks": {},
-    "library/react-connect-kit": {},
-    "library/react-odometer": {},
-    "library/react-polkicon": {},
-    "library/types": {},
-    "library/utils": {},
-    "library/crypto": {},
-    "library/validator-assets": {}
-  }
+	"last-release-sha": "c5f552b302fd33c11afc86d153dcfe64f3e4444e",
+	"include-component-in-tag": true,
+	"packages": {
+		"library/extension-assets": {},
+		"library/factories": {},
+		"library/hooks": {},
+		"library/react-connect-kit": {},
+		"library/react-odometer": {},
+		"library/react-polkicon": {},
+		"library/types": {},
+		"library/utils": {},
+		"library/crypto": {},
+		"library/validator-assets": {},
+		"library/ledger-connect": {},
+		"library/vault-connect": {}
+	}
 }
