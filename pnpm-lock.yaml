@@ -147,8 +147,8 @@ importers:
         specifier: ^2.4.4
         version: 2.4.4(react@19.2.5)
       '@w3ux/react-connect-kit':
-        specifier: ^4
-        version: 4.0.4(dedot@1.2.0(typescript@5.9.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(rxjs@7.8.2)
+        specifier: ^5
+        version: 5.0.0(dedot@1.2.0(typescript@5.9.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(rxjs@7.8.2)
       '@w3ux/utils':
         specifier: ^3.1.1
         version: 3.1.1
@@ -169,8 +169,8 @@ importers:
         specifier: ^19
         version: 19.2.14
       '@w3ux/observables-connect':
-        specifier: workspace:*
-        version: link:../observables-connect
+        specifier: ^2
+        version: 2.0.0(dedot@1.2.0(typescript@5.9.3))(react@19.2.5)(rxjs@7.8.2)
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -218,8 +218,8 @@ importers:
         specifier: ^2.4.4
         version: 2.4.4(react@19.2.5)
       '@w3ux/observables-connect':
-        specifier: workspace:*
-        version: link:../observables-connect
+        specifier: 2.0.0
+        version: 2.0.0(dedot@1.2.0(typescript@5.9.3))(react@19.2.5)(rxjs@7.8.2)
       '@w3ux/util-dedot':
         specifier: ^1.0.0
         version: 1.0.0(dedot@1.2.0(typescript@5.9.3))
@@ -356,8 +356,8 @@ importers:
   library/vault-connect:
     dependencies:
       '@w3ux/react-connect-kit':
-        specifier: ^4
-        version: 4.0.4(dedot@1.2.0(typescript@5.9.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(rxjs@7.8.2)
+        specifier: ^5
+        version: 5.0.0(dedot@1.2.0(typescript@5.9.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(rxjs@7.8.2)
       dedot:
         specifier: ^1
         version: 1.2.0(typescript@5.9.3)
@@ -378,8 +378,8 @@ importers:
         specifier: ^19
         version: 19.2.14
       '@w3ux/observables-connect':
-        specifier: workspace:*
-        version: link:../observables-connect
+        specifier: ^2
+        version: 2.0.0(dedot@1.2.0(typescript@5.9.3))(react@19.2.5)(rxjs@7.8.2)
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -1175,14 +1175,14 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
-  '@w3ux/observables-connect@1.0.7':
-    resolution: {integrity: sha512-htwX1ydLkwLCkQPNtPXE9a/14fRprE5ss/tDJtZcGf5miF8A6TRIn9aaPydYr20dO0EhvosTxvaXcpOhvH0Kcw==}
+  '@w3ux/observables-connect@2.0.0':
+    resolution: {integrity: sha512-fgokra7zbd+7OsXz5xUXMIekmalVMoh1vlT0mZ3xRmQU7r5DGtxFOCkXM+ojVJmnQpag8exccbBUnjoU7hn9PQ==}
     peerDependencies:
       dedot: ^1
       rxjs: ^7.8.2
 
-  '@w3ux/react-connect-kit@4.0.4':
-    resolution: {integrity: sha512-cYKocy1ivbQrNOXb6R3Uve1OkZEQrjDnzjhX3tGWJrOkQ3+JehH2IIQnxi2bnoJE1/x9r0gJiUyzPg429MHa2g==}
+  '@w3ux/react-connect-kit@5.0.0':
+    resolution: {integrity: sha512-ZSqYG0hImHmaqo2Xxr0z8sC70lTl50WSRc/6lyOOWy4FXcLyqDxCBbg+RktNeyZz4ev716/C1D2o3/Ss5Zt55Q==}
     peerDependencies:
       dedot: ^1
       react: ^19.1.0
@@ -2973,7 +2973,7 @@ snapshots:
       date-fns: 4.1.0
       react: 19.2.5
 
-  '@w3ux/observables-connect@1.0.7(dedot@1.2.0(typescript@5.9.3))(react@19.2.5)(rxjs@7.8.2)':
+  '@w3ux/observables-connect@2.0.0(dedot@1.2.0(typescript@5.9.3))(react@19.2.5)(rxjs@7.8.2)':
     dependencies:
       '@w3ux/extension-assets': 2.3.1(react@19.2.5)
       '@w3ux/util-dedot': 1.0.0(dedot@1.2.0(typescript@5.9.3))
@@ -2983,10 +2983,10 @@ snapshots:
     transitivePeerDependencies:
       - react
 
-  '@w3ux/react-connect-kit@4.0.4(dedot@1.2.0(typescript@5.9.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(rxjs@7.8.2)':
+  '@w3ux/react-connect-kit@5.0.0(dedot@1.2.0(typescript@5.9.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(rxjs@7.8.2)':
     dependencies:
       '@w3ux/hooks': 2.4.4(react@19.2.5)
-      '@w3ux/observables-connect': 1.0.7(dedot@1.2.0(typescript@5.9.3))(react@19.2.5)(rxjs@7.8.2)
+      '@w3ux/observables-connect': 2.0.0(dedot@1.2.0(typescript@5.9.3))(react@19.2.5)(rxjs@7.8.2)
       '@w3ux/util-dedot': 1.0.0(dedot@1.2.0(typescript@5.9.3))
       '@w3ux/utils': 3.1.1
       dedot: 1.2.0(typescript@5.9.3)

@@ -37,13 +37,13 @@
 	},
 	"devDependencies": {
 		"@types/react": "^19",
-		"@w3ux/observables-connect": "workspace:*",
+		"@w3ux/observables-connect": "^2",
 		"builder": "workspace:*",
 		"react": "^19",
 		"tsup": "^8"
 	},
 	"peerDependencies": {
 		"dedot": "^1",
-		"@w3ux/react-connect-kit": "^4"
+		"@w3ux/react-connect-kit": "^5"
 	}
 }
