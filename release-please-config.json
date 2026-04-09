@@ -12,6 +12,7 @@
 		"library/utils": {},
 		"library/crypto": {},
 		"library/validator-assets": {},
+		"library/observables-connect": {},
 		"library/ledger-connect": {},
 		"library/vault-connect": {}
 	}
