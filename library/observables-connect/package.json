@@ -58,11 +58,11 @@
 		"@w3ux/utils": "^3.1.1"
 	},
 	"devDependencies": {
-		"@types/react": "^19.0.12",
+		"@types/react": "^19",
 		"builder": "workspace:*",
-		"react": "^19.1.0",
-		"rxjs": "^7.8.2",
-		"tsup": "^8.4.0"
+		"react": "^19",
+		"rxjs": "^7",
+		"tsup": "^8"
 	},
 	"peerDependencies": {
 		"dedot": "^1"

@@ -37,15 +37,15 @@
 		"buffer": "^6.0.3"
 	},
 	"devDependencies": {
-		"@fortawesome/free-brands-svg-icons": "^7.2.0",
-		"@fortawesome/free-solid-svg-icons": "^7.2.0",
-		"@types/react": "^19.0.12",
+		"@fortawesome/free-brands-svg-icons": "^7",
+		"@fortawesome/free-solid-svg-icons": "^7",
+		"@types/react": "^19",
 		"@w3ux/observables-connect": "workspace:*",
 		"builder": "workspace:*",
-		"react": "^19.1.0",
-		"tsup": "^8.4.0"
+		"react": "^19",
+		"tsup": "^8"
 	},
 	"peerDependencies": {
-		"@w3ux/react-connect-kit": "^4.0.4"
+		"@w3ux/react-connect-kit": "^4"
 	}
 }
