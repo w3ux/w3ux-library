@@ -46,7 +46,6 @@ export type ExtensionStatus = 'installed' | 'not_authenticated' | 'connected'
 export type ExtensionsStatus = Record<string, ExtensionStatus>
 
 export interface ExtensionInjected extends ExtensionConfig {
-	id: string
 	enable: (n?: string) => Promise<ExtensionInterface>
 }
 
