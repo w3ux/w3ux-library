@@ -6,7 +6,7 @@ import type {
 	ExtensionAccount,
 	ExtensionStatus,
 	Sync,
-} from '@w3ux/types'
+} from '@w3ux/observables-connect/types'
 import type { ReactNode } from 'react'
 
 export interface ExtensionsConnectContextInterface {

@@ -1,7 +1,7 @@
-// Copyright 2026 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
-// SPDX-License-Identifier: GPL-3.0-only
+/* @license Copyright 2024 w3ux authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
 
-import type { MaybeString } from '@w3ux/types'
+export type MaybeString = string | null
 
 // biome-ignore lint/suspicious/noExplicitAny: <ledger device transport shape is dynamic and not worth typing>
 export type AnyTransport = any

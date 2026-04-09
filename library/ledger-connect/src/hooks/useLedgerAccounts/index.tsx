@@ -1,8 +1,11 @@
-// Copyright 2026 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
-// SPDX-License-Identifier: GPL-3.0-only
+/* @license Copyright 2024 w3ux authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
 
+import type {
+	HardwareAccount,
+	HardwareAccountSource,
+} from '@w3ux/observables-connect/types'
 import { useHardwareAccounts } from '@w3ux/react-connect-kit'
-import type { HardwareAccount, HardwareAccountSource } from '@w3ux/types'
 import type { UseLedgerAccountsReturn } from './types'
 
 const source: HardwareAccountSource = 'ledger'

@@ -36,14 +36,14 @@
 		"xxhash-wasm": "^1.0.2"
 	},
 	"devDependencies": {
-		"@types/react": "^19.0.12",
-		"@w3ux/types": "^2.4.2",
+		"@types/react": "^19",
+		"@w3ux/observables-connect": "^2",
 		"builder": "workspace:*",
-		"react": "^19.1.0",
-		"tsup": "^8.4.0"
+		"react": "^19",
+		"tsup": "^8"
 	},
 	"peerDependencies": {
 		"dedot": "^1",
-		"@w3ux/react-connect-kit": "^4.0.4"
+		"@w3ux/react-connect-kit": "^5"
 	}
 }

@@ -1,9 +1,9 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { HardwareAccount } from '@w3ux/types'
 import { localStorageOrDefault } from '@w3ux/utils'
 import { ActiveExtensionsKey, HardwareAccountsKey } from './consts'
+import type { HardwareAccount } from './types'
 
 // Gets all active extensions from local storage
 export const getActiveExtensionsLocal = (): string[] => {

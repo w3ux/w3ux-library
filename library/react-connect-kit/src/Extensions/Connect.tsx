@@ -11,7 +11,10 @@ import {
 	setStatus,
 } from '@w3ux/observables-connect'
 import { getExtensions } from '@w3ux/observables-connect/extensions'
-import type { ExtensionStatus, ExtensionsStatus } from '@w3ux/types'
+import type {
+	ExtensionStatus,
+	ExtensionsStatus,
+} from '@w3ux/observables-connect/types'
 import { type ReactNode, useEffect, useState } from 'react'
 import { combineLatest } from 'rxjs'
 import type { ExtensionsConnectContextInterface } from './types'

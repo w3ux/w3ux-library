@@ -1,5 +1,5 @@
-// Copyright 2026 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
-// SPDX-License-Identifier: GPL-3.0-only
+/* @license Copyright 2024 w3ux authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
 
 import TransportWebHID from '@ledgerhq/hw-transport-webhid'
 import { withTimeout } from '@w3ux/utils'

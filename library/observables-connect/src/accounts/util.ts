@@ -1,13 +1,10 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type {
-	ExtensionAccount,
-	ProcessExtensionAccountsResult,
-} from '@w3ux/types'
 import { formatAccountSs58, isValidAddress } from '@w3ux/util-dedot'
 import { DefaultProcessExtensionResult } from '../consts'
 import { _extensionAccounts } from '../subjects'
+import type { ExtensionAccount, ProcessExtensionAccountsResult } from '../types'
 
 // Gets accounts to be imported and commits them to state
 

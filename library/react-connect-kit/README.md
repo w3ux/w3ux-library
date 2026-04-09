@@ -22,23 +22,46 @@ pnpm add @w3ux/react-connect-kit
 
 ## Usage
 
-```typescript
-import { /* your imports */ } from '@w3ux/react-connect-kit'
-```
-
-### React Usage
-
-This package provides React hooks and components. Here's a basic example:
-
 ```tsx
-import React from 'react'
-import { /* specific hook or component */ } from '@w3ux/react-connect-kit'
+import { ConnectProvider } from '@w3ux/react-connect-kit'
 
-function MyComponent() {
-  // Use the imported hooks or components here
-  return <div>Your component content</div>
+function App() {
+  return (
+    <ConnectProvider ss58={0} dappName="My Dapp">
+      {/* Your app content */}
+    </ConnectProvider>
+  )
 }
 ```
+
+### Adaptor Model
+
+`ConnectProvider` supports an `adaptors` prop that accepts an array of provider components. Adaptors are dynamically nested inside `ConnectProvider`, allowing your dapp to opt in to whichever connection methods it needs without hard dependencies.
+
+First-party adaptors:
+
+- [`@w3ux/ledger-connect`](https://www.npmjs.com/package/@w3ux/ledger-connect) — Ledger hardware wallet support
+- [`@w3ux/vault-connect`](https://www.npmjs.com/package/@w3ux/vault-connect) — Polkadot Vault (QR-based) wallet support
+
+```tsx
+import { ConnectProvider } from '@w3ux/react-connect-kit'
+import { LedgerAdaptor } from '@w3ux/ledger-connect'
+import { VaultAdaptor } from '@w3ux/vault-connect'
+
+function App() {
+  return (
+    <ConnectProvider
+      ss58={0}
+      dappName="My Dapp"
+      adaptors={[LedgerAdaptor, VaultAdaptor]}
+    >
+      {/* Your app content */}
+    </ConnectProvider>
+  )
+}
+```
+
+Each adaptor provides its own hooks for interacting with its connection method (e.g., `useLedger` from `@w3ux/ledger-connect`). Browser extension connectivity is built in via `useExtensions` and `useExtensionAccounts`.
 
 ## Documentation
 

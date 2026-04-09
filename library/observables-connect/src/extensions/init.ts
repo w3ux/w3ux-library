@@ -1,9 +1,9 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { ExtensionEnableResults } from '@w3ux/types'
 import { addExtensionToLocal, removeExtensionFromLocal } from '../local'
 import { _extensionsStatus, _initialisedExtensions } from '../subjects'
+import type { ExtensionEnableResults } from '../types'
 import { enableExtensions } from './enable'
 
 // Connects to previously connected extensions, or to a specific set of extensions
