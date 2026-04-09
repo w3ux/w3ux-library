@@ -39,7 +39,8 @@
 			"@parcel/watcher",
 			"es5-ext",
 			"esbuild",
-			"unrs-resolver"
+			"node-hid",
+			"usb"
 		]
 	},
 	"packageManager": "pnpm@10.18.3"
