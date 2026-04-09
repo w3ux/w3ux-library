@@ -4,7 +4,7 @@
 	"library/factories": "2.2.1",
 	"library/hooks": "2.3.4",
 	"library/observables-connect": "2.0.0",
-	"library/react-connect-kit": "5.0.0",
+	"library/react-connect-kit": "5.0.1",
 	"library/react-odometer": "2.2.6",
 	"library/react-polkicon": "3.2.7",
 	"library/types": "2.4.7",
