@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { createSafeContext } from '@w3ux/hooks'
-import type { MaybeString } from '@w3ux/types'
 import { setStateWithRef } from '@w3ux/utils'
 import type { ReactNode } from 'react'
 import { useRef, useState } from 'react'
@@ -16,6 +15,7 @@ import type {
 	LedgerDeviceAddress,
 	LedgerDeviceModel,
 	LedgerResponse,
+	MaybeString,
 } from './types'
 import {
 	getLedgerDeviceModel,

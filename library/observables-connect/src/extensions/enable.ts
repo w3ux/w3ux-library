@@ -5,7 +5,7 @@ import type {
 	ExtensionEnableResult,
 	ExtensionEnableResults,
 	ExtensionInterface,
-} from '@w3ux/types'
+} from '../types'
 import { enableInjectedWeb3Entry, hasValidEnable } from '../util'
 
 // Get extensions and enable them

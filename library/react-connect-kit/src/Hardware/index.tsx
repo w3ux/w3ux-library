@@ -8,7 +8,10 @@ import {
 	hardwareAccounts$,
 	setHardwareAccounts,
 } from '@w3ux/observables-connect'
-import type { HardwareAccount, HardwareAccountSource } from '@w3ux/types'
+import type {
+	HardwareAccount,
+	HardwareAccountSource,
+} from '@w3ux/observables-connect/types'
 import { ellipsisFn } from '@w3ux/utils'
 import type { ReactNode } from 'react'
 import { useEffect, useState } from 'react'

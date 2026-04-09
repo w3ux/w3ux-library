@@ -168,9 +168,9 @@ importers:
       '@types/react':
         specifier: ^19.0.12
         version: 19.2.9
-      '@w3ux/types':
-        specifier: ^2.4.2
-        version: 2.4.2
+      '@w3ux/observables-connect':
+        specifier: workspace:*
+        version: link:../observables-connect
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -196,12 +196,15 @@ importers:
         specifier: ^1
         version: 1.0.4(typescript@5.9.3)
     devDependencies:
-      '@w3ux/types':
-        specifier: ^2.4.2
-        version: 2.4.2
+      '@types/react':
+        specifier: ^19.0.12
+        version: 19.2.9
       builder:
         specifier: workspace:*
         version: link:../../builder
+      react:
+        specifier: ^19.1.0
+        version: 19.2.4
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
@@ -215,8 +218,8 @@ importers:
         specifier: ^2.4.4
         version: 2.4.4(react@19.2.4)
       '@w3ux/observables-connect':
-        specifier: ^1.0.7
-        version: 1.0.7(dedot@1.0.4(typescript@5.9.3))(react@19.2.4)(rxjs@7.8.2)
+        specifier: workspace:*
+        version: link:../observables-connect
       '@w3ux/util-dedot':
         specifier: ^1.0.0
         version: 1.0.0(dedot@1.0.4(typescript@5.9.3))
@@ -230,9 +233,6 @@ importers:
       '@types/react':
         specifier: ^19.0.12
         version: 19.2.9
-      '@w3ux/types':
-        specifier: ^2.4.2
-        version: 2.4.2
       builder:
         specifier: workspace:*
         version: link:../../builder
@@ -377,9 +377,9 @@ importers:
       '@types/react':
         specifier: ^19.0.12
         version: 19.2.9
-      '@w3ux/types':
-        specifier: ^2.4.2
-        version: 2.4.2
+      '@w3ux/observables-connect':
+        specifier: workspace:*
+        version: link:../observables-connect
       builder:
         specifier: workspace:*
         version: link:../../builder

@@ -5,7 +5,7 @@ import type {
 	ExtensionAccount,
 	ExtensionEnableResults,
 	ExtensionInterface,
-} from '@w3ux/types'
+} from '../types'
 import { formatExtensionAccounts } from './util'
 
 // Connects to provided extensions and gets all accounts

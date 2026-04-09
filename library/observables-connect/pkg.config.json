@@ -5,6 +5,10 @@
 			"import": "./index.js",
 			"require": "./index.cjs"
 		},
+		"./types": {
+			"import": "./types.js",
+			"require": "./types.cjs"
+		},
 		"./extensions": {
 			"import": "./extensions/index.js",
 			"require": "./extensions/index.cjs"

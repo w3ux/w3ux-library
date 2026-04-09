@@ -1,9 +1,9 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { ExtensionAccount, ExtensionInterface } from '@w3ux/types'
 import { addUnsub } from '../accounts/unsubs'
 import { processExtensionAccounts } from '../accounts/util'
+import type { ExtensionAccount, ExtensionInterface } from '../types'
 import { canConnect } from '../util'
 import { initExtensions } from './index'
 

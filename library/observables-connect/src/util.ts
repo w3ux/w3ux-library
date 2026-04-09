@@ -1,13 +1,13 @@
 /* @license Copyright 2024 w3ux authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import type { ExtensionStatus, HardwareAccount, Sync } from '@w3ux/types'
 import {
 	_extensionAccounts,
 	_extensionsStatus,
 	_hardwareAccounts,
 	_reconnectSync,
 } from './subjects'
+import type { ExtensionStatus, HardwareAccount, Sync } from './types'
 
 // Gets an extension status
 export const getStatus = (id: string): ExtensionStatus =>
