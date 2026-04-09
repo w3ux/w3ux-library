@@ -16,6 +16,10 @@ A collection of general purpose TypeScript factories
 
 A collection of general purpose React hooks
 
+#### `@w3ux/ledger-connect`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/ledger-connect)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/ledger-connect)]
+
+Ledger hardware wallet adaptor for @w3ux/react-connect-kit
+
 #### `@w3ux/observables-connect`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/observables-connect)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/observables-connect)]
 
 Observables for extensions and accounts discovery
@@ -36,6 +40,10 @@ A light-weight and customisable Polkadot Icon
 
 Common types used throughout the w3ux library
 
+#### `@w3ux/util-dedot`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/util-dedot)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/util-dedot)]
+
+A collection of reusable dedot utilities
+
 #### `@w3ux/utils`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/utils)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/utils)]
 
 A collection of reusable utilities for manipulating data
@@ -43,3 +51,7 @@ A collection of reusable utilities for manipulating data
 #### `@w3ux/validator-assets`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/validator-assets)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/validator-assets)]
 
 A list of Polkadot validator operators with metadata and icons
+
+#### `@w3ux/vault-connect`&nbsp; [[npm](https://www.npmjs.com/package/@w3ux/vault-connect)&nbsp;|&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/vault-connect)]
+
+Polkadot Vault (QR-based) wallet adaptor for @w3ux/react-connect-kit
