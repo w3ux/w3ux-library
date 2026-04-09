@@ -46,14 +46,13 @@ First-party adaptors:
 ```tsx
 import { ConnectProvider } from '@w3ux/react-connect-kit'
 import { LedgerAdaptor } from '@w3ux/ledger-connect'
-import { VaultAdaptor } from '@w3ux/vault-connect'
 
 function App() {
   return (
     <ConnectProvider
       ss58={0}
       dappName="My Dapp"
-      adaptors={[LedgerAdaptor, VaultAdaptor]}
+      adaptors={[LedgerAdaptor]}
     >
       {/* Your app content */}
     </ConnectProvider>
