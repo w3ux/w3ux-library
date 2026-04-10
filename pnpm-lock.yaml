@@ -365,8 +365,8 @@ importers:
         specifier: ^2.3.8
         version: 2.3.8
       qrcode-generator:
-        specifier: 1.5.0
-        version: 1.5.0
+        specifier: 2.0.4
+        version: 2.0.4
       styled-components:
         specifier: ^6.3.12
         version: 6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -1843,8 +1843,8 @@ packages:
   pump@3.0.4:
     resolution: {integrity: sha512-VS7sjc6KR7e1ukRFhQSY5LM2uBWAUPiOPa/A3mkKmiMwSmRFUITt0xuj+/lesgnCv+dPIEYlkzrcyXgquIHMcA==}
 
-  qrcode-generator@1.5.0:
-    resolution: {integrity: sha512-sqo7otiDq5rA4djRkFI7IjLQqxRrLpIou0d3rqr03JJLUGf5raPh91xCio+lFFbQf0SlcVckStz0EmDEX3EeZA==}
+  qrcode-generator@2.0.4:
+    resolution: {integrity: sha512-mZSiP6RnbHl4xL2Ap5HfkjLnmxfKcPWpWe/c+5XxCuetEenqmNFf1FH/ftXPCtFG5/TDobjsjz6sSNL0Sr8Z9g==}
 
   rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
@@ -3622,7 +3622,7 @@ snapshots:
       once: 1.4.0
     optional: true
 
-  qrcode-generator@1.5.0: {}
+  qrcode-generator@2.0.4: {}
 
   rc@1.2.8:
     dependencies:
