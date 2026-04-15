@@ -16,7 +16,7 @@ importers:
         version: 3.2.2
       autoprefixer:
         specifier: ^10.4.21
-        version: 10.5.0(postcss@8.5.9)
+        version: 10.5.0(postcss@8.5.10)
       builder:
         specifier: workspace:*
         version: link:builder
@@ -28,7 +28,7 @@ importers:
         version: 1.2.8
       postcss:
         specifier: ^8.5.3
-        version: 8.5.9
+        version: 8.5.10
       tsc:
         specifier: ^2.0.4
         version: 2.0.4
@@ -62,7 +62,7 @@ importers:
         version: 24.12.2
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/crypto:
     dependencies:
@@ -78,7 +78,7 @@ importers:
         version: link:../../builder
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/extension-assets:
     devDependencies:
@@ -93,7 +93,7 @@ importers:
         version: 19.2.5
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/factories:
     devDependencies:
@@ -111,7 +111,7 @@ importers:
         version: 19.2.5
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/hooks:
     dependencies:
@@ -136,7 +136,7 @@ importers:
         version: 19.2.5
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/ledger-connect:
     dependencies:
@@ -179,7 +179,7 @@ importers:
         version: 19.2.5
       tsup:
         specifier: ^8
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/observables-connect:
     dependencies:
@@ -210,7 +210,7 @@ importers:
         version: 7.8.2
       tsup:
         specifier: ^8
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/react-connect-kit:
     dependencies:
@@ -244,7 +244,7 @@ importers:
         version: 7.8.2
       tsup:
         specifier: ^8
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/react-odometer:
     devDependencies:
@@ -262,7 +262,7 @@ importers:
         version: 1.99.0
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/react-polkicon:
     dependencies:
@@ -290,7 +290,7 @@ importers:
         version: 19.2.5
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/types:
     devDependencies:
@@ -305,7 +305,7 @@ importers:
         version: 19.2.5
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/util-dedot:
     dependencies:
@@ -318,7 +318,7 @@ importers:
         version: link:../../builder
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/utils:
     devDependencies:
@@ -333,7 +333,7 @@ importers:
         version: 19.2.5
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
       vitest:
         specifier: ^4.0.15
         version: 4.1.4(@types/node@25.6.0)(vite@8.0.7(@types/node@25.6.0)(esbuild@0.27.7)(sass@1.99.0)(yaml@2.8.3))
@@ -351,7 +351,7 @@ importers:
         version: 19.2.5
       tsup:
         specifier: ^8.4.0
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
   library/vault-connect:
     dependencies:
@@ -388,7 +388,7 @@ importers:
         version: 19.2.5
       tsup:
         specifier: ^8
-        version: 8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
+        version: 8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3)
 
 packages:
 
@@ -740,8 +740,8 @@ packages:
   '@ledgerhq/logs@6.16.0':
     resolution: {integrity: sha512-v/PLfb1dq1En35kkpbfRWp8jLYgbPUXxGhmd4pmvPSIe0nRGkNTomsZASmWQAv6pRonVGqHIBVlte7j1MBbOww==}
 
-  '@napi-rs/wasm-runtime@1.1.3':
-    resolution: {integrity: sha512-xK9sGVbJWYb08+mTJt3/YV24WxvxpXcXtP6B172paPZ+Ts69Re9dAr7lKwJoeIx8OoeuimEiRZ7umkiUVClmmQ==}
+  '@napi-rs/wasm-runtime@1.1.4':
+    resolution: {integrity: sha512-3NQNNgA1YSlJb/kMH1ildASP9HW7/7kYnRI2szWJaofaS1hWmbGI4H+d3+22aGzXXN9IJ+n+GiFVcGipJP18ow==}
     peerDependencies:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
@@ -1821,8 +1821,8 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.9:
-    resolution: {integrity: sha512-7a70Nsot+EMX9fFU3064K/kdHWZqGVY+BADLyXc8Dfv+mTLLVl6JzJpPaCZ2kQL9gIJvKXSLMHhqdRRjwQeFtw==}
+  postcss@8.5.10:
+    resolution: {integrity: sha512-pMMHxBOZKFU6HgAZ4eyGnwXF/EvPGGqUr0MnZ5+99485wwW41kW91A4LOGxSHhgugZmSChL5AlElNdwlNgcnLQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   prebuild-install@7.1.3:
@@ -1833,6 +1833,11 @@ packages:
 
   prettier@3.8.2:
     resolution: {integrity: sha512-8c3mgTe0ASwWAJK+78dpviD+A8EqhndQPUBpNUIPt6+xWlIigCwfN01lWr9MAede4uqXGTEKeQWTvzb3vjia0Q==}
+    engines: {node: '>=14'}
+    hasBin: true
+
+  prettier@3.8.3:
+    resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2102,8 +2107,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  viem@2.47.17:
-    resolution: {integrity: sha512-yNUKw6b1nd1i96GcJPqp096w5VVjUky/6PLT8UeUsEArzhD9YRrC0QJ50o8YEF7xA6M0FK8e6u5tAMyBLLl7tw==}
+  viem@2.47.19:
+    resolution: {integrity: sha512-lwUTpMtaLyrBNcgPpjbL4JwaNSt1kCM/oWOqaqQwnpdiN4cLgJOIpi9AUFOxWCYBcMcwxLVlha6m3cV8/Hr4zg==}
     peerDependencies:
       typescript: '>=5.0.4'
     peerDependenciesMeta:
@@ -2345,7 +2350,7 @@ snapshots:
       '@dedot/types': 1.2.0
       '@dedot/utils': 1.2.0
       handlebars: 4.7.9
-      prettier: 3.8.2
+      prettier: 3.8.3
     transitivePeerDependencies:
       - bufferutil
       - typescript
@@ -2358,7 +2363,7 @@ snapshots:
       '@dedot/codecs': 1.2.0
       '@dedot/types': 1.2.0
       '@dedot/utils': 1.2.0
-      viem: 2.47.17(typescript@5.9.3)
+      viem: 2.47.19(typescript@5.9.3)
     transitivePeerDependencies:
       - bufferutil
       - typescript
@@ -2620,7 +2625,7 @@ snapshots:
 
   '@ledgerhq/logs@6.16.0': {}
 
-  '@napi-rs/wasm-runtime@1.1.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)':
+  '@napi-rs/wasm-runtime@1.1.4(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)':
     dependencies:
       '@emnapi/core': 1.9.1
       '@emnapi/runtime': 1.9.1
@@ -2781,7 +2786,7 @@ snapshots:
     dependencies:
       '@emnapi/core': 1.9.1
       '@emnapi/runtime': 1.9.1
-      '@napi-rs/wasm-runtime': 1.1.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)
+      '@napi-rs/wasm-runtime': 1.1.4(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)
     optional: true
 
   '@rolldown/binding-win32-arm64-msvc@1.0.0-rc.13':
@@ -3036,13 +3041,13 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  autoprefixer@10.5.0(postcss@8.5.9):
+  autoprefixer@10.5.0(postcss@8.5.10):
     dependencies:
       browserslist: 4.28.2
       caniuse-lite: 1.0.30001788
       fraction.js: 5.3.4
       picocolors: 1.1.1
-      postcss: 8.5.9
+      postcss: 8.5.10
       postcss-value-parser: 4.2.0
 
   axios@1.15.0:
@@ -3581,16 +3586,16 @@ snapshots:
       mlly: 1.8.2
       pathe: 2.0.3
 
-  postcss-load-config@6.0.1(postcss@8.5.9)(yaml@2.8.3):
+  postcss-load-config@6.0.1(postcss@8.5.10)(yaml@2.8.3):
     dependencies:
       lilconfig: 3.1.3
     optionalDependencies:
-      postcss: 8.5.9
+      postcss: 8.5.10
       yaml: 2.8.3
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.5.9:
+  postcss@8.5.10:
     dependencies:
       nanoid: 3.3.11
       picocolors: 1.1.1
@@ -3613,6 +3618,8 @@ snapshots:
     optional: true
 
   prettier@3.8.2: {}
+
+  prettier@3.8.3: {}
 
   proxy-from-env@2.1.0: {}
 
@@ -3858,7 +3865,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.1(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3):
+  tsup@8.5.1(postcss@8.5.10)(typescript@5.9.3)(yaml@2.8.3):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.27.7)
       cac: 6.7.14
@@ -3869,7 +3876,7 @@ snapshots:
       fix-dts-default-cjs-exports: 1.0.1
       joycon: 3.1.1
       picocolors: 1.1.1
-      postcss-load-config: 6.0.1(postcss@8.5.9)(yaml@2.8.3)
+      postcss-load-config: 6.0.1(postcss@8.5.10)(yaml@2.8.3)
       resolve-from: 5.0.0
       rollup: 4.60.1
       source-map: 0.7.6
@@ -3878,7 +3885,7 @@ snapshots:
       tinyglobby: 0.2.16
       tree-kill: 1.2.2
     optionalDependencies:
-      postcss: 8.5.9
+      postcss: 8.5.10
       typescript: 5.9.3
     transitivePeerDependencies:
       - jiti
@@ -3920,7 +3927,7 @@ snapshots:
   util-deprecate@1.0.2:
     optional: true
 
-  viem@2.47.17(typescript@5.9.3):
+  viem@2.47.19(typescript@5.9.3):
     dependencies:
       '@noble/curves': 1.9.1
       '@noble/hashes': 1.8.0
@@ -3941,7 +3948,7 @@ snapshots:
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
-      postcss: 8.5.9
+      postcss: 8.5.10
       rolldown: 1.0.0-rc.13
       tinyglobby: 0.2.16
     optionalDependencies:
