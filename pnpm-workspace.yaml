@@ -1,6 +1,11 @@
 packages:
   - builder
   - library/*
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  node-hid: true
+  usb: true
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - es5-ext
